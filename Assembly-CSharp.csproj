@@ -55,7 +55,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\DialogueController.cs" />
      <Compile Include="Assets\Scripts\ExcelParser.cs" />
-     <Compile Include="Assets\Scripts\RepeatingBackground.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/GitHub/AndroidMaker/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
