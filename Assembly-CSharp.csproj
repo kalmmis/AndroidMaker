@@ -53,34 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AdManager.cs" />
-     <Compile Include="Assets\Scripts\Bonus.cs" />
-     <Compile Include="Assets\Scripts\Boss_Wave.cs" />
-     <Compile Include="Assets\Scripts\Boundary.cs" />
-     <Compile Include="Assets\Scripts\Credit.cs" />
-     <Compile Include="Assets\Scripts\DirectMoving.cs" />
-     <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\Enemy_Boss.cs" />
+     <Compile Include="Assets\Scripts\DialogueController.cs" />
      <Compile Include="Assets\Scripts\ExcelParser.cs" />
-     <Compile Include="Assets\Scripts\FadeIn.cs" />
-     <Compile Include="Assets\Scripts\FollowThePath.cs" />
-     <Compile Include="Assets\Scripts\LevelController.cs" />
-     <Compile Include="Assets\Scripts\Logo.cs" />
-     <Compile Include="Assets\Scripts\MovingFirewall.cs" />
-     <Compile Include="Assets\Scripts\MovingSwing.cs" />
-     <Compile Include="Assets\Scripts\MovingToTarget.cs" />
-     <Compile Include="Assets\Scripts\MovingWindmill.cs" />
-     <Compile Include="Assets\Scripts\Pattern.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\PlayerMoving.cs" />
-     <Compile Include="Assets\Scripts\PlayerShooting.cs" />
-     <Compile Include="Assets\Scripts\PoolingController.cs" />
-     <Compile Include="Assets\Scripts\Projectile.cs" />
      <Compile Include="Assets\Scripts\RepeatingBackground.cs" />
-     <Compile Include="Assets\Scripts\RewardedAdsButton.cs" />
-     <Compile Include="Assets\Scripts\ShotMoving1.cs" />
-     <Compile Include="Assets\Scripts\VisualEffect.cs" />
-     <Compile Include="Assets\Scripts\Wave.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/GitHub/AndroidMaker/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>

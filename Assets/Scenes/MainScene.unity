@@ -354,25 +354,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1664046342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eec04680e9dea3468442e788a3bc50f, type: 3}
+  m_Script: {fileID: 11500000, guid: c75c83efd45f0ec498251f21934a8637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUp: {fileID: 0}
-  timeForNewPowerup: 0
-  planets: []
-  player: {fileID: 0}
-  playerLife: 0
-  invincibleTime: 0
-  timeBetweenPlanets: 0
-  planetsSpeed: 0
   isTest: 0
   skipDialog: 0
-  wantStopTheWorld: 0
-  enemyList: []
-  MAX_LEVEL: 0
-  BOSS_TIMEOUT: 0
-  animator: {fileID: 0}
-  lastPlayerPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1334036246225465801
 PrefabInstance:
   m_ObjectHideFlags: 0
