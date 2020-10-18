@@ -121,6 +121,7 @@ public class DialogueController : MonoBehaviour {
 
                                 //getFile
                                 Debug.Log("Position : " + position);
+                                Debug.Log("fileName : " + fileName);
                                 //Resources.Load<Sprite>("Assets/Resources/" + fileName);
                                 //setFileToPositoin
                                 Transform leftTf = UI.transform.Find("Left");
@@ -131,6 +132,8 @@ public class DialogueController : MonoBehaviour {
                                 {
                                     leftTf.SetAsFirstSibling();
                                     left.sprite = Resources.Load<Sprite>("Image/" + fileName) as Sprite;
+
+                                    Debug.Log("left.sprite : " + left.sprite);
                                     left.color = new Color(255f, 255f, 255, 1f);
                                     if (right.sprite != null)
                                         right.color = new Color(100f, 100f, 100, 0.7f);
@@ -150,7 +153,7 @@ public class DialogueController : MonoBehaviour {
                                 //음악플레이
                                 string fileName = row[3];
                                 AudioSource audio = gameObject.AddComponent<AudioSource>();
-                                AudioClip clip = (AudioClip) Resources.Load(fileName);
+                                AudioClip clip = (AudioClip) Resources.Load("sound/" + fileName);
                                 if( clip != null)
                                 {
                                     audio.PlayOneShot(clip);
