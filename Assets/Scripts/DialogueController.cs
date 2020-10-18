@@ -120,8 +120,7 @@ public class DialogueController : MonoBehaviour {
                                 string position = row[3];
 
                                 //getFile
-                                Debug.Log("Position : " + position);
-                                Debug.Log("fileName : " + fileName);
+                                // Debug.Log("Position : " + position);
                                 //Resources.Load<Sprite>("Assets/Resources/" + fileName);
                                 //setFileToPositoin
                                 Transform leftTf = UI.transform.Find("Left");
@@ -132,8 +131,6 @@ public class DialogueController : MonoBehaviour {
                                 {
                                     leftTf.SetAsFirstSibling();
                                     left.sprite = Resources.Load<Sprite>("Image/" + fileName) as Sprite;
-
-                                    Debug.Log("left.sprite : " + left.sprite);
                                     left.color = new Color(255f, 255f, 255, 1f);
                                     if (right.sprite != null)
                                         right.color = new Color(100f, 100f, 100, 0.7f);
