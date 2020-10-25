@@ -91,13 +91,8 @@ public class DialogueController : MonoBehaviour {
                 if (fd[1].Contains("load"))
                 {
                     if (skipDialog) continue;
-                    //stop the world!
                     string[] loadRow = fd[1].Split('=');
                     string dialogId = loadRow[1];
-                    //if (dialogId.Contains("Boss"))
-                    //{
-                    //    dialogId = isBossKilled ? dialogId + 1 : dialogId + 0;
-                    //}
                     Debug.Log(dialogId);
                     int index = dialogBook[dialogId];
                     while (true)
