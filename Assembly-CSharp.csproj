@@ -56,7 +56,6 @@
      <Compile Include="Assets\Scripts\DataController.cs" />
      <Compile Include="Assets\Scripts\DialogueController.cs" />
      <Compile Include="Assets\Scripts\ExcelParser.cs" />
-     <Compile Include="Assets\Scripts\MissionCanvas.cs" />
      <Compile Include="Assets\Scripts\MissionController.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/GitHub/AndroidMaker/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

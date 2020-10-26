@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DataController : MonoBehaviour
 {
+
+    private GameObject UI;
+
     static GameObject _container;
     static GameObject Container {
         get {
@@ -25,14 +29,34 @@ public class DataController : MonoBehaviour
         }
 
     }
+    public Text MoneyAmount;
+    public Text CoreAmount;
     
+
     public int Money = 0;
     public int MoneyPerSec = 1;
+    public int Core = 0;
         
     // Start is called before the first frame update
     void Start()
     {
+        UI = GameObject.FindGameObjectWithTag("InfoCanvas");
+        MoneyAmount = UI.transform.Find("MoneyAmount").GetComponent<Text>();
+        CoreAmount = UI.transform.Find("CoreAmount").GetComponent<Text>();
+        MoneyAmount.text = DataController.Instance.Money.ToString();
+        CoreAmount.text = DataController.Instance.Core.ToString();
         
+        
+        StartCoroutine (ReloadUI());      
+    }
+
+    
+    IEnumerator ReloadUI(){
+        while (true) {
+            
+            yield return new WaitForSecondsRealtime (1f);
+            MoneyAmount.text = DataController.Instance.Money.ToString();
+        }
     }
 
     // Update is called once per frame
