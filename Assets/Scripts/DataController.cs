@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class DataController : MonoBehaviour
 {
 
-    private GameObject UI;
-
+    private GameObject InfoCanvasUI;
     static GameObject _container;
     static GameObject Container {
         get {
@@ -34,34 +33,31 @@ public class DataController : MonoBehaviour
     
 
     public int Money = 0;
-    public int MoneyPerSec = 1;
     public int Core = 0;
+    // 초기 자원
+    // save load 가 구현되면 수정 필요할 듯
+    
+    public int MoneyPerSec = 1;
+    // 나중에 미션 쪽이 생산할 money 를 모두 합산 낼 수 있게 되면 미션 쪽으로 이관해야 함.
         
     // Start is called before the first frame update
     void Start()
     {
-        UI = GameObject.FindGameObjectWithTag("InfoCanvas");
-        MoneyAmount = UI.transform.Find("MoneyAmount").GetComponent<Text>();
-        CoreAmount = UI.transform.Find("CoreAmount").GetComponent<Text>();
+        InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
+        MoneyAmount = InfoCanvasUI.transform.Find("MoneyAmount").GetComponent<Text>();
+        CoreAmount = InfoCanvasUI.transform.Find("CoreAmount").GetComponent<Text>();
+        // 컴포넌트 연결
+
         MoneyAmount.text = DataController.Instance.Money.ToString();
         CoreAmount.text = DataController.Instance.Core.ToString();
-        
-        
-        StartCoroutine (ReloadUI());      
-    }
-
-    
-    IEnumerator ReloadUI(){
-        while (true) {
-            
-            yield return new WaitForSecondsRealtime (1f);
-            MoneyAmount.text = DataController.Instance.Money.ToString();
-        }
+         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // ui 요소 업데이트
+        MoneyAmount.text = DataController.Instance.Money.ToString();
+        CoreAmount.text = DataController.Instance.Core.ToString();   
     }
 }
