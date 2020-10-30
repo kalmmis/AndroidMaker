@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using System;
+
 
 public class DataController : MonoBehaviour
 {
@@ -28,6 +31,55 @@ public class DataController : MonoBehaviour
         }
 
     }
+
+    public string GameDataFileName = "/AndMakerSavingData.json";
+
+    public GameData _gameData;
+    public GameData gameData
+    {
+        get
+        {
+            if (_gameData == null)
+            {
+                LoadGameData();
+                SaveGameData();
+            }
+            return _gameData;
+        }
+    }
+
+    public void LoadGameData()
+    {
+        string filePath = Application.dataPath + GameDataFileName;
+        //string filePath = Application.persistentDataPath + GameDataFileName;
+
+        if (File.Exists(filePath))
+        {
+            string FromJsonData = File.ReadAllText(filePath);
+            _gameData = JsonUtility.FromJson<GameData>(FromJsonData);
+            Debug.Log("불러오기 성공");
+        }
+        else
+        {
+            _gameData = new GameData();
+            Debug.Log("새로운 파일 생성");
+        }
+    }
+
+    public void SaveGameData()
+    {
+        string ToJsonData = JsonUtility.ToJson(gameData);
+        string filePath = Application.dataPath + GameDataFileName;
+        //string filePath = Application.persistentDataPath + GameDataFileName;
+        File.WriteAllText(filePath, ToJsonData);
+        Debug.Log("저장 완료");
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGameData();
+    }
+
     public Text MoneyAmount;
     public Text CoreAmount;
     
@@ -47,6 +99,8 @@ public class DataController : MonoBehaviour
         MoneyAmount = InfoCanvasUI.transform.Find("MoneyAmount").GetComponent<Text>();
         CoreAmount = InfoCanvasUI.transform.Find("CoreAmount").GetComponent<Text>();
         // 컴포넌트 연결
+
+        LoadGameData();
 
         MoneyAmount.text = DataController.Instance.Money.ToString();
         CoreAmount.text = DataController.Instance.Core.ToString();
