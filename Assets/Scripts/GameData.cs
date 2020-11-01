@@ -13,12 +13,6 @@ public class GameData
     // save load 가 구현되면 수정 필요할 듯 
     public int MoneyPerSec;
     // 나중에 미션 쪽이 생산할 money 를 모두 합산 낼 수 있게 되면 미션 쪽으로 이관해야 함.
-    public MissionData missionData;
-}
+    public int[] RequireMoneyforLevelUp = new int[5]{100,200,300,400,500};
 
-public enum MissionData
-{
-    MissionID,
-    MissionTextKey,
-    MissionText
 }

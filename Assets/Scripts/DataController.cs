@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class DataController : MonoBehaviour
 {
+    // 바이너리로 저장하는 법 구현 따라하다가 관둠...
     /*
     public static void BinarySerialize<T>(T t, string filepath)
     {
@@ -27,7 +28,6 @@ public class DataController : MonoBehaviour
     }
     */
 
-// 아래는 20201101 이전
     static DataController _instance;
     public static DataController Instance {
         get {
@@ -85,7 +85,6 @@ public class DataController : MonoBehaviour
     }
 
 
-
     public void SaveGameData()
     {
         string ToJsonData = JsonUtility.ToJson(gameData);
@@ -93,11 +92,6 @@ public class DataController : MonoBehaviour
         //string filePath = Application.persistentDataPath + GameDataFileName;
         File.WriteAllText(filePath, ToJsonData);
         Debug.Log("저장 완료");
-    }
-
-    private void OnApplicationQuit()
-    {
-        SaveGameData();
     }
 
 }

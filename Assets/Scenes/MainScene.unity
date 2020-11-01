@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 296590031}
   - component: {fileID: 296590030}
   m_Layer: 5
-  m_Name: MissionLevelUpText
+  m_Name: Mission1LevelUpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1011,7 +1011,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 328081119}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 588208614}
+        m_MethodName: ResetGameData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &328081119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1115,9 +1126,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'OPTION
-
-'
+  m_Text: ResetData
 --- !u!222 &332443475
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1308,13 +1317,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoneyAmount: {fileID: 0}
   CoreAmount: {fileID: 0}
-  dataControllerScript: {fileID: 1243689946}
   gameDataScript:
-    BGM: 0
-    EFX: 0
     Money: 0
     Core: 0
     MoneyPerSec: 1
+    RequireMoneyforLevelUp: 64000000c80000002c01000090010000f4010000
+    missionData: 0
 --- !u!1 &693954395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,11 +2405,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameDataFileName: /AndMakerSavingData.json
   _gameData:
-    BGM: 0
-    EFX: 0
     Money: 0
     Core: 0
     MoneyPerSec: 1
+    RequireMoneyforLevelUp: 64000000c80000002c01000090010000f4010000
+    missionData: 0
 --- !u!4 &1243689947
 Transform:
   m_ObjectHideFlags: 0
@@ -3322,7 +3330,7 @@ GameObject:
   - component: {fileID: 1814438217}
   - component: {fileID: 1814438216}
   m_Layer: 5
-  m_Name: MissionLevelUpButton
+  m_Name: Mission1LevelUpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3390,7 +3398,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 506018003990440853}
-        m_MethodName: LevelUP2
+        m_MethodName: LevelUP
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5515,12 +5523,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c408b8a7d80b894094c767a7952e796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameData:
-    BGM: 0
-    EFX: 0
+  gameDataScript:
     Money: 0
     Core: 0
-    MoneyPerSec: 1
+    MoneyPerSec: 0
+    RequireMoneyforLevelUp: 64000000c80000002c01000090010000f4010000
+    missionData: 0
 --- !u!114 &2224678793190367615
 MonoBehaviour:
   m_ObjectHideFlags: 0

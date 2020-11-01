@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public Text MoneyAmount;
     public Text CoreAmount;
-    public DataController dataControllerScript;
+    //public DataController dataControllerScript;
     private GameObject InfoCanvasUI;
     public GameData gameDataScript;
       
@@ -18,15 +18,8 @@ public class GameManager : MonoBehaviour
         MoneyAmount = InfoCanvasUI.transform.Find("MoneyAmount").GetComponent<Text>();
         CoreAmount = InfoCanvasUI.transform.Find("CoreAmount").GetComponent<Text>();
 
-/*
-        if (gameDataScript.Money == null)
-        {
-            gameDataScript.Money = 1;
-        }
-*/
         // 컴포넌트 연결
 
-        //dataControllerScript.LoadGameData();
         DataController.Instance.LoadGameData();
         //Debug.Log("money:" + DataController.Instance.gameData.Money);
         MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
@@ -39,12 +32,16 @@ public class GameManager : MonoBehaviour
     IEnumerator StartCollectMoney(){
         while (true) {
 
-            yield return new WaitForSecondsRealtime (1f);
-            //DataController.Instance.gameData.Money += DataController.Instance.gameData.MoneyPerSec;
-            //인스턴스로 MoneyPerSec 을 부르면 계산이 안되네.
+            yield return new WaitForSecondsRealtime (5f);
             DataController.Instance.gameData.Money += DataController.Instance.gameData.MoneyPerSec;
-            DataController.Instance.gameData.MoneyPerSec += 1;
+            
         }
+    }
+
+    public void ResetGameData()
+    {
+        DataController.Instance.gameData.Money = 0;
+        DataController.Instance.gameData.MoneyPerSec = 0;
     }
 
     // Update is called once per frame
@@ -55,4 +52,10 @@ public class GameManager : MonoBehaviour
         CoreAmount.text = DataController.Instance.gameData.Core.ToString();
          
     }
+    
+    private void OnApplicationQuit()
+    {
+        DataController.Instance.SaveGameData();
+    }
+
 }
