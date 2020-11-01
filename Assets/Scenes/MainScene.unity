@@ -1268,6 +1268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 588208613}
+  - component: {fileID: 588208614}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1289,9 +1290,31 @@ Transform:
   - {fileID: 1664046343}
   - {fileID: 482056779}
   - {fileID: 7352485036408150800}
+  - {fileID: 1243689947}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &588208614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588208612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc881002b5aba043868553aedeb4fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoneyAmount: {fileID: 0}
+  CoreAmount: {fileID: 0}
+  dataControllerScript: {fileID: 1243689946}
+  gameDataScript:
+    BGM: 0
+    EFX: 0
+    Money: 0
+    Core: 0
+    MoneyPerSec: 1
 --- !u!1 &693954395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,6 +2366,56 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1243689945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1243689947}
+  - component: {fileID: 1243689946}
+  m_Layer: 0
+  m_Name: DataController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1243689946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243689945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09672c7bdfc8a7a488c83d26b000fd7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameDataFileName: /AndMakerSavingData.json
+  _gameData:
+    BGM: 0
+    EFX: 0
+    Money: 0
+    Core: 0
+    MoneyPerSec: 1
+--- !u!4 &1243689947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243689945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 588208613}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1276125432
 GameObject:
   m_ObjectHideFlags: 0
@@ -5442,6 +5515,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c408b8a7d80b894094c767a7952e796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameData:
+    BGM: 0
+    EFX: 0
+    Money: 0
+    Core: 0
+    MoneyPerSec: 1
 --- !u!114 &2224678793190367615
 MonoBehaviour:
   m_ObjectHideFlags: 0

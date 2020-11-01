@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\DialogueController.cs" />
      <Compile Include="Assets\Scripts\ExcelParser.cs" />
      <Compile Include="Assets\Scripts\GameData.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MissionController.cs" />
      <Compile Include="Assets\Scripts\MissionLevelUp.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">

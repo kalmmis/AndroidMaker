@@ -15,13 +15,8 @@ public class MissionLevelUp : MonoBehaviour
         while (true) 
         {
             yield return new WaitForSecondsRealtime (1f);
-            DataController.Instance.Money += DataController.Instance.MoneyPerSec;
+            //DataController.Instance.Money += DataController.Instance.MoneyPerSec;
         }
-    }
-
-    public void LevelUP2()
-    {
-        DataController.Instance.Money += DataController.Instance.MoneyPerSec;
     }
 
     // Update is called once per frame
