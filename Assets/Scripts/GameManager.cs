@@ -26,10 +26,11 @@ public class GameManager : MonoBehaviour
 */
         // 컴포넌트 연결
 
-        dataControllerScript.LoadGameData();
-
-        MoneyAmount.text = gameDataScript.Money.ToString();
-        CoreAmount.text = gameDataScript.Core.ToString();
+        //dataControllerScript.LoadGameData();
+        DataController.Instance.LoadGameData();
+        //Debug.Log("money:" + DataController.Instance.gameData.Money);
+        MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
+        CoreAmount.text = DataController.Instance.gameData.Core.ToString();
         
         StartCoroutine (StartCollectMoney());      
          
@@ -39,8 +40,10 @@ public class GameManager : MonoBehaviour
         while (true) {
 
             yield return new WaitForSecondsRealtime (1f);
-            gameDataScript.Money += gameDataScript.MoneyPerSec;
-            
+            //DataController.Instance.gameData.Money += DataController.Instance.gameData.MoneyPerSec;
+            //인스턴스로 MoneyPerSec 을 부르면 계산이 안되네.
+            DataController.Instance.gameData.Money += DataController.Instance.gameData.MoneyPerSec;
+            DataController.Instance.gameData.MoneyPerSec += 1;
         }
     }
 
@@ -48,8 +51,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // ui 요소 업데이트
-        MoneyAmount.text = gameDataScript.Money.ToString();
-        CoreAmount.text = gameDataScript.Core.ToString();
+        MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
+        CoreAmount.text = DataController.Instance.gameData.Core.ToString();
          
     }
 }

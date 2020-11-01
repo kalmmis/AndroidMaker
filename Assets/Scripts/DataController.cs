@@ -1,13 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 
 public class DataController : MonoBehaviour
 {
+    /*
+    public static void BinarySerialize<T>(T t, string filepath)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(Define.DataFilePath + filepath, FileMode.Create);
+        formatter.Serialize(stream, t);
+        stram.Close();
+    }
 
+    public static T BinaryDeserialize<T>(string filePath)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(Define.DataFilePath + filePath, FileMode.Open);
+        T t = (T)formatter.Deserialize(stream);
+
+        return t;
+    }
+    */
+
+// 아래는 20201101 이전
     static DataController _instance;
     public static DataController Instance {
         get {
@@ -63,6 +83,8 @@ public class DataController : MonoBehaviour
             Debug.Log("새로운 파일 생성");
         }
     }
+
+
 
     public void SaveGameData()
     {
