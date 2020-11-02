@@ -9,10 +9,19 @@ public class GameData
 {
     public int Money;
     public int Core;
-    // 초기 자원
-    // save load 가 구현되면 수정 필요할 듯 
+    
+    // 테스트용 변수
     public int MoneyPerSec;
-    // 나중에 미션 쪽이 생산할 money 를 모두 합산 낼 수 있게 되면 미션 쪽으로 이관해야 함.
-    public int[] RequireMoneyforLevelUp = new int[5]{100,200,300,400,500};
+
+    // 미션 진행용 상수
+    
+    public int Mission1Level;
+    public int Mission2Level;
+
+    public int[] MissionRewardMoney = new int[5]{1,1000,300,400,500};
+    public int[] MissionLevelUPRequiredMoney = new int[5]{100,200,300,400,500};
+    public float[] MissionWaitingTime = new float[5]{1,10,3,4,5};
+    public string[] MissionTilte = new string[5]{"Street Cleaning1","Street Cleaning2","Street Cleaning3","Street Cleaning4","Street Cleaning5"};
 
 }
+

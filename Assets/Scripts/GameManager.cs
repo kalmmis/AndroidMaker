@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     public Text CoreAmount;
     //public DataController dataControllerScript;
     private GameObject InfoCanvasUI;
-    public GameData gameDataScript;
-      
+    // public GameData gameDataScript;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,9 @@ public class GameManager : MonoBehaviour
         MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
         CoreAmount.text = DataController.Instance.gameData.Core.ToString();
         
-        StartCoroutine (StartCollectMoney());      
-         
+        // 테스트용 코드
+        //StartCoroutine (StartCollectMoney());      
+        
     }
 
     IEnumerator StartCollectMoney(){

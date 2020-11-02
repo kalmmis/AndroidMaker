@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 151580580}
   - component: {fileID: 151580579}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Mission1ProgressText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,7 +357,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 00:30 left
+  m_Text: 300,000
 --- !u!222 &151580580
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Content: {fileID: 885260317}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 0
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -1186,7 +1186,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: -17}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &518370014
 MonoBehaviour:
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 51277581}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.64935064
+  m_Size: 0.6993007
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1317,12 +1317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoneyAmount: {fileID: 0}
   CoreAmount: {fileID: 0}
-  gameDataScript:
-    Money: 0
-    Core: 0
-    MoneyPerSec: 1
-    RequireMoneyforLevelUp: 64000000c80000002c01000090010000f4010000
-    missionData: 0
 --- !u!1 &693954395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,7 +1719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_VerticalFit: 1
 --- !u!114 &885260319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1741,10 +1735,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 50
+    m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 15
+  m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1792,7 +1786,7 @@ GameObject:
   - component: {fileID: 977382460}
   - component: {fileID: 977382461}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Mission1ProgressSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2408,8 +2402,22 @@ MonoBehaviour:
     Money: 0
     Core: 0
     MoneyPerSec: 1
-    RequireMoneyforLevelUp: 64000000c80000002c01000090010000f4010000
-    missionData: 0
+    Mission1Level: 0
+    Mission2Level: 0
+    MissionRewardMoney: 64000000c80000002c01000090010000f4010000
+    MissionLevelUPRequiredMoney: 64000000c80000002c01000090010000f4010000
+    MissionWaitingTime:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    MissionTilte:
+    - Street Cleaning1
+    - Street Cleaning2
+    - Street Cleaning3
+    - Street Cleaning4
+    - Street Cleaning5
 --- !u!4 &1243689947
 Transform:
   m_ObjectHideFlags: 0
@@ -3254,7 +3262,7 @@ GameObject:
   - component: {fileID: 1673801388}
   - component: {fileID: 1673801387}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Mission1Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5523,12 +5531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c408b8a7d80b894094c767a7952e796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDataScript:
-    Money: 0
-    Core: 0
-    MoneyPerSec: 0
-    RequireMoneyforLevelUp: 64000000c80000002c01000090010000f4010000
-    missionData: 0
 --- !u!114 &2224678793190367615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6565,7 +6567,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10000
+  m_Text: 100
 --- !u!114 &3696807343598016719
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,1 +1,1 @@
-{"Money":800,"Core":0,"MoneyPerSec":200,"RequireMoneyforLevelUp":[100,200,300,400,500]}
+{"Money":2024,"Core":0,"MoneyPerSec":0,"Mission1Level":0,"Mission2Level":1,"MissionRewardMoney":[1,1000,300,400,500],"MissionLevelUPRequiredMoney":[100,200,300,400,500],"MissionWaitingTime":[1.0,10.0,3.0,4.0,5.0],"MissionTilte":["Street Cleaning1","Street Cleaning2","Street Cleaning3","Street Cleaning4","Street Cleaning5"]}
