@@ -12,8 +12,7 @@ public class MissionLevelUp : MonoBehaviour
 
     public void LevelUP()
     {
-        DataController.Instance.gameData.MoneyPerSec += 100;
-        DataController.Instance.gameData.Money -= DataController.Instance.gameData.MissionLevelUPRequiredMoney[4];
+        DataController.Instance.gameData.Mission1Level += 1;
     }
 
 

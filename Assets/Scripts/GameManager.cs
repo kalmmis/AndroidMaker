@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     //public DataController dataControllerScript;
     private GameObject InfoCanvasUI;
     // public GameData gameDataScript;
+    public MissionController missionController;
     
 
     // Start is called before the first frame update
@@ -44,6 +45,11 @@ public class GameManager : MonoBehaviour
     {
         DataController.Instance.gameData.Money = 0;
         DataController.Instance.gameData.MoneyPerSec = 0;
+        DataController.Instance.gameData.Mission1Level = 1;
+        DataController.Instance.gameData.Mission2Level = 2;
+
+        missionController.StopCollectMoney();
+        missionController.Start();
     }
 
     // Update is called once per frame
