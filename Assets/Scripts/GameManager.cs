@@ -11,11 +11,20 @@ public class GameManager : MonoBehaviour
     private GameObject InfoCanvasUI;
     // public GameData gameDataScript;
     public MissionController missionController;
-    
+
+    private GameObject MissionUI;
+    private GameObject LearnUI;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        MissionUI = GameObject.FindGameObjectWithTag("MissionUI");
+        LearnUI = GameObject.FindGameObjectWithTag("LearnUI");
+
+        MissionUI.SetActive(true);
+        LearnUI.SetActive(false);
+
         InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
         MoneyAmount = InfoCanvasUI.transform.Find("MoneyAmount").GetComponent<Text>();
         CoreAmount = InfoCanvasUI.transform.Find("CoreAmount").GetComponent<Text>();
@@ -43,6 +52,9 @@ public class GameManager : MonoBehaviour
 
     public void ResetGameData()
     {
+        MissionUI.SetActive(true);
+        LearnUI.SetActive(false);
+
         DataController.Instance.gameData.Money = 0;
         Debug.Log("money:" + DataController.Instance.gameData.Money);
         DataController.Instance.gameData.MoneyPerSec = 0;
@@ -52,6 +64,19 @@ public class GameManager : MonoBehaviour
         missionController.StopCollectMoney();
         missionController.ResetStart();
     }
+
+    void ActiveMissionTab()
+    {
+        MissionUI.SetActive(true);
+        LearnUI.SetActive(false);
+    }
+
+    void ActiveLearnTab()
+    {
+        MissionUI.SetActive(false);
+        LearnUI.SetActive(true);
+    }
+
 
     // Update is called once per frame
     void Update()

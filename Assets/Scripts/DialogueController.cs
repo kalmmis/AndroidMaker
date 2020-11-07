@@ -21,7 +21,7 @@ public class DialogueController : MonoBehaviour {
     }
     private void Start()
     {
-        UI = GameObject.FindGameObjectWithTag("UI");
+        UI = GameObject.FindGameObjectWithTag("DialogueUI");
         UI.SetActive(false);
         if (!isTest) StartCoroutine( StartLevel() );
         Debug.Log("Started!");

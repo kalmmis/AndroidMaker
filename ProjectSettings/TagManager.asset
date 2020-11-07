@@ -8,6 +8,9 @@ TagManager:
   - DevBoard
   - InfoCanvas
   - MissionCanvas
+  - DialogueUI
+  - MissionUI
+  - LearnUI
   layers:
   - Default
   - TransparentFX
