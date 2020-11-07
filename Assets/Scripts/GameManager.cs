@@ -44,12 +44,13 @@ public class GameManager : MonoBehaviour
     public void ResetGameData()
     {
         DataController.Instance.gameData.Money = 0;
+        Debug.Log("money:" + DataController.Instance.gameData.Money);
         DataController.Instance.gameData.MoneyPerSec = 0;
         DataController.Instance.gameData.Mission1Level = 1;
         DataController.Instance.gameData.Mission2Level = 2;
 
         missionController.StopCollectMoney();
-        missionController.Start();
+        missionController.ResetStart();
     }
 
     // Update is called once per frame

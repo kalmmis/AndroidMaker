@@ -112,6 +112,18 @@ public class MissionController : MonoBehaviour
         }
     }
 
+    public void ResetStart()
+    {
+        int Mission1LV = DataController.Instance.gameData.Mission1Level;
+        int Mission2LV = DataController.Instance.gameData.Mission2Level; 
+
+        mission1Coroutine = StartCollectMoney(Mission1LV);
+        mission2Coroutine = StartCollectMoney(Mission2LV);
+
+        StartCoroutine (mission1Coroutine);
+        StartCoroutine (mission2Coroutine);
+    }
+
     public void StopCollectMoney()
     {
         StopCoroutine (mission1Coroutine);
