@@ -35,7 +35,14 @@ public class MissionController : MonoBehaviour
 
     // Start is called before the first frame update
     public void Start()
-    {          
+    {
+        int Mission1LV = DataController.Instance.gameData.Mission1Level;
+        int Mission2LV = DataController.Instance.gameData.Mission2Level;
+        int Mission3LV = DataController.Instance.gameData.Mission3Level;
+        int Mission4LV = DataController.Instance.gameData.Mission4Level;
+        int Mission5LV = DataController.Instance.gameData.Mission5Level;
+        int Mission6LV = DataController.Instance.gameData.Mission6Level;
+
         MissionCanvasUI = GameObject.FindGameObjectWithTag("MissionCanvas");
         Mission1TitleText = MissionCanvasUI.transform.Find("Mission1Panel").Find("Mission1TitleText").GetComponent<Text>();
         Mission1LevelUpRequiredText = MissionCanvasUI.transform.Find("Mission1Panel").Find("Mission1LevelUpButton").Find("Mission1LevelUpRequiredText").GetComponent<Text>();
@@ -60,43 +67,74 @@ public class MissionController : MonoBehaviour
         Mission6TitleText = MissionCanvasUI.transform.Find("Mission6Panel").Find("Mission6TitleText").GetComponent<Text>();
         Mission6LevelUpRequiredText = MissionCanvasUI.transform.Find("Mission6Panel").Find("Mission6LevelUpButton").Find("Mission6LevelUpRequiredText").GetComponent<Text>();
         Mission6ProgressText = MissionCanvasUI.transform.Find("Mission6Panel").Find("Mission6ProgressSlider").Find("Mission6ProgressText").GetComponent<Text>();
-        
-        Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString();
-        Mission1LevelUpRequiredText.text = DataController.Instance.gameData.MissionTilte[2].ToString();
-        Mission1ProgressText.text = DataController.Instance.gameData.MissionTilte[3].ToString();
 
-        Mission2TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString();
-        Mission2LevelUpRequiredText.text = DataController.Instance.gameData.MissionTilte[2].ToString();
-        Mission2ProgressText.text = DataController.Instance.gameData.MissionTilte[3].ToString();
-        
-        Mission3TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString();
-        Mission3LevelUpRequiredText.text = DataController.Instance.gameData.MissionTilte[2].ToString();
-        Mission3ProgressText.text = DataController.Instance.gameData.MissionTilte[3].ToString();
+        Mission1LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission1LV].ToString();
+        Mission1ProgressText.text = DataController.Instance.gameData.MissionReward[Mission1LV].ToString();
 
-        Mission4TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString();
-        Mission4LevelUpRequiredText.text = DataController.Instance.gameData.MissionTilte[2].ToString();
-        Mission4ProgressText.text = DataController.Instance.gameData.MissionTilte[3].ToString();
+        Mission2LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission2LV].ToString();
+        Mission2ProgressText.text = DataController.Instance.gameData.MissionReward[Mission2LV].ToString();
         
-        Mission5TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString();
-        Mission5LevelUpRequiredText.text = DataController.Instance.gameData.MissionTilte[2].ToString();
-        Mission5ProgressText.text = DataController.Instance.gameData.MissionTilte[3].ToString();
+        Mission3LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission3LV].ToString();
+        Mission3ProgressText.text = DataController.Instance.gameData.MissionReward[Mission3LV].ToString();
 
-        Mission6TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString();
-        Mission6LevelUpRequiredText.text = DataController.Instance.gameData.MissionTilte[2].ToString();
-        Mission6ProgressText.text = DataController.Instance.gameData.MissionTilte[3].ToString();
+        Mission4LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission4LV].ToString();
+        Mission4ProgressText.text = DataController.Instance.gameData.MissionReward[Mission4LV].ToString();
+        
+        Mission5LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission5LV].ToString();
+        Mission5ProgressText.text = DataController.Instance.gameData.MissionReward[Mission5LV].ToString();
+
+        Mission6LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission6LV].ToString();
+        Mission6ProgressText.text = DataController.Instance.gameData.MissionReward[Mission6LV].ToString();
 
 
         // 컴포넌트 연결
         Debug.Log("MissionController.Start");
-        int Mission1LV = DataController.Instance.gameData.Mission1Level;
-        int Mission2LV = DataController.Instance.gameData.Mission2Level; 
 
         mission1Coroutine = StartCollectMoney(Mission1LV);
         mission2Coroutine = StartCollectMoney(Mission2LV);
 
-        StartCoroutine (mission1Coroutine);
-        StartCoroutine (mission2Coroutine);
-        //StartCoroutine (StartCollectMoney(Mission2LV));
+        if (Mission1LV == 0)
+        {
+            Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
+        }
+        else
+        {
+            Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString() + Mission1LV;
+            StartCoroutine(mission1Coroutine);
+        }
+        if (Mission2LV == 0)
+        {
+            Mission2TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
+        }
+        else
+        {
+            Mission2TitleText.text = DataController.Instance.gameData.MissionTilte[2].ToString();
+            StartCoroutine(mission2Coroutine);
+        }
+        if (Mission3LV == 0)
+        {
+            Mission3TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
+        }
+        else
+        {
+            Mission3TitleText.text = DataController.Instance.gameData.MissionTilte[3].ToString();
+        }
+        if (Mission4LV == 0)
+        {
+            Mission4TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
+        }
+        else
+        {
+            Mission4TitleText.text = DataController.Instance.gameData.MissionTilte[4].ToString();
+        }
+        if (Mission5LV == 0)
+        {
+            Mission5TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
+        }
+        else
+        {
+            Mission5TitleText.text = DataController.Instance.gameData.MissionTilte[5].ToString();
+        }
 
         DataController.Instance.LoadGameData();
         
@@ -130,7 +168,6 @@ public class MissionController : MonoBehaviour
         StopCoroutine (mission2Coroutine);
     }
 
-
     public void LevelUP()
     {
         StopCoroutine (mission1Coroutine);
@@ -138,6 +175,38 @@ public class MissionController : MonoBehaviour
         int Mission1LV = DataController.Instance.gameData.Mission1Level;
         mission1Coroutine = StartCollectMoney(Mission1LV);
         StartCoroutine (mission1Coroutine);
+    }
+
+    public void Mission1LevelUP()
+    {
+        if (DataController.Instance.gameData.Mission1Level == 0)
+        {
+            DataController.Instance.gameData.Mission1Level += 1;
+            int Mission1LV = DataController.Instance.gameData.Mission1Level;
+            mission1Coroutine = StartCollectMoney(Mission1LV);
+            StartCoroutine(mission1Coroutine);
+            Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString() + Mission1LV;
+            Mission1LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission1LV].ToString();
+            Mission1ProgressText.text = DataController.Instance.gameData.MissionReward[Mission1LV].ToString();
+        }
+        else
+        {
+            StopCoroutine(mission1Coroutine);
+            DataController.Instance.gameData.Mission1Level += 1;
+            int Mission1LV = DataController.Instance.gameData.Mission1Level;
+            mission1Coroutine = StartCollectMoney(Mission1LV);
+            StartCoroutine(mission1Coroutine);
+            Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString() + Mission1LV;
+            Mission1LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission1LV].ToString();
+            Mission1ProgressText.text = DataController.Instance.gameData.MissionReward[Mission1LV].ToString();
+        }
+    }
+
+    public void ResetUI()
+    {
+        Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
+        Mission2TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
+
     }
 
     // Update is called once per frame

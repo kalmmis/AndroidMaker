@@ -11,6 +11,7 @@ TagManager:
   - DialogueUI
   - MissionUI
   - LearnUI
+  - ItemUI
   layers:
   - Default
   - TransparentFX
