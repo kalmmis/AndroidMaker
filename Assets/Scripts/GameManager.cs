@@ -44,15 +44,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    IEnumerator StartCollectMoney(){
-        while (true) {
-
-            yield return new WaitForSecondsRealtime (5f);
-            DataController.Instance.gameData.Money += DataController.Instance.gameData.MoneyPerSec;
-            
-        }
-    }
-
     public void ResetGameData()
     {
         MissionUI.SetActive(true);
@@ -60,7 +51,6 @@ public class GameManager : MonoBehaviour
 
         DataController.Instance.gameData.Money = 0;
         Debug.Log("money:" + DataController.Instance.gameData.Money);
-        DataController.Instance.gameData.MoneyPerSec = 0;
         DataController.Instance.gameData.Mission1Level = 0;
         DataController.Instance.gameData.Mission2Level = 0;
 

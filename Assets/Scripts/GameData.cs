@@ -9,9 +9,6 @@ public class GameData
 {
     public int Money;
     public int Core;
-    
-    // 테스트용 변수
-    public int MoneyPerSec;
 
     public int Mission1Level;
     public int Mission2Level;
@@ -19,7 +16,24 @@ public class GameData
     public int Mission4Level;
     public int Mission5Level;
     public int Mission6Level;
-    
+
+    public int Battery; // 배터리 한 주기의 최대치를 나타냄. 
+
+    public int Durability; // 내구성, 안드로이드가 육체적으로 부서질 수 있음.
+    public int Stress; // 스트레스, 멘탈, 안드로이드가 정신적으로 부서질 수 있음.
+
+    public int Strength; // 근력, 부품 교체 등의 아이템을 통해서만 증가 가능
+    public int Mobility;  // 기동성, 부품 교체 등의 아이템을 통해서만 증가 가능 
+    public int Computing; // 연산능력
+    public int Knowledge; // 지식
+    public int Wisdom; // 지혜
+    public int Willing; // 의지
+    public int Charisma; // 매력
+    public int Morality; // 도덕성
+    public int Humanity; // 인간성
+
+    public int OverallTurnCheck;
+
     // 미션 진행용 상수 나중에 테이블이든 뭐든 읽을 거...
 
     public int[] MissionRewardMoney = new int[7]{0,1,10,100,100,10000,100000};

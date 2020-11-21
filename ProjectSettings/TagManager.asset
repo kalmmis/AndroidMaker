@@ -12,6 +12,7 @@ TagManager:
   - MissionUI
   - LearnUI
   - ItemUI
+  - StatusUI
   layers:
   - Default
   - TransparentFX
