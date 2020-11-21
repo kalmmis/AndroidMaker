@@ -10,10 +10,6 @@ public class MissionLevelUp : MonoBehaviour
 
     }
 
-    public void LevelUP()
-    {
-        DataController.Instance.gameData.Mission1Level += 1;
-    }
 
 
 
