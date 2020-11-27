@@ -8,7 +8,7 @@ public class LearnController : MonoBehaviour
     public delegate void TestDelegate();
     public TestDelegate m_methodToCall;
 
-    public void LearnMethod()
+    public void LearnMethod(int lv)
     {
         m_methodToCall = AwesomeExampleMethod;
 
