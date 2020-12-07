@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour
     {
         MissionUI.SetActive(false);
         LearnUI.SetActive(true);
+
+        StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
+        sc.Init();
     }
 
 

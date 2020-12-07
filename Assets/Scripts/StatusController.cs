@@ -49,6 +49,11 @@ public class StatusController : MonoBehaviour
 
     void Start()
     {
+    }
+
+    public void Init()
+    {
+        
         StatusUI = GameObject.FindGameObjectWithTag("StatusUI");
 
         Status1 = StatusUI.transform.Find("Status1Panel").transform.Find("Text").GetComponent<Text>();
@@ -125,7 +130,6 @@ public class StatusController : MonoBehaviour
         Status9Bar.value = Status9Gauge;
 
     }
-
     // Update is called once per frame
     void Update()
     {

@@ -146,7 +146,6 @@ public class MissionController : MonoBehaviour
 
     IEnumerator StartCollectMoney(int missionlv){
         while (true) {
-            Debug.Log(missionlv);
             yield return new WaitForSecondsRealtime (DataController.Instance.gameData.MissionWaitingTime[missionlv]);
             DataController.Instance.gameData.Money += DataController.Instance.gameData.MissionRewardMoney[missionlv];
             
@@ -170,6 +169,7 @@ public class MissionController : MonoBehaviour
         StopCoroutine (mission1Coroutine);
         StopCoroutine (mission2Coroutine);
     }
+
 
     public void Mission1LevelUP()
     {

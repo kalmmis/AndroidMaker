@@ -34,6 +34,8 @@ public class GameData
 
     public int OverallTurnCheck;
 
+    public int[] scheduleIDs = new int[4]{0,0,0,0};
+
     // 미션 진행용 상수 나중에 테이블이든 뭐든 읽을 거...
 
     public int[] MissionRewardMoney = new int[7]{0,1,10,100,100,10000,100000};
