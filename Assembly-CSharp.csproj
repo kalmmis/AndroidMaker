@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\LearnController.cs" />
      <Compile Include="Assets\Scripts\MissionController.cs" />
      <Compile Include="Assets\Scripts\StatusController.cs" />
+     <Compile Include="Assets\Scripts\TempData.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/GitHub/AndroidMaker/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>

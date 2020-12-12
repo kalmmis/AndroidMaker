@@ -13,6 +13,7 @@ TagManager:
   - LearnUI
   - ItemUI
   - StatusUI
+  - ScheduleUI
   layers:
   - Default
   - TransparentFX

@@ -41,9 +41,7 @@ public class GameManager : MonoBehaviour
         
         // 테스트용 코드
         //StartCoroutine (StartCollectMoney());      
-        
     }
-
     public void ResetGameData()
     {
         MissionUI.SetActive(true);
@@ -72,6 +70,8 @@ public class GameManager : MonoBehaviour
 
         StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
         sc.Init();
+        LearnController lc = GameObject.Find("LearnController").GetComponent<LearnController>();
+        lc.Init();
     }
 
 

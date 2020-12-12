@@ -45,7 +45,8 @@ public class DataController : MonoBehaviour
 
     static GameObject _container;
     static GameObject Container {
-        get {
+        get 
+        {
             return _container;
         }
     }
@@ -65,6 +66,16 @@ public class DataController : MonoBehaviour
             return _gameData;
         }
     }
+
+    public TempData _tempData;
+    public TempData tempData
+    {
+        get
+        {
+            return _tempData;
+        }
+    }
+
 
     public void LoadGameData()
     {
