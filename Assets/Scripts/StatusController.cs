@@ -47,11 +47,7 @@ public class StatusController : MonoBehaviour
 
     private GameObject StatusUI;
 
-    void Start()
-    {
-    }
-
-    public void Init()
+    public void LoadingStatusUI()
     {
         
         StatusUI = GameObject.FindGameObjectWithTag("StatusUI");

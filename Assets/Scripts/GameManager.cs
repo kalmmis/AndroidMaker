@@ -7,71 +7,63 @@ public class GameManager : MonoBehaviour
 {
     public Text MoneyAmount;
     public Text CoreAmount;
-    //public DataController dataControllerScript;
     private GameObject InfoCanvasUI;
-    // public GameData gameDataScript;
-    public MissionController missionController;
 
     private GameObject MissionUI;
     private GameObject LearnUI;
-    private GameObject ItemUI;
+    private GameObject ResearchUI;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        LoadingMainUI();
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        dc.LoadGameData(); 
+    }
+
+    public void LoadingMainUI()
+    {
         MissionUI = GameObject.FindGameObjectWithTag("MissionUI");
         LearnUI = GameObject.FindGameObjectWithTag("LearnUI");
-        ItemUI = GameObject.FindGameObjectWithTag("ItemUI");
+        ResearchUI = GameObject.FindGameObjectWithTag("ItemUI");
 
         MissionUI.SetActive(true);
         LearnUI.SetActive(false);
-        ItemUI.SetActive(false);
+        ResearchUI.SetActive(false);
 
         InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
         MoneyAmount = InfoCanvasUI.transform.Find("MoneyAmount").GetComponent<Text>();
         CoreAmount = InfoCanvasUI.transform.Find("CoreAmount").GetComponent<Text>();
 
-        // 컴포넌트 연결
-
-        DataController.Instance.LoadGameData();
-        //Debug.Log("money:" + DataController.Instance.gameData.Money);
         MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
         CoreAmount.text = DataController.Instance.gameData.Core.ToString();
-        
-        // 테스트용 코드
-        //StartCoroutine (StartCollectMoney());      
     }
-    public void ResetGameData()
+
+    public void ActiveMissionTab()
     {
         MissionUI.SetActive(true);
         LearnUI.SetActive(false);
-
-        DataController.Instance.gameData.Money = 0;
-        Debug.Log("money:" + DataController.Instance.gameData.Money);
-        DataController.Instance.gameData.Mission1Level = 0;
-        DataController.Instance.gameData.Mission2Level = 0;
-
-        missionController.ResetUI();
-        missionController.StopCollectMoney();
-        missionController.ResetStart();
+        ResearchUI.SetActive(false);
     }
 
-    void ActiveMissionTab()
-    {
-        MissionUI.SetActive(true);
-        LearnUI.SetActive(false);
-    }
-
-    void ActiveLearnTab()
+    public void ActiveLearnTab()
     {
         MissionUI.SetActive(false);
         LearnUI.SetActive(true);
+        ResearchUI.SetActive(false);
 
         StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
-        sc.Init();
+        sc.LoadingStatusUI();
         LearnController lc = GameObject.Find("LearnController").GetComponent<LearnController>();
-        lc.Init();
+        lc.LoadingScheduleUI();
+    }
+
+    public void ActiveResearchTab()
+    {
+        MissionUI.SetActive(false);
+        LearnUI.SetActive(false);
+        ResearchUI.SetActive(true);
     }
 
 
@@ -87,6 +79,26 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         DataController.Instance.SaveGameData();
+    }
+
+    // 테스트용 메서드
+    public void ResetGameData()
+    {
+        MissionUI.SetActive(true);
+        LearnUI.SetActive(false);
+
+        DataController.Instance.gameData.Money = 0;
+        Debug.Log("money:" + DataController.Instance.gameData.Money);
+        DataController.Instance.gameData.Mission1Level = 0;
+        DataController.Instance.gameData.Mission2Level = 0;
+        DataController.Instance.gameData.Mission3Level = 0;
+        DataController.Instance.gameData.Mission4Level = 0;
+
+        MissionController mc = GameObject.Find("MissionController").GetComponent<MissionController>();
+
+        mc.ResetUI();
+        mc.StopCollectMoney();
+        mc.ResetStart();
     }
 
 }

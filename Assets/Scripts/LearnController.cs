@@ -5,37 +5,55 @@ using UnityEngine.UI;
 
 public class LearnController : MonoBehaviour
 {
-    private GameObject ScheduleUI;
+    private GameObject scheduleUI;
+    private GameObject learnUI;
     
-    public Text Schedule1Text;
-    public Text Schedule2Text;
-    public Text Schedule3Text;
-    public Text Schedule4Text;
+    public Text schedule1Text;
+    public Text schedule2Text;
+    public Text schedule3Text;
+    public Text schedule4Text;
 
-    public void Init()
+    public void LoadingScheduleUI()
     {
-        ScheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
-        Schedule1Text = ScheduleUI.transform.Find("Schedule1Panel").transform.Find("Schedule1Bar").transform.Find("Schedule1Text").GetComponent<Text>();
-        Schedule2Text = ScheduleUI.transform.Find("Schedule2Panel").transform.Find("Schedule2Bar").transform.Find("Schedule2Text").GetComponent<Text>();
-        Schedule3Text = ScheduleUI.transform.Find("Schedule3Panel").transform.Find("Schedule3Bar").transform.Find("Schedule3Text").GetComponent<Text>();
-        Schedule4Text = ScheduleUI.transform.Find("Schedule4Panel").transform.Find("Schedule4Bar").transform.Find("Schedule4Text").GetComponent<Text>();
+        scheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
+        schedule1Text = scheduleUI.transform.Find("Schedule1Panel").transform.Find("Schedule1Bar").transform.Find("Schedule1Text").GetComponent<Text>();
+        schedule2Text = scheduleUI.transform.Find("Schedule2Panel").transform.Find("Schedule2Bar").transform.Find("Schedule2Text").GetComponent<Text>();
+        schedule3Text = scheduleUI.transform.Find("Schedule3Panel").transform.Find("Schedule3Bar").transform.Find("Schedule3Text").GetComponent<Text>();
+        schedule4Text = scheduleUI.transform.Find("Schedule4Panel").transform.Find("Schedule4Bar").transform.Find("Schedule4Text").GetComponent<Text>();
+
+
+        learnUI = GameObject.FindGameObjectWithTag("LearnUI");
+        RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(0,-360);
+
+        //float rectleft = rectTransform.offsetMin.x;
+        //float rectright = rectTransform.offsetMax.x;
+        //rectleft = 0f;
+        //rectright = 0f;
+        //rectTransform.offsetMin.x = rectleft;
+        //rectTransform.offsetMax.x = rectright;
+
+        Vector3 tempschedulePosition = scheduleUI.transform.localPosition;
+        tempschedulePosition.x = 270;
+        scheduleUI.transform.localPosition = tempschedulePosition;
+
 
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
-        int initID1 = dc.tempData.scheduleIDs[0];
-        int initID2 = dc.tempData.scheduleIDs[1];
-        int initID3 = dc.tempData.scheduleIDs[2];
-        int initID4 = dc.tempData.scheduleIDs[3];
+        int initTempID1 = dc.tempData.scheduleIDs[0];
+        int initTempID2 = dc.tempData.scheduleIDs[1];
+        int initTempID3 = dc.tempData.scheduleIDs[2];
+        int initTempID4 = dc.tempData.scheduleIDs[3];
 
-        string initText1 = dc.tempData.scheduleTitle[initID1];
-        string initText2 = dc.tempData.scheduleTitle[initID2];
-        string initText3 = dc.tempData.scheduleTitle[initID3];
-        string initText4 = dc.tempData.scheduleTitle[initID4];
+        string initText1 = dc.tempData.scheduleTitle[initTempID1];
+        string initText2 = dc.tempData.scheduleTitle[initTempID2];
+        string initText3 = dc.tempData.scheduleTitle[initTempID3];
+        string initText4 = dc.tempData.scheduleTitle[initTempID4];
 
-        Schedule1Text.text = initText1;
-        Schedule2Text.text = initText2;
-        Schedule3Text.text = initText3;
-        Schedule4Text.text = initText4;
+        schedule1Text.text = initText1;
+        schedule2Text.text = initText2;
+        schedule3Text.text = initText3;
+        schedule4Text.text = initText4;
     }
 
     public void ListUpSchedule(int id)
@@ -58,7 +76,7 @@ public class LearnController : MonoBehaviour
         {
             dc.tempData.scheduleIDs[3] = id;
         }
-        UIUpdate();
+        LoadingScheduleUI();
         Debug.Log("schedule array is " + dc.tempData.scheduleIDs[0] + dc.tempData.scheduleIDs[1] + dc.tempData.scheduleIDs[2] + dc.tempData.scheduleIDs[3]);
     }
 
@@ -94,7 +112,7 @@ public class LearnController : MonoBehaviour
             dc.tempData.scheduleIDs[2] = temp1;
             dc.tempData.scheduleIDs[3] = 0;
         }
-        UIUpdate();
+        LoadingScheduleUI();
         Debug.Log("schedule array is " + dc.tempData.scheduleIDs[0] + dc.tempData.scheduleIDs[1] + dc.tempData.scheduleIDs[2] + dc.tempData.scheduleIDs[3]);
     }
 
@@ -104,32 +122,7 @@ public class LearnController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void UIUpdate()
-    {
-        ScheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
-        Schedule1Text = ScheduleUI.transform.Find("Schedule1Panel").transform.Find("Schedule1Bar").transform.Find("Schedule1Text").GetComponent<Text>();
-        Schedule2Text = ScheduleUI.transform.Find("Schedule2Panel").transform.Find("Schedule2Bar").transform.Find("Schedule2Text").GetComponent<Text>();
-        Schedule3Text = ScheduleUI.transform.Find("Schedule3Panel").transform.Find("Schedule3Bar").transform.Find("Schedule3Text").GetComponent<Text>();
-        Schedule4Text = ScheduleUI.transform.Find("Schedule4Panel").transform.Find("Schedule4Bar").transform.Find("Schedule4Text").GetComponent<Text>();
 
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-
-        int initID1 = dc.tempData.scheduleIDs[0];
-        int initID2 = dc.tempData.scheduleIDs[1];
-        int initID3 = dc.tempData.scheduleIDs[2];
-        int initID4 = dc.tempData.scheduleIDs[3];
-
-        string initText1 = dc.tempData.scheduleTitle[initID1];
-        string initText2 = dc.tempData.scheduleTitle[initID2];
-        string initText3 = dc.tempData.scheduleTitle[initID3];
-        string initText4 = dc.tempData.scheduleTitle[initID4];
-
-        Schedule1Text.text = initText1;
-        Schedule2Text.text = initText2;
-        Schedule3Text.text = initText3;
-        Schedule4Text.text = initText4;
-    }
     
 /*
     public delegate void TestDelegate();
