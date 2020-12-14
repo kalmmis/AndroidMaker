@@ -7,6 +7,9 @@ public class LearnController : MonoBehaviour
 {
     private GameObject scheduleUI;
     private GameObject learnUI;
+
+    private GameObject confirmUI;
+    private GameObject EventUI;
     
     public Text schedule1Text;
     public Text schedule2Text;
@@ -25,13 +28,6 @@ public class LearnController : MonoBehaviour
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(0,-360);
-
-        //float rectleft = rectTransform.offsetMin.x;
-        //float rectright = rectTransform.offsetMax.x;
-        //rectleft = 0f;
-        //rectright = 0f;
-        //rectTransform.offsetMin.x = rectleft;
-        //rectTransform.offsetMax.x = rectright;
 
         Vector3 tempschedulePosition = scheduleUI.transform.localPosition;
         tempschedulePosition.x = 270;
@@ -56,6 +52,7 @@ public class LearnController : MonoBehaviour
         schedule4Text.text = initText4;
     }
 
+
     public void ListUpSchedule(int id)
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
@@ -75,9 +72,51 @@ public class LearnController : MonoBehaviour
         else if(dc.tempData.scheduleIDs[3] == 0)
         {
             dc.tempData.scheduleIDs[3] = id;
+            confirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
+            RectTransform rectTransform = confirmUI.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(-550,-870);
         }
         LoadingScheduleUI();
         Debug.Log("schedule array is " + dc.tempData.scheduleIDs[0] + dc.tempData.scheduleIDs[1] + dc.tempData.scheduleIDs[2] + dc.tempData.scheduleIDs[3]);
+    }
+
+    public void ListCancel()
+    {
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        dc.tempData.scheduleIDs[3] = 0;
+        LoadingScheduleUI();
+
+        confirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
+        RectTransform rectTransform = confirmUI.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(730,-870);
+    }
+
+    public void ListConfirm()
+    {
+        EventUI = GameObject.FindGameObjectWithTag("EventUI");
+        EventUI.SetActive(true);
+        RectTransform EventUIrectTransform = EventUI.GetComponent<RectTransform>();
+        EventUIrectTransform.anchoredPosition = new Vector2(0,300);
+
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        int[] scd = dc.tempData.scheduleIDs;
+        StartCoroutine (DoSchedule(scd));
+        //Debug.Log("confirm이 눌렸다");
+        confirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
+        RectTransform rectTransform = confirmUI.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(730,-870);
+    }
+
+    IEnumerator DoSchedule(int[] scdID)
+    {
+        yield return new WaitForSecondsRealtime (1f);
+        Debug.Log(scdID[0]);
+        yield return new WaitForSecondsRealtime (1f);
+        Debug.Log(scdID[1]);
+        yield return new WaitForSecondsRealtime (1f);
+        Debug.Log(scdID[2]);
+        yield return new WaitForSecondsRealtime (1f);
+        Debug.Log(scdID[3]);
     }
 
     public void ListRemoveSchedule(int id)

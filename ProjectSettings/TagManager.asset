@@ -15,6 +15,7 @@ TagManager:
   - StatusUI
   - ScheduleUI
   - ConfirmUI
+  - EventUI
   layers:
   - Default
   - TransparentFX

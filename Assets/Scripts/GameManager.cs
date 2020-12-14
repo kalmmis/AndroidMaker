@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private GameObject MissionUI;
     private GameObject LearnUI;
     private GameObject ResearchUI;
+    //private GameObject ConfirmUI;
+    //private GameObject EventUI;
 
 
     // Start is called before the first frame update
@@ -27,10 +29,14 @@ public class GameManager : MonoBehaviour
         MissionUI = GameObject.FindGameObjectWithTag("MissionUI");
         LearnUI = GameObject.FindGameObjectWithTag("LearnUI");
         ResearchUI = GameObject.FindGameObjectWithTag("ItemUI");
+        //ConfirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
+        //EventUI = GameObject.FindGameObjectWithTag("EventUI");
 
         MissionUI.SetActive(true);
         LearnUI.SetActive(false);
         ResearchUI.SetActive(false);
+        //ConfirmUI.SetActive(false);
+        //EventUI.SetActive(false);
 
         InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
         MoneyAmount = InfoCanvasUI.transform.Find("MoneyAmount").GetComponent<Text>();
