@@ -106,17 +106,48 @@ public class LearnController : MonoBehaviour
         RectTransform rectTransform = confirmUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(730,-870);
     }
+    
+    public Text EventText;
 
     IEnumerator DoSchedule(int[] scdID)
     {
+        scheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
+        scheduleUI.SetActive(false);
+
+        EventUI = GameObject.FindGameObjectWithTag("EventUI");
+        EventText = EventUI.transform.Find("Text").GetComponent<Text>();
+
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        int temp;
+
+        temp = scdID[0];
+        EventText.text = dc.tempData.scheduleTitle[temp];
         yield return new WaitForSecondsRealtime (1f);
-        Debug.Log(scdID[0]);
+
+        temp = scdID[1];
+        EventText.text = dc.tempData.scheduleTitle[temp];
         yield return new WaitForSecondsRealtime (1f);
-        Debug.Log(scdID[1]);
+
+        temp = scdID[2];
+        EventText.text = dc.tempData.scheduleTitle[temp];
         yield return new WaitForSecondsRealtime (1f);
-        Debug.Log(scdID[2]);
+
+        temp = scdID[3];
+        EventText.text = dc.tempData.scheduleTitle[temp];
         yield return new WaitForSecondsRealtime (1f);
-        Debug.Log(scdID[3]);
+
+        scheduleUI.SetActive(true);
+
+        RectTransform EventUIrectTransform = EventUI.GetComponent<RectTransform>();
+        EventUIrectTransform.anchoredPosition = new Vector2(-1080,300);
+        
+        dc.tempData.scheduleIDs[0] = 0;
+        dc.tempData.scheduleIDs[1] = 0;
+        dc.tempData.scheduleIDs[2] = 0;
+        dc.tempData.scheduleIDs[3] = 0;
+        
+        LoadingScheduleUI();
+
     }
 
     public void ListRemoveSchedule(int id)
