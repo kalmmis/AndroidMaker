@@ -27,7 +27,7 @@ public class LearnController : MonoBehaviour
 
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,-360);
+        rectTransform.anchoredPosition = new Vector2(0,-460);
 
         Vector3 tempschedulePosition = scheduleUI.transform.localPosition;
         tempschedulePosition.x = 270;

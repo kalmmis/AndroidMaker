@@ -16,6 +16,7 @@ TagManager:
   - ScheduleUI
   - ConfirmUI
   - EventUI
+  - CombatUI
   layers:
   - Default
   - TransparentFX

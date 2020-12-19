@@ -93,18 +93,19 @@ public class GameManager : MonoBehaviour
         MissionUI.SetActive(true);
         LearnUI.SetActive(false);
 
+        /*
         DataController.Instance.gameData.Money = 0;
         Debug.Log("money:" + DataController.Instance.gameData.Money);
         DataController.Instance.gameData.Mission1Level = 0;
         DataController.Instance.gameData.Mission2Level = 0;
         DataController.Instance.gameData.Mission3Level = 0;
         DataController.Instance.gameData.Mission4Level = 0;
-
+        */
         MissionController mc = GameObject.Find("MissionController").GetComponent<MissionController>();
 
-        mc.ResetUI();
-        mc.StopCollectMoney();
+        mc.StopMission();
         mc.ResetStart();
+        mc.LoadMainUI();
     }
 
 }

@@ -10,6 +10,7 @@ public class MissionController : MonoBehaviour
     IEnumerator mission3Coroutine;
     IEnumerator mission4Coroutine;
     IEnumerator mission5Coroutine;
+    IEnumerator mission6Coroutine;
 
     private GameObject MissionCanvasUI;
     public Text Mission1TitleText;
@@ -39,12 +40,21 @@ public class MissionController : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        int Mission1LV = DataController.Instance.gameData.Mission1Level;
-        int Mission2LV = DataController.Instance.gameData.Mission2Level;
-        int Mission3LV = DataController.Instance.gameData.Mission3Level;
-        int Mission4LV = DataController.Instance.gameData.Mission4Level;
-        int Mission5LV = DataController.Instance.gameData.Mission5Level;
-        int Mission6LV = DataController.Instance.gameData.Mission6Level;
+        LoadMainUI();
+        StartMission();
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        dc.LoadGameData();
+    }
+
+    public void LoadMainUI()
+    {
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        int Mission1LV = dc.gameData.Mission1Level;
+        int Mission2LV = dc.gameData.Mission2Level;
+        int Mission3LV = dc.gameData.Mission3Level;
+        int Mission4LV = dc.gameData.Mission4Level;
+        int Mission5LV = dc.gameData.Mission5Level;
+        int Mission6LV = dc.gameData.Mission6Level;
 
         MissionCanvasUI = GameObject.FindGameObjectWithTag("MissionCanvas");
         Mission1TitleText = MissionCanvasUI.transform.Find("Mission1Panel").Find("Mission1TitleText").GetComponent<Text>();
@@ -88,14 +98,7 @@ public class MissionController : MonoBehaviour
 
         Mission6LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission6LV].ToString();
         Mission6ProgressText.text = DataController.Instance.gameData.MissionReward[Mission6LV].ToString();
-
-
-        // 컴포넌트 연결
-        Debug.Log("MissionController.Start");
-
-        mission1Coroutine = StartCollectMoney(Mission1LV);
-        mission2Coroutine = StartCollectMoney(Mission2LV);
-
+                
         if (Mission1LV == 0)
         {
             Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
@@ -103,7 +106,6 @@ public class MissionController : MonoBehaviour
         else
         {
             Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString() + Mission1LV;
-            StartCoroutine(mission1Coroutine);
         }
         if (Mission2LV == 0)
         {
@@ -111,8 +113,7 @@ public class MissionController : MonoBehaviour
         }
         else
         {
-            Mission2TitleText.text = DataController.Instance.gameData.MissionTilte[2].ToString();
-            StartCoroutine(mission2Coroutine);
+            Mission2TitleText.text = DataController.Instance.gameData.MissionTilte[2].ToString() + Mission2LV;
         }
         if (Mission3LV == 0)
         {
@@ -120,7 +121,7 @@ public class MissionController : MonoBehaviour
         }
         else
         {
-            Mission3TitleText.text = DataController.Instance.gameData.MissionTilte[3].ToString();
+            Mission3TitleText.text = DataController.Instance.gameData.MissionTilte[3].ToString() + Mission3LV;
         }
         if (Mission4LV == 0)
         {
@@ -128,7 +129,7 @@ public class MissionController : MonoBehaviour
         }
         else
         {
-            Mission4TitleText.text = DataController.Instance.gameData.MissionTilte[4].ToString();
+            Mission4TitleText.text = DataController.Instance.gameData.MissionTilte[4].ToString() + Mission4LV;
         }
         if (Mission5LV == 0)
         {
@@ -136,13 +137,79 @@ public class MissionController : MonoBehaviour
         }
         else
         {
-            Mission5TitleText.text = DataController.Instance.gameData.MissionTilte[5].ToString();
+            Mission5TitleText.text = DataController.Instance.gameData.MissionTilte[5].ToString() + Mission5LV;
+        }
+        if (Mission6LV == 0)
+        {
+            Mission6TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
+        }
+        else
+        {
+            Mission6TitleText.text = DataController.Instance.gameData.MissionTilte[6].ToString() + Mission6LV;
         }
 
-        DataController.Instance.LoadGameData();
-        
     }
 
+    public void StartMission()
+    {
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        int Mission1LV = dc.gameData.Mission1Level;
+        int Mission2LV = dc.gameData.Mission2Level;
+        int Mission3LV = dc.gameData.Mission3Level;
+        int Mission4LV = dc.gameData.Mission4Level;
+        int Mission5LV = dc.gameData.Mission5Level;
+        int Mission6LV = dc.gameData.Mission6Level;
+        
+        mission1Coroutine = StartCollectMoney(Mission1LV);
+        mission2Coroutine = StartCollectMoney(Mission2LV);
+        mission3Coroutine = StartCollectMoney(Mission3LV);
+        mission4Coroutine = StartCollectMoney(Mission4LV);
+        mission5Coroutine = StartCollectMoney(Mission5LV);
+        mission6Coroutine = StartCollectMoney(Mission6LV);
+        
+        if (Mission1LV == 0)
+        {
+        }
+        else
+        {
+            StartCoroutine(mission1Coroutine);
+        }
+        if (Mission2LV == 0)
+        {
+        }
+        else
+        {
+            StartCoroutine(mission2Coroutine);
+        }
+        if (Mission3LV == 0)
+        {
+        }
+        else
+        {
+            StartCoroutine(mission3Coroutine);
+        }
+        if (Mission4LV == 0)
+        {
+        }
+        else
+        {
+            StartCoroutine(mission4Coroutine);
+        }
+        if (Mission5LV == 0)
+        {
+        }
+        else
+        {
+            StartCoroutine(mission5Coroutine);
+        }
+        if (Mission5LV == 0)
+        {
+        }
+        else
+        {
+            StartCoroutine(mission6Coroutine);
+        }
+    }
 
     IEnumerator StartCollectMoney(int missionlv){
         while (true) {
@@ -152,22 +219,71 @@ public class MissionController : MonoBehaviour
         }
     }
 
-    public void ResetStart()
+    public void StopMission()
     {
-        int Mission1LV = DataController.Instance.gameData.Mission1Level;
-        int Mission2LV = DataController.Instance.gameData.Mission2Level; 
-
-        mission1Coroutine = StartCollectMoney(Mission1LV);
-        mission2Coroutine = StartCollectMoney(Mission2LV);
-
-        StartCoroutine (mission1Coroutine);
-        StartCoroutine (mission2Coroutine);
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        int Mission1LV = dc.gameData.Mission1Level;
+        int Mission2LV = dc.gameData.Mission2Level;
+        int Mission3LV = dc.gameData.Mission3Level;
+        int Mission4LV = dc.gameData.Mission4Level;
+        int Mission5LV = dc.gameData.Mission5Level;
+        int Mission6LV = dc.gameData.Mission6Level;
+        
+        
+        if (Mission1LV == 0)
+        {
+        }
+        else
+        {
+            StopCoroutine(mission1Coroutine);
+        }
+        if (Mission2LV == 0)
+        {
+        }
+        else
+        {
+            StopCoroutine(mission2Coroutine);
+        }
+        if (Mission3LV == 0)
+        {
+        }
+        else
+        {
+            StopCoroutine(mission3Coroutine);
+        }
+        if (Mission4LV == 0)
+        {
+        }
+        else
+        {
+            StopCoroutine(mission4Coroutine);
+        }
+        if (Mission5LV == 0)
+        {
+        }
+        else
+        {
+            StopCoroutine(mission5Coroutine);
+        }
+        if (Mission6LV == 0)
+        {
+        }
+        else
+        {
+            StopCoroutine(mission6Coroutine);
+        }
     }
 
-    public void StopCollectMoney()
+    public void ResetStart()
     {
-        StopCoroutine (mission1Coroutine);
-        StopCoroutine (mission2Coroutine);
+        DataController.Instance.gameData.Mission1Level = 0;
+        DataController.Instance.gameData.Mission2Level = 0;
+        DataController.Instance.gameData.Mission3Level = 0;
+        DataController.Instance.gameData.Mission4Level = 0;
+        DataController.Instance.gameData.Mission5Level = 0;
+        DataController.Instance.gameData.Mission6Level = 0;
+        
+        DataController.Instance.gameData.Money = 0;
     }
 
 
@@ -179,6 +295,7 @@ public class MissionController : MonoBehaviour
             int Mission1LV = DataController.Instance.gameData.Mission1Level;
             mission1Coroutine = StartCollectMoney(Mission1LV);
             StartCoroutine(mission1Coroutine);
+            
             Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString() + Mission1LV;
             Mission1LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission1LV].ToString();
             Mission1ProgressText.text = DataController.Instance.gameData.MissionReward[Mission1LV].ToString();
@@ -190,6 +307,7 @@ public class MissionController : MonoBehaviour
             int Mission1LV = DataController.Instance.gameData.Mission1Level;
             mission1Coroutine = StartCollectMoney(Mission1LV);
             StartCoroutine(mission1Coroutine);
+
             Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[1].ToString() + Mission1LV;
             Mission1LevelUpRequiredText.text = DataController.Instance.gameData.MissionLevelUPRequiredMoney[Mission1LV].ToString();
             Mission1ProgressText.text = DataController.Instance.gameData.MissionReward[Mission1LV].ToString();
@@ -297,13 +415,6 @@ public class MissionController : MonoBehaviour
         }
     }
     
-
-    public void ResetUI()
-    {
-        Mission1TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
-        Mission2TitleText.text = DataController.Instance.gameData.MissionTilte[0].ToString();
-
-    }
 
     // Update is called once per frame
     void Update()
