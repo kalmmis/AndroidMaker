@@ -9,30 +9,31 @@ public class GameManager : MonoBehaviour
     public Text CoreAmount;
     private GameObject InfoCanvasUI;
 
-    private GameObject MissionUI;
+    private GameObject ShelterUI;
     private GameObject LearnUI;
     private GameObject ResearchUI;
     //private GameObject ConfirmUI;
     //private GameObject EventUI;
+    // Confirm 과 Event 는 false 세팅 해두면 버그 나서 일단 위치 값으로 조정 중.
 
 
     // Start is called before the first frame update
     void Start()
     {
-        LoadingMainUI();
+        LoadMainUI();
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         dc.LoadGameData(); 
     }
 
-    public void LoadingMainUI()
+    public void LoadMainUI()
     {
-        MissionUI = GameObject.FindGameObjectWithTag("MissionUI");
+        ShelterUI = GameObject.FindGameObjectWithTag("ShelterUI");
         LearnUI = GameObject.FindGameObjectWithTag("LearnUI");
         ResearchUI = GameObject.FindGameObjectWithTag("ItemUI");
         //ConfirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
         //EventUI = GameObject.FindGameObjectWithTag("EventUI");
 
-        MissionUI.SetActive(true);
+        ShelterUI.SetActive(true);
         LearnUI.SetActive(false);
         ResearchUI.SetActive(false);
         //ConfirmUI.SetActive(false);
@@ -48,14 +49,14 @@ public class GameManager : MonoBehaviour
 
     public void ActiveMissionTab()
     {
-        MissionUI.SetActive(true);
+        ShelterUI.SetActive(true);
         LearnUI.SetActive(false);
         ResearchUI.SetActive(false);
     }
 
     public void ActiveLearnTab()
     {
-        MissionUI.SetActive(false);
+        ShelterUI.SetActive(false);
         LearnUI.SetActive(true);
         ResearchUI.SetActive(false);
 
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void ActiveResearchTab()
     {
-        MissionUI.SetActive(false);
+        ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
         ResearchUI.SetActive(true);
     }
@@ -76,10 +77,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ui 요소 업데이트
         MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
-        CoreAmount.text = DataController.Instance.gameData.Core.ToString();
-         
+        CoreAmount.text = DataController.Instance.gameData.Core.ToString(); 
     }
     
     private void OnApplicationQuit()
@@ -90,22 +89,25 @@ public class GameManager : MonoBehaviour
     // 테스트용 메서드
     public void ResetGameData()
     {
-        MissionUI.SetActive(true);
+        ShelterUI.SetActive(true);
         LearnUI.SetActive(false);
 
-        /*
-        DataController.Instance.gameData.Money = 0;
-        Debug.Log("money:" + DataController.Instance.gameData.Money);
-        DataController.Instance.gameData.Mission1Level = 0;
-        DataController.Instance.gameData.Mission2Level = 0;
-        DataController.Instance.gameData.Mission3Level = 0;
-        DataController.Instance.gameData.Mission4Level = 0;
-        */
-        MissionController mc = GameObject.Find("MissionController").GetComponent<MissionController>();
+        ResetStart();
+        ShelterController sc = GameObject.Find("ShelterController").GetComponent<ShelterController>();
+        sc.LoadShelterUI();
+    }
 
-        mc.StopMission();
-        mc.ResetStart();
-        mc.LoadMainUI();
+    
+    
+    public void ResetStart()
+    {
+        DataController.Instance.gameData.LaboratoryLevel = 0;
+        DataController.Instance.gameData.MineLevel = 0;
+        DataController.Instance.gameData.PowerPlantLevel = 0;
+        DataController.Instance.gameData.WatchTowerLevel = 0;
+        DataController.Instance.gameData.WallLevel = 0;
+        DataController.Instance.gameData.Building6Level = 0;
+        DataController.Instance.gameData.Money = 0;
     }
 
 }

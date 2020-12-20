@@ -8,7 +8,7 @@ public class LearnController : MonoBehaviour
     private GameObject scheduleUI;
     private GameObject learnUI;
 
-    private GameObject confirmUI;
+    private GameObject scheduleConfirmUI;
     private GameObject EventUI;
     
     public Text schedule1Text;
@@ -32,7 +32,6 @@ public class LearnController : MonoBehaviour
         Vector3 tempschedulePosition = scheduleUI.transform.localPosition;
         tempschedulePosition.x = 270;
         scheduleUI.transform.localPosition = tempschedulePosition;
-
 
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
@@ -72,8 +71,8 @@ public class LearnController : MonoBehaviour
         else if(dc.tempData.scheduleIDs[3] == 0)
         {
             dc.tempData.scheduleIDs[3] = id;
-            confirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
-            RectTransform rectTransform = confirmUI.GetComponent<RectTransform>();
+            scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
+            RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(-550,-870);
         }
         LoadingScheduleUI();
@@ -86,8 +85,8 @@ public class LearnController : MonoBehaviour
         dc.tempData.scheduleIDs[3] = 0;
         LoadingScheduleUI();
 
-        confirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
-        RectTransform rectTransform = confirmUI.GetComponent<RectTransform>();
+        scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
+        RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(730,-870);
     }
 
@@ -102,8 +101,8 @@ public class LearnController : MonoBehaviour
         int[] scd = dc.tempData.scheduleIDs;
         StartCoroutine (DoSchedule(scd));
         //Debug.Log("confirm이 눌렸다");
-        confirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
-        RectTransform rectTransform = confirmUI.GetComponent<RectTransform>();
+        scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
+        RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(730,-870);
     }
     

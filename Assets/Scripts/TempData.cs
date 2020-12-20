@@ -10,6 +10,16 @@ public class TempData
     public int[] scheduleIDs = new int[4]{0,0,0,0};
     public string[] scheduleTitle = new string[5]{"-","Schedule1", "Schedule2", "Schedule3", "Schedule4"};
 
-    
+    public int buildingUpgradeID; // 0이 기본
+
+    // 나중에 다 csv 로 변경해야...
+    public string[] BuildingTitle = new string[7]{"Building", "Laboratory", "Mine", "PowerPlant", "WatchTower", "Wall", "Bulding[6]" };
+    public string[] BuildingDesc = new string[7]{"Locked\nDo Upgrade it.", "BuldingDesc[1]\ndfd", "BuldingDesc[2]", "BuldingDesc[3]", "BuldingDesc[4]", "BuldingDesc[5]", "BuldingDesc[6]" };
+
+    public int[,] BuildingRequiredLaboLv = new int[2,7]{{0,0,0,0,0,0,0},{0,0,0,0,0,0,0}};
+    public int[,] Building1RequiredPower = new int[2,7]{{0,100,200,300,400,500,600},{0,100,200,300,400,500,600}};
+    public int[,] Building1RequiredReputation = new int[2,7]{{0,100,200,300,400,500,600},{0,100,200,300,400,500,600}};
+    public int[] Building1RequiredMoney = new int[7]{0,100,200,300,400,500,600};
+    public int[] Building1RewardMoney = new int[7]{0,50,100,150,200,250,300};
 }
 

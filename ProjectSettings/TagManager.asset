@@ -7,16 +7,18 @@ TagManager:
   - UI
   - DevBoard
   - InfoCanvas
-  - MissionCanvas
+  - BuildingCanvas
   - DialogueUI
-  - MissionUI
+  - ShelterUI
   - LearnUI
   - ItemUI
   - StatusUI
   - ScheduleUI
-  - ConfirmUI
+  - ScheduleConfirmUI
   - EventUI
   - CombatUI
+  - MissionCanvas
+  - BuildingConfirmUI
   layers:
   - Default
   - TransparentFX
