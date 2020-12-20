@@ -137,6 +137,7 @@ public class LearnController : MonoBehaviour
 
         scheduleUI.SetActive(true);
 
+
         RectTransform EventUIrectTransform = EventUI.GetComponent<RectTransform>();
         EventUIrectTransform.anchoredPosition = new Vector2(-1080,300);
         
@@ -144,9 +145,11 @@ public class LearnController : MonoBehaviour
         dc.tempData.scheduleIDs[1] = 0;
         dc.tempData.scheduleIDs[2] = 0;
         dc.tempData.scheduleIDs[3] = 0;
-        
-        LoadingScheduleUI();
 
+        
+        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gm.DoNextTurn();
+        
     }
 
     public void ListRemoveSchedule(int id)
@@ -181,6 +184,7 @@ public class LearnController : MonoBehaviour
             dc.tempData.scheduleIDs[2] = temp1;
             dc.tempData.scheduleIDs[3] = 0;
         }
+
         LoadingScheduleUI();
         Debug.Log("schedule array is " + dc.tempData.scheduleIDs[0] + dc.tempData.scheduleIDs[1] + dc.tempData.scheduleIDs[2] + dc.tempData.scheduleIDs[3]);
     }

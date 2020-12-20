@@ -10,12 +10,17 @@ public class GameData
     public int Money;
     public int Core;
 
+    /*
     public int LaboratoryLevel; // 연구소
     public int MineLevel; // 광산
     public int PowerPlantLevel; // 발전소
     public int WatchTowerLevel; // 초소
     public int WallLevel; // 방벽
     public int Building6Level; // 명성 수치용 건물들
+    */
+
+    public int[] BuildingLevel = new int[6]{1,1,1,0,0,0}; // 빌딩 레벨들
+    public int[] BuildingUpgradeTurn = new int[6]{0,0,0,0,0,0}; // 업그레이드 요구 턴
 
     public int Power;
     public int Reputation;
