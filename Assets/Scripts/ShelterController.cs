@@ -5,25 +5,21 @@ using UnityEngine.UI;
 
 public class ShelterController : MonoBehaviour
 {
-
     private GameObject BuildingCanvas;
     private GameObject BuildingConfirmUI;
+
     public Text BuildingTitleText1;
-    public Text BuildingDescription1;
-
     public Text BuildingTitleText2;
-    public Text BuildingDescription2;
-
     public Text BuildingTitleText3;
-    public Text BuildingDescription3;
-
     public Text BuildingTitleText4;
-    public Text BuildingDescription4;
-
     public Text BuildingTitleText5;
-    public Text BuildingDescription5;
-
     public Text BuildingTitleText6;
+
+    public Text BuildingDescription1;
+    public Text BuildingDescription2;
+    public Text BuildingDescription3;
+    public Text BuildingDescription4;
+    public Text BuildingDescription5;
     public Text BuildingDescription6;
 
     // Start is called before the first frame update
@@ -203,17 +199,21 @@ public class ShelterController : MonoBehaviour
     public bool CheckBuildingRequire(int id)
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        int tempLv = DataController.Instance.gameData.BuildingLevel[id];
         //LaboLv
         int curLaboLv = dc.gameData.BuildingLevel[0];
-        int reqLaboLv = dc.tempData.BuildingRequiredLaboLv[id,curLaboLv];
+        int reqLaboLv = dc.tempData.BuildingRequiredLaboLv[id,tempLv];
         //Power
         int curPower = dc.gameData.Power;
-        int reqPower = dc.tempData.BuildingRequiredLaboLv[id,curLaboLv];
+        int reqPower = dc.tempData.BuildingRequiredLaboLv[id,tempLv];
         //Reputation
         int curReputation = dc.gameData.Reputation;
-        int reqReputation = dc.tempData.BuildingRequiredLaboLv[id,curLaboLv];
-        
-        if(curLaboLv >= reqLaboLv && curPower >= reqPower && curReputation >= reqReputation)
+        int reqReputation = dc.tempData.BuildingRequiredLaboLv[id,tempLv];
+        //Money
+        int curMoney = dc.gameData.Money;
+        int reqMoney = dc.tempData.BuildingRequiredMoney[id,tempLv];
+
+        if(curLaboLv >= reqLaboLv && curPower >= reqPower && curReputation >= reqReputation && curMoney >= reqMoney)
         {
             return true;
         }
@@ -258,10 +258,4 @@ public class ShelterController : MonoBehaviour
 
     }
 
-
-    
-    void Update()
-    {
-        
-    }
 }

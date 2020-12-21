@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Text MoneyAmount;
+    public Text MoneyProductivity;
     public Text CoreAmount;
     public Text TurnCount;
+    public Text PowerAmount;
     private GameObject InfoCanvasUI;
 
     private GameObject ShelterUI;
@@ -16,6 +18,12 @@ public class GameManager : MonoBehaviour
     //private GameObject ConfirmUI;
     //private GameObject EventUI;
     // Confirm 과 Event 는 false 세팅 해두면 버그 나서 일단 위치 값으로 조정 중.
+    private GameObject CombatUI;
+    private GameObject InventoryUI;
+    private GameObject UpgradeUI;
+
+    private GameObject laboScreen;
+    private GameObject combatScreen;
 
 
     // Start is called before the first frame update
@@ -30,24 +38,37 @@ public class GameManager : MonoBehaviour
     {
         ShelterUI = GameObject.FindGameObjectWithTag("ShelterUI");
         LearnUI = GameObject.FindGameObjectWithTag("LearnUI");
-        ResearchUI = GameObject.FindGameObjectWithTag("ItemUI");
+        ResearchUI = GameObject.FindGameObjectWithTag("ResearchUI");
         //ConfirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
         //EventUI = GameObject.FindGameObjectWithTag("EventUI");
+        CombatUI = GameObject.FindGameObjectWithTag("CombatUI");
+        InventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
+        UpgradeUI = GameObject.FindGameObjectWithTag("UpgradeUI");
+        laboScreen = GameObject.FindGameObjectWithTag("LaboScreen");
+        combatScreen = GameObject.FindGameObjectWithTag("CombatScreen");
 
         ShelterUI.SetActive(true);
         LearnUI.SetActive(false);
         ResearchUI.SetActive(false);
         //ConfirmUI.SetActive(false);
         //EventUI.SetActive(false);
+        CombatUI.SetActive(false);
+        InventoryUI.SetActive(false);
+        UpgradeUI.SetActive(false);
+        laboScreen.SetActive(true);
+        combatScreen.SetActive(false);
 
         InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
         MoneyAmount = InfoCanvasUI.transform.Find("MoneyAmount").GetComponent<Text>();
+        MoneyProductivity = InfoCanvasUI.transform.Find("MoneyProductivity").GetComponent<Text>();
         TurnCount = InfoCanvasUI.transform.Find("TurnCount").GetComponent<Text>();
         CoreAmount = InfoCanvasUI.transform.Find("CoreAmount").GetComponent<Text>();
+        PowerAmount = InfoCanvasUI.transform.Find("PowerAmount").GetComponent<Text>();
 
-        MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
-        CoreAmount.text = DataController.Instance.gameData.Core.ToString();
-        TurnCount.text = DataController.Instance.gameData.Turn.ToString();
+        int mineLv = DataController.Instance.gameData.BuildingLevel[2];
+        int moneyProduce = DataController.Instance.gameData.Building3RewardMoney[mineLv];
+
+        MoneyProductivity.text = "(+" + moneyProduce.ToString() + ")";
     }
 
     public void ActiveMissionTab()
@@ -55,6 +76,12 @@ public class GameManager : MonoBehaviour
         ShelterUI.SetActive(true);
         LearnUI.SetActive(false);
         ResearchUI.SetActive(false);
+        CombatUI.SetActive(false);
+        InventoryUI.SetActive(false);
+        UpgradeUI.SetActive(false);
+
+        laboScreen.SetActive(true);
+        combatScreen.SetActive(false);
 
         ShelterController sc = GameObject.Find("ShelterController").GetComponent<ShelterController>();
         sc.LoadShelterUI();
@@ -65,9 +92,13 @@ public class GameManager : MonoBehaviour
         ShelterUI.SetActive(false);
         LearnUI.SetActive(true);
         ResearchUI.SetActive(false);
+        CombatUI.SetActive(false);
+        InventoryUI.SetActive(false);
+        UpgradeUI.SetActive(false);
 
-        StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
-        sc.LoadingStatusUI();
+        laboScreen.SetActive(true);
+        combatScreen.SetActive(false);
+
         LearnController lc = GameObject.Find("LearnController").GetComponent<LearnController>();
         lc.LoadingScheduleUI();
     }
@@ -77,20 +108,110 @@ public class GameManager : MonoBehaviour
         ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
         ResearchUI.SetActive(true);
+        CombatUI.SetActive(false);
+        InventoryUI.SetActive(false);
+        UpgradeUI.SetActive(false);
+
+        laboScreen.SetActive(true);
+        combatScreen.SetActive(false);
+
+        ResearchController rc = GameObject.Find("ResearchController").GetComponent<ResearchController>();
+        rc.LoadingResearchUI();
     }
 
+    public void ActiveInventoryTab()
+    {
+        ShelterUI.SetActive(false);
+        LearnUI.SetActive(false);
+        ResearchUI.SetActive(false);
+        CombatUI.SetActive(false);
+        InventoryUI.SetActive(true);
+        UpgradeUI.SetActive(false);
+
+        laboScreen.SetActive(true);
+        combatScreen.SetActive(false);
+
+        StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
+        sc.LoadingStatusUI();
+        InventoryController ic = GameObject.Find("InventoryController").GetComponent<InventoryController>();
+        ic.LoadingInventoryUI();
+
+    }
+
+    public void ActiveAdventureTab()
+    {
+        ShelterUI.SetActive(false);
+        LearnUI.SetActive(false);
+        ResearchUI.SetActive(false);
+        CombatUI.SetActive(true);
+        InventoryUI.SetActive(false);
+        UpgradeUI.SetActive(false);
+        
+        laboScreen.SetActive(false);
+        combatScreen.SetActive(true);
+
+        AdventureController ac = GameObject.Find("AdventureController").GetComponent<AdventureController>();
+        ac.LoadingAdventureUI();
+        ac.StartPlayer();
+        
+    }
+
+    public void ActiveUpgradeTab()
+    {
+        ShelterUI.SetActive(false);
+        LearnUI.SetActive(false);
+        ResearchUI.SetActive(false);
+        CombatUI.SetActive(false);
+        InventoryUI.SetActive(false);
+        UpgradeUI.SetActive(true);
+
+        laboScreen.SetActive(true);
+        combatScreen.SetActive(false);
+
+        UpgradeController uc = GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
+        uc.LoadingUpgradeUI();
+    }
 
     // Update is called once per frame
     void Update()
     {
         MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
         CoreAmount.text = DataController.Instance.gameData.Core.ToString(); 
-        TurnCount.text = DataController.Instance.gameData.Turn.ToString();
+        TurnCount.text = "Turn " + DataController.Instance.gameData.Turn.ToString();
+        PowerAmount.text = DataController.Instance.gameData.Power.ToString();
     }
     
     private void OnApplicationQuit()
     {
         DataController.Instance.SaveGameData();
+    }
+
+    public void DoNextTurn()
+    {
+        DataController.Instance.gameData.Turn += 1;
+        int[] tempArray = DataController.Instance.gameData.BuildingUpgradeTurn;
+
+        for (int i = 0; i < tempArray.Length; i++)
+        {
+            if (tempArray[i] == 1)
+            {
+                DataController.Instance.gameData.BuildingLevel[i] += 1;
+            }
+            if (tempArray[i] > 0)
+            {
+                tempArray[i] -= 1;
+            }
+        }
+        
+        int plantLv = DataController.Instance.gameData.BuildingLevel[1];
+        int powerProduce = DataController.Instance.gameData.Building2ProducePower[plantLv];
+        int mineLv = DataController.Instance.gameData.BuildingLevel[2];
+        int moneyProduce = DataController.Instance.gameData.Building3RewardMoney[mineLv];
+        
+        DataController.Instance.gameData.Power = powerProduce;
+        DataController.Instance.gameData.Money += moneyProduce;
+
+        ActiveMissionTab();
     }
 
     // 테스트용 메서드
@@ -115,24 +236,5 @@ public class GameManager : MonoBehaviour
         DataController.Instance.gameData.BuildingLevel[4] = 0;
         DataController.Instance.gameData.BuildingLevel[5] = 0;
         DataController.Instance.gameData.Money = 0;
-    }
-
-    public void DoNextTurn()
-    {
-        DataController.Instance.gameData.Turn += 1;
-        int[] tempArray = DataController.Instance.gameData.BuildingUpgradeTurn;
-
-        for (int i = 0; i < tempArray.Length; i++)
-        {
-            if (tempArray[i] == 1)
-            {
-                DataController.Instance.gameData.BuildingLevel[i] += 1;
-            }
-            if (tempArray[i] > 0)
-            {
-                tempArray[i] -= 1;
-            }
-        }
-        ActiveMissionTab();
     }
 }

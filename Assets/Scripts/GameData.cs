@@ -21,6 +21,8 @@ public class GameData
 
     public int[] BuildingLevel = new int[6]{1,1,1,0,0,0}; // 빌딩 레벨들
     public int[] BuildingUpgradeTurn = new int[6]{0,0,0,0,0,0}; // 업그레이드 요구 턴
+    public int[] Building2ProducePower = new int[7]{0,500,1000,1500,2000,2500,3000};
+    public int[] Building3RewardMoney = new int[7]{0,50,100,150,200,250,300};
 
     public int Power;
     public int Reputation;
@@ -41,5 +43,9 @@ public class GameData
     public int Battery; // 배터리 한 주기의 최대치를 나타냄. 
     public int Turn;
     public int OverallTurnCheck;
+
+    public int playerLv;
+    
+
 }
 

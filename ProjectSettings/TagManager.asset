@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - UI
-  - DevBoard
+  - CharacterScreen
   - InfoCanvas
   - BuildingCanvas
   - DialogueUI
@@ -19,6 +19,12 @@ TagManager:
   - CombatUI
   - MissionCanvas
   - BuildingConfirmUI
+  - AdventureUI
+  - InventoryUI
+  - UpgradeUI
+  - ResearchUI
+  - CombatScreen
+  - LaboScreen
   layers:
   - Default
   - TransparentFX
