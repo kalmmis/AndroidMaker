@@ -6,7 +6,7 @@ public class AdventureController : MonoBehaviour
 {
     private GameObject combatUI;
     public Player player;
-    public float invincibleTime;
+    public float invincibleTime = 3f;
     bool isRange;
     
     void Start()
@@ -15,22 +15,27 @@ public class AdventureController : MonoBehaviour
 
     public void StartPlayer()
     {
-        StartCoroutine(InitPlayer(.1f));
+        StartCoroutine(InitPlayer(1f));
     }
 
     public IEnumerator InitPlayer(float delayTime)
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();;
-        //GameObject oldP = GameObject.Find("Player");
+        GameObject oldP = GameObject.Find("Player(Clone)");
+        GameObject combatScreen;
         yield return new WaitForSeconds(delayTime);
         Debug.Log("in");
-        //if(oldP == null) { 
-        if(true) { 
-            Player p = Instantiate(player, new Vector3(0, -5), Quaternion.identity);
+        if(oldP == null) { 
+        //if(true) { 
+            Player p = Instantiate(player, new Vector2(0, 0), Quaternion.identity);
+            combatScreen = GameObject.Find("CombatScreen");
+            p.transform.parent = combatScreen.transform;
+            RectTransform rectTransform = p.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(100,-850);
             p.isInvincible = true;
             int lv = DataController.Instance.gameData.playerLv;
-            int tempHp = DataController.Instance.tempData.playerHP[lv];
-            p.hp = tempHp;
+            DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+            int tHp = dc.tempData.playerHP[lv];
+            p.hp = tHp;
             StartCoroutine(p.RemoveInvincible(invincibleTime));
         }
         //animator.SetTrigger("TrigPlayerIdle");
