@@ -25,6 +25,8 @@ TagManager:
   - ResearchUI
   - CombatScreen
   - LaboScreen
+  - Boundary
+  - Enemy
   layers:
   - Default
   - TransparentFX

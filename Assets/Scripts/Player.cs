@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public int hp;
     public bool isInvincible;
+    public bool isRange;
+    public bool isAttack = false;
     public static Player instance;
+    PlayerShooting playerShooting;
     // Start is called before the first frame update
 
     private void Awake()
     {
         if (instance == null) 
             instance = this;
+    }
+
+    private void Start()
+    {
     }
 
     public void GetDamage(int damage)   
@@ -42,20 +50,59 @@ public class Player : MonoBehaviour
         isInvincible = false;
     }
 
-    /*
-    public void GetDamage(int damage) 
+    public void ShiftAttackRange()
     {
-        health -= damage;           //reducing health for damage value, if health is less than 0, starting destruction procedure
-        if (health <= 0)
+        if(isRange)
         {
-            Destruction();
+            isRange = false;
         }
         else
-            Instantiate(hitEffect, transform.position, Quaternion.identity, transform);
+        {
+            isRange = true;
+        }
     }
-    */   
 
-    // Update is called once per frame
+    public void Attack()
+    {
+        
+        playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
+        if(isRange)
+        {
+            MeleeAttack();
+        }
+        else
+        {
+            RangeAttack();
+        }
+    }
+
+
+    public void MeleeAttack()
+    {
+        Debug.Log("MeleeAttack");
+    }
+
+    public void RangeAttack()
+    {
+        Debug.Log("RangeAttack");
+        playerShooting.MakeAShot();
+    }
+
+    public void Skill1()
+    {
+        Debug.Log("Skill1");
+    }
+    
+    public void Skill2()
+    {
+        Debug.Log("Skill2");
+    }
+    
+    public void Skill3()
+    {
+        Debug.Log("Skill3");
+    }
+
     void Update()
     {
         
