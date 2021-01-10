@@ -30,7 +30,7 @@ public class AdventureController : MonoBehaviour
             p.isInvincible = true;
             int lv = DataController.Instance.gameData.playerLv;
             DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-            int tHp = dc.tempData.playerHP[lv];
+            int tHp = dc.clientData.playerHP[lv];
             p.hp = tHp;
             StartCoroutine(p.RemoveInvincible(invincibleTime));
         }
@@ -52,7 +52,7 @@ public class AdventureController : MonoBehaviour
             //e.isInvincible = true;
             int lv = DataController.Instance.gameData.playerLv;
             DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-            int tHp = dc.tempData.playerHP[lv];
+            int tHp = dc.clientData.playerHP[lv]; // 수정 필요
             e.hp = tHp;
             //StartCoroutine(e.RemoveInvincible(invincibleTime));
         }

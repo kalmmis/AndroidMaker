@@ -30,19 +30,21 @@ public class ShelterController : MonoBehaviour
 
     public void LoadShelterUI()
     {
-        int Building1LV = DataController.Instance.gameData.BuildingLevel[0];
-        int Building2LV = DataController.Instance.gameData.BuildingLevel[1];
-        int Building3LV = DataController.Instance.gameData.BuildingLevel[2];
-        int Building4LV = DataController.Instance.gameData.BuildingLevel[3];
-        int Building5LV = DataController.Instance.gameData.BuildingLevel[4];
-        int Building6LV = DataController.Instance.gameData.BuildingLevel[5];
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
-        int Building1RequiredTurn = DataController.Instance.gameData.BuildingUpgradeTurn[0];
-        int Building2RequiredTurn = DataController.Instance.gameData.BuildingUpgradeTurn[1];
-        int Building3RequiredTurn = DataController.Instance.gameData.BuildingUpgradeTurn[2];
-        int Building4RequiredTurn = DataController.Instance.gameData.BuildingUpgradeTurn[3];
-        int Building5RequiredTurn = DataController.Instance.gameData.BuildingUpgradeTurn[4];
-        int Building6RequiredTurn = DataController.Instance.gameData.BuildingUpgradeTurn[5];
+        int Building1LV = DataController.Instance.gameData.buildingLevel[0];
+        int Building2LV = DataController.Instance.gameData.buildingLevel[1];
+        int Building3LV = DataController.Instance.gameData.buildingLevel[2];
+        int Building4LV = DataController.Instance.gameData.buildingLevel[3];
+        int Building5LV = DataController.Instance.gameData.buildingLevel[4];
+        int Building6LV = DataController.Instance.gameData.buildingLevel[5];
+
+        int Building1RequiredTurn = dc.clientData.buildingUpgradeTurn[0];
+        int Building2RequiredTurn = dc.clientData.buildingUpgradeTurn[1];
+        int Building3RequiredTurn = dc.clientData.buildingUpgradeTurn[2];
+        int Building4RequiredTurn = dc.clientData.buildingUpgradeTurn[3];
+        int Building5RequiredTurn = dc.clientData.buildingUpgradeTurn[4];
+        int Building6RequiredTurn = dc.clientData.buildingUpgradeTurn[5];
 
         BuildingCanvas = GameObject.FindGameObjectWithTag("BuildingCanvas");
         BuildingTitleText1 = BuildingCanvas.transform.Find("BuildingPanel01").Find("BuildingTitleText01").GetComponent<Text>();
@@ -64,14 +66,12 @@ public class ShelterController : MonoBehaviour
         BuildingDescription6 = BuildingCanvas.transform.Find("BuildingPanel06").Find("BuildingDescText06").GetComponent<Text>();
         
         
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        
-        BuildingDescription1.text = dc.tempData.BuildingDesc[Building1LV].ToString();
-        BuildingDescription2.text = dc.tempData.BuildingDesc[Building2LV].ToString();
-        BuildingDescription3.text = dc.tempData.BuildingDesc[Building3LV].ToString();
-        BuildingDescription4.text = dc.tempData.BuildingDesc[Building4LV].ToString();
-        BuildingDescription5.text = dc.tempData.BuildingDesc[Building5LV].ToString();
-        BuildingDescription6.text = dc.tempData.BuildingDesc[Building6LV].ToString();
+        BuildingDescription1.text = dc.clientData.Building01Desc[Building1LV].ToString();
+        BuildingDescription2.text = dc.clientData.Building02Desc[Building2LV].ToString();
+        BuildingDescription3.text = dc.clientData.BuildingDesc[Building3LV].ToString();
+        BuildingDescription4.text = dc.clientData.BuildingDesc[Building4LV].ToString();
+        BuildingDescription5.text = dc.clientData.BuildingDesc[Building5LV].ToString();
+        BuildingDescription6.text = dc.clientData.BuildingDesc[Building6LV].ToString();
         
         Button btn1 = BuildingCanvas.transform.Find("BuildingPanel01").Find("BuildingLevelUpButton01").GetComponent<Button>();
         Button btn2 = BuildingCanvas.transform.Find("BuildingPanel02").Find("BuildingLevelUpButton02").GetComponent<Button>();
@@ -82,91 +82,91 @@ public class ShelterController : MonoBehaviour
 
         if (Building1LV == 0)
         {
-            BuildingTitleText1.text = dc.tempData.BuildingTitle[1].ToString();
+            BuildingTitleText1.text = dc.clientData.BuildingTitle[1].ToString();
         }
         else if (Building1LV > 0 && Building1RequiredTurn > 0)
         {
-            BuildingTitleText1.text = dc.tempData.BuildingTitle[1].ToString() + " lv " + Building1LV + " upgrading";
+            BuildingTitleText1.text = dc.clientData.BuildingTitle[1].ToString() + " [lv " + Building1LV + " upgrading]";
             btn1.interactable = false;
         }
         else
         {
-            BuildingTitleText1.text = dc.tempData.BuildingTitle[1].ToString() + " lv " + Building1LV;
+            BuildingTitleText1.text = dc.clientData.BuildingTitle[1].ToString() + " [lv " + Building1LV + "]";
             btn1.interactable = true;
         }
         
         if (Building2LV == 0)
         {
-            BuildingTitleText2.text = dc.tempData.BuildingTitle[2].ToString();
+            BuildingTitleText2.text = dc.clientData.BuildingTitle[2].ToString();
         }
         else if (Building2LV > 0 && Building2RequiredTurn > 0)
         {
-            BuildingTitleText2.text = dc.tempData.BuildingTitle[2].ToString() + " lv " + Building2LV + " upgrading";
+            BuildingTitleText2.text = dc.clientData.BuildingTitle[2].ToString() + " lv " + Building2LV + " upgrading";
             btn2.interactable = false;
         }
         else
         {
-            BuildingTitleText2.text = dc.tempData.BuildingTitle[2].ToString() + " lv " + Building2LV;
+            BuildingTitleText2.text = dc.clientData.BuildingTitle[2].ToString() + " lv " + Building2LV;
             btn2.interactable = true;
         }
         
         if (Building3LV == 0)
         {
-            BuildingTitleText3.text = dc.tempData.BuildingTitle[3].ToString();
+            BuildingTitleText3.text = dc.clientData.BuildingTitle[3].ToString();
         }
         else if (Building3LV > 0 && Building3RequiredTurn > 0)
         {
-            BuildingTitleText3.text = dc.tempData.BuildingTitle[3].ToString() + " lv " + Building3LV + " upgrading";
+            BuildingTitleText3.text = dc.clientData.BuildingTitle[3].ToString() + " lv " + Building3LV + " upgrading";
             btn3.interactable = false;
         }
         else
         {
-            BuildingTitleText3.text = dc.tempData.BuildingTitle[3].ToString() + " lv " + Building3LV;
+            BuildingTitleText3.text = dc.clientData.BuildingTitle[3].ToString() + " lv " + Building3LV;
             btn3.interactable = true;
         }
         
         if (Building4LV == 0)
         {
-            BuildingTitleText4.text = dc.tempData.BuildingTitle[4].ToString();
+            BuildingTitleText4.text = dc.clientData.BuildingTitle[4].ToString();
         }
         else if (Building4LV > 0 && Building4RequiredTurn > 0)
         {
-            BuildingTitleText4.text = dc.tempData.BuildingTitle[4].ToString() + " lv " + Building4LV + " upgrading";
+            BuildingTitleText4.text = dc.clientData.BuildingTitle[4].ToString() + " lv " + Building4LV + " upgrading";
             btn4.interactable = false;
         }
         else
         {
-            BuildingTitleText4.text = dc.tempData.BuildingTitle[4].ToString() + " lv " + Building4LV;
+            BuildingTitleText4.text = dc.clientData.BuildingTitle[4].ToString() + " lv " + Building4LV;
             btn4.interactable = true;
         }
         
         if (Building5LV == 0)
         {
-            BuildingTitleText5.text = dc.tempData.BuildingTitle[5].ToString();
+            BuildingTitleText5.text = dc.clientData.BuildingTitle[5].ToString();
         }
         else if (Building5LV > 0 && Building5RequiredTurn > 0)
         {
-            BuildingTitleText5.text = dc.tempData.BuildingTitle[5].ToString() + " lv " + Building5LV + " upgrading";
+            BuildingTitleText5.text = dc.clientData.BuildingTitle[5].ToString() + " lv " + Building5LV + " upgrading";
             btn5.interactable = false;
         }
         else
         {
-            BuildingTitleText5.text = dc.tempData.BuildingTitle[5].ToString() + " lv " + Building5LV;
+            BuildingTitleText5.text = dc.clientData.BuildingTitle[5].ToString() + " lv " + Building5LV;
             btn5.interactable = true;
         }
         
         if (Building6LV == 0)
         {
-            BuildingTitleText6.text = dc.tempData.BuildingTitle[6].ToString();
+            BuildingTitleText6.text = dc.clientData.BuildingTitle[6].ToString();
         }
         else if (Building6LV > 0 && Building6RequiredTurn > 0)
         {
-            BuildingTitleText6.text = dc.tempData.BuildingTitle[6].ToString() + " lv " + Building6LV + " upgrading";
+            BuildingTitleText6.text = dc.clientData.BuildingTitle[6].ToString() + " lv " + Building6LV + " upgrading";
             btn6.interactable = false;
         }
         else
         {
-            BuildingTitleText6.text = dc.tempData.BuildingTitle[6].ToString() + " lv " + Building6LV;
+            BuildingTitleText6.text = dc.clientData.BuildingTitle[6].ToString() + " lv " + Building6LV;
             btn6.interactable = true;
         }
 
@@ -179,7 +179,7 @@ public class ShelterController : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(-550,-870);
 
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        dc.tempData.buildingUpgradeID = id;
+        dc.clientData.buildingUpgradeID = id;
         Debug.Log("ID is " + id);
 
         Button btn = BuildingConfirmUI.transform.Find("Panel").Find("ConfirmButton").GetComponent<Button>();
@@ -199,19 +199,19 @@ public class ShelterController : MonoBehaviour
     public bool CheckBuildingRequire(int id)
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        int tempLv = DataController.Instance.gameData.BuildingLevel[id];
+        int tempLv = DataController.Instance.gameData.buildingLevel[id];
         //LaboLv
-        int curLaboLv = dc.gameData.BuildingLevel[0];
-        int reqLaboLv = dc.tempData.BuildingRequiredLaboLv[id,tempLv];
+        int curLaboLv = DataController.Instance.gameData.buildingLevel[0];
+        int reqLaboLv = dc.clientData.BuildingRequiredLaboLv[id,tempLv];
         //Power
-        int curPower = dc.gameData.Power;
-        int reqPower = dc.tempData.BuildingRequiredLaboLv[id,tempLv];
+        int curPower = DataController.Instance.gameData.Power;
+        int reqPower = dc.clientData.BuildingRequiredLaboLv[id,tempLv];
         //Reputation
-        int curReputation = dc.gameData.Reputation;
-        int reqReputation = dc.tempData.BuildingRequiredLaboLv[id,tempLv];
+        int curReputation = DataController.Instance.gameData.Reputation;
+        int reqReputation = dc.clientData.BuildingRequiredLaboLv[id,tempLv];
         //Money
-        int curMoney = dc.gameData.Money;
-        int reqMoney = dc.tempData.BuildingRequiredMoney[id,tempLv];
+        long curMoney = DataController.Instance.gameData.Money;
+        int reqMoney = dc.clientData.BuildingRequiredMoney[id,tempLv];
 
         if(curLaboLv >= reqLaboLv && curPower >= reqPower && curReputation >= reqReputation && curMoney >= reqMoney)
         {
@@ -226,17 +226,17 @@ public class ShelterController : MonoBehaviour
     public void DoBuildingUpgrade()
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        int id = dc.tempData.buildingUpgradeID;
+        int id = dc.clientData.buildingUpgradeID;
 
         if(CheckBuildingRequire(id))
         {
-            int buildLv = dc.gameData.BuildingLevel[id]; // 으악... 빌딩 레벨 하나의 배열로 다 합쳐야... 어라 쉽게 합쳤다 헤헤
-            int temp = dc.tempData.BuildingRequiredTurn[id,buildLv];
-            DataController.Instance.gameData.BuildingUpgradeTurn[id] = temp;
+            int buildLv = DataController.Instance.gameData.buildingLevel[id]; // 으악... 빌딩 레벨 하나의 배열로 다 합쳐야... 어라 쉽게 합쳤다 헤헤
+            int temp = dc.clientData.BuildingRequiredTurn[id,buildLv];
+            dc.clientData.buildingUpgradeTurn[id] = temp;
             // 업그레이드까지 필요한 큐가 잡힌다.
             // 결국 업그레이드 완료는 스케쥴 동작 후에 처리된다.
 
-            Debug.Log("Upgrade will be complited in " + DataController.Instance.gameData.BuildingUpgradeTurn[id] + " turn.");
+            Debug.Log("Upgrade will be complited in " + dc.clientData.buildingUpgradeTurn[id] + " turn.");
             
             LoadShelterUI();
             BuildingUpgradeListCancel();
@@ -250,7 +250,7 @@ public class ShelterController : MonoBehaviour
     public void BuildingUpgradeListCancel()
     {        
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        dc.tempData.buildingUpgradeID = 0;
+        dc.clientData.buildingUpgradeID = 0;
 
         BuildingConfirmUI = GameObject.FindGameObjectWithTag("BuildingConfirmUI");
         RectTransform rectTransform = BuildingConfirmUI.GetComponent<RectTransform>();

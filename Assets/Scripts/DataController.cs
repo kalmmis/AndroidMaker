@@ -67,12 +67,12 @@ public class DataController : MonoBehaviour
         }
     }
 
-    public TempData _tempData;
-    public TempData tempData
+    public ClientData _clientData;
+    public ClientData clientData
     {
         get
         {
-            return _tempData;
+            return _clientData;
         }
     }
 

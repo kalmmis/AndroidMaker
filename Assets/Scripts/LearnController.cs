@@ -35,15 +35,15 @@ public class LearnController : MonoBehaviour
 
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
-        int initTempID1 = dc.tempData.scheduleIDs[0];
-        int initTempID2 = dc.tempData.scheduleIDs[1];
-        int initTempID3 = dc.tempData.scheduleIDs[2];
-        int initTempID4 = dc.tempData.scheduleIDs[3];
+        int initTempID1 = dc.clientData.scheduleIDs[0];
+        int initTempID2 = dc.clientData.scheduleIDs[1];
+        int initTempID3 = dc.clientData.scheduleIDs[2];
+        int initTempID4 = dc.clientData.scheduleIDs[3];
 
-        string initText1 = dc.tempData.scheduleTitle[initTempID1];
-        string initText2 = dc.tempData.scheduleTitle[initTempID2];
-        string initText3 = dc.tempData.scheduleTitle[initTempID3];
-        string initText4 = dc.tempData.scheduleTitle[initTempID4];
+        string initText1 = dc.clientData.scheduleTitle[initTempID1];
+        string initText2 = dc.clientData.scheduleTitle[initTempID2];
+        string initText3 = dc.clientData.scheduleTitle[initTempID3];
+        string initText4 = dc.clientData.scheduleTitle[initTempID4];
 
         schedule1Text.text = initText1;
         schedule2Text.text = initText2;
@@ -56,33 +56,33 @@ public class LearnController : MonoBehaviour
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         
-        if(dc.tempData.scheduleIDs[0] == 0)
+        if(dc.clientData.scheduleIDs[0] == 0)
         {
-            dc.tempData.scheduleIDs[0] = id;
+            dc.clientData.scheduleIDs[0] = id;
         }
-        else if(dc.tempData.scheduleIDs[1] == 0)
+        else if(dc.clientData.scheduleIDs[1] == 0)
         {
-            dc.tempData.scheduleIDs[1] = id;
+            dc.clientData.scheduleIDs[1] = id;
         }
-        else if(dc.tempData.scheduleIDs[2] == 0)
+        else if(dc.clientData.scheduleIDs[2] == 0)
         {
-            dc.tempData.scheduleIDs[2] = id;
+            dc.clientData.scheduleIDs[2] = id;
         }
-        else if(dc.tempData.scheduleIDs[3] == 0)
+        else if(dc.clientData.scheduleIDs[3] == 0)
         {
-            dc.tempData.scheduleIDs[3] = id;
+            dc.clientData.scheduleIDs[3] = id;
             scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
             RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(-550,-870);
         }
         LoadingScheduleUI();
-        Debug.Log("schedule array is " + dc.tempData.scheduleIDs[0] + dc.tempData.scheduleIDs[1] + dc.tempData.scheduleIDs[2] + dc.tempData.scheduleIDs[3]);
+        Debug.Log("schedule array is " + dc.clientData.scheduleIDs[0] + dc.clientData.scheduleIDs[1] + dc.clientData.scheduleIDs[2] + dc.clientData.scheduleIDs[3]);
     }
 
     public void ListCancel()
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        dc.tempData.scheduleIDs[3] = 0;
+        dc.clientData.scheduleIDs[3] = 0;
         LoadingScheduleUI();
 
         scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
@@ -98,7 +98,7 @@ public class LearnController : MonoBehaviour
         EventUIrectTransform.anchoredPosition = new Vector2(0,300);
 
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        int[] scd = dc.tempData.scheduleIDs;
+        int[] scd = dc.clientData.scheduleIDs;
         StartCoroutine (DoSchedule(scd));
         //Debug.Log("confirm이 눌렸다");
         scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
@@ -120,19 +120,19 @@ public class LearnController : MonoBehaviour
         int temp;
 
         temp = scdID[0];
-        EventText.text = dc.tempData.scheduleTitle[temp];
+        EventText.text = dc.clientData.scheduleTitle[temp];
         yield return new WaitForSecondsRealtime (1f);
 
         temp = scdID[1];
-        EventText.text = dc.tempData.scheduleTitle[temp];
+        EventText.text = dc.clientData.scheduleTitle[temp];
         yield return new WaitForSecondsRealtime (1f);
 
         temp = scdID[2];
-        EventText.text = dc.tempData.scheduleTitle[temp];
+        EventText.text = dc.clientData.scheduleTitle[temp];
         yield return new WaitForSecondsRealtime (1f);
 
         temp = scdID[3];
-        EventText.text = dc.tempData.scheduleTitle[temp];
+        EventText.text = dc.clientData.scheduleTitle[temp];
         yield return new WaitForSecondsRealtime (1f);
 
         scheduleUI.SetActive(true);
@@ -141,10 +141,10 @@ public class LearnController : MonoBehaviour
         RectTransform EventUIrectTransform = EventUI.GetComponent<RectTransform>();
         EventUIrectTransform.anchoredPosition = new Vector2(-1080,300);
         
-        dc.tempData.scheduleIDs[0] = 0;
-        dc.tempData.scheduleIDs[1] = 0;
-        dc.tempData.scheduleIDs[2] = 0;
-        dc.tempData.scheduleIDs[3] = 0;
+        dc.clientData.scheduleIDs[0] = 0;
+        dc.clientData.scheduleIDs[1] = 0;
+        dc.clientData.scheduleIDs[2] = 0;
+        dc.clientData.scheduleIDs[3] = 0;
 
         
         GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -156,37 +156,37 @@ public class LearnController : MonoBehaviour
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
-        if(id == 3 && dc.tempData.scheduleIDs[3] != 0)
+        if(id == 3 && dc.clientData.scheduleIDs[3] != 0)
         {
-            dc.tempData.scheduleIDs[3] = 0;
+            dc.clientData.scheduleIDs[3] = 0;
         }
-        if(id == 2 && dc.tempData.scheduleIDs[2] != 0)
+        if(id == 2 && dc.clientData.scheduleIDs[2] != 0)
         {
-            int temp1 = dc.tempData.scheduleIDs[3];
-            dc.tempData.scheduleIDs[2] = temp1;
-            dc.tempData.scheduleIDs[3] = 0;
+            int temp1 = dc.clientData.scheduleIDs[3];
+            dc.clientData.scheduleIDs[2] = temp1;
+            dc.clientData.scheduleIDs[3] = 0;
         }
-        if(id == 1 && dc.tempData.scheduleIDs[1] != 0)
+        if(id == 1 && dc.clientData.scheduleIDs[1] != 0)
         {
-            int temp1 = dc.tempData.scheduleIDs[3];
-            int temp2 = dc.tempData.scheduleIDs[2];
-            dc.tempData.scheduleIDs[1] = temp2;
-            dc.tempData.scheduleIDs[2] = temp1;
-            dc.tempData.scheduleIDs[3] = 0;
+            int temp1 = dc.clientData.scheduleIDs[3];
+            int temp2 = dc.clientData.scheduleIDs[2];
+            dc.clientData.scheduleIDs[1] = temp2;
+            dc.clientData.scheduleIDs[2] = temp1;
+            dc.clientData.scheduleIDs[3] = 0;
         }
-        if(id == 0 && dc.tempData.scheduleIDs[0] != 0)
+        if(id == 0 && dc.clientData.scheduleIDs[0] != 0)
         {
-            int temp1 = dc.tempData.scheduleIDs[3];
-            int temp2 = dc.tempData.scheduleIDs[2];
-            int temp3 = dc.tempData.scheduleIDs[1];
-            dc.tempData.scheduleIDs[0] = temp3;
-            dc.tempData.scheduleIDs[1] = temp2;
-            dc.tempData.scheduleIDs[2] = temp1;
-            dc.tempData.scheduleIDs[3] = 0;
+            int temp1 = dc.clientData.scheduleIDs[3];
+            int temp2 = dc.clientData.scheduleIDs[2];
+            int temp3 = dc.clientData.scheduleIDs[1];
+            dc.clientData.scheduleIDs[0] = temp3;
+            dc.clientData.scheduleIDs[1] = temp2;
+            dc.clientData.scheduleIDs[2] = temp1;
+            dc.clientData.scheduleIDs[3] = 0;
         }
 
         LoadingScheduleUI();
-        Debug.Log("schedule array is " + dc.tempData.scheduleIDs[0] + dc.tempData.scheduleIDs[1] + dc.tempData.scheduleIDs[2] + dc.tempData.scheduleIDs[3]);
+        Debug.Log("schedule array is " + dc.clientData.scheduleIDs[0] + dc.clientData.scheduleIDs[1] + dc.clientData.scheduleIDs[2] + dc.clientData.scheduleIDs[3]);
     }
 
     // Start is called before the first frame update
