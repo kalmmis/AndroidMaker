@@ -229,14 +229,18 @@ public class ShelterController : MonoBehaviour
         int beforeBenefit = dc.clientData.BuildingProduce[id,beforeBuildingLv];
         int afterBenefit = dc.clientData.BuildingProduce[id,afterBuildingLv];
 
-        int requireMoney = dc.clientData.BuildingRequiredMoney[id,beforeBuildingLv];
-        int requirePower = dc.clientData.BuildingRequiredPower[id,beforeBuildingLv];
-        int requireTurn = dc.clientData.BuildingRequiredTurn[id,beforeBuildingLv];
+        int requireMoney = dc.clientData.BuildingRequiredMoney[id,afterBuildingLv];
+        
+        int requirePowerNow = dc.clientData.BuildingRequiredPower[id,beforeBuildingLv];
+        int requirePowerNext = dc.clientData.BuildingRequiredPower[id,afterBuildingLv];
+        int requirePower = requirePowerNext - requirePowerNow;
+
+        int requireTurn = dc.clientData.BuildingRequiredTurn[id,afterBuildingLv];
 
         //Money
         long curMoney = DataController.Instance.gameData.Money;
         //Power
-        int curPower = DataController.Instance.gameData.Power;
+        int curPower = DataController.Instance.gameData.remainPower;
 
 
         if (DataController.Instance.gameData.buildingLevel.Length == afterBuildingLv)
@@ -289,12 +293,15 @@ public class ShelterController : MonoBehaviour
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         int tempLv = DataController.Instance.gameData.buildingLevel[id];
+        int nextLv = tempLv + 1;
         //LaboLv
         int curLaboLv = DataController.Instance.gameData.buildingLevel[0];
-        int reqLaboLv = dc.clientData.BuildingRequiredLaboLv[id,tempLv];
+        int reqLaboLv = dc.clientData.BuildingRequiredLaboLv[id,nextLv];
         //Power
-        int curPower = DataController.Instance.gameData.Power;
-        int reqPower = dc.clientData.BuildingRequiredLaboLv[id,tempLv];
+        int curPower = DataController.Instance.gameData.remainPower;
+        int reqPowerNow = dc.clientData.BuildingRequiredPower[id,tempLv];
+        int reqPowerNext = dc.clientData.BuildingRequiredPower[id,nextLv];
+        int reqPower = reqPowerNext - reqPowerNow;
 
         //Reputation
         //int curReputation = DataController.Instance.gameData.Reputation;
@@ -302,7 +309,7 @@ public class ShelterController : MonoBehaviour
         
         //Money
         long curMoney = DataController.Instance.gameData.Money;
-        int reqMoney = dc.clientData.BuildingRequiredMoney[id,tempLv];
+        int reqMoney = dc.clientData.BuildingRequiredMoney[id,nextLv];
 
         if(curLaboLv >= reqLaboLv && curPower >= reqPower && curMoney >= reqMoney)
         {
@@ -322,12 +329,13 @@ public class ShelterController : MonoBehaviour
         if(CheckBuildingRequire(id))
         {
             int buildLv = DataController.Instance.gameData.buildingLevel[id]; // 으악... 빌딩 레벨 하나의 배열로 다 합쳐야... 어라 쉽게 합쳤다 헤헤
-            int reqTurn = dc.clientData.BuildingRequiredTurn[id,buildLv];
-            int reqMoney = dc.clientData.BuildingRequiredMoney[id,buildLv];
-            int reqPower = dc.clientData.BuildingRequiredPower[id,buildLv];
+            int nextLv = buildLv + 1;
+            int reqTurn = dc.clientData.BuildingRequiredTurn[id,nextLv];
+            int reqMoney = dc.clientData.BuildingRequiredMoney[id,nextLv];
             DataController.Instance.gameData.buildingUpgradeTurn[id] = reqTurn;
             DataController.Instance.gameData.Money -= reqMoney;
-            DataController.Instance.gameData.Power -= reqPower;
+            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            gm.LoadResources();
             // 업그레이드까지 필요한 큐가 잡힌다.
             // 결국 업그레이드 완료는 스케쥴 동작 후에 처리된다.
 

@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         LoadMainUI();
+        LoadResources();
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         dc.LoadGameData(); 
     }
@@ -65,14 +66,36 @@ public class GameManager : MonoBehaviour
         CoreAmount = InfoCanvasUI.transform.Find("CoreAmount").GetComponent<Text>();
         PowerAmount = InfoCanvasUI.transform.Find("PowerAmount").GetComponent<Text>();
 
-        
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        int mineLv = DataController.Instance.gameData.buildingLevel[2];
-        int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
-
-        MoneyProductivity.text = "(+" + moneyProduce.ToString() + ")";
     }
+    public void LoadResources()
+    {
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
+        // credit 관련 ui 갱신
+        int mineLv = DataController.Instance.gameData.buildingLevel[1];
+        int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
+        MoneyProductivity.text = "(+" + moneyProduce.ToString() + ")";
+
+        // POWER 관련 ui 갱신
+        int plantLv = DataController.Instance.gameData.buildingLevel[2];
+        int producePower = dc.clientData.BuildingProduce[2,plantLv];
+
+        int usingPower = 0;
+        int[] tempArray = DataController.Instance.gameData.buildingLevel;
+        for (int i = 0; i < tempArray.Length; i++)
+        {
+            int buildLv = DataController.Instance.gameData.buildingLevel[i];
+            int buildUpgradeTurn = DataController.Instance.gameData.buildingUpgradeTurn[i];
+            if (buildUpgradeTurn > 0)
+            {
+                buildLv += 1;
+            }
+            usingPower += dc.clientData.BuildingRequiredPower[i,buildLv];
+            Debug.Log("usingPower is " + usingPower);
+        }
+        DataController.Instance.gameData.remainPower = producePower - usingPower;
+        PowerAmount.text = DataController.Instance.gameData.remainPower.ToString();
+    }
     public void ActiveMissionTab()
     {
         ShelterUI.SetActive(true);
@@ -180,7 +203,7 @@ public class GameManager : MonoBehaviour
         MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
         CoreAmount.text = DataController.Instance.gameData.Core.ToString(); 
         TurnCount.text = "Turn " + DataController.Instance.gameData.Turn.ToString();
-        PowerAmount.text = DataController.Instance.gameData.Power.ToString();
+        PowerAmount.text = DataController.Instance.gameData.remainPower.ToString();
     }
     
     private void OnApplicationQuit()
@@ -207,17 +230,20 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        //int plantLv = DataController.Instance.gameData.buildingLevel[1];
-        //int powerProduce = dc.clientData.building2ProducePower[plantLv];
-
-        //DataController.Instance.gameData.Power = powerProduce;
-
-        int mineLv = DataController.Instance.gameData.buildingLevel[2];
+        LoadResources();
+        ProduceTurnMoney();
+        ActiveMissionTab();
+    }
+    
+    public void ProduceTurnMoney()
+    {
+        
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        int mineLv = DataController.Instance.gameData.buildingLevel[1];
         int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
         
         DataController.Instance.gameData.Money += moneyProduce;
-
-        ActiveMissionTab();
+        MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
     }
 
     // 테스트용 메서드
@@ -241,7 +267,7 @@ public class GameManager : MonoBehaviour
         DataController.Instance.gameData.buildingLevel[3] = 0;
         DataController.Instance.gameData.buildingLevel[4] = 0;
         DataController.Instance.gameData.buildingLevel[5] = 0;
-        DataController.Instance.gameData.Money = 0;
+        DataController.Instance.gameData.Money = 1000;
         DataController.Instance.gameData.Turn = 1;
         
         DataController.Instance.gameData.buildingUpgradeTurn[0] = 0;
@@ -253,13 +279,8 @@ public class GameManager : MonoBehaviour
 
 
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        
-        int plantLv = DataController.Instance.gameData.buildingLevel[1];
-        int powerProduce = dc.clientData.building2ProducePower[plantLv];
-        
-        DataController.Instance.gameData.Power = powerProduce;
-
-        int mineLv = DataController.Instance.gameData.buildingLevel[2];
+    
+        int mineLv = DataController.Instance.gameData.buildingLevel[1];
         int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
         
         DataController.Instance.gameData.Money += moneyProduce;
