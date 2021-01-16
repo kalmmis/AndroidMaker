@@ -22,6 +22,20 @@ public class ShelterController : MonoBehaviour
     public Text BuildingDescription5;
     public Text BuildingDescription6;
 
+    public Text buildingBeforeLv;
+    public Text buildingAfterLv;
+    //public Text beforeReputation;
+    //public Text afterReputation;
+    public Text upgradeDescription;
+
+    public Text benefitTitle;
+    public Text benefitBeforeLv;
+    public Text benefitAftereLv;
+    
+    public Text requirementText1;
+    public Text requirementText2;
+    public Text requirementText3;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -39,12 +53,12 @@ public class ShelterController : MonoBehaviour
         int Building5LV = DataController.Instance.gameData.buildingLevel[4];
         int Building6LV = DataController.Instance.gameData.buildingLevel[5];
 
-        int Building1RequiredTurn = dc.clientData.buildingUpgradeTurn[0];
-        int Building2RequiredTurn = dc.clientData.buildingUpgradeTurn[1];
-        int Building3RequiredTurn = dc.clientData.buildingUpgradeTurn[2];
-        int Building4RequiredTurn = dc.clientData.buildingUpgradeTurn[3];
-        int Building5RequiredTurn = dc.clientData.buildingUpgradeTurn[4];
-        int Building6RequiredTurn = dc.clientData.buildingUpgradeTurn[5];
+        int Building1RequiredTurn = DataController.Instance.gameData.buildingUpgradeTurn[0];
+        int Building2RequiredTurn = DataController.Instance.gameData.buildingUpgradeTurn[1];
+        int Building3RequiredTurn = DataController.Instance.gameData.buildingUpgradeTurn[2];
+        int Building4RequiredTurn = DataController.Instance.gameData.buildingUpgradeTurn[3];
+        int Building5RequiredTurn = DataController.Instance.gameData.buildingUpgradeTurn[4];
+        int Building6RequiredTurn = DataController.Instance.gameData.buildingUpgradeTurn[5];
 
         BuildingCanvas = GameObject.FindGameObjectWithTag("BuildingCanvas");
         BuildingTitleText1 = BuildingCanvas.transform.Find("BuildingPanel01").Find("BuildingTitleText01").GetComponent<Text>();
@@ -66,12 +80,12 @@ public class ShelterController : MonoBehaviour
         BuildingDescription6 = BuildingCanvas.transform.Find("BuildingPanel06").Find("BuildingDescText06").GetComponent<Text>();
         
         
-        BuildingDescription1.text = dc.clientData.Building01Desc[Building1LV].ToString();
-        BuildingDescription2.text = dc.clientData.Building02Desc[Building2LV].ToString();
-        BuildingDescription3.text = dc.clientData.BuildingDesc[Building3LV].ToString();
-        BuildingDescription4.text = dc.clientData.BuildingDesc[Building4LV].ToString();
-        BuildingDescription5.text = dc.clientData.BuildingDesc[Building5LV].ToString();
-        BuildingDescription6.text = dc.clientData.BuildingDesc[Building6LV].ToString();
+        BuildingDescription1.text = dc.clientData.BuildingDesc[0,Building1LV].ToString();
+        BuildingDescription2.text = dc.clientData.BuildingDesc[1,Building2LV].ToString();
+        BuildingDescription3.text = dc.clientData.BuildingDesc[2,Building3LV].ToString();
+        BuildingDescription4.text = dc.clientData.BuildingDesc[3,Building4LV].ToString();
+        BuildingDescription5.text = dc.clientData.BuildingDesc[4,Building5LV].ToString();
+        BuildingDescription6.text = dc.clientData.BuildingDesc[5,Building6LV].ToString();
         
         Button btn1 = BuildingCanvas.transform.Find("BuildingPanel01").Find("BuildingLevelUpButton01").GetComponent<Button>();
         Button btn2 = BuildingCanvas.transform.Find("BuildingPanel02").Find("BuildingLevelUpButton02").GetComponent<Button>();
@@ -86,12 +100,12 @@ public class ShelterController : MonoBehaviour
         }
         else if (Building1LV > 0 && Building1RequiredTurn > 0)
         {
-            BuildingTitleText1.text = dc.clientData.BuildingTitle[1].ToString() + " [lv " + Building1LV + " upgrading]";
+            BuildingTitleText1.text = dc.clientData.BuildingTitle[1].ToString() + " lv " + Building1LV + " upgrading";
             btn1.interactable = false;
         }
         else
         {
-            BuildingTitleText1.text = dc.clientData.BuildingTitle[1].ToString() + " [lv " + Building1LV + "]";
+            BuildingTitleText1.text = dc.clientData.BuildingTitle[1].ToString() + " lv " + Building1LV + "";
             btn1.interactable = true;
         }
         
@@ -181,7 +195,81 @@ public class ShelterController : MonoBehaviour
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         dc.clientData.buildingUpgradeID = id;
         Debug.Log("ID is " + id);
+        //DoBuilding 에서 이용하기 위해 클라 데이터로 저장함.
 
+        LoadBuildingConfirmUI(id);
+    }
+
+    public void LoadBuildingConfirmUI(int id)
+    {
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        BuildingConfirmUI = GameObject.FindGameObjectWithTag("BuildingConfirmUI");
+
+        buildingBeforeLv = BuildingConfirmUI.transform.Find("Panel").Find("BuildingBeforeLevel").GetComponent<Text>();
+        buildingAfterLv = BuildingConfirmUI.transform.Find("Panel").Find("BuildingAfterLevel").GetComponent<Text>();
+        //beforeReputation = BuildingConfirmUI.transform.Find("Panel").Find("ReputationBeforeLevel").GetComponent<Text>();
+        //afterReputation = BuildingConfirmUI.transform.Find("Panel").Find("ReputationAfterLevel").GetComponent<Text>();
+        upgradeDescription = BuildingConfirmUI.transform.Find("Panel").Find("UpgradeDescription").GetComponent<Text>();
+
+        benefitTitle = BuildingConfirmUI.transform.Find("Panel").Find("BenefitText").GetComponent<Text>();
+        benefitBeforeLv = BuildingConfirmUI.transform.Find("Panel").Find("BenefitBeforeLevel").GetComponent<Text>();
+        benefitAftereLv = BuildingConfirmUI.transform.Find("Panel").Find("BenefitAfterLevel").GetComponent<Text>();
+
+        requirementText1 = BuildingConfirmUI.transform.Find("Panel").Find("Requirement1").GetComponent<Text>();
+        requirementText2 = BuildingConfirmUI.transform.Find("Panel").Find("Requirement2").GetComponent<Text>();
+        requirementText3 = BuildingConfirmUI.transform.Find("Panel").Find("Requirement3").GetComponent<Text>();
+        
+        
+        int beforeBuildingLv = DataController.Instance.gameData.buildingLevel[id];
+        int afterBuildingLv = beforeBuildingLv + 1;
+        //int beforeReputation = DataController.Instance.gameData.Reputation;
+        string upgradeDesc = dc.clientData.BuildingUpgradeDesc[id];
+        
+        string benefitText = dc.clientData.BuildingProduceTitle[id];
+        int beforeBenefit = dc.clientData.BuildingProduce[id,beforeBuildingLv];
+        int afterBenefit = dc.clientData.BuildingProduce[id,afterBuildingLv];
+
+        int requireMoney = dc.clientData.BuildingRequiredMoney[id,beforeBuildingLv];
+        int requirePower = dc.clientData.BuildingRequiredPower[id,beforeBuildingLv];
+        int requireTurn = dc.clientData.BuildingRequiredTurn[id,beforeBuildingLv];
+
+        //Money
+        long curMoney = DataController.Instance.gameData.Money;
+        //Power
+        int curPower = DataController.Instance.gameData.Power;
+
+
+        if (DataController.Instance.gameData.buildingLevel.Length == afterBuildingLv)
+        { 
+            Debug.Log("Level is full.");
+        }
+        else
+        {
+        buildingBeforeLv.text = "Level " + beforeBuildingLv.ToString();
+        buildingAfterLv.text = "Level " + afterBuildingLv.ToString();
+        //beforeReputation.text = "";
+        //afterReputation.text = "";
+        upgradeDescription.text = upgradeDesc;
+
+        benefitTitle.text = benefitText;
+        benefitBeforeLv.text = beforeBenefit.ToString();
+        benefitAftereLv.text = afterBenefit.ToString();
+
+        requirementText1.text = "<color=#000000>Required Credit: " + requireMoney.ToString() + "</color>";
+        requirementText2.text = "<color=#000000>Required Power: " + requirePower.ToString() + "</color>";
+        requirementText3.text = "<color=#000000>Required Turn: " + requireTurn.ToString() + "</color>";
+            
+            if(curMoney < requireMoney)
+            {
+                requirementText1.text = "<color=#EC360E>Required Credit: " + requireMoney.ToString() + "</color>";
+            }
+            if(curPower < requirePower)
+            {
+                requirementText2.text = "<color=#EC360E>Required Power: " + requirePower.ToString() + "</color>";
+            }
+        }     
+
+        // 버튼 활성화
         Button btn = BuildingConfirmUI.transform.Find("Panel").Find("ConfirmButton").GetComponent<Button>();
 
         if(CheckBuildingRequire(id))
@@ -194,6 +282,7 @@ public class ShelterController : MonoBehaviour
             //Debug.Log("Check is False");
             btn.interactable = false;
         }
+
     }
 
     public bool CheckBuildingRequire(int id)
@@ -206,14 +295,16 @@ public class ShelterController : MonoBehaviour
         //Power
         int curPower = DataController.Instance.gameData.Power;
         int reqPower = dc.clientData.BuildingRequiredLaboLv[id,tempLv];
+
         //Reputation
-        int curReputation = DataController.Instance.gameData.Reputation;
-        int reqReputation = dc.clientData.BuildingRequiredLaboLv[id,tempLv];
+        //int curReputation = DataController.Instance.gameData.Reputation;
+        //int reqReputation = dc.clientData.BuildingRequiredLaboLv[id,tempLv];
+        
         //Money
         long curMoney = DataController.Instance.gameData.Money;
         int reqMoney = dc.clientData.BuildingRequiredMoney[id,tempLv];
 
-        if(curLaboLv >= reqLaboLv && curPower >= reqPower && curReputation >= reqReputation && curMoney >= reqMoney)
+        if(curLaboLv >= reqLaboLv && curPower >= reqPower && curMoney >= reqMoney)
         {
             return true;
         }
@@ -231,12 +322,16 @@ public class ShelterController : MonoBehaviour
         if(CheckBuildingRequire(id))
         {
             int buildLv = DataController.Instance.gameData.buildingLevel[id]; // 으악... 빌딩 레벨 하나의 배열로 다 합쳐야... 어라 쉽게 합쳤다 헤헤
-            int temp = dc.clientData.BuildingRequiredTurn[id,buildLv];
-            dc.clientData.buildingUpgradeTurn[id] = temp;
+            int reqTurn = dc.clientData.BuildingRequiredTurn[id,buildLv];
+            int reqMoney = dc.clientData.BuildingRequiredMoney[id,buildLv];
+            int reqPower = dc.clientData.BuildingRequiredPower[id,buildLv];
+            DataController.Instance.gameData.buildingUpgradeTurn[id] = reqTurn;
+            DataController.Instance.gameData.Money -= reqMoney;
+            DataController.Instance.gameData.Power -= reqPower;
             // 업그레이드까지 필요한 큐가 잡힌다.
             // 결국 업그레이드 완료는 스케쥴 동작 후에 처리된다.
 
-            Debug.Log("Upgrade will be complited in " + dc.clientData.buildingUpgradeTurn[id] + " turn.");
+            Debug.Log("Upgrade will be completed in " + DataController.Instance.gameData.buildingUpgradeTurn[id] + " turn.");
             
             LoadShelterUI();
             BuildingUpgradeListCancel();

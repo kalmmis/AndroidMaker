@@ -14,6 +14,8 @@ public class GameData
 
     public int[] buildingLevel = new int[6]{1,1,1,0,0,0}; // 초기 빌딩 레벨들
 
+    public int[] buildingUpgradeTurn = new int[6]{0,0,0,0,0,0}; // 업그레이드 요구 턴
+
     /*
     public int LaboratoryLevel; // 연구소
     public int MineLevel; // 광산
@@ -29,15 +31,15 @@ public class GameData
     public int Durability; // 내구성, 안드로이드가 육체적으로 부서질 수 있음.
     public int Stress; // 스트레스, 멘탈, 안드로이드가 정신적으로 부서질 수 있음.
 
-    public int Strength; // 근력, 부품 교체 등의 아이템을 통해서만 증가 가능
-    public int Mobility;  // 기동성, 부품 교체 등의 아이템을 통해서만 증가 가능 
-    public int Computing; // 연산능력
-    public int Knowledge; // 지식
-    public int Wisdom; // 지혜
-    public int Willing; // 의지
-    public int Charisma; // 매력
-    public int Morality; // 도덕성
-    public int Humanity; // 인간성
+    public int Strength = 10; // 근력, 부품 교체 등의 아이템을 통해서만 증가 가능
+    public int Mobility = 10;  // 기동성, 부품 교체 등의 아이템을 통해서만 증가 가능 
+    public int Computing = 10; // 연산능력
+    public int Knowledge = 10; // 지식
+    public int Wisdom = 10; // 지혜
+    public int Willing = 10; // 의지
+    public int Charisma = 10; // 매력
+    public int Morality = 10; // 도덕성
+    public int Humanity = 10; // 인간성
 
     public int Battery; // 배터리 한 주기의 최대치를 나타냄. 
     public int Turn;

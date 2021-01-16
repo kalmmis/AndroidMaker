@@ -72,6 +72,7 @@ public class DataController : MonoBehaviour
     {
         get
         {
+            //_clientData = new ClientData();
             return _clientData;
         }
     }

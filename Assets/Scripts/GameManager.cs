@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
         DataController.Instance.gameData.Turn += 1;
-        int[] tempArray = dc.clientData.buildingUpgradeTurn;
+        int[] tempArray = DataController.Instance.gameData.buildingUpgradeTurn;
 
         for (int i = 0; i < tempArray.Length; i++)
         {
@@ -207,13 +207,14 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        int plantLv = DataController.Instance.gameData.buildingLevel[1];
-        int powerProduce = dc.clientData.building2ProducePower[plantLv];
+        //int plantLv = DataController.Instance.gameData.buildingLevel[1];
+        //int powerProduce = dc.clientData.building2ProducePower[plantLv];
+
+        //DataController.Instance.gameData.Power = powerProduce;
 
         int mineLv = DataController.Instance.gameData.buildingLevel[2];
         int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
         
-        DataController.Instance.gameData.Power = powerProduce;
         DataController.Instance.gameData.Money += moneyProduce;
 
         ActiveMissionTab();
@@ -242,5 +243,26 @@ public class GameManager : MonoBehaviour
         DataController.Instance.gameData.buildingLevel[5] = 0;
         DataController.Instance.gameData.Money = 0;
         DataController.Instance.gameData.Turn = 1;
+        
+        DataController.Instance.gameData.buildingUpgradeTurn[0] = 0;
+        DataController.Instance.gameData.buildingUpgradeTurn[1] = 0;
+        DataController.Instance.gameData.buildingUpgradeTurn[2] = 0;
+        DataController.Instance.gameData.buildingUpgradeTurn[3] = 0;
+        DataController.Instance.gameData.buildingUpgradeTurn[4] = 0;
+        DataController.Instance.gameData.buildingUpgradeTurn[5] = 0;
+
+
+        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        
+        int plantLv = DataController.Instance.gameData.buildingLevel[1];
+        int powerProduce = dc.clientData.building2ProducePower[plantLv];
+        
+        DataController.Instance.gameData.Power = powerProduce;
+
+        int mineLv = DataController.Instance.gameData.buildingLevel[2];
+        int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
+        
+        DataController.Instance.gameData.Money += moneyProduce;
+
     }
 }
