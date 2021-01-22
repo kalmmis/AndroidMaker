@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public GameObject destructionSound;
     public GameObject hitEffect;
     public Text hpText;
+    EnemyShooting enemyShooting;
 
     //public List<Pattern> patternList = new List<Pattern>();
     //Pattern pattern;
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         //StartCoroutine(GetPattern());
+        enemyShooting = GameObject.Find("Enemy(Clone)").GetComponent<EnemyShooting>();
         StartCoroutine(ActivateShooting());
         hpText = GameObject.FindGameObjectWithTag("Enemy").transform.Find("Text").GetComponent<Text>();
     }
@@ -52,8 +54,8 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             {
-                Attack();
-                yield return new WaitForSeconds(360);
+                enemyShooting.MakeAShot();
+                yield return new WaitForSeconds(1);
             }
             /*
             else
@@ -67,7 +69,7 @@ public class Enemy : MonoBehaviour
     }
     public void Attack()
     {
-
+        Debug.Log("Enemy Shooting");
     }
     //method of getting damage for the 'Enemy'
     public void GetDamage(int damage)
@@ -104,8 +106,8 @@ public class Enemy : MonoBehaviour
     //method of destroying the 'Enemy'
     void Destruction()
     {
-        Instantiate(destructionVFX, transform.position, Quaternion.identity);
-        Instantiate(destructionSound, transform.position, Quaternion.identity);
+        //Instantiate(destructionVFX, transform.position, Quaternion.identity);
+        //Instantiate(destructionSound, transform.position, Quaternion.identity);
         foreach (GameObject obj in onDestroyExecutionList)
         {
             Destroy(obj);
