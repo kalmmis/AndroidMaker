@@ -27,6 +27,7 @@ TagManager:
   - LaboScreen
   - Boundary
   - Enemy
+  - Shield
   layers:
   - Default
   - TransparentFX

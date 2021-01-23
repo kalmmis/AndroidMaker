@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1000
-  projectileObject: {fileID: 1787699021082514645, guid: 02bdfaf06a6cbfc458f37f017bc401e2,
+  projectileObject: {fileID: 6850360111434512112, guid: d85d764dd9e2854499d4e9f2e03add11,
     type: 3}
   nextFire: 0
   guns:

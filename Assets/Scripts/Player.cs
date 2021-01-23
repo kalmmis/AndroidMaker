@@ -10,7 +10,10 @@ public class Player : MonoBehaviour
     public bool isRange;
     public bool isAttack = false;
     public static Player instance;
+    public bool isGuard = false;
     PlayerShooting playerShooting;
+    
+    public GameObject shield;
     // Start is called before the first frame update
 
     private void Awake()
@@ -21,6 +24,27 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        shield = GameObject.FindGameObjectWithTag("Shield");
+        RectTransform shieldTransform = shield.GetComponent<RectTransform>();
+        shieldTransform.anchoredPosition = new Vector2(-200,0);
+        isGuard = false;
+    }
+    public void GuardUp()
+    {
+        isGuard = true;
+        shield = GameObject.FindGameObjectWithTag("Shield");
+        RectTransform shieldTransform = shield.GetComponent<RectTransform>();
+        shieldTransform.anchoredPosition = new Vector2(60,0);
+    }
+    public void GuardDown()
+    {
+        isGuard = false;
+        shield = GameObject.FindGameObjectWithTag("Shield");
+        RectTransform shieldTransform = shield.GetComponent<RectTransform>();
+        shieldTransform.anchoredPosition = new Vector2(-200,0);
+    }
+    void Update()
+    {
     }
 
     public void GetDamage(int damage)   
@@ -29,7 +53,7 @@ public class Player : MonoBehaviour
         if (!isInvincible)
         {
             hp -= damage;
-            if (hp < 0)
+            if (hp <= 0)
             {
                 Destruction();
             }            
@@ -103,8 +127,4 @@ public class Player : MonoBehaviour
         Debug.Log("Skill3");
     }
 
-    void Update()
-    {
-        
-    }
 }
