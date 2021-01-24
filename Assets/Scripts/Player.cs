@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public static Player instance;
     public bool isGuard = false;
     PlayerShooting playerShooting;
+    public Text hpText;
     
     public GameObject shield;
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-200,0);
+        hpText = GameObject.FindGameObjectWithTag("Player").transform.Find("HP").GetComponent<Text>();
         isGuard = false;
     }
     public void GuardUp()
@@ -45,6 +47,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        hpText.text = hp.ToString();
     }
 
     public void GetDamage(int damage)   

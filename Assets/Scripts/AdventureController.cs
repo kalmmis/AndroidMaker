@@ -7,6 +7,7 @@ public class AdventureController : MonoBehaviour
     private GameObject combatUI;
     public Player player;
     public Enemy enemy;
+
     public float invincibleTime = 3f;
 
     public void StartPlayer()
@@ -48,7 +49,7 @@ public class AdventureController : MonoBehaviour
             combatScreen = GameObject.Find("CombatScreen");
             e.transform.parent = combatScreen.transform;
             RectTransform rectTransform = e.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(1050,-850);
+            rectTransform.anchoredPosition = new Vector2(1150,-850);
             //e.isInvincible = true;
             int lv = DataController.Instance.gameData.playerLv;
             DataController dc = GameObject.Find("DataController").GetComponent<DataController>();

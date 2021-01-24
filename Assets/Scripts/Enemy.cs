@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     public GameObject hitEffect;
     public Text hpText;
     EnemyShooting enemyShooting;
+    public bool enemyMoving;
+    
 
     //public List<Pattern> patternList = new List<Pattern>();
     //Pattern pattern;
@@ -24,9 +26,11 @@ public class Enemy : MonoBehaviour
     {
         //StartCoroutine(GetPattern());
         enemyShooting = GameObject.Find("Enemy(Clone)").GetComponent<EnemyShooting>();
-        StartCoroutine(ActivateShooting());
-        hpText = GameObject.FindGameObjectWithTag("Enemy").transform.Find("Text").GetComponent<Text>();
+        enemyMoving = true;
+        StartCoroutine(ActivateEnemy());
+        hpText = GameObject.FindGameObjectWithTag("Enemy").transform.Find("HP").GetComponent<Text>();
     }
+
     /*
     IEnumerator GetPattern()
     {
@@ -49,24 +53,24 @@ public class Enemy : MonoBehaviour
         hpText.text = hp.ToString();
     }
     //coroutine making a shot
-    IEnumerator ActivateShooting()
+    IEnumerator ActivateEnemy()
     {
-        while (true)
+        while (enemyMoving)
+        {
+            {
+                enemyShooting.EnemyMove();
+                yield return new WaitForSeconds(.1f);
+            }
+        }
+        while (!enemyMoving)
         {
             {
                 enemyShooting.MakeAShot();
                 yield return new WaitForSeconds(1);
             }
-            /*
-            else
-            {
-                pattern.Attack(gameObject);
-                yield return new WaitForSeconds(pattern.shotTime / 60);
-            }
-            */
-
-        }
+        }        
     }
+    
     public void Attack()
     {
         Debug.Log("Enemy Shooting");

@@ -16,6 +16,9 @@ public class EnemyShooting : MonoBehaviour {
     [Tooltip("shooting frequency. the higher the more frequent")]
     public float fireRate;
 
+    [Tooltip("moving frequency.")]
+    public float moveRate;
+
     [Tooltip("projectile prefab")]
     public GameObject projectileObject;
 
@@ -26,6 +29,11 @@ public class EnemyShooting : MonoBehaviour {
     public bool ShootingIsActive = true; 
     public static EnemyShooting instance;
     Enemy enemyScript;
+    float enemyPosition;
+    float attackPosition;
+
+
+
     private void Awake()
     {
         if (instance == null)
@@ -48,7 +56,7 @@ public class EnemyShooting : MonoBehaviour {
 
     void CreateShot(GameObject lazer, Vector3 pos, Vector3 rot) //translating 'pooled' lazer shot to the defined position in the defined rotation
     {
-        var newBullet = Instantiate(lazer, pos,Quaternion.Euler(rot));
+        var newBullet = Instantiate(lazer, pos, Quaternion.Euler(rot));
         GameObject combatScreen = GameObject.Find("CombatScreen");
         newBullet.transform.SetParent(combatScreen.transform);
         newBullet.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
@@ -56,10 +64,31 @@ public class EnemyShooting : MonoBehaviour {
             t.Translate(Vector3.left * fireRate * Time.deltaTime);
         };
     }
-/*
-        Instantiate(lazer, pos, Quaternion.Euler(rot)).GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+    public void EnemyMove()
+    {
+        enemyScript = gameObject.GetComponent<Enemy>();
+        
+        RectTransform rectTransform = enemyScript.GetComponent<RectTransform>();
+        enemyPosition = rectTransform.transform.localPosition.x;
+        Debug.Log("EnemyPosition is " + enemyPosition);
+        attackPosition = 450f; // 나중에 적 패턴 별로 뺄 거당
+
+        if(enemyPosition > attackPosition)
         {
-            t.Translate(Vector3.right * 5f * fireRate * Time.deltaTime);
-        };
-*/
+            enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+            {
+                t.Translate(Vector3.left * moveRate * Time.deltaTime);
+            };
+        }
+        else
+        {
+            enemyScript.enemyMoving = false;
+            
+            enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+            {
+                t.Translate(Vector3.zero * moveRate * Time.deltaTime);
+            };
+        }
+        
+    }
 }

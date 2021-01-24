@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4003766867071466728}
   - component: {fileID: 6429824219815677224}
   m_Layer: 0
-  m_Name: Text
+  m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 50
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 3395279205831124625}
   - component: {fileID: 4527821863374241432}
   - component: {fileID: 114643040860045274}
+  - component: {fileID: 4759125983898791102}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -174,6 +175,7 @@ MonoBehaviour:
   hitEffect: {fileID: 8932351636001682726, guid: 1072dda5789404b4e806dc5ce86be13f,
     type: 3}
   hpText: {fileID: 0}
+  enemyMoving: 0
   onDestroyExecutionList: []
 --- !u!61 &3395279205831124625
 BoxCollider2D:
@@ -235,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1000
+  moveRate: 100
   projectileObject: {fileID: 6850360111434512112, guid: d85d764dd9e2854499d4e9f2e03add11,
     type: 3}
   nextFire: 0
@@ -242,6 +245,19 @@ MonoBehaviour:
     enemyGun: {fileID: 8233750786201848045}
     enemyGunVFX: {fileID: 5207335436053640325}
   ShootingIsActive: 1
+--- !u!114 &4759125983898791102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476954983456419237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e1a0319d010644b51a90bb40f035f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &8233750786201848045
 GameObject:
   m_ObjectHideFlags: 0
