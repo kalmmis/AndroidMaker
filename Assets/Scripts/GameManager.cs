@@ -156,8 +156,6 @@ public class GameManager : MonoBehaviour
         laboScreen.SetActive(true);
         combatScreen.SetActive(false);
 
-        StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
-        sc.LoadingStatusUI();
         InventoryController ic = GameObject.Find("InventoryController").GetComponent<InventoryController>();
         ic.LoadingInventoryUI();
 
@@ -193,6 +191,8 @@ public class GameManager : MonoBehaviour
         laboScreen.SetActive(true);
         combatScreen.SetActive(false);
 
+        StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
+        sc.LoadingStatusUI();
         UpgradeController uc = GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
         uc.LoadingUpgradeUI();
     }
