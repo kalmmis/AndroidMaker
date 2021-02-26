@@ -27,7 +27,7 @@ public class AdventureController : MonoBehaviour
             combatScreen = GameObject.Find("CombatScreen");
             p.transform.parent = combatScreen.transform;
             RectTransform rectTransform = p.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(100,-850);
+            rectTransform.anchoredPosition = new Vector2(100,0);
             p.isInvincible = true;
             int lv = DataController.Instance.gameData.playerLv;
             DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
@@ -49,7 +49,7 @@ public class AdventureController : MonoBehaviour
             combatScreen = GameObject.Find("CombatScreen");
             e.transform.parent = combatScreen.transform;
             RectTransform rectTransform = e.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(1150,-850);
+            rectTransform.anchoredPosition = new Vector2(2600,0);
             //e.isInvincible = true;
             int lv = DataController.Instance.gameData.playerLv;
             DataController dc = GameObject.Find("DataController").GetComponent<DataController>();

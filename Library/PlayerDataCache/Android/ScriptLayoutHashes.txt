@@ -1,12 +1,12 @@
 Android
 PlayerPath?
-C:/GitHub/AndroidMaker/20210123test.apk
+C:/GitHub/AndroidMaker/20210222test.apk
 SceneListBegin?
 Assets/Scenes/MainScene.unity
 SceneListEnd?
-1bf9286d5646f5107aaf0fb88bf75a5d Assembly-CSharp.dll:.GameManager
+611a39660fede89bedd0158c6b66994c Assembly-CSharp.dll:.GameManager
 3c08375166df118bd1801438fc36b92f Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
-56a1c6527555f7a8149606b35463a9b1 Assembly-CSharp.dll:.Player
+4b084074d3e57ed6aabf7a4bac19fe06 Assembly-CSharp.dll:.Player
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.Effect
 77c21079ace8d76ce6e941d3dabbfe6e Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -55,7 +55,7 @@ aa165095bcf0f4d99594ea33df01c81b UnityEngine.UI.dll:UnityEngine.UI.Slider
 0fd6822f6177297bd0eb4d83cc7a9030 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-2bb7e97c370f1ecc642e57a1fd4dfcac Assembly-CSharp.dll:.Enemy
+a6a5f770829ac960e7de370f720ff86f Assembly-CSharp.dll:.Enemy
 d3c76b14a25eebd3a3323dd43297919c Unity.TextMeshPro.dll:TMPro.TMP_InputField
 b6940d6b54922af53f56cf835150f2f5 Assembly-CSharp.dll:.PlayerShooting
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -90,7 +90,7 @@ aa165095bcf0f4d99594ea33df01c81b UnityEngine.UI.dll:UnityEngine.UI.Slider
 0fd6822f6177297bd0eb4d83cc7a9030 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-14fdffa626c0e5e6ae42bb136050b88a Assembly-CSharp.dll:.EnemyShooting
+3b9001fac95d02efcfc1641d11fae7d0 Assembly-CSharp.dll:.EnemyShooting
 afc5b93a7b192de2dcb3832fe35a5c7e Assembly-CSharp.dll:.DirectMoving
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 06f0fef534ca4c1d6064fd77a26bf722 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack

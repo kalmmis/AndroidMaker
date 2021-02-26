@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     {
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
-        shieldTransform.anchoredPosition = new Vector2(-200,0);
+        shieldTransform.anchoredPosition = new Vector2(-500,0);
         hpText = GameObject.FindGameObjectWithTag("Player").transform.Find("HP").GetComponent<Text>();
         isGuard = false;
     }
@@ -36,14 +36,14 @@ public class Player : MonoBehaviour
         isGuard = true;
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
-        shieldTransform.anchoredPosition = new Vector2(60,0);
+        shieldTransform.anchoredPosition = new Vector2(65,0);
     }
     public void GuardDown()
     {
         isGuard = false;
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
-        shieldTransform.anchoredPosition = new Vector2(-200,0);
+        shieldTransform.anchoredPosition = new Vector2(-500,0);
     }
     void Update()
     {

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Text MoneyAmount;
-    public Text MoneyProductivity;
-    public Text CoreAmount;
-    public Text TurnCount;
-    public Text PowerAmount;
+    //20210222 가로 화면으로 바꾸면서 자원 텍스트 하나로 통일
+    public Text ResourceText;
+    public Text AndroidNameText;
+    public Text TurnCountText;
+
     private GameObject InfoCanvasUI;
 
     private GameObject ShelterUI;
@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour
         laboScreen = GameObject.FindGameObjectWithTag("LaboScreen");
         combatScreen = GameObject.FindGameObjectWithTag("CombatScreen");
 
-        ShelterUI.SetActive(true);
+        laboScreen.SetActive(true);
+        ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
         ResearchUI.SetActive(false);
         //ConfirmUI.SetActive(false);
@@ -56,45 +57,27 @@ public class GameManager : MonoBehaviour
         CombatUI.SetActive(false);
         InventoryUI.SetActive(false);
         UpgradeUI.SetActive(false);
-        laboScreen.SetActive(true);
         combatScreen.SetActive(false);
 
         InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
-        MoneyAmount = InfoCanvasUI.transform.Find("MoneyAmount").GetComponent<Text>();
-        MoneyProductivity = InfoCanvasUI.transform.Find("MoneyProductivity").GetComponent<Text>();
-        TurnCount = InfoCanvasUI.transform.Find("TurnCount").GetComponent<Text>();
-        CoreAmount = InfoCanvasUI.transform.Find("CoreAmount").GetComponent<Text>();
-        PowerAmount = InfoCanvasUI.transform.Find("PowerAmount").GetComponent<Text>();
+        
+        ResourceText = InfoCanvasUI.transform.Find("ResourceText").GetComponent<Text>();
+        AndroidNameText = InfoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
+        TurnCountText = InfoCanvasUI.transform.Find("TurnCountText").GetComponent<Text>();
 
+        AndroidNameText.text = "안드로씨아";
     }
     public void LoadResources()
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
+        long money = DataController.Instance.gameData.Money;
         // credit 관련 ui 갱신
         int mineLv = DataController.Instance.gameData.buildingLevel[1];
         int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
-        MoneyProductivity.text = "(+" + moneyProduce.ToString() + ")";
 
-        // POWER 관련 ui 갱신
-        int plantLv = DataController.Instance.gameData.buildingLevel[2];
-        int producePower = dc.clientData.BuildingProduce[2,plantLv];
-
-        int usingPower = 0;
-        int[] tempArray = DataController.Instance.gameData.buildingLevel;
-        for (int i = 0; i < tempArray.Length; i++)
-        {
-            int buildLv = DataController.Instance.gameData.buildingLevel[i];
-            int buildUpgradeTurn = DataController.Instance.gameData.buildingUpgradeTurn[i];
-            if (buildUpgradeTurn > 0)
-            {
-                buildLv += 1;
-            }
-            usingPower += dc.clientData.BuildingRequiredPower[i,buildLv];
-            Debug.Log("usingPower is " + usingPower);
-        }
-        DataController.Instance.gameData.remainPower = producePower - usingPower;
-        PowerAmount.text = DataController.Instance.gameData.remainPower.ToString();
+        
+        ResourceText.text = "크레딧 " + money.ToString() + " (+" + moneyProduce.ToString() + ")";
     }
     public void ActiveMissionTab()
     {
@@ -200,10 +183,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
-        CoreAmount.text = DataController.Instance.gameData.Core.ToString(); 
-        TurnCount.text = "Turn " + DataController.Instance.gameData.Turn.ToString();
-        PowerAmount.text = DataController.Instance.gameData.remainPower.ToString();
+        //MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
+        //CoreAmount.text = DataController.Instance.gameData.Core.ToString(); 
+        //TurnCount.text = "Turn " + DataController.Instance.gameData.Turn.ToString();
+        //PowerAmount.text = DataController.Instance.gameData.remainPower.ToString();
     }
     
     private void OnApplicationQuit()
@@ -243,7 +226,7 @@ public class GameManager : MonoBehaviour
         int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
         
         DataController.Instance.gameData.Money += moneyProduce;
-        MoneyAmount.text = DataController.Instance.gameData.Money.ToString();
+        //MoneyAmount.text = DataController.Instance.gameData.Money.ToString(); 수정필요!
     }
 
     // 테스트용 메서드
