@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
 
         
-        ResourceText.text = "크레딧 " + money.ToString() + " (+" + moneyProduce.ToString() + ")";
+        ResourceText.text = "크레딧 " + money.ToString() + " (+" + moneyProduce.ToString() + ")    코어 999999     번영도 999999     명성 999999";
     }
     public void ActiveMissionTab()
     {
