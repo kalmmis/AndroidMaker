@@ -9,6 +9,7 @@ using UnityEngine;
 // 나중에 서버에 저장할 데이터이다. 가능한 미니멈하게 만들어야 할 듯...
 public class GameData
 {
+    public string characterName = "안드로씨아";
     public long Money;
     public int Core;
 
@@ -44,7 +45,7 @@ public class GameData
     public int Humanity = 10; // 인간성
 
     public int Battery; // 배터리 한 주기의 최대치를 나타냄. 
-    public int Turn;
+    public int turn;
     public int OverallTurnCheck;
 
     public int playerLv;

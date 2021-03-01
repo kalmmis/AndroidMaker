@@ -27,7 +27,7 @@ public class LearnController : MonoBehaviour
 
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,-460);
+        rectTransform.anchoredPosition = new Vector2(0,0);
 
         Vector3 tempschedulePosition = scheduleUI.transform.localPosition;
         tempschedulePosition.x = 270;
@@ -73,7 +73,7 @@ public class LearnController : MonoBehaviour
             dc.clientData.scheduleIDs[3] = id;
             scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
             RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(-550,-870);
+            rectTransform.anchoredPosition = new Vector2(0,0);
         }
         LoadingScheduleUI();
         Debug.Log("schedule array is " + dc.clientData.scheduleIDs[0] + dc.clientData.scheduleIDs[1] + dc.clientData.scheduleIDs[2] + dc.clientData.scheduleIDs[3]);
@@ -87,7 +87,7 @@ public class LearnController : MonoBehaviour
 
         scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
         RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(730,-870);
+        rectTransform.anchoredPosition = new Vector2(-3000,0);
     }
 
     public void ListConfirm()
@@ -95,7 +95,7 @@ public class LearnController : MonoBehaviour
         EventUI = GameObject.FindGameObjectWithTag("EventUI");
         EventUI.SetActive(true);
         RectTransform EventUIrectTransform = EventUI.GetComponent<RectTransform>();
-        EventUIrectTransform.anchoredPosition = new Vector2(0,300);
+        EventUIrectTransform.anchoredPosition = new Vector2(0,0);
 
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         int[] scd = dc.clientData.scheduleIDs;
@@ -103,7 +103,7 @@ public class LearnController : MonoBehaviour
         //Debug.Log("confirm이 눌렸다");
         scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
         RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(730,-870);
+        rectTransform.anchoredPosition = new Vector2(-3000,0);
     }
     
     public Text EventText;
@@ -112,6 +112,13 @@ public class LearnController : MonoBehaviour
     {
         scheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
         scheduleUI.SetActive(false);
+
+        learnUI = GameObject.FindGameObjectWithTag("LearnUI");
+        learnUI.SetActive(false);
+        
+        //RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
+        //rectTransform.anchoredPosition = new Vector2(0,0);
+
 
         EventUI = GameObject.FindGameObjectWithTag("EventUI");
         EventText = EventUI.transform.Find("Text").GetComponent<Text>();
@@ -139,7 +146,7 @@ public class LearnController : MonoBehaviour
 
 
         RectTransform EventUIrectTransform = EventUI.GetComponent<RectTransform>();
-        EventUIrectTransform.anchoredPosition = new Vector2(-1080,300);
+        EventUIrectTransform.anchoredPosition = new Vector2(-3000,0);
         
         dc.clientData.scheduleIDs[0] = 0;
         dc.clientData.scheduleIDs[1] = 0;

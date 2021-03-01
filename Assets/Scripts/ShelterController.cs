@@ -36,14 +36,19 @@ public class ShelterController : MonoBehaviour
     public Text requirementText2;
     public Text requirementText3;
 
+    private GameObject shelterUI;
+
     // Start is called before the first frame update
     public void Start()
     {
-        LoadShelterUI();
     }
 
     public void LoadShelterUI()
     {
+        shelterUI = GameObject.FindGameObjectWithTag("ShelterUI");
+        RectTransform rectTransform = shelterUI.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(0,0);
+
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
         int Building1LV = DataController.Instance.gameData.buildingLevel[0];
@@ -190,7 +195,7 @@ public class ShelterController : MonoBehaviour
     {
         BuildingConfirmUI = GameObject.FindGameObjectWithTag("BuildingConfirmUI");
         RectTransform rectTransform = BuildingConfirmUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(-550,-870);
+        rectTransform.anchoredPosition = new Vector2(0,0);
 
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         dc.clientData.buildingUpgradeID = id;
@@ -357,7 +362,7 @@ public class ShelterController : MonoBehaviour
 
         BuildingConfirmUI = GameObject.FindGameObjectWithTag("BuildingConfirmUI");
         RectTransform rectTransform = BuildingConfirmUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(-3035,-800);
+        rectTransform.anchoredPosition = new Vector2(-3000,0);
 
     }
 

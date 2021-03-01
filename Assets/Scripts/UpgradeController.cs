@@ -11,7 +11,7 @@ public class UpgradeController : MonoBehaviour
     {
         upgradeUI = GameObject.FindGameObjectWithTag("UpgradeUI");
         RectTransform rectTransform = upgradeUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,-460);
+        rectTransform.anchoredPosition = new Vector2(0,0);
     }
 
     // Update is called once per frame

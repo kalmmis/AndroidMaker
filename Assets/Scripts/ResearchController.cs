@@ -11,7 +11,7 @@ public class ResearchController : MonoBehaviour
     {
         researchUI = GameObject.FindGameObjectWithTag("ResearchUI");
         RectTransform rectTransform = researchUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,-460);
+        rectTransform.anchoredPosition = new Vector2(0,0);
     }
 
     // Update is called once per frame

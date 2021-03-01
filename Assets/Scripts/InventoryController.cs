@@ -10,7 +10,7 @@ public class InventoryController : MonoBehaviour
     {
         inventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
         RectTransform rectTransform = inventoryUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,-460);
+        rectTransform.anchoredPosition = new Vector2(0,0);
     }
 
     // Update is called once per frame

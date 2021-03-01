@@ -22,9 +22,10 @@ public class GameManager : MonoBehaviour
     private GameObject InventoryUI;
     private GameObject UpgradeUI;
 
+    private GameObject nameInputUI;
+
     private GameObject laboScreen;
     private GameObject combatScreen;
-
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +66,8 @@ public class GameManager : MonoBehaviour
         AndroidNameText = InfoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
         TurnCountText = InfoCanvasUI.transform.Find("TurnCountText").GetComponent<Text>();
 
-        AndroidNameText.text = "안드로씨아";
+        AndroidNameText.text = DataController.Instance.gameData.characterName;
+        TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
     }
     public void LoadResources()
     {
@@ -79,9 +81,9 @@ public class GameManager : MonoBehaviour
         
         ResourceText.text = "크레딧 " + money.ToString() + " (+" + moneyProduce.ToString() + ")    코어 999999     번영도 999999     명성 999999";
     }
-    public void ActiveMissionTab()
+    public void ActiveHome()
     {
-        ShelterUI.SetActive(true);
+        ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
         ResearchUI.SetActive(false);
         CombatUI.SetActive(false);
@@ -90,12 +92,49 @@ public class GameManager : MonoBehaviour
 
         laboScreen.SetActive(true);
         combatScreen.SetActive(false);
+    }
+    
+    public void ActiveSetNameUI()
+    {
+        nameInputUI = GameObject.FindGameObjectWithTag("NameInputUI");
+        RectTransform rectTransform = nameInputUI.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(0,300);
+    }
+    public void CloseSetNameUI()
+    {
+        nameInputUI = GameObject.FindGameObjectWithTag("NameInputUI");
+        RectTransform rectTransform = nameInputUI.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(-3000,0);
+    }
+    public void SetName()
+    {
+        Text name;
+        nameInputUI = GameObject.FindGameObjectWithTag("NameInputUI");
+        name = nameInputUI.transform.Find("Panel").Find("InputField").Find("NameInputText").GetComponent<Text>();
+        DataController.Instance.gameData.characterName = name.text.ToString();
+        
+        AndroidNameText = InfoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
+        AndroidNameText.text = DataController.Instance.gameData.characterName;
+        CloseSetNameUI();
+
+    }
+    public void ActiveShelterTab()
+    {
+        ShelterUI.SetActive(true);
+        LearnUI.SetActive(false);
+        ResearchUI.SetActive(false);
+        CombatUI.SetActive(false);
+        InventoryUI.SetActive(false);
+        UpgradeUI.SetActive(false);
+
+        laboScreen.SetActive(false);
+        combatScreen.SetActive(false);
 
         ShelterController sc = GameObject.Find("ShelterController").GetComponent<ShelterController>();
         sc.LoadShelterUI();
     }
 
-    public void ActiveLearnTab()
+    public void ActiveScheduleTab()
     {
         ShelterUI.SetActive(false);
         LearnUI.SetActive(true);
@@ -198,7 +237,7 @@ public class GameManager : MonoBehaviour
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
-        DataController.Instance.gameData.Turn += 1;
+        DataController.Instance.gameData.turn += 1;
         int[] tempArray = DataController.Instance.gameData.buildingUpgradeTurn;
 
         for (int i = 0; i < tempArray.Length; i++)
@@ -215,7 +254,6 @@ public class GameManager : MonoBehaviour
         
         LoadResources();
         ProduceTurnMoney();
-        ActiveMissionTab();
     }
     
     public void ProduceTurnMoney()
@@ -232,12 +270,7 @@ public class GameManager : MonoBehaviour
     // 테스트용 메서드
     public void ResetGameData()
     {
-        ShelterUI.SetActive(true);
-        LearnUI.SetActive(false);
-
         ResetStart();
-        ShelterController sc = GameObject.Find("ShelterController").GetComponent<ShelterController>();
-        sc.LoadShelterUI();
     }
 
     
@@ -251,7 +284,7 @@ public class GameManager : MonoBehaviour
         DataController.Instance.gameData.buildingLevel[4] = 0;
         DataController.Instance.gameData.buildingLevel[5] = 0;
         DataController.Instance.gameData.Money = 1000;
-        DataController.Instance.gameData.Turn = 1;
+        DataController.Instance.gameData.turn = 1;
         
         DataController.Instance.gameData.buildingUpgradeTurn[0] = 0;
         DataController.Instance.gameData.buildingUpgradeTurn[1] = 0;

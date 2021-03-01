@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     public void GuardUp()
     {
         isGuard = true;
+        isInvincible = true;
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(65,0);
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
     public void GuardDown()
     {
         isGuard = false;
+        isInvincible = false;
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);

@@ -28,6 +28,7 @@ TagManager:
   - Boundary
   - Enemy
   - Shield
+  - NameInputUI
   layers:
   - Default
   - TransparentFX
