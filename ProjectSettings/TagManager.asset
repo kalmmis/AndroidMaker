@@ -22,13 +22,15 @@ TagManager:
   - AdventureUI
   - InventoryUI
   - UpgradeUI
-  - ResearchUI
+  - EquipmentUI
   - CombatScreen
   - LaboScreen
   - Boundary
   - Enemy
   - Shield
   - NameInputUI
+  - AndroidUI
+  - StatusDetail
   layers:
   - Default
   - TransparentFX

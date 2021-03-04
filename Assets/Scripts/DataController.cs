@@ -72,6 +72,7 @@ public class DataController : MonoBehaviour
     {
         get
         {
+            // 클라 데이터 한번씩 날릴 때 사용하는 주석...
             //_clientData = new ClientData();
             return _clientData;
         }
@@ -80,8 +81,8 @@ public class DataController : MonoBehaviour
 
     public void LoadGameData()
     {
-        string filePath = Application.dataPath + GameDataFileName;
-        //string filePath = Application.persistentDataPath + GameDataFileName;
+        //string filePath = Application.dataPath + GameDataFileName;
+        string filePath = Application.persistentDataPath + GameDataFileName; // 안드로이드
 
         if (File.Exists(filePath))
         {
@@ -100,8 +101,8 @@ public class DataController : MonoBehaviour
     public void SaveGameData()
     {
         string ToJsonData = JsonUtility.ToJson(gameData);
-        string filePath = Application.dataPath + GameDataFileName;
-        //string filePath = Application.persistentDataPath + GameDataFileName;
+        //string filePath = Application.dataPath + GameDataFileName;
+        string filePath = Application.persistentDataPath + GameDataFileName; // 안드로이드
         File.WriteAllText(filePath, ToJsonData);
         Debug.Log("저장 완료");
     }

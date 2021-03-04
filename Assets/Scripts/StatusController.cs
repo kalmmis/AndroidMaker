@@ -46,31 +46,36 @@ public class StatusController : MonoBehaviour
     public float Status9Gauge;
 
     private GameObject StatusUI;
+    private GameObject StatusDetailUI;
 
     public void LoadingStatusUI()
     {
         
         StatusUI = GameObject.FindGameObjectWithTag("StatusUI");
+        RectTransform rectTransform = StatusUI.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(0,0);
 
-        Status1 = StatusUI.transform.Find("Status1Panel").transform.Find("Text").GetComponent<Text>();
-        Status2 = StatusUI.transform.Find("Status2Panel").transform.Find("Text").GetComponent<Text>();
-        Status3 = StatusUI.transform.Find("Status3Panel").transform.Find("Text").GetComponent<Text>();
-        Status4 = StatusUI.transform.Find("Status4Panel").transform.Find("Text").GetComponent<Text>();
-        Status5 = StatusUI.transform.Find("Status5Panel").transform.Find("Text").GetComponent<Text>();
-        Status6 = StatusUI.transform.Find("Status6Panel").transform.Find("Text").GetComponent<Text>();
-        Status7 = StatusUI.transform.Find("Status7Panel").transform.Find("Text").GetComponent<Text>();
-        Status8 = StatusUI.transform.Find("Status8Panel").transform.Find("Text").GetComponent<Text>();
-        Status9 = StatusUI.transform.Find("Status9Panel").transform.Find("Text").GetComponent<Text>();
+        StatusDetailUI = GameObject.FindGameObjectWithTag("StatusDetail");
 
-        Status1Amount = StatusUI.transform.Find("Status1Panel").transform.Find("Status1Bar").transform.Find("Status1AmountText").GetComponent<Text>();
-        Status2Amount = StatusUI.transform.Find("Status2Panel").transform.Find("Status2Bar").transform.Find("Status2AmountText").GetComponent<Text>();
-        Status3Amount = StatusUI.transform.Find("Status3Panel").transform.Find("Status3Bar").transform.Find("Status3AmountText").GetComponent<Text>();
-        Status4Amount = StatusUI.transform.Find("Status4Panel").transform.Find("Status4Bar").transform.Find("Status4AmountText").GetComponent<Text>();
-        Status5Amount = StatusUI.transform.Find("Status5Panel").transform.Find("Status5Bar").transform.Find("Status5AmountText").GetComponent<Text>();
-        Status6Amount = StatusUI.transform.Find("Status6Panel").transform.Find("Status6Bar").transform.Find("Status6AmountText").GetComponent<Text>();
-        Status7Amount = StatusUI.transform.Find("Status7Panel").transform.Find("Status7Bar").transform.Find("Status7AmountText").GetComponent<Text>();
-        Status8Amount = StatusUI.transform.Find("Status8Panel").transform.Find("Status8Bar").transform.Find("Status8AmountText").GetComponent<Text>();
-        Status9Amount = StatusUI.transform.Find("Status9Panel").transform.Find("Status9Bar").transform.Find("Status9AmountText").GetComponent<Text>();
+        Status1 = StatusDetailUI.transform.Find("Status1Panel").transform.Find("Text").GetComponent<Text>();
+        Status2 = StatusDetailUI.transform.Find("Status2Panel").transform.Find("Text").GetComponent<Text>();
+        Status3 = StatusDetailUI.transform.Find("Status3Panel").transform.Find("Text").GetComponent<Text>();
+        Status4 = StatusDetailUI.transform.Find("Status4Panel").transform.Find("Text").GetComponent<Text>();
+        Status5 = StatusDetailUI.transform.Find("Status5Panel").transform.Find("Text").GetComponent<Text>();
+        Status6 = StatusDetailUI.transform.Find("Status6Panel").transform.Find("Text").GetComponent<Text>();
+        Status7 = StatusDetailUI.transform.Find("Status7Panel").transform.Find("Text").GetComponent<Text>();
+        Status8 = StatusDetailUI.transform.Find("Status8Panel").transform.Find("Text").GetComponent<Text>();
+        Status9 = StatusDetailUI.transform.Find("Status9Panel").transform.Find("Text").GetComponent<Text>();
+
+        Status1Amount = StatusDetailUI.transform.Find("Status1Panel").transform.Find("Status1Bar").transform.Find("Status1AmountText").GetComponent<Text>();
+        Status2Amount = StatusDetailUI.transform.Find("Status2Panel").transform.Find("Status2Bar").transform.Find("Status2AmountText").GetComponent<Text>();
+        Status3Amount = StatusDetailUI.transform.Find("Status3Panel").transform.Find("Status3Bar").transform.Find("Status3AmountText").GetComponent<Text>();
+        Status4Amount = StatusDetailUI.transform.Find("Status4Panel").transform.Find("Status4Bar").transform.Find("Status4AmountText").GetComponent<Text>();
+        Status5Amount = StatusDetailUI.transform.Find("Status5Panel").transform.Find("Status5Bar").transform.Find("Status5AmountText").GetComponent<Text>();
+        Status6Amount = StatusDetailUI.transform.Find("Status6Panel").transform.Find("Status6Bar").transform.Find("Status6AmountText").GetComponent<Text>();
+        Status7Amount = StatusDetailUI.transform.Find("Status7Panel").transform.Find("Status7Bar").transform.Find("Status7AmountText").GetComponent<Text>();
+        Status8Amount = StatusDetailUI.transform.Find("Status8Panel").transform.Find("Status8Bar").transform.Find("Status8AmountText").GetComponent<Text>();
+        Status9Amount = StatusDetailUI.transform.Find("Status9Panel").transform.Find("Status9Bar").transform.Find("Status9AmountText").GetComponent<Text>();
 
         Status1.text = "Strength";
         Status2.text = "Mobility";
@@ -92,15 +97,15 @@ public class StatusController : MonoBehaviour
         Status8Amount.text = DataController.Instance.gameData.Morality.ToString();
         Status9Amount.text = DataController.Instance.gameData.Humanity.ToString();
 
-        Status1Bar = StatusUI.transform.Find("Status1Panel").transform.Find("Status1Bar").GetComponent<Slider>();
-        Status2Bar = StatusUI.transform.Find("Status2Panel").transform.Find("Status2Bar").GetComponent<Slider>();
-        Status3Bar = StatusUI.transform.Find("Status3Panel").transform.Find("Status3Bar").GetComponent<Slider>();
-        Status4Bar = StatusUI.transform.Find("Status4Panel").transform.Find("Status4Bar").GetComponent<Slider>();
-        Status5Bar = StatusUI.transform.Find("Status5Panel").transform.Find("Status5Bar").GetComponent<Slider>();
-        Status6Bar = StatusUI.transform.Find("Status6Panel").transform.Find("Status6Bar").GetComponent<Slider>();
-        Status7Bar = StatusUI.transform.Find("Status7Panel").transform.Find("Status7Bar").GetComponent<Slider>();
-        Status8Bar = StatusUI.transform.Find("Status8Panel").transform.Find("Status8Bar").GetComponent<Slider>();
-        Status9Bar = StatusUI.transform.Find("Status9Panel").transform.Find("Status9Bar").GetComponent<Slider>();
+        Status1Bar = StatusDetailUI.transform.Find("Status1Panel").transform.Find("Status1Bar").GetComponent<Slider>();
+        Status2Bar = StatusDetailUI.transform.Find("Status2Panel").transform.Find("Status2Bar").GetComponent<Slider>();
+        Status3Bar = StatusDetailUI.transform.Find("Status3Panel").transform.Find("Status3Bar").GetComponent<Slider>();
+        Status4Bar = StatusDetailUI.transform.Find("Status4Panel").transform.Find("Status4Bar").GetComponent<Slider>();
+        Status5Bar = StatusDetailUI.transform.Find("Status5Panel").transform.Find("Status5Bar").GetComponent<Slider>();
+        Status6Bar = StatusDetailUI.transform.Find("Status6Panel").transform.Find("Status6Bar").GetComponent<Slider>();
+        Status7Bar = StatusDetailUI.transform.Find("Status7Panel").transform.Find("Status7Bar").GetComponent<Slider>();
+        Status8Bar = StatusDetailUI.transform.Find("Status8Panel").transform.Find("Status8Bar").GetComponent<Slider>();
+        Status9Bar = StatusDetailUI.transform.Find("Status9Panel").transform.Find("Status9Bar").GetComponent<Slider>();
 
         Status1Gauge = DataController.Instance.gameData.Strength / 999.0f;
         Status2Gauge = DataController.Instance.gameData.Mobility / 999.0f;

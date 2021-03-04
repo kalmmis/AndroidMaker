@@ -14,18 +14,19 @@ public class GameManager : MonoBehaviour
 
     private GameObject ShelterUI;
     private GameObject LearnUI;
-    private GameObject ResearchUI;
+    private GameObject equipmentUI;
     //private GameObject ConfirmUI;
     //private GameObject EventUI;
     // Confirm 과 Event 는 false 세팅 해두면 버그 나서 일단 위치 값으로 조정 중.
     private GameObject CombatUI;
     private GameObject InventoryUI;
-    private GameObject UpgradeUI;
+    private GameObject androidUI;
 
     private GameObject nameInputUI;
 
     private GameObject laboScreen;
     private GameObject combatScreen;
+    private GameObject statusUI;
 
     // Start is called before the first frame update
     void Start()
@@ -40,25 +41,27 @@ public class GameManager : MonoBehaviour
     {
         ShelterUI = GameObject.FindGameObjectWithTag("ShelterUI");
         LearnUI = GameObject.FindGameObjectWithTag("LearnUI");
-        ResearchUI = GameObject.FindGameObjectWithTag("ResearchUI");
+        equipmentUI = GameObject.FindGameObjectWithTag("EquipmentUI");
         //ConfirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
         //EventUI = GameObject.FindGameObjectWithTag("EventUI");
         CombatUI = GameObject.FindGameObjectWithTag("CombatUI");
         InventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
-        UpgradeUI = GameObject.FindGameObjectWithTag("UpgradeUI");
+        androidUI = GameObject.FindGameObjectWithTag("AndroidUI");
         laboScreen = GameObject.FindGameObjectWithTag("LaboScreen");
         combatScreen = GameObject.FindGameObjectWithTag("CombatScreen");
+        statusUI = GameObject.FindGameObjectWithTag("StatusUI");
 
         laboScreen.SetActive(true);
         ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
-        ResearchUI.SetActive(false);
+        equipmentUI.SetActive(false);
         //ConfirmUI.SetActive(false);
         //EventUI.SetActive(false);
         CombatUI.SetActive(false);
         InventoryUI.SetActive(false);
-        UpgradeUI.SetActive(false);
+        androidUI.SetActive(false);
         combatScreen.SetActive(false);
+        statusUI.SetActive(false);
 
         InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
         
@@ -85,13 +88,14 @@ public class GameManager : MonoBehaviour
     {
         ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
-        ResearchUI.SetActive(false);
+        equipmentUI.SetActive(false);
         CombatUI.SetActive(false);
         InventoryUI.SetActive(false);
-        UpgradeUI.SetActive(false);
+        androidUI.SetActive(false);
 
         laboScreen.SetActive(true);
         combatScreen.SetActive(false);
+        statusUI.SetActive(false);
     }
     
     public void ActiveSetNameUI()
@@ -122,13 +126,14 @@ public class GameManager : MonoBehaviour
     {
         ShelterUI.SetActive(true);
         LearnUI.SetActive(false);
-        ResearchUI.SetActive(false);
+        equipmentUI.SetActive(false);
         CombatUI.SetActive(false);
         InventoryUI.SetActive(false);
-        UpgradeUI.SetActive(false);
+        androidUI.SetActive(false);
 
         laboScreen.SetActive(false);
         combatScreen.SetActive(false);
+        statusUI.SetActive(false);
 
         ShelterController sc = GameObject.Find("ShelterController").GetComponent<ShelterController>();
         sc.LoadShelterUI();
@@ -138,45 +143,50 @@ public class GameManager : MonoBehaviour
     {
         ShelterUI.SetActive(false);
         LearnUI.SetActive(true);
-        ResearchUI.SetActive(false);
+        equipmentUI.SetActive(false);
         CombatUI.SetActive(false);
         InventoryUI.SetActive(false);
-        UpgradeUI.SetActive(false);
+        androidUI.SetActive(false);
 
         laboScreen.SetActive(true);
         combatScreen.SetActive(false);
+        statusUI.SetActive(true);
 
+        StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
+        sc.LoadingStatusUI();
         LearnController lc = GameObject.Find("LearnController").GetComponent<LearnController>();
         lc.LoadingScheduleUI();
     }
 
-    public void ActiveResearchTab()
+    public void ActiveEquipmentTab()
     {
         ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
-        ResearchUI.SetActive(true);
+        equipmentUI.SetActive(true);
         CombatUI.SetActive(false);
         InventoryUI.SetActive(false);
-        UpgradeUI.SetActive(false);
+        androidUI.SetActive(false);
 
         laboScreen.SetActive(true);
         combatScreen.SetActive(false);
+        statusUI.SetActive(false);
 
-        ResearchController rc = GameObject.Find("ResearchController").GetComponent<ResearchController>();
-        rc.LoadingResearchUI();
+        EquipmentController ec = GameObject.Find("EquipmentController").GetComponent<EquipmentController>();
+        ec.LoadingEquipmentUI();
     }
 
     public void ActiveInventoryTab()
     {
         ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
-        ResearchUI.SetActive(false);
+        equipmentUI.SetActive(false);
         CombatUI.SetActive(false);
         InventoryUI.SetActive(true);
-        UpgradeUI.SetActive(false);
+        androidUI.SetActive(false);
 
         laboScreen.SetActive(true);
         combatScreen.SetActive(false);
+        statusUI.SetActive(false);
 
         InventoryController ic = GameObject.Find("InventoryController").GetComponent<InventoryController>();
         ic.LoadingInventoryUI();
@@ -187,13 +197,14 @@ public class GameManager : MonoBehaviour
     {
         ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
-        ResearchUI.SetActive(false);
+        equipmentUI.SetActive(false);
         CombatUI.SetActive(true);
         InventoryUI.SetActive(false);
-        UpgradeUI.SetActive(false);
+        androidUI.SetActive(false);
         
         laboScreen.SetActive(false);
         combatScreen.SetActive(true);
+        statusUI.SetActive(false);
 
         AdventureController ac = GameObject.Find("AdventureController").GetComponent<AdventureController>();
         ac.LoadingAdventureUI();
@@ -201,22 +212,24 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void ActiveUpgradeTab()
+    public void ActiveAndroidTab()
     {
         ShelterUI.SetActive(false);
         LearnUI.SetActive(false);
-        ResearchUI.SetActive(false);
+        equipmentUI.SetActive(false);
         CombatUI.SetActive(false);
         InventoryUI.SetActive(false);
-        UpgradeUI.SetActive(true);
+        androidUI.SetActive(true);
 
         laboScreen.SetActive(true);
         combatScreen.SetActive(false);
+        statusUI.SetActive(true);
 
         StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
         sc.LoadingStatusUI();
+
         UpgradeController uc = GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
-        uc.LoadingUpgradeUI();
+        uc.LoadingAndroidUI();
     }
 
     // Update is called once per frame
