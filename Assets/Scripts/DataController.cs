@@ -81,30 +81,69 @@ public class DataController : MonoBehaviour
 
     public void LoadGameData()
     {
-        //string filePath = Application.dataPath + GameDataFileName;
-        string filePath = Application.persistentDataPath + GameDataFileName; // 안드로이드
-
-        if (File.Exists(filePath))
+        if (Application.platform == RuntimePlatform.Android)
         {
-            string FromJsonData = File.ReadAllText(filePath);
-            _gameData = JsonUtility.FromJson<GameData>(FromJsonData);
-            Debug.Log("불러오기 성공");
+            string filePath = Application.dataPath + GameDataFileName;
+            string path = Application.persistentDataPath;
+            path = path.Substring(0, path.LastIndexOf('/'));
+
+            filePath = Path.Combine(path,GameDataFileName);
+            path = path + GameDataFileName;
+
+
+            if (File.Exists(path))
+            {
+                string FromJsonData = File.ReadAllText(path);
+                _gameData = JsonUtility.FromJson<GameData>(FromJsonData);
+                Debug.Log("불러오기 성공");
+            }
+            else
+            {
+                _gameData = new GameData();
+                Debug.Log("새로운 파일 생성");
+            }
         }
         else
         {
-            _gameData = new GameData();
-            Debug.Log("새로운 파일 생성");
+            string filePath = Application.dataPath + GameDataFileName;
+
+            if (File.Exists(filePath))
+            {
+                string FromJsonData = File.ReadAllText(filePath);
+                _gameData = JsonUtility.FromJson<GameData>(FromJsonData);
+                Debug.Log("불러오기 성공");
+            }
+            else
+            {
+                _gameData = new GameData();
+                Debug.Log("새로운 파일 생성");
+            }
+
         }
     }
 
 
     public void SaveGameData()
     {
-        string ToJsonData = JsonUtility.ToJson(gameData);
-        //string filePath = Application.dataPath + GameDataFileName;
-        string filePath = Application.persistentDataPath + GameDataFileName; // 안드로이드
-        File.WriteAllText(filePath, ToJsonData);
-        Debug.Log("저장 완료");
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            string ToJsonData = JsonUtility.ToJson(gameData);
+
+            string path = Application.persistentDataPath;
+            path = path.Substring(0, path.LastIndexOf('/'));
+
+            string filePath = Path.Combine(path,GameDataFileName);
+            path = path + GameDataFileName;
+            File.WriteAllText(path, ToJsonData);
+        }
+        else
+        {
+            string ToJsonData = JsonUtility.ToJson(gameData);
+            string filePath = Application.dataPath + GameDataFileName;
+            //string filePath = Application.persistentDataPath + GameDataFileName;
+            File.WriteAllText(filePath, ToJsonData);
+            Debug.Log("저장 완료");
+        }
     }
 
 }

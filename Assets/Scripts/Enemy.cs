@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         {
             {
                 enemyShooting.MakeAShot();
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2);
             }
         }        
     }

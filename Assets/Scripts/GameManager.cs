@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private GameObject combatScreen;
     private GameObject statusUI;
 
+    bool bPaused = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -244,6 +246,23 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         DataController.Instance.SaveGameData();
+    }
+    private void OnApplicationPause(bool pause)
+    {  
+        if (pause)
+        {
+            // todo : 어플리케이션을 내리는 순간에 처리할 행동들 /
+            bPaused = true;
+            DataController.Instance.SaveGameData();
+        }
+        else
+        {
+            if (bPaused)
+            {
+                bPaused = false;
+            //todo : 내려놓은 어플리케이션을 다시 올리는 순간에 처리할 행동들 
+            }
+        }
     }
 
     public void DoNextTurn()

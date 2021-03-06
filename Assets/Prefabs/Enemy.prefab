@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2510b283ce95d4491bada8d0bfec81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1000
+  fireRate: 3000
   moveRate: 100
   projectileObject: {fileID: 6850360111434512112, guid: d85d764dd9e2854499d4e9f2e03add11,
     type: 3}
