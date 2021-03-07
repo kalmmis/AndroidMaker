@@ -29,7 +29,7 @@ public class AdventureController : MonoBehaviour
             RectTransform rectTransform = p.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(100,0);
             p.isInvincible = true;
-            int lv = DataController.Instance.gameData.playerLv;
+            int lv = DataController.Instance.gameData.androidLv;
             DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
             int tHp = dc.clientData.playerHP[lv];
             p.hp = tHp;
@@ -51,7 +51,7 @@ public class AdventureController : MonoBehaviour
             RectTransform rectTransform = e.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(2600,0);
             //e.isInvincible = true;
-            int lv = DataController.Instance.gameData.playerLv;
+            int lv = DataController.Instance.gameData.androidLv;
             DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
             int tHp = dc.clientData.playerHP[lv]; // 수정 필요
             e.hp = tHp;

@@ -113,7 +113,7 @@ return null;
             //path = path.Substring(0, path.LastIndexOf('/'));
 
             var list = new List<Dictionary<string, object>>();
-            TextAsset data = Resources.Load("data/" + type + i) as TextAsset;
+            TextAsset data = Resources.Load("StoryData/" + type + i) as TextAsset;
 
             string str = data.text;
             return str;
@@ -127,7 +127,7 @@ return null;
         else
         {
             string additionalPath = "level".Equals(type) ? "/level" : "/dialog";
-            string windowsPath = "/Assets/Resources/Data";
+            string windowsPath = "/Assets/Resources/StoryData";
 
             string path = Application.dataPath;
             path = path.Substring(0, path.LastIndexOf('/'));

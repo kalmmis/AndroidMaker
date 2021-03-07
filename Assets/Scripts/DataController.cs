@@ -8,26 +8,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class DataController : MonoBehaviour
 {
-    // 바이너리로 저장하는 법 구현 따라하다가 관둠...
-    /*
-    public static void BinarySerialize<T>(T t, string filepath)
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(Define.DataFilePath + filepath, FileMode.Create);
-        formatter.Serialize(stream, t);
-        stram.Close();
-    }
-
-    public static T BinaryDeserialize<T>(string filePath)
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(Define.DataFilePath + filePath, FileMode.Open);
-        T t = (T)formatter.Deserialize(stream);
-
-        return t;
-    }
-    */
-
     static DataController _instance;
     public static DataController Instance {
         get {
@@ -66,18 +46,6 @@ public class DataController : MonoBehaviour
             return _gameData;
         }
     }
-
-    public ClientData _clientData;
-    public ClientData clientData
-    {
-        get
-        {
-            // 클라 데이터 한번씩 날릴 때 사용하는 주석...
-            //_clientData = new ClientData();
-            return _clientData;
-        }
-    }
-
 
     public void LoadGameData()
     {
@@ -145,5 +113,30 @@ public class DataController : MonoBehaviour
             Debug.Log("저장 완료");
         }
     }
+
+
+    public ClientData _clientData;
+    public ClientData clientData
+    {
+        get
+        {
+            // 클라 데이터 한번씩 날릴 때 사용하는 주석...
+            //_clientData = new ClientData();
+            return _clientData;
+        }
+    }
+
+    void Awake() {
+        Debug.Log("csvdata Test");
+        List<Dictionary<string,object>> data = CSVReader.Read ("test");
+ 
+        for(var i=0; i < data.Count; i++) {
+            Debug.Log ("level " + data[i]["level"] + " " +
+                   "exp " + data[i]["exp"] + " " +
+                   "exp2 " + data[i]["exp2"] + " ");
+        }
+ 
+    }
+
 
 }

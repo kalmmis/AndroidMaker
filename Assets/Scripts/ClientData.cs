@@ -15,6 +15,9 @@ public class ClientData
     //업그레이드id
     public int buildingUpgradeID; // 리스트 업 할 때 쓰는 값, 0이 기본
 
+    // 이 밑으론 다 csv로 변환해야 한다.
+    /////////////////////////
+
     //public int[] buildingUpgradeTurn = new int[6]{0,0,0,0,0,0}; // 업그레이드 요구 턴
     public int[] building2ProducePower = new int[7]{0,500,1000,1500,2000,2500,3000};
     public int[] building3RewardMoney = new int[7]{0,50,100,150,200,250,300};
@@ -34,6 +37,7 @@ public class ClientData
     //public int[,] BuildingRequiredReputation = new int[2,7]{{0,0,0,0,0,0,0},{0,0,0,0,0,0,0}};
 
     public int[] playerHP = new int[4]{10,20,30,40};
+
     
 }
 

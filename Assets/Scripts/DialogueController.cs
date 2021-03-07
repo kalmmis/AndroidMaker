@@ -15,6 +15,7 @@ public class DialogueController : MonoBehaviour {
     private GameObject UI;
     private Boolean clicked = false;
 
+/*
     private void Awake()
     {
         Debug.Log("Awaked!");
@@ -46,6 +47,39 @@ public class DialogueController : MonoBehaviour {
         }
 
     }
+*/
+
+//여기부터 (id 로드해서 스토리 부를 수 있도록 개조함)
+
+    public void DoStory(int storyID)
+    {
+        UI = GameObject.FindGameObjectWithTag("DialogueUI");
+        UI.SetActive(false);
+        if (!isTest) StartCoroutine( StartLevel(storyID) );
+        Debug.Log("Started!");
+    }
+
+    public IEnumerator StartLevel(int storyID)
+    {
+        while(true)
+        {
+            if (storyID == 999) break;
+            bool isFinished = false;
+            StartCoroutine(StringParser(storyID, ExcelParser.GetResource("level", storyID), ExcelParser.GetResource("dialog", storyID), (bool val, int nextStage)=> {
+                isFinished = val; storyID = nextStage;
+                Debug.Log("isFin : " + isFinished);
+                Debug.Log("nextStage : " + storyID);
+            }));
+
+            yield return new WaitUntil(() => {
+                return isFinished;
+             });
+        }
+    }
+
+
+//여기까지
+
 
     IEnumerator StringParser(int currentInt,string levelStr, string dialogs, System.Action<bool, int> callback) {
 

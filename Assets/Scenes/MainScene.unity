@@ -2420,7 +2420,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2092055674}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0
+  m_Size: 0.11971916
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11541,7 +11541,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 51277581}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0
+  m_Size: 0.7344262
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11660,7 +11660,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1982084092}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0
+  m_Size: 0.8888889
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12873,7 +12873,6 @@ Transform:
   - {fileID: 1102154761}
   - {fileID: 89463382}
   - {fileID: 1692335282}
-  - {fileID: 1110927012}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14805,7 +14804,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 708235809}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0
+  m_Size: 0.14197737
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15227,7 +15226,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 23872250}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0
+  m_Size: 0.53071254
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20620,7 +20619,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 589870596}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0
+  m_Size: 0.14197737
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21600,50 +21599,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
---- !u!1 &1110927011
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1110927012}
-  - component: {fileID: 1110927013}
-  m_Layer: 0
-  m_Name: CSVReader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1110927012
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110927011}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 588208613}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1110927013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110927011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bfa2f932c2a89a4c9653aa196a48d88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  csvFile: {fileID: 0}
 --- !u!1 &1113297563
 GameObject:
   m_ObjectHideFlags: 0
@@ -24376,29 +24331,19 @@ MonoBehaviour:
   GameDataFileName: /AndMakerSavingData.json
   _gameData:
     characterName: 
-    Money: 0
-    Core: 0
+    credit: 0
+    core: 0
+    turn: 0
+    overallTurn: 0
+    androidLifeStatus: 0a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a000000
+    androidLv: 0
+    androidCombatStatus: 0a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a000000
+    durability: 0
+    stress: 0
+    battery: 0
     buildingLevel: 010000000100000001000000000000000000000000000000
     buildingUpgradeTurn: 000000000000000000000000000000000000000000000000
-    producePower: 0
-    usingPower: 0
-    remainPower: 0
-    Reputation: 0
-    Durability: 0
-    Stress: 0
-    Strength: 0
-    Mobility: 0
-    Computing: 0
-    Knowledge: 0
-    Wisdom: 0
-    Willing: 0
-    Charisma: 0
-    Morality: 0
-    Humanity: 0
-    Battery: 0
-    turn: 0
-    OverallTurnCheck: 0
-    playerLv: 0
+    reputation: 0
   _clientData:
     scheduleIDs: 00000000000000000000000000000000
     scheduleTitle:
@@ -24419,11 +24364,11 @@ MonoBehaviour:
     - Wall
     - Bulding[6]
     BuildingUpgradeDesc:
-    - 'Labo
+    - 'Laboratory
 
-      is for
+      is for blabla blabla
 
-      Research'
+      Research can be unlocked for this'
     - 'Mine
 
       is for
@@ -24447,8 +24392,8 @@ MonoBehaviour:
     - Building
     - Building
     BuildingProduceTitle:
-    - Research Lv
-    - Credit per turn
+    - Research Lv will be
+    - Credit per turn will be
     - Over all Power
     - Attack Enemy
     - Wall Defence
@@ -33520,7 +33465,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1418668674}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0
+  m_Size: 0.74019164
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -42694,7 +42639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &3699057026257798008
 MonoBehaviour:
   m_ObjectHideFlags: 0

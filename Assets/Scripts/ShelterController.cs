@@ -234,7 +234,7 @@ public class ShelterController : MonoBehaviour
         int beforeBenefit = dc.clientData.BuildingProduce[id,beforeBuildingLv];
         int afterBenefit = dc.clientData.BuildingProduce[id,afterBuildingLv];
 
-        int requireMoney = dc.clientData.BuildingRequiredMoney[id,afterBuildingLv];
+        int requireCredit = dc.clientData.BuildingRequiredMoney[id,afterBuildingLv];
         
         int requirePowerNow = dc.clientData.BuildingRequiredPower[id,beforeBuildingLv];
         int requirePowerNext = dc.clientData.BuildingRequiredPower[id,afterBuildingLv];
@@ -242,10 +242,8 @@ public class ShelterController : MonoBehaviour
 
         int requireTurn = dc.clientData.BuildingRequiredTurn[id,afterBuildingLv];
 
-        //Money
-        long curMoney = DataController.Instance.gameData.Money;
-        //Power
-        int curPower = DataController.Instance.gameData.remainPower;
+        //Credit
+        long curCredit = DataController.Instance.gameData.credit;
 
 
         if (DataController.Instance.gameData.buildingLevel.Length == afterBuildingLv)
@@ -264,17 +262,13 @@ public class ShelterController : MonoBehaviour
         benefitBeforeLv.text = beforeBenefit.ToString();
         benefitAftereLv.text = afterBenefit.ToString();
 
-        requirementText1.text = "<color=#000000>Required Credit: " + requireMoney.ToString() + "</color>";
+        requirementText1.text = "<color=#000000>Required Credit: " + requireCredit.ToString() + "</color>";
         requirementText2.text = "<color=#000000>Required Power: " + requirePower.ToString() + "</color>";
         requirementText3.text = "<color=#000000>Required Turn: " + requireTurn.ToString() + "</color>";
             
-            if(curMoney < requireMoney)
+            if(curCredit < requireCredit)
             {
-                requirementText1.text = "<color=#EC360E>Required Credit: " + requireMoney.ToString() + "</color>";
-            }
-            if(curPower < requirePower)
-            {
-                requirementText2.text = "<color=#EC360E>Required Power: " + requirePower.ToString() + "</color>";
+                requirementText1.text = "<color=#EC360E>Required Credit: " + requireCredit.ToString() + "</color>";
             }
         }     
 
@@ -302,21 +296,16 @@ public class ShelterController : MonoBehaviour
         //LaboLv
         int curLaboLv = DataController.Instance.gameData.buildingLevel[0];
         int reqLaboLv = dc.clientData.BuildingRequiredLaboLv[id,nextLv];
-        //Power
-        int curPower = DataController.Instance.gameData.remainPower;
-        int reqPowerNow = dc.clientData.BuildingRequiredPower[id,tempLv];
-        int reqPowerNext = dc.clientData.BuildingRequiredPower[id,nextLv];
-        int reqPower = reqPowerNext - reqPowerNow;
 
         //Reputation
         //int curReputation = DataController.Instance.gameData.Reputation;
         //int reqReputation = dc.clientData.BuildingRequiredLaboLv[id,tempLv];
         
         //Money
-        long curMoney = DataController.Instance.gameData.Money;
-        int reqMoney = dc.clientData.BuildingRequiredMoney[id,nextLv];
+        long curCredit = DataController.Instance.gameData.credit;
+        int reqCredit = dc.clientData.BuildingRequiredMoney[id,nextLv];
 
-        if(curLaboLv >= reqLaboLv && curPower >= reqPower && curMoney >= reqMoney)
+        if(curLaboLv >= reqLaboLv && curCredit >= reqCredit)
         {
             return true;
         }
@@ -336,9 +325,9 @@ public class ShelterController : MonoBehaviour
             int buildLv = DataController.Instance.gameData.buildingLevel[id]; // 으악... 빌딩 레벨 하나의 배열로 다 합쳐야... 어라 쉽게 합쳤다 헤헤
             int nextLv = buildLv + 1;
             int reqTurn = dc.clientData.BuildingRequiredTurn[id,nextLv];
-            int reqMoney = dc.clientData.BuildingRequiredMoney[id,nextLv];
+            int reqCredit = dc.clientData.BuildingRequiredMoney[id,nextLv];
             DataController.Instance.gameData.buildingUpgradeTurn[id] = reqTurn;
-            DataController.Instance.gameData.Money -= reqMoney;
+            DataController.Instance.gameData.credit -= reqCredit;
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
             gm.LoadResources();
             // 업그레이드까지 필요한 큐가 잡힌다.

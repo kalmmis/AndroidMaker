@@ -87,15 +87,15 @@ public class StatusController : MonoBehaviour
         Status8.text = "Morality";
         Status9.text = "Humanity";
 
-        Status1Amount.text = DataController.Instance.gameData.Strength.ToString();
-        Status2Amount.text = DataController.Instance.gameData.Mobility.ToString();
-        Status3Amount.text = DataController.Instance.gameData.Computing.ToString();
-        Status4Amount.text = DataController.Instance.gameData.Knowledge.ToString();
-        Status5Amount.text = DataController.Instance.gameData.Wisdom.ToString();
-        Status6Amount.text = DataController.Instance.gameData.Willing.ToString();
-        Status7Amount.text = DataController.Instance.gameData.Charisma.ToString();
-        Status8Amount.text = DataController.Instance.gameData.Morality.ToString();
-        Status9Amount.text = DataController.Instance.gameData.Humanity.ToString();
+        Status1Amount.text = DataController.Instance.gameData.androidLifeStatus[0].ToString();
+        Status2Amount.text = DataController.Instance.gameData.androidLifeStatus[1].ToString();
+        Status3Amount.text = DataController.Instance.gameData.androidLifeStatus[2].ToString();
+        Status4Amount.text = DataController.Instance.gameData.androidLifeStatus[3].ToString();
+        Status5Amount.text = DataController.Instance.gameData.androidLifeStatus[4].ToString();
+        Status6Amount.text = DataController.Instance.gameData.androidLifeStatus[5].ToString();
+        Status7Amount.text = DataController.Instance.gameData.androidLifeStatus[6].ToString();
+        Status8Amount.text = DataController.Instance.gameData.androidLifeStatus[7].ToString();
+        Status9Amount.text = DataController.Instance.gameData.androidLifeStatus[8].ToString();
 
         Status1Bar = StatusDetailUI.transform.Find("Status1Panel").transform.Find("Status1Bar").GetComponent<Slider>();
         Status2Bar = StatusDetailUI.transform.Find("Status2Panel").transform.Find("Status2Bar").GetComponent<Slider>();
@@ -107,15 +107,15 @@ public class StatusController : MonoBehaviour
         Status8Bar = StatusDetailUI.transform.Find("Status8Panel").transform.Find("Status8Bar").GetComponent<Slider>();
         Status9Bar = StatusDetailUI.transform.Find("Status9Panel").transform.Find("Status9Bar").GetComponent<Slider>();
 
-        Status1Gauge = DataController.Instance.gameData.Strength / 999.0f;
-        Status2Gauge = DataController.Instance.gameData.Mobility / 999.0f;
-        Status3Gauge = DataController.Instance.gameData.Computing / 999.0f;
-        Status4Gauge = DataController.Instance.gameData.Knowledge / 999.0f;
-        Status5Gauge = DataController.Instance.gameData.Wisdom / 999.0f;
-        Status6Gauge = DataController.Instance.gameData.Willing / 999.0f;
-        Status7Gauge = DataController.Instance.gameData.Charisma / 999.0f;
-        Status8Gauge = DataController.Instance.gameData.Morality / 999.0f;
-        Status9Gauge = DataController.Instance.gameData.Humanity / 999.0f;
+        Status1Gauge = DataController.Instance.gameData.androidLifeStatus[0] / 999.0f;
+        Status2Gauge = DataController.Instance.gameData.androidLifeStatus[1] / 999.0f;
+        Status3Gauge = DataController.Instance.gameData.androidLifeStatus[2] / 999.0f;
+        Status4Gauge = DataController.Instance.gameData.androidLifeStatus[3] / 999.0f;
+        Status5Gauge = DataController.Instance.gameData.androidLifeStatus[4] / 999.0f;
+        Status6Gauge = DataController.Instance.gameData.androidLifeStatus[5] / 999.0f;
+        Status7Gauge = DataController.Instance.gameData.androidLifeStatus[6] / 999.0f;
+        Status8Gauge = DataController.Instance.gameData.androidLifeStatus[7] / 999.0f;
+        Status9Gauge = DataController.Instance.gameData.androidLifeStatus[8] / 999.0f;
 
         //Debug.Log("Strength:" + DataController.Instance.gameData.Strength);
         //Debug.Log("Status1Gauge:" + Status1Gauge);

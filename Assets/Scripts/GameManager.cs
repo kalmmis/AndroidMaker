@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
         LoadResources();
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         dc.LoadGameData(); 
+
+        DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
+        dia.DoStory(1);
     }
 
     public void LoadMainUI()
@@ -78,13 +81,13 @@ public class GameManager : MonoBehaviour
     {
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
-        long money = DataController.Instance.gameData.Money;
+        long presentCredit = DataController.Instance.gameData.credit;
         // credit 관련 ui 갱신
         int mineLv = DataController.Instance.gameData.buildingLevel[1];
-        int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
+        int creditProduce = dc.clientData.building3RewardMoney[mineLv];
 
         
-        ResourceText.text = "크레딧 " + money.ToString() + " (+" + moneyProduce.ToString() + ")    코어 999999     번영도 999999     명성 999999";
+        ResourceText.text = "크레딧 " + presentCredit.ToString() + " (+" + creditProduce.ToString() + ")    코어 999999     번영도 999999     명성 999999";
     }
     public void ActiveHome()
     {
@@ -285,17 +288,17 @@ public class GameManager : MonoBehaviour
         }
         
         LoadResources();
-        ProduceTurnMoney();
+        ProduceTurnCredit();
     }
     
-    public void ProduceTurnMoney()
+    public void ProduceTurnCredit()
     {
         
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         int mineLv = DataController.Instance.gameData.buildingLevel[1];
-        int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
+        int creditProduce = dc.clientData.building3RewardMoney[mineLv];
         
-        DataController.Instance.gameData.Money += moneyProduce;
+        DataController.Instance.gameData.credit += creditProduce;
         //MoneyAmount.text = DataController.Instance.gameData.Money.ToString(); 수정필요!
     }
 
@@ -315,7 +318,7 @@ public class GameManager : MonoBehaviour
         DataController.Instance.gameData.buildingLevel[3] = 0;
         DataController.Instance.gameData.buildingLevel[4] = 0;
         DataController.Instance.gameData.buildingLevel[5] = 0;
-        DataController.Instance.gameData.Money = 1000;
+        DataController.Instance.gameData.credit = 1000;
         DataController.Instance.gameData.turn = 1;
         
         DataController.Instance.gameData.buildingUpgradeTurn[0] = 0;
@@ -329,9 +332,9 @@ public class GameManager : MonoBehaviour
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
     
         int mineLv = DataController.Instance.gameData.buildingLevel[1];
-        int moneyProduce = dc.clientData.building3RewardMoney[mineLv];
+        int creditProduce = dc.clientData.building3RewardMoney[mineLv];
         
-        DataController.Instance.gameData.Money += moneyProduce;
+        DataController.Instance.gameData.credit += creditProduce;
 
     }
 }
