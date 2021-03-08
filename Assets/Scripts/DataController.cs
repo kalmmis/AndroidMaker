@@ -126,17 +126,6 @@ public class DataController : MonoBehaviour
         }
     }
 
-    void Awake() {
-        Debug.Log("csvdata Test");
-        List<Dictionary<string,object>> data = CSVReader.Read ("test");
- 
-        for(var i=0; i < data.Count; i++) {
-            Debug.Log ("level " + data[i]["level"] + " " +
-                   "exp " + data[i]["exp"] + " " +
-                   "exp2 " + data[i]["exp2"] + " ");
-        }
- 
-    }
 
 
 }

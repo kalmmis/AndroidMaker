@@ -84,8 +84,17 @@ public class ShelterController : MonoBehaviour
         BuildingTitleText6 = BuildingCanvas.transform.Find("BuildingPanel06").Find("BuildingTitleText06").GetComponent<Text>();
         BuildingDescription6 = BuildingCanvas.transform.Find("BuildingPanel06").Find("BuildingDescText06").GetComponent<Text>();
         
-        
-        BuildingDescription1.text = dc.clientData.BuildingDesc[0,Building1LV].ToString();
+
+        // Debug.Log 는 나중에 날려버립시다.
+        Debug.Log("csvdata Test");
+        List<Dictionary<string,object>> buildingData = CSVReader.Read ("BuildingInfo");
+
+        for(var i=0; i < buildingData.Count; i++) {
+            Debug.Log ("buildingID " + buildingData[i]["buildingID"] + " " +
+                        "buildingDesc " + buildingData[i]["buildingDesc"] + " ");
+        }
+
+        BuildingDescription1.text = (string)buildingData[1]["buildingDesc"];
         BuildingDescription2.text = dc.clientData.BuildingDesc[1,Building2LV].ToString();
         BuildingDescription3.text = dc.clientData.BuildingDesc[2,Building3LV].ToString();
         BuildingDescription4.text = dc.clientData.BuildingDesc[3,Building4LV].ToString();

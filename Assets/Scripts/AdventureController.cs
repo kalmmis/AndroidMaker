@@ -10,11 +10,13 @@ public class AdventureController : MonoBehaviour
 
     public float invincibleTime = 3f;
 
+
     public void StartPlayer()
     {
         StartCoroutine(InitPlayer(.1f));
         StartCoroutine(InitEnemy(.1f));
     }
+
 
     public IEnumerator InitPlayer(float delayTime)
     {
@@ -43,6 +45,10 @@ public class AdventureController : MonoBehaviour
     {
         GameObject combatScreen;
         yield return new WaitForSeconds(delayTime);
+        
+        //csv Read 등장
+        List<Dictionary<string,object>> enemyData = CSVReader.Read ("EnemyInfo");
+
         Debug.Log("Enemy!");
         if(true) { 
             Enemy e = Instantiate(enemy, new Vector2(0, 0), Quaternion.identity);
@@ -51,9 +57,8 @@ public class AdventureController : MonoBehaviour
             RectTransform rectTransform = e.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(2600,0);
             //e.isInvincible = true;
-            int lv = DataController.Instance.gameData.androidLv;
-            DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-            int tHp = dc.clientData.playerHP[lv]; // 수정 필요
+            int enemyID = 3;
+            int tHp = (int)enemyData[enemyID]["HP"]; // 수정 필요
             e.hp = tHp;
             //StartCoroutine(e.RemoveInvincible(invincibleTime));
         }
