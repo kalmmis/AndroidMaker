@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
         DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         dc.LoadGameData(); 
 
-        DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
-        dia.DoStory(1);
+        //DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
+        //dia.DoStory(1);
     }
 
     public void LoadMainUI()

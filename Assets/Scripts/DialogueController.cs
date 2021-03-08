@@ -51,10 +51,15 @@ public class DialogueController : MonoBehaviour {
 
 //여기부터 (id 로드해서 스토리 부를 수 있도록 개조함)
 
-    public void DoStory(int storyID)
+    private void Start()
     {
         UI = GameObject.FindGameObjectWithTag("DialogueUI");
         UI.SetActive(false);
+    }
+    public void DoStory(int storyID)
+    {
+        //UI = GameObject.FindGameObjectWithTag("DialogueUI");
+        //UI.SetActive(false);
         if (!isTest) StartCoroutine( StartLevel(storyID) );
         Debug.Log("Started!");
     }
