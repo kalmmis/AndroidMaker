@@ -25,10 +25,9 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         //StartCoroutine(GetPattern());
-        enemyShooting = GameObject.Find("Enemy(Clone)").GetComponent<EnemyShooting>();
+        enemyShooting = this.GetComponent<EnemyShooting>();
         enemyMoving = true;
         StartCoroutine(ActivateEnemy());
-        hpText = GameObject.FindGameObjectWithTag("Enemy").transform.Find("HP").GetComponent<Text>();
     }
 
     /*

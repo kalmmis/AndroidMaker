@@ -14,7 +14,7 @@ public class AdventureController : MonoBehaviour
     public void StartPlayer()
     {
         StartCoroutine(InitPlayer(.1f));
-        StartCoroutine(InitEnemy(.1f));
+        StartCoroutine(WaveEnemy(5.0f));
     }
 
 
@@ -27,7 +27,7 @@ public class AdventureController : MonoBehaviour
         //if(true) { 
             Player p = Instantiate(player, new Vector2(0, 0), Quaternion.identity);
             combatScreen = GameObject.Find("CombatScreen");
-            p.transform.parent = combatScreen.transform;
+            p.transform.SetParent(combatScreen.transform);
             RectTransform rectTransform = p.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(100,0);
             p.isInvincible = true;
@@ -41,29 +41,26 @@ public class AdventureController : MonoBehaviour
         //playerShootingScript.TimeReset();
     }
 
-    public IEnumerator InitEnemy(float delayTime)
+    public IEnumerator WaveEnemy(float delayTime)
     {
-        GameObject combatScreen;
-        yield return new WaitForSeconds(delayTime);
-        
-        //csv Read 등장
-        List<Dictionary<string,object>> enemyData = CSVReader.Read ("EnemyInfo");
+        while(true)
+        {
+            GameObject combatScreen;
+            //csv Read 등장
+            List<Dictionary<string,object>> enemyData = CSVReader.Read ("EnemyInfo");
 
-        Debug.Log("Enemy!");
-        if(true) { 
-            Enemy e = Instantiate(enemy, new Vector2(0, 0), Quaternion.identity);
+            Debug.Log("Enemy!");
+
+            var newEnemy = Instantiate(enemy, new Vector2(0, 0), Quaternion.identity);
+            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
             combatScreen = GameObject.Find("CombatScreen");
-            e.transform.parent = combatScreen.transform;
-            RectTransform rectTransform = e.GetComponent<RectTransform>();
+            newEnemy.transform.SetParent(combatScreen.transform);
+            RectTransform rectTransform = newEnemy.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(2600,0);
-            //e.isInvincible = true;
-            int enemyID = 3;
-            int tHp = (int)enemyData[enemyID]["HP"]; // 수정 필요
-            e.hp = tHp;
-            //StartCoroutine(e.RemoveInvincible(invincibleTime));
+            
+            yield return new WaitForSeconds(delayTime);
         }
-        //animator.SetTrigger("TrigPlayerIdle");
-        //playerShootingScript.TimeReset();
+        
     }
     public void LoadingAdventureUI()
     {

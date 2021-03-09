@@ -54,9 +54,9 @@ public class Player : MonoBehaviour
 
     public void GetDamage(int damage)   
     {
-        Debug.Log(isGuard);
-        Debug.Log(isInvincible);
-        Debug.Log("GetDamaged!");
+        //Debug.Log(isGuard);
+        //Debug.Log(isInvincible);
+        //Debug.Log("GetDamaged!");
         if (!isInvincible)
         {
             hp -= damage;

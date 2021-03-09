@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\ShelterController.cs" />
      <Compile Include="Assets\Scripts\StatusController.cs" />
      <Compile Include="Assets\Scripts\UpgradeController.cs" />
+     <None Include="Assets\Resources\Sound\Sword Sound Effect Vol.1\1.Tracklist.txt" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/GitHub/AndroidMaker/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>

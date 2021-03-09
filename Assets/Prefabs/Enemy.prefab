@@ -169,12 +169,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aaa360204ab2da4fab84388bc4b0aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1000
+  hp: 10
   destructionVFX: {fileID: 8807953152763500358}
   destructionSound: {fileID: 0}
   hitEffect: {fileID: 8932351636001682726, guid: 1072dda5789404b4e806dc5ce86be13f,
     type: 3}
-  hpText: {fileID: 0}
+  hpText: {fileID: 6429824219815677224}
   enemyMoving: 0
   onDestroyExecutionList: []
 --- !u!61 &3395279205831124625
