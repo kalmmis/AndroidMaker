@@ -34,16 +34,16 @@ public class EnemyShooting : MonoBehaviour {
 
 
 
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-    }
-    private void Start()
-    {
-        guns.enemyGunVFX = guns.enemyGun.GetComponent<ParticleSystem>();
-        enemyScript = gameObject.GetComponent<Enemy>();
-    }
+    //private void Awake()
+    //{
+    //    if (instance == null)
+    //        instance = this;
+    //}
+    //private void Start()
+    //{
+    //    guns.enemyGunVFX = guns.enemyGun.GetComponent<ParticleSystem>();
+    //    enemyScript = gameObject.GetComponent<Enemy>();
+    //}
    private void Update()
     {
     }
@@ -69,9 +69,7 @@ public class EnemyShooting : MonoBehaviour {
         enemyScript = gameObject.GetComponent<Enemy>();
         
         RectTransform rectTransform = enemyScript.GetComponent<RectTransform>();
-        enemyPosition = this.transform.localPosition.x;
-
-        
+        enemyPosition = this.transform.localPosition.x;        
         
         Debug.Log("EnemyPosition is " + enemyPosition);
         attackPosition = 1150f; // 나중에 적 패턴 별로 뺄 거당 // 해상도랑 상관 없겠지?

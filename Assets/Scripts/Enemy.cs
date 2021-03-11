@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         //StartCoroutine(GetPattern());
-        enemyShooting = this.GetComponent<EnemyShooting>();
+        enemyShooting = gameObject.GetComponent<EnemyShooting>();
         enemyMoving = true;
         StartCoroutine(ActivateEnemy());
     }

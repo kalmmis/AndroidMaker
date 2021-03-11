@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +9,39 @@ public class AdventureController : MonoBehaviour
     public Enemy enemy;
 
     public float invincibleTime = 3f;
-
-
+    public string enemyType = "EnemyA";
+    
     public void StartPlayer()
     {
         StartCoroutine(InitPlayer(.1f));
-        StartCoroutine(WaveEnemy(5.0f));
+        //StartCoroutine(WaveEnemy(5.0f));
+        StartCoroutine(DoStage());
+    }
+
+    //public IEnumerator DoStage(float delayTime, string enemyType)
+    public IEnumerator DoStage()
+    {
+        
+        List<Dictionary<string,object>> stageData = CSVReader.Read ("Stage01");
+        GameObject combatScreen;
+
+        for (int i = 0; i < stageData.Count; i++)
+        {
+            
+            int delay = (int)stageData[i]["delay"]; 
+            string enemyType = (string)stageData[i]["enemyType"]; 
+
+            Debug.Log(enemyType);
+
+            var newEnemy = Instantiate(enemy, new Vector2(0, 0), Quaternion.identity);
+            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+            combatScreen = GameObject.Find("CombatScreen");
+            newEnemy.transform.SetParent(combatScreen.transform);
+            RectTransform rectTransform = newEnemy.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(2600,0);
+            
+            yield return new WaitForSeconds(delay);
+        }
     }
 
 
@@ -46,6 +73,7 @@ public class AdventureController : MonoBehaviour
         while(true)
         {
             GameObject combatScreen;
+            
             //csv Read 등장
             List<Dictionary<string,object>> enemyData = CSVReader.Read ("EnemyInfo");
 
