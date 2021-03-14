@@ -71,7 +71,7 @@ public class EnemyShooting : MonoBehaviour {
         RectTransform rectTransform = enemyScript.GetComponent<RectTransform>();
         enemyPosition = this.transform.localPosition.x;        
         
-        Debug.Log("EnemyPosition is " + enemyPosition);
+        //Debug.Log("EnemyPosition is " + enemyPosition);
         attackPosition = 1150f; // 나중에 적 패턴 별로 뺄 거당 // 해상도랑 상관 없겠지?
 
         if(enemyPosition > attackPosition)

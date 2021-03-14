@@ -1812,9 +1812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced9fcb10403d4a4d8c15076c485962f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4250656995464629217, guid: 0fdd759ed908a9d45849489361ac1c2a, type: 3}
-  enemy: {fileID: 864063126058457401, guid: 7efce6b47239f7743b618c83526ca9ef, type: 3}
+  player: {fileID: 4250656995464629217, guid: 08912be4ff205004ba3567ae9193e592, type: 3}
   invincibleTime: 0
+  enemyType: EnemyA
 --- !u!1 &90973360
 GameObject:
   m_ObjectHideFlags: 0
@@ -7857,7 +7857,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4250656995464629217, guid: 0fdd759ed908a9d45849489361ac1c2a,
+        - m_Target: {fileID: 4250656995464629217, guid: 08912be4ff205004ba3567ae9193e592,
             type: 3}
           m_MethodName: GuardUp
           m_Mode: 1
@@ -7873,7 +7873,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4250656995464629217, guid: 0fdd759ed908a9d45849489361ac1c2a,
+        - m_Target: {fileID: 4250656995464629217, guid: 08912be4ff205004ba3567ae9193e592,
             type: 3}
           m_MethodName: GuardDown
           m_Mode: 1
@@ -24565,7 +24565,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4250656995464629217, guid: 0fdd759ed908a9d45849489361ac1c2a,
+      - m_Target: {fileID: 4250656995464629217, guid: 08912be4ff205004ba3567ae9193e592,
           type: 3}
         m_MethodName: Attack
         m_Mode: 1

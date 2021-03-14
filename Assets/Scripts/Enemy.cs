@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     #region FIELDS
     public int hp;
+    public string type;
 
     public GameObject destructionVFX;
     public GameObject destructionSound;

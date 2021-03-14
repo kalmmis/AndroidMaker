@@ -6,7 +6,6 @@ public class AdventureController : MonoBehaviour
 {
     private GameObject combatUI;
     public Player player;
-    public Enemy enemy;
 
     public float invincibleTime = 3f;
     public string enemyType = "EnemyA";
@@ -33,8 +32,9 @@ public class AdventureController : MonoBehaviour
 
             Debug.Log(enemyType);
 
-            var newEnemy = Instantiate(enemy, new Vector2(0, 0), Quaternion.identity);
-            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+            //var newEnemy = Instantiate(enemy, new Vector2(0, 0), Quaternion.identity);
+            var newEnemy = Instantiate(Resources.Load("Prefabs/" + enemyType), new Vector2(0, 0), Quaternion.identity) as GameObject;
+            //Enemy enemyScript = newEnemy.GetComponent<Enemy>();
             combatScreen = GameObject.Find("CombatScreen");
             newEnemy.transform.SetParent(combatScreen.transform);
             RectTransform rectTransform = newEnemy.GetComponent<RectTransform>();
@@ -68,28 +68,6 @@ public class AdventureController : MonoBehaviour
         //playerShootingScript.TimeReset();
     }
 
-    public IEnumerator WaveEnemy(float delayTime)
-    {
-        while(true)
-        {
-            GameObject combatScreen;
-            
-            //csv Read 등장
-            List<Dictionary<string,object>> enemyData = CSVReader.Read ("EnemyInfo");
-
-            Debug.Log("Enemy!");
-
-            var newEnemy = Instantiate(enemy, new Vector2(0, 0), Quaternion.identity);
-            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-            combatScreen = GameObject.Find("CombatScreen");
-            newEnemy.transform.SetParent(combatScreen.transform);
-            RectTransform rectTransform = newEnemy.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(2600,0);
-            
-            yield return new WaitForSeconds(delayTime);
-        }
-        
-    }
     public void LoadingAdventureUI()
     {
         combatUI = GameObject.FindGameObjectWithTag("CombatUI");
