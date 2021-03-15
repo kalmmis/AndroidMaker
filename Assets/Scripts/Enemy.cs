@@ -84,7 +84,10 @@ public class Enemy : MonoBehaviour
             Destruction();
         }
         else
-            Instantiate(hitEffect, transform.position, Quaternion.identity, transform);
+        {
+            //    Instantiate(hitEffect, transform.position, Quaternion.identity, transform);
+        }
+        
     }
 
     //if 'Enemy' collides 'Player', 'Player' gets the damage equal to projectile's damage value

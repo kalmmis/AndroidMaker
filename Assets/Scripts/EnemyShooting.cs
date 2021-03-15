@@ -70,9 +70,20 @@ public class EnemyShooting : MonoBehaviour {
         
         RectTransform rectTransform = enemyScript.GetComponent<RectTransform>();
         enemyPosition = this.transform.localPosition.x;        
-        
+                
+        switch (enemyScript.type)
+        {
+            case "A" :
+                attackPosition = -800f;
+                break;
+
+            case "B" :
+                attackPosition = 1150f;
+                break;
+
+        }
         //Debug.Log("EnemyPosition is " + enemyPosition);
-        attackPosition = 1150f; // 나중에 적 패턴 별로 뺄 거당 // 해상도랑 상관 없겠지?
+        //attackPosition = 1150f; // 나중에 적 패턴 별로 뺄 거당 // 해상도랑 상관 없겠지?
 
         if(enemyPosition > attackPosition)
         {

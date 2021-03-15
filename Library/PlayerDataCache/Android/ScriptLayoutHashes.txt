@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/GitHub/AndroidMaker/20210307test.apk
+C:/GitHub/AndroidMaker/20210316 AndroidMaker.apk
 SceneListBegin?
 Assets/Scenes/MainScene.unity
 SceneListEnd?
@@ -22,7 +22,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.G
 e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
-58ea941ec13d6b90d193eab5aecd9e35 Assembly-CSharp.dll:.AdventureController
+86a34bfe2626f276c8ae3c858c58e01b Assembly-CSharp.dll:.AdventureController
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 507174d46dacbc5fe45e28485db5dd1e UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -55,7 +55,7 @@ aa165095bcf0f4d99594ea33df01c81b UnityEngine.UI.dll:UnityEngine.UI.Slider
 0fd6822f6177297bd0eb4d83cc7a9030 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-a6a5f770829ac960e7de370f720ff86f Assembly-CSharp.dll:.Enemy
+3cc3e470ed8790b96f9ab810222aae22 Assembly-CSharp.dll:.Enemy
 d3c76b14a25eebd3a3323dd43297919c Unity.TextMeshPro.dll:TMPro.TMP_InputField
 b6940d6b54922af53f56cf835150f2f5 Assembly-CSharp.dll:.PlayerShooting
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter

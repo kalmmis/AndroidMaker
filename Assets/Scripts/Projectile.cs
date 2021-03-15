@@ -22,6 +22,7 @@ public class Projectile : MonoBehaviour {
         {
             damage = 1;
             collision.GetComponent<Enemy>().GetDamage(damage);
+            Debug.Log("hit");
             if (destroyedByCollision)
                 Destruction();
         }
