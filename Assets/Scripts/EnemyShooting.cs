@@ -75,32 +75,48 @@ public class EnemyShooting : MonoBehaviour {
         {
             case "A" :
                 attackPosition = -800f;
+                if(enemyPosition > attackPosition)
+                {
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.left * moveRate * Time.deltaTime);
+                    };
+                }
+                else
+                {
+                    enemyScript.enemyMoving = false;
+                    
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.zero * moveRate * Time.deltaTime);
+                    };
+                }
                 break;
 
             case "B" :
                 attackPosition = 1150f;
+                if(enemyPosition > attackPosition)
+                {
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.left * moveRate * Time.deltaTime);
+                    };
+                }
+                else
+                {
+                    enemyScript.enemyMoving = false;
+                    
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.zero * moveRate * Time.deltaTime);
+                    };
+                }
                 break;
 
         }
         //Debug.Log("EnemyPosition is " + enemyPosition);
         //attackPosition = 1150f; // 나중에 적 패턴 별로 뺄 거당 // 해상도랑 상관 없겠지?
 
-        if(enemyPosition > attackPosition)
-        {
-            enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
-            {
-                t.Translate(Vector3.left * moveRate * Time.deltaTime);
-            };
-        }
-        else
-        {
-            enemyScript.enemyMoving = false;
-            
-            enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
-            {
-                t.Translate(Vector3.zero * moveRate * Time.deltaTime);
-            };
-        }
         
     }
 }

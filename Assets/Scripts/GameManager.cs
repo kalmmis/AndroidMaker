@@ -244,6 +244,7 @@ public class GameManager : MonoBehaviour
         //CoreAmount.text = DataController.Instance.gameData.Core.ToString(); 
         //TurnCount.text = "Turn " + DataController.Instance.gameData.Turn.ToString();
         //PowerAmount.text = DataController.Instance.gameData.remainPower.ToString();
+        TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
     }
     
     private void OnApplicationQuit()

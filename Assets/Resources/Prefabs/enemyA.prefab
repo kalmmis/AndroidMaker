@@ -4980,7 +4980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 3000
-  moveRate: 100
+  moveRate: 300
   projectileObject: {fileID: 6850360111434512112, guid: 49e44b8898a36524ab8014c72c73bf99,
     type: 3}
   nextFire: 0

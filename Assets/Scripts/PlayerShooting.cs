@@ -58,9 +58,30 @@ public class PlayerShooting : MonoBehaviour {
     //method for a shot
     public void MakeAShot() 
     {
-        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
-        //guns.centralGunVFX.Play();
+        //if(isSMG)
+        StartCoroutine(ShotSMG());
     }
+
+    public IEnumerator ShotSMG()
+    {
+        
+        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+        yield return new WaitForSecondsRealtime(.03f);
+        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+        yield return new WaitForSecondsRealtime(.03f);
+        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+        yield return new WaitForSecondsRealtime(.03f);
+        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+        yield return new WaitForSecondsRealtime(.05f);
+        
+    }
+
+    /*
+    public void MakeAShot() 
+    {
+        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+    }
+    */
 
     void CreateShot(GameObject lazer, Vector3 pos, Vector3 rot) //translating 'pooled' lazer shot to the defined position in the defined rotation
     {
