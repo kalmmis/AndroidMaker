@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public int hp;
     public bool isInvincible;
-    public bool isRange;
-    public bool isAttack = false;
+    public bool isRange = true;
+    //public bool isAttack = false;
     public static Player instance;
     public bool isGuard = false;
     PlayerShooting playerShooting;
+
+    public int hp;
     public Text hpText;
     
     public GameObject shield;
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
         hpText = GameObject.FindGameObjectWithTag("Player").transform.Find("HP").GetComponent<Text>();
-        isGuard = false;
+        //isGuard = false;
     }
     public void GuardUp()
     {
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(65,0);
+        playerShooting.Reload();
     }
     public void GuardDown()
     {
@@ -97,26 +99,23 @@ public class Player : MonoBehaviour
     {
         
         playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
-        if(isRange)
+        if(!isRange && !instance.isGuard)
         {
+            Debug.Log("isGuard is " + instance.isGuard);
             MeleeAttack();
         }
-        else
-        {
-            RangeAttack();
+        else if(!instance.isGuard)
+        {            
+            Debug.Log("isGuard is " + instance.isGuard);
+            playerShooting.RangeAttack();
         }
+
     }
 
 
     public void MeleeAttack()
     {
         Debug.Log("MeleeAttack");
-    }
-
-    public void RangeAttack()
-    {
-        Debug.Log("RangeAttack");
-        playerShooting.MakeAShot();
     }
 
     public void Skill1()

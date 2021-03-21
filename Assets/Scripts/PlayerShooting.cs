@@ -20,23 +20,34 @@ public class PlayerShooting : MonoBehaviour {
     public GameObject projectileObject;
 
     //time for a new shot
-    [HideInInspector] public float nextFire;
+    //[HideInInspector] public float nextFire;
 
+    //[Tooltip("current weapon power")]
+    //public int weaponUpgradeIntervalOfFrame;
+    //[Range(1, 4)]       //change it if you wish
+    //[HideInInspector] public int weaponPower = 1;
+    //[HideInInspector] public int startAttackTimestamp;
+    //public bool ShootingIsActive = true; 
 
-    [Tooltip("current weapon power")]
-    public int weaponUpgradeIntervalOfFrame;
-    [Range(1, 4)]       //change it if you wish
-    [HideInInspector] public int weaponPower = 1;
-    [HideInInspector] public int startAttackTimestamp;
-
-    public Guns guns;
-    public bool ShootingIsActive = true; 
     public static PlayerShooting instance;
     Player playerScript;
+
+    public Guns guns;
+
+    public bool isInterval;
+    public float timeInterval = 1f;
+    private int weaponType;
+    private int curMagazineSize;
+    private int magazineSize;
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
+    }
+    private void Update()
+    {
+        //Debug.Log("Bullet left " + curMagazineSize);
     }
     private void Start()
     {
@@ -45,16 +56,50 @@ public class PlayerShooting : MonoBehaviour {
         guns.rightGunVFX = guns.rightGun.GetComponent<ParticleSystem>();
         guns.centralGunVFX = guns.centralGun.GetComponent<ParticleSystem>();
         playerScript = gameObject.GetComponent<Player>();
+        //DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        
+        List<Dictionary<string,object>> gunData = CSVReader.Read ("GunInfo");
+        int weaponID = DataController.Instance.gameData.androidEquipment[0];
+        weaponType = (int)gunData[weaponID]["gunType"];
+        timeInterval = (float)gunData[weaponID]["intervalTime"];
+        magazineSize = (int)gunData[weaponID]["maxMagazine"];
+        Debug.Log("weaponType is " + weaponType);
+        Debug.Log("timeInterval is " + timeInterval);
+
+        curMagazineSize = magazineSize;
+        
     }
-   private void Update()
-    {
-    }
+    /*
     public void ResetWeaponPower()
     {
         weaponPower = 1;
         startAttackTimestamp = 0;
         //Invoke("TimeReset", 0.15f);
     }
+    */
+    public void Reload()
+    {
+        curMagazineSize = magazineSize;
+        Debug.Log("Reloaded!");
+    }
+    public void RangeAttack()
+    {
+        if(!isInterval && curMagazineSize > 0)
+        {
+            isInterval = true;
+            Debug.Log("RangeAttack");
+            MakeAShot();
+            Invoke("RestoreInterval",timeInterval);
+        }
+    }
+
+    
+    void RestoreInterval()
+    {
+        isInterval = false;
+    }
+
+
     //method for a shot
     public void MakeAShot() 
     {
@@ -84,14 +129,22 @@ public class PlayerShooting : MonoBehaviour {
     */
 
     void CreateShot(GameObject lazer, Vector3 pos, Vector3 rot) //translating 'pooled' lazer shot to the defined position in the defined rotation
-    {
-        var newBullet = Instantiate(lazer, pos,Quaternion.Euler(rot));
-        GameObject combatScreen = GameObject.Find("CombatScreen");
-        newBullet.transform.SetParent(combatScreen.transform);
-        newBullet.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+    {  
+        if(curMagazineSize > 0)
         {
-            t.Translate(Vector3.right * fireRate * Time.deltaTime);
-        };
+            var newBullet = Instantiate(lazer, pos,Quaternion.Euler(rot));
+            GameObject combatScreen = GameObject.Find("CombatScreen");
+            newBullet.transform.SetParent(combatScreen.transform);
+            newBullet.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+            {
+                t.Translate(Vector3.right * fireRate * Time.deltaTime);
+            };
+            curMagazineSize -= 1;
+        }
+        else
+        {
+            Debug.Log("Magazine is empty");
+        }
     }
 /*
         Instantiate(lazer, pos, Quaternion.Euler(rot)).GetComponent<DirectMoving>().moveFunc = (Transform t) =>
