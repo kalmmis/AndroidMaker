@@ -13,12 +13,6 @@ public class Guns
 
 public class PlayerShooting : MonoBehaviour {
 
-    [Tooltip("shooting frequency. the higher the more frequent")]
-    public float fireRate;
-
-    [Tooltip("projectile prefab")]
-    public GameObject projectileObject;
-
     //time for a new shot
     //[HideInInspector] public float nextFire;
 
@@ -27,7 +21,13 @@ public class PlayerShooting : MonoBehaviour {
     //[Range(1, 4)]       //change it if you wish
     //[HideInInspector] public int weaponPower = 1;
     //[HideInInspector] public int startAttackTimestamp;
-    //public bool ShootingIsActive = true; 
+    //public bool ShootingIsActive = true;
+
+    [Tooltip("shooting frequency. the higher the more frequent")]
+    public float fireRate;
+
+    [Tooltip("projectile prefab")]
+    public GameObject projectileObject;
 
     public static PlayerShooting instance;
     Player playerScript;
@@ -55,8 +55,9 @@ public class PlayerShooting : MonoBehaviour {
         guns.leftGunVFX = guns.leftGun.GetComponent<ParticleSystem>();
         guns.rightGunVFX = guns.rightGun.GetComponent<ParticleSystem>();
         guns.centralGunVFX = guns.centralGun.GetComponent<ParticleSystem>();
+
+
         playerScript = gameObject.GetComponent<Player>();
-        //DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
         
         List<Dictionary<string,object>> gunData = CSVReader.Read ("GunInfo");
         int weaponID = DataController.Instance.gameData.androidEquipment[0];
@@ -93,12 +94,10 @@ public class PlayerShooting : MonoBehaviour {
         }
     }
 
-    
     void RestoreInterval()
     {
         isInterval = false;
     }
-
 
     //method for a shot
     public void MakeAShot() 

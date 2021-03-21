@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-    public int damage = 1;
+    public int damage = 1; // 혹시 값 안 들어오면 1로 초기값
     public bool enemyBullet;
     public bool destroyedByCollision;
 
     private void Start()
     {
-        // 장착하고 있는 총 (이큅0번)의 id 의 gunATK를 가져와 damage에 넣어줌
+        // 장착하고 있는 총 (이큅0번)의 id 의 gunATK를 가져와 damage에 넣어준다.
+        // 즉, GunInfo 의 gunATK 가 총알 하나하나의 damage가 된다. 
         int weaponID = DataController.Instance.gameData.androidEquipment[0];
         List<Dictionary<string,object>> gunData = CSVReader.Read ("GunInfo");
         damage = (int)gunData[weaponID]["gunATK"];

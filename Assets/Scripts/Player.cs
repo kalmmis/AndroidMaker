@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
         hpText = GameObject.FindGameObjectWithTag("Player").transform.Find("HP").GetComponent<Text>();
-        //isGuard = false;
+        isRange = true;
     }
     public void GuardUp()
     {

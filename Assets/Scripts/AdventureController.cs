@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,19 +26,21 @@ public class AdventureController : MonoBehaviour
 
         for (int i = 0; i < stageData.Count; i++)
         {
-            
+            //스테이지에서 적들이 순서대로 나오는데 그 딜레이와 타입
             int delay = (int)stageData[i]["delay"]; 
             string enemyType = (string)stageData[i]["enemyType"]; 
 
             Debug.Log(enemyType);
 
-            //var newEnemy = Instantiate(enemy, new Vector2(0, 0), Quaternion.identity);
+            // 프리팹 파일명을 기준으로 적을 찾아서 인스턴시에이트해줌
             var newEnemy = Instantiate(Resources.Load("Prefabs/" + enemyType), new Vector2(0, 0), Quaternion.identity) as GameObject;
             //Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+
+            // 인스턴시에이트해 준 적을 캔버스의 정상적 위치에 넣어줌
             combatScreen = GameObject.Find("CombatScreen");
             newEnemy.transform.SetParent(combatScreen.transform);
             RectTransform rectTransform = newEnemy.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(2600,0);
+            rectTransform.anchoredPosition = new Vector2(2800,0);
             
             yield return new WaitForSeconds(delay);
         }
