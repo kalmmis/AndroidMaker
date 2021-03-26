@@ -6,19 +6,24 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public bool isInvincible;
-    public bool isRange = false;
-    //public bool isAttack = false;
+    public bool isFirstweapon = true;
     public static Player instance;
     public bool isGuard = false;
     PlayerShooting playerShooting;
 
-    public int hp;
     public Text hpText;
+    public int maxHp;
+    public int hp;
+    public GameObject hpSlider;
+    private float hpPercentage;
 
     public float inputTimer;
-    public float startTime;
-    public float guardDelay = 2f;
+    //public float startTime;
+    public float guardDelay = .3f;
     public float reloadDelay = 2f;
+
+    public GameObject reloadSlider;
+    private float reloadPercentage;
 
     public bool isHold = false;
     
@@ -37,35 +42,51 @@ public class Player : MonoBehaviour
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
         hpText = GameObject.FindGameObjectWithTag("Player").transform.Find("HP").GetComponent<Text>();
-        isRange = false;
-        isHold = false;
+        playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
+        reloadSlider.SetActive(false);
     }
    
     void Update()
     {
         hpText.text = hp.ToString();
+        hpPercentage = (float)instance.hp / (float)maxHp;
+        //Debug.Log("hp is " + instance.hp + " max is " + maxHp);
+        //Debug.Log(hpPercentage);
+        hpSlider.GetComponent<Slider>().value = hpPercentage;
         //Debug.Log("isHold is " + isHold);
         if (isHold)
         {
-            Debug.Log("inputTimer is " + inputTimer);
+            reloadSlider.SetActive(true);
+            reloadPercentage = inputTimer / reloadDelay;
+            reloadSlider.GetComponent<Slider>().value = reloadPercentage;
+
+            //Debug.Log("inputTimer is " + inputTimer);
             inputTimer += Time.deltaTime;
-            if(inputTimer > (startTime + guardDelay))
+            //if(inputTimer > (startTime + guardDelay))
+            if(inputTimer > guardDelay)
             {
                 GuardUp();
+
+                if(inputTimer > reloadDelay)
+                {
+                    playerShooting.Reload();
+                    reloadSlider.SetActive(false);
+                }
             }
         }
         else
         {
             GuardDown();
+            reloadSlider.SetActive(false);
             inputTimer = 0;
-            startTime = 0;
+            //startTime = 0;
         }
 
     }
     public void HoldDown()
     {
         inputTimer = Time.time;
-        startTime = inputTimer;
+        //startTime = inputTimer;
         instance.isHold = true;
         //Debug.Log("isHold is " + isHold);
     }
@@ -85,8 +106,7 @@ public class Player : MonoBehaviour
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(65,0);
         
-        playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
-        playerShooting.Reload();
+        
         Debug.Log("Guard");        
     }
     public void GuardDown()
@@ -129,13 +149,13 @@ public class Player : MonoBehaviour
 
     public void ShiftAttackRange()
     {
-        if(isRange)
+        if(isFirstweapon)
         {
-            isRange = false;
+            isFirstweapon = false;
         }
         else
         {
-            isRange = true;
+            isFirstweapon = true;
         }
     }
 
@@ -144,10 +164,10 @@ public class Player : MonoBehaviour
         
         playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
 
-        if(!isRange && !instance.isGuard)
+        if(!isFirstweapon && !instance.isGuard)
         {
             Debug.Log("isGuard is " + instance.isGuard);
-            MeleeAttack();
+            playerShooting.MeleeAttack();
         }
         else if(!instance.isGuard)
         {            
@@ -158,10 +178,6 @@ public class Player : MonoBehaviour
     }
 
 
-    public void MeleeAttack()
-    {
-        Debug.Log("MeleeAttack");
-    }
 
     public void Skill1()
     {

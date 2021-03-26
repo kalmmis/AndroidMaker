@@ -33,6 +33,7 @@ public class PlayerShooting : MonoBehaviour {
     Player playerScript;
 
     public Guns guns;
+    public GameObject meleeWeapon;
 
     public bool isInterval;
     public float timeInterval = 1f;
@@ -68,6 +69,8 @@ public class PlayerShooting : MonoBehaviour {
         Debug.Log("timeInterval is " + timeInterval);
 
         curMagazineSize = magazineSize;
+
+        meleeWeapon.SetActive(false);
         
     }
     /*
@@ -145,10 +148,19 @@ public class PlayerShooting : MonoBehaviour {
             Debug.Log("Magazine is empty");
         }
     }
-/*
-        Instantiate(lazer, pos, Quaternion.Euler(rot)).GetComponent<DirectMoving>().moveFunc = (Transform t) =>
-        {
-            t.Translate(Vector3.right * 5f * fireRate * Time.deltaTime);
-        };
-*/
+
+
+
+    public void MeleeAttack() 
+    {
+        StartCoroutine(SwingWeapon());
+    }
+    
+    public IEnumerator SwingWeapon()
+    {
+        Debug.Log("MeleeAttack");
+        meleeWeapon.SetActive(true);
+        yield return new WaitForSecondsRealtime(.03f);
+        meleeWeapon.SetActive(false);
+    }
 }

@@ -64,6 +64,7 @@ public class AdventureController : MonoBehaviour
             DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
             int tHp = dc.clientData.playerHP[lv];
             p.hp = tHp;
+            p.maxHp = tHp;
             StartCoroutine(p.RemoveInvincible(invincibleTime));
         }
         //animator.SetTrigger("TrigPlayerIdle");
