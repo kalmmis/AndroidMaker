@@ -4873,12 +4873,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1439a26037c126f4b9cd8e1331e45d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
   isInvincible: 0
   isRange: 0
-  isAttack: 0
   isGuard: 0
+  hp: 10
   hpText: {fileID: 0}
+  guardTime: 1
+  reloadTime: 2
   shield: {fileID: 6980968440582464940, guid: 522ba1a00988ec74695c10ce8772cde1, type: 3}
 --- !u!114 &5762754089168577269
 MonoBehaviour:
@@ -4895,10 +4896,6 @@ MonoBehaviour:
   fireRate: 3000
   projectileObject: {fileID: 1787699021082514645, guid: c189ed1c4298d5f42b405411af8065dc,
     type: 3}
-  nextFire: 0
-  weaponUpgradeIntervalOfFrame: 0
-  weaponPower: 1
-  startAttackTimestamp: 0
   guns:
     rightGun: {fileID: 7459890954629927396}
     leftGun: {fileID: 8910241755722459379}
@@ -4906,7 +4903,8 @@ MonoBehaviour:
     leftGunVFX: {fileID: 0}
     rightGunVFX: {fileID: 0}
     centralGunVFX: {fileID: 0}
-  ShootingIsActive: 1
+  isInterval: 0
+  timeInterval: 1
 --- !u!61 &944454181308936643
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public bool isInvincible;
-    public bool isRange = true;
+    public bool isRange = false;
     //public bool isAttack = false;
     public static Player instance;
     public bool isGuard = false;
@@ -14,6 +14,13 @@ public class Player : MonoBehaviour
 
     public int hp;
     public Text hpText;
+
+    public float inputTimer;
+    public float startTime;
+    public float guardDelay = 2f;
+    public float reloadDelay = 2f;
+
+    public bool isHold = false;
     
     public GameObject shield;
     // Start is called before the first frame update
@@ -21,7 +28,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         if (instance == null) 
-            instance = this;
+            instance = this;      
     }
 
     private void Start()
@@ -30,8 +37,46 @@ public class Player : MonoBehaviour
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
         hpText = GameObject.FindGameObjectWithTag("Player").transform.Find("HP").GetComponent<Text>();
-        isRange = true;
+        isRange = false;
+        isHold = false;
     }
+   
+    void Update()
+    {
+        hpText.text = hp.ToString();
+        //Debug.Log("isHold is " + isHold);
+        if (isHold)
+        {
+            Debug.Log("inputTimer is " + inputTimer);
+            inputTimer += Time.deltaTime;
+            if(inputTimer > (startTime + guardDelay))
+            {
+                GuardUp();
+            }
+        }
+        else
+        {
+            GuardDown();
+            inputTimer = 0;
+            startTime = 0;
+        }
+
+    }
+    public void HoldDown()
+    {
+        inputTimer = Time.time;
+        startTime = inputTimer;
+        instance.isHold = true;
+        //Debug.Log("isHold is " + isHold);
+    }
+
+    public void HoldUP()
+    {
+        instance.isHold = false;
+        //inputTimer = 0f;
+        //startTime = 0f;
+    }
+
     public void GuardUp()
     {
         instance.isGuard = true;
@@ -39,7 +84,10 @@ public class Player : MonoBehaviour
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(65,0);
+        
+        playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
         playerShooting.Reload();
+        Debug.Log("Guard");        
     }
     public void GuardDown()
     {
@@ -48,10 +96,6 @@ public class Player : MonoBehaviour
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
-    }
-    void Update()
-    {
-        hpText.text = hp.ToString();
     }
 
     public void GetDamage(int damage)   
@@ -99,6 +143,7 @@ public class Player : MonoBehaviour
     {
         
         playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
+
         if(!isRange && !instance.isGuard)
         {
             Debug.Log("isGuard is " + instance.isGuard);
