@@ -36,10 +36,18 @@ public class PlayerShooting : MonoBehaviour {
     public GameObject meleeWeapon;
 
     public bool isInterval;
-    public float timeInterval = 1f;
-    private int weaponType;
-    private int curMagazineSize;
-    private int magazineSize;
+    [Tooltip("발사와 발사 사이 텀")]
+    private int firstWeaponType;
+    private int secondWeaponType;
+
+    public float firstWeaponTimeInterval = 1f;
+    public float secondWeaponTimeInterval = 1f;
+
+    private int curFirstWeaponMagazineSize;
+    private int curSecondWeaponMagazineSize;
+
+    private int firstWeaponMagazineMaxSize;
+    private int secondWeaponMagazineMaxSize;
 
     private void Awake()
     {
@@ -48,7 +56,7 @@ public class PlayerShooting : MonoBehaviour {
     }
     private void Update()
     {
-        //Debug.Log("Bullet left " + curMagazineSize);
+        //Debug.Log("Bullet left " + curFirstWeaponMagazineSize);
     }
     private void Start()
     {
@@ -61,14 +69,24 @@ public class PlayerShooting : MonoBehaviour {
         playerScript = gameObject.GetComponent<Player>();
         
         List<Dictionary<string,object>> weaponData = CSVReader.Read ("WeaponInfo");
-        int weaponID = DataController.Instance.gameData.androidEquipment[0];
-        weaponType = (int)weaponData[weaponID]["weaponType"];
-        timeInterval = (float)weaponData[weaponID]["intervalTime"];
-        magazineSize = (int)weaponData[weaponID]["maxMagazine"];
-        Debug.Log("weaponType is " + weaponType);
-        Debug.Log("timeInterval is " + timeInterval);
+        int firstWeaponID = DataController.Instance.gameData.androidEquipment[0];
+        int secondWeaponID = DataController.Instance.gameData.androidEquipment[1];
 
-        curMagazineSize = magazineSize;
+        firstWeaponType = (int)weaponData[firstWeaponID]["weaponType"];
+        secondWeaponType = (int)weaponData[secondWeaponID]["weaponType"];
+        
+        firstWeaponTimeInterval = (float)weaponData[firstWeaponID]["intervalTime"];
+        secondWeaponTimeInterval = (float)weaponData[secondWeaponID]["intervalTime"];
+
+        firstWeaponMagazineMaxSize = (int)weaponData[firstWeaponID]["maxMagazine"];
+        secondWeaponMagazineMaxSize = (int)weaponData[secondWeaponID]["maxMagazine"];
+
+        curFirstWeaponMagazineSize = firstWeaponMagazineMaxSize;
+        curSecondWeaponMagazineSize = secondWeaponMagazineMaxSize;
+
+        //Debug.Log("1weaponType is " + firstWeaponType);
+        //Debug.Log("2weaponType is " + secondWeaponType);
+        //Debug.Log("timeInterval is " + firstWeaponTimeInterval);
 
         meleeWeapon.SetActive(false);
         
@@ -81,19 +99,36 @@ public class PlayerShooting : MonoBehaviour {
         //Invoke("TimeReset", 0.15f);
     }
     */
-    public void Reload()
+    public void Reload(bool isFirst)
     {
-        curMagazineSize = magazineSize;
-        Debug.Log("Reloaded!");
+        if(isFirst)
+        {
+            curFirstWeaponMagazineSize = firstWeaponMagazineMaxSize;
+            Debug.Log("111Reloaded!");
+        }
+        else
+        {
+            curFirstWeaponMagazineSize = firstWeaponMagazineMaxSize;
+            curSecondWeaponMagazineSize = secondWeaponMagazineMaxSize;    
+            Debug.Log("222Reloaded!");
+        }
+        
     }
-    public void RangeAttack()
+    public void RangeAttack(bool isFirst)
     {
-        if(!isInterval && curMagazineSize > 0)
+        if(!isInterval && curFirstWeaponMagazineSize > 0 && isFirst)
         {
             isInterval = true;
-            Debug.Log("RangeAttack");
+            Debug.Log("FirstWeaponAttack");
             MakeAShot();
-            Invoke("RestoreInterval",timeInterval);
+            Invoke("RestoreInterval",firstWeaponTimeInterval);
+        }
+        else if(!isInterval && curFirstWeaponMagazineSize > 0)
+        {
+            isInterval = true;
+            Debug.Log("SecondWeaponAttack");
+            MakeAShot();
+            Invoke("RestoreInterval",secondWeaponTimeInterval);
         }
     }
 
@@ -128,7 +163,7 @@ public class PlayerShooting : MonoBehaviour {
 
     void CreateShot(GameObject lazer, Vector3 pos, Vector3 rot) //translating 'pooled' lazer shot to the defined position in the defined rotation
     {  
-        if(curMagazineSize > 0)
+        if(curFirstWeaponMagazineSize > 0)
         {
             var newBullet = Instantiate(lazer, pos,Quaternion.Euler(rot));
             GameObject combatScreen = GameObject.Find("CombatScreen");
@@ -137,7 +172,7 @@ public class PlayerShooting : MonoBehaviour {
             {
                 t.Translate(Vector3.right * fireRate * Time.deltaTime);
             };
-            curMagazineSize -= 1;
+            curFirstWeaponMagazineSize -= 1;
         }
         else
         {

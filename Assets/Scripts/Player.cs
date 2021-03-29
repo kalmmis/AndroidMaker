@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public PlayerShooting playerShooting;
 
     public bool isInvincible = false;
-    public bool isFirstweapon = true;
+    public bool isFirstWeapon = true;
     public bool isGuard = false;
     public bool isHold = false;
 
@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
 
                 if(inputTimer > reloadDelay)
                 {
-                    playerShooting.Reload();
+                    playerShooting.Reload(isFirstWeapon);
                     reloadSlider.SetActive(false);
                 }
             }
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
         shieldTransform.anchoredPosition = new Vector2(65,0);
         playerImage.sprite = playerGuardImage;
         
-        Debug.Log("Guard");        
+        //Debug.Log("Guard");        
     }
     public void GuardDown()
     {
@@ -165,15 +165,15 @@ public class Player : MonoBehaviour
         isInvincible = false;
     }
 
-    public void ShiftAttackRange()
+    public void ShiftWeapon()
     {
-        if(isFirstweapon)
+        if(isFirstWeapon)
         {
-            isFirstweapon = false;
+            isFirstWeapon = false;
         }
         else
         {
-            isFirstweapon = true;
+            isFirstWeapon = true;
         }
     }
 
@@ -189,15 +189,10 @@ public class Player : MonoBehaviour
         // 왜 그럴까? 공부해 보자.
         // + 메서드에서 find 로 찾아오고 있는데 이 구조를 어떻게 바꾸면 현명할 지 고민해 보자.
 
-        if(!isFirstweapon && !instance.isGuard)
-        {
-            Debug.Log("isGuard is " + instance.isGuard);
-            playerShooting.MeleeAttack();
-        }
-        else if(!instance.isGuard)
+        if(!instance.isGuard)
         {            
-            Debug.Log("isGuard is " + instance.isGuard);
-            playerShooting.RangeAttack();
+            //Debug.Log("isGuard is " + instance.isGuard);
+            playerShooting.RangeAttack(isFirstWeapon);
         }
 
     }
