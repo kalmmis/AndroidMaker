@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public bool isInvincible;
-    public bool isFirstweapon = true;
     public static Player instance;
+    public PlayerShooting playerShooting;
+
+    public bool isInvincible = false;
+    public bool isFirstweapon = true;
     public bool isGuard = false;
-    PlayerShooting playerShooting;
+    public bool isHold = false;
 
     public Text hpText;
     public int maxHp;
@@ -18,14 +20,12 @@ public class Player : MonoBehaviour
     private float hpPercentage;
 
     public float inputTimer;
-    //public float startTime;
     public float guardDelay = .3f;
     public float reloadDelay = 2f;
 
     public GameObject reloadSlider;
     private float reloadPercentage;
 
-    public bool isHold = false;
     
     public GameObject shield;
     public Image playerImage;
@@ -41,11 +41,24 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        shield = GameObject.FindGameObjectWithTag("Shield");
+        //shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
-        hpText = GameObject.FindGameObjectWithTag("Player").transform.Find("HP").GetComponent<Text>();
-        playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
+        // 쉴드 위치 잡아줌
+
+        //hpText = GameObject.FindGameObjectWithTag("Player").transform.Find("HP").GetComponent<Text>();
+        //find 사용 안 하고 인스펙터로 연결해줌
+
+        //playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
+        playerShooting = this.GetComponent<PlayerShooting>();
+        // Player(Clone) Fine 하던 거 this 로 찾아서 할당
+        // 그런데 결국 Attack 에서 Find 써서 Player 클론을 찾아주고 있음
+        // 그렇게 안 하면 palyerShooting 이 안 불림. 왠지 잘 모르겠네.
+        // Start 에서 선언 안 해주면 Update 에서 에러가 남
+        // 그렇다는 건 Awake Start Update 는 하나의 쓰레드로 묵여 있는 것일까?
+        // Attack 처럼 내가 새로 만든 함수에선 Start 에서 선언해둔 메모리가 참조가 되지 않는다.
+        // 이 부분에 대한 공부가 좀 더 필요할 듯.
+
         reloadSlider.SetActive(false);
         playerImage = GameObject.FindGameObjectWithTag("Player").transform.Find("PlayerImage").GetComponent<Image>();
     }
@@ -57,6 +70,10 @@ public class Player : MonoBehaviour
         //Debug.Log("hp is " + instance.hp + " max is " + maxHp);
         //Debug.Log(hpPercentage);
         hpSlider.GetComponent<Slider>().value = hpPercentage;
+        // 체력 바 슬라이드 보여주는 곳. damage 함수에서만 갱신해줘도 될 수도 있는데
+        // 일단 현재는 update 에 넣어놨음
+        // 요 세 줄만 함수 하나로 빼서 damage 관련에서 계속 부르는 것도 가능은 할 듯
+
         //Debug.Log("isHold is " + isHold);
         if (isHold)
         {
@@ -66,7 +83,6 @@ public class Player : MonoBehaviour
 
             //Debug.Log("inputTimer is " + inputTimer);
             inputTimer += Time.deltaTime;
-            //if(inputTimer > (startTime + guardDelay))
             if(inputTimer > guardDelay)
             {
                 GuardUp();
@@ -82,15 +98,13 @@ public class Player : MonoBehaviour
         {
             GuardDown();
             reloadSlider.SetActive(false);
-            inputTimer = 0;
-            //startTime = 0;
+            inputTimer = 0f;
         }
 
     }
     public void HoldDown()
     {
         inputTimer = Time.time;
-        //startTime = inputTimer;
         instance.isHold = true;
         //Debug.Log("isHold is " + isHold);
     }
@@ -99,14 +113,13 @@ public class Player : MonoBehaviour
     {
         instance.isHold = false;
         //inputTimer = 0f;
-        //startTime = 0f;
     }
 
     public void GuardUp()
     {
         instance.isGuard = true;
         instance.isInvincible = true;
-        shield = GameObject.FindGameObjectWithTag("Shield");
+        //shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(65,0);
         playerImage.sprite = playerGuardImage;
@@ -117,7 +130,7 @@ public class Player : MonoBehaviour
     {
         instance.isGuard = false;
         instance.isInvincible = false;
-        shield = GameObject.FindGameObjectWithTag("Shield");
+        //shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
         playerImage.sprite = playerBattleIdleImage;
@@ -168,6 +181,13 @@ public class Player : MonoBehaviour
     {
         
         playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
+        //playerShooting = this.GetComponent<PlayerShooting>();
+        // find 로 받지 않으려고 this 로 바꿔 봄.
+        // 이것 때문에 playerShooting 에서 start가 안 불리는 걸까.
+        // 실제로 this 로 변경해서 실행 시 코루틴에서 player 를 못 찾는 걸 보니 맞는 듯 
+        // Start 에서 playerShooting 을 선언해 줘도 Attack 같은 메소드는 그걸 주워오지 못한다.
+        // 왜 그럴까? 공부해 보자.
+        // + 메서드에서 find 로 찾아오고 있는데 이 구조를 어떻게 바꾸면 현명할 지 고민해 보자.
 
         if(!isFirstweapon && !instance.isGuard)
         {

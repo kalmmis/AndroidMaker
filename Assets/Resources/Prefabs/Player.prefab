@@ -5255,7 +5255,7 @@ MonoBehaviour:
   reloadDelay: 2
   reloadSlider: {fileID: 1673684545527401098}
   isHold: 0
-  shield: {fileID: 0}
+  shield: {fileID: 5628732184823687556}
   playerImage: {fileID: 0}
   playerGuardImage: {fileID: 21300000, guid: 237f775e23e5bb549883d4e42df5daef, type: 3}
   playerBattleIdleImage: {fileID: 21300000, guid: be9163251242449459d6b23c0328739d,
@@ -15354,6 +15354,12 @@ PrefabInstance:
 --- !u!224 &2833292196304737971 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 697433331267623579, guid: 522ba1a00988ec74695c10ce8772cde1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3385624823527377960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5628732184823687556 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6980968440582464940, guid: 522ba1a00988ec74695c10ce8772cde1,
     type: 3}
   m_PrefabInstance: {fileID: 3385624823527377960}
   m_PrefabAsset: {fileID: 0}
