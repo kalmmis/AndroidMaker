@@ -58,7 +58,7 @@ public class AdventureController : MonoBehaviour
             combatScreen = GameObject.Find("CombatScreen");
             p.transform.SetParent(combatScreen.transform);
             RectTransform rectTransform = p.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(100,0);
+            rectTransform.anchoredPosition = new Vector2(200,0);
             p.isInvincible = true;
             int lv = DataController.Instance.gameData.androidLv;
             DataController dc = GameObject.Find("DataController").GetComponent<DataController>();

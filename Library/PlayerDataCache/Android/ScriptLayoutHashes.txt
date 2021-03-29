@@ -1,12 +1,12 @@
 Android
 PlayerPath?
-C:/GitHub/AndroidMaker/20210321 AndroidMaker.apk
+C:/GitHub/AndroidMaker/20210328 AndroidMaker.apk
 SceneListBegin?
 Assets/Scenes/MainScene.unity
 SceneListEnd?
 611a39660fede89bedd0158c6b66994c Assembly-CSharp.dll:.GameManager
 3c08375166df118bd1801438fc36b92f Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
-c41907d9d95ecb9cb4d0ae304781de7d Assembly-CSharp.dll:.Player
+60c6db51442a4b35798f63f51fd28d46 Assembly-CSharp.dll:.Player
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.Effect
 77c21079ace8d76ce6e941d3dabbfe6e Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -57,7 +57,7 @@ abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.Tou
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 3cc3e470ed8790b96f9ab810222aae22 Assembly-CSharp.dll:.Enemy
 d3c76b14a25eebd3a3323dd43297919c Unity.TextMeshPro.dll:TMPro.TMP_InputField
-accbd84234b73f0ad781c8c4e2d03646 Assembly-CSharp.dll:.PlayerShooting
+291dda14a346a4f4df5581eb7275ac52 Assembly-CSharp.dll:.PlayerShooting
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 507174d46dacbc5fe45e28485db5dd1e UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -120,6 +120,7 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+874a56f4262e096de012b22dfbbb4fe7 Assembly-CSharp.dll:.MeleeWeapon
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.InventoryController

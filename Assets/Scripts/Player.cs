@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
     public bool isHold = false;
     
     public GameObject shield;
+    public Image playerImage;
+    public Sprite playerGuardImage;
+    public Sprite playerBattleIdleImage;
     // Start is called before the first frame update
 
     private void Awake()
@@ -44,6 +47,7 @@ public class Player : MonoBehaviour
         hpText = GameObject.FindGameObjectWithTag("Player").transform.Find("HP").GetComponent<Text>();
         playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
         reloadSlider.SetActive(false);
+        playerImage = GameObject.FindGameObjectWithTag("Player").transform.Find("PlayerImage").GetComponent<Image>();
     }
    
     void Update()
@@ -105,7 +109,7 @@ public class Player : MonoBehaviour
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(65,0);
-        
+        playerImage.sprite = playerGuardImage;
         
         Debug.Log("Guard");        
     }
@@ -116,6 +120,7 @@ public class Player : MonoBehaviour
         shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
+        playerImage.sprite = playerBattleIdleImage;
     }
 
     public void GetDamage(int damage)   
