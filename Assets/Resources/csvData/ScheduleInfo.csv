@@ -1,0 +1,10 @@
+scheduleID,scheduleTitle,scheduleDesc,scheduleCategory,requireBuilingID,requireBuildingLv
+1,연구실 청소,,Study,1,1
+2,광산 작업,,Work,2,1
+3,장벽 순찰,,Combat,3,1
+4,휴식,,Rest,1,1
+5,호문 관찰,,Study,4,1
+6,농사,,Work,5,1
+,,,,,
+,,,,,
+,,,,,

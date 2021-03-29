@@ -13,7 +13,8 @@ public class CSVReader
     public static List<Dictionary<string, object>> Read(string file)
     {
         var list = new List<Dictionary<string, object>>();
-        TextAsset data = Resources.Load (file) as TextAsset;
+        string path = "csvData/";
+        TextAsset data = Resources.Load (path + file) as TextAsset;
  
         var lines = Regex.Split (data.text, LINE_SPLIT_RE);
  

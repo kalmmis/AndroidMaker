@@ -60,11 +60,11 @@ public class PlayerShooting : MonoBehaviour {
 
         playerScript = gameObject.GetComponent<Player>();
         
-        List<Dictionary<string,object>> gunData = CSVReader.Read ("GunInfo");
+        List<Dictionary<string,object>> weaponData = CSVReader.Read ("WeaponInfo");
         int weaponID = DataController.Instance.gameData.androidEquipment[0];
-        weaponType = (int)gunData[weaponID]["gunType"];
-        timeInterval = (float)gunData[weaponID]["intervalTime"];
-        magazineSize = (int)gunData[weaponID]["maxMagazine"];
+        weaponType = (int)weaponData[weaponID]["weaponType"];
+        timeInterval = (float)weaponData[weaponID]["intervalTime"];
+        magazineSize = (int)weaponData[weaponID]["maxMagazine"];
         Debug.Log("weaponType is " + weaponType);
         Debug.Log("timeInterval is " + timeInterval);
 
@@ -111,16 +111,12 @@ public class PlayerShooting : MonoBehaviour {
 
     public IEnumerator ShotSMG()
     {
-        
-        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
-        yield return new WaitForSecondsRealtime(.03f);
-        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
-        yield return new WaitForSecondsRealtime(.03f);
-        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
-        yield return new WaitForSecondsRealtime(.03f);
-        CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
-        yield return new WaitForSecondsRealtime(.05f);
-        
+        var wait = new WaitForSecondsRealtime(.03f);
+        for(int i = 0; i < 3; i++)
+        {
+            CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+            yield return wait;
+        }
     }
 
     /*

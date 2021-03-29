@@ -13,9 +13,9 @@ public class Projectile : MonoBehaviour {
     {
         // 장착하고 있는 총 (이큅0번)의 id 의 gunATK를 가져와 damage에 넣어준다.
         // 즉, GunInfo 의 gunATK 가 총알 하나하나의 damage가 된다. 
-        int weaponID = DataController.Instance.gameData.androidEquipment[0];
-        List<Dictionary<string,object>> gunData = CSVReader.Read ("GunInfo");
-        damage = (int)gunData[weaponID]["gunATK"];
+        int curWeaponID = DataController.Instance.gameData.androidEquipment[0];
+        List<Dictionary<string,object>> gunData = CSVReader.Read ("WeaponInfo");
+        damage = (int)gunData[curWeaponID]["ATK"];
     }
 
     private void OnTriggerEnter2D(Collider2D collision) //when a projectile collides with another object
