@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
         if(!isGuard)
         {            
             //Debug.Log("isGuard is " + instance.isGuard);
-            playerShooting.RangeAttack(isFirstWeapon);
+            playerShooting.AttemptAttack(isFirstWeapon);
         }
 
     }

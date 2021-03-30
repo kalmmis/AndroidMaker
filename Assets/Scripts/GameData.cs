@@ -19,7 +19,7 @@ public class GameData
     public int androidLv = 1;
     public int[] androidLifeStatus = new int[9] {10, 10, 10, 10, 10, 10, 10, 10, 10};
     public int[] androidCombatStatus = new int[9] {10, 10, 10, 10, 10, 10, 10, 10, 10};
-    public int[] androidEquipment = new int[4] {1, 0, 0, 0}; // 무기, 머리, 상의, 하의
+    public int[] androidEquipment = new int[5] {1, 2, 0, 0, 0}; // 1st무기, 2nd무기, 머리, 상의, 하의
 
 /*  Life Status 일람
     public int Strength = 10; // 근력, 부품 교체 등의 아이템을 통해서만 증가 가능

@@ -104,16 +104,16 @@ public class PlayerShooting : MonoBehaviour {
         if(isFirst)
         {
             curFirstWeaponMagazineSize = firstWeaponMagazineMaxSize;
-            Debug.Log("111Reloaded!");
+            //Debug.Log("111Reloaded!");
         }
         else
         {
             curSecondWeaponMagazineSize = secondWeaponMagazineMaxSize;    
-            Debug.Log("222Reloaded!");
+            //Debug.Log("222Reloaded!");
         }
         
     }
-    public void RangeAttack(bool isFirst)
+    public void AttemptAttack(bool isFirst)
     {
         /*
         if(!isInterval && curFirstWeaponMagazineSize > 0 && isFirst)
@@ -131,15 +131,20 @@ public class PlayerShooting : MonoBehaviour {
             Invoke("RestoreInterval",secondWeaponTimeInterval);
         }
         */
-        if(!isInterval)
+        if(!isInterval && isFirst)
         {
             isInterval = true;
-            MakeAShot(isFirst);
+            MakeAttack(isFirst, firstWeaponType);
             Invoke("RestoreInterval",firstWeaponTimeInterval);
         }
+        else if(!isInterval && !isFirst)
+        {
+            isInterval = true;
+            MakeAttack(isFirst, secondWeaponType);
+            Invoke("RestoreInterval",secondWeaponTimeInterval);
+        }
         // 남은 탄환 수는 createshot 에서 체크하는 중이니 필요 없음
-        // isFirst 도 MakeAshot 으로 보내줄 거라 필요 없음
-        // 여기선 인터벌 중인지만 체크함
+        // 여기선 인터벌 중인지만 체크하고 현재 들고 있는 무기 타입을 체크해서 보내줌.
         // 플레이어가 총을 쏘려는데 총이 반동 중인지 보는 곳이라고 생각하면 됨.
     }
 
@@ -149,16 +154,44 @@ public class PlayerShooting : MonoBehaviour {
     }
 
     //method for a shot
-    public void MakeAShot(bool isFirst) 
+    public void MakeAttack(bool isFirst, int weaponT) 
     {
         //Debug.Log("firstWeaponType is " + firstWeaponType + "secondWeaponType is " + secondWeaponType);
         
-        //if(isFirst)
+        if(isFirst)
+        {
+            Debug.Log("firstWeaponType is " + weaponT);
+        }
+        else
+        {
+            Debug.Log("secondWeaponType is " + weaponT);
+        }
+
         //  switch case(type = 0)
         //여기선 첫번째 무기인지 두번째 무기인지 판단하고 해당 무기 타입에 따라서 각자 다른 함수를 보내줄 것임
         //즉, 어떤 무기로 쏠 건지 체크하는 곳임
+        
+        switch (weaponT)
+        {
+            case 0 :
+                StartCoroutine(SwingWeapon());
+                break;
 
-        StartCoroutine(ShotSMG(isFirst));
+            case 1 :
+                StartCoroutine(ShotSMG(isFirst));
+                break;
+
+        }        
+
+        
+    }
+
+    public IEnumerator SwingWeapon()
+    {
+        //Debug.Log("MeleeAttack");
+        meleeWeapon.SetActive(true);
+        yield return new WaitForSecondsRealtime(.1f);
+        meleeWeapon.SetActive(false);
     }
 
     public IEnumerator ShotSMG(bool isFirst)
@@ -206,20 +239,5 @@ public class PlayerShooting : MonoBehaviour {
         // 일단 구현에 집중하느라 여기서 탄환 수를 관리하고 있는데
         // 사실 각 총기를 클래스화해서 관리되는 게 맞을 것 같다.
         // 나중에 고쳐보자.
-    }
-
-
-
-    public void MeleeAttack() 
-    {
-        StartCoroutine(SwingWeapon());
-    }
-    
-    public IEnumerator SwingWeapon()
-    {
-        Debug.Log("MeleeAttack");
-        meleeWeapon.SetActive(true);
-        yield return new WaitForSecondsRealtime(.03f);
-        meleeWeapon.SetActive(false);
     }
 }
