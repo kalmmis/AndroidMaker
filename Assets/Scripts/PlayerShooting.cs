@@ -35,7 +35,7 @@ public class PlayerShooting : MonoBehaviour {
     public Guns guns;
     public GameObject meleeWeapon;
 
-    public bool isInterval;
+    public static bool isInterval = false;
     [Tooltip("발사와 발사 사이 텀")]
     private int firstWeaponType;
     private int secondWeaponType;
@@ -108,7 +108,6 @@ public class PlayerShooting : MonoBehaviour {
         }
         else
         {
-            curFirstWeaponMagazineSize = firstWeaponMagazineMaxSize;
             curSecondWeaponMagazineSize = secondWeaponMagazineMaxSize;    
             Debug.Log("222Reloaded!");
         }
@@ -116,6 +115,7 @@ public class PlayerShooting : MonoBehaviour {
     }
     public void RangeAttack(bool isFirst)
     {
+        /*
         if(!isInterval && curFirstWeaponMagazineSize > 0 && isFirst)
         {
             isInterval = true;
@@ -130,6 +130,17 @@ public class PlayerShooting : MonoBehaviour {
             MakeAShot();
             Invoke("RestoreInterval",secondWeaponTimeInterval);
         }
+        */
+        if(!isInterval)
+        {
+            isInterval = true;
+            MakeAShot(isFirst);
+            Invoke("RestoreInterval",firstWeaponTimeInterval);
+        }
+        // 남은 탄환 수는 createshot 에서 체크하는 중이니 필요 없음
+        // isFirst 도 MakeAshot 으로 보내줄 거라 필요 없음
+        // 여기선 인터벌 중인지만 체크함
+        // 플레이어가 총을 쏘려는데 총이 반동 중인지 보는 곳이라고 생각하면 됨.
     }
 
     void RestoreInterval()
@@ -138,18 +149,24 @@ public class PlayerShooting : MonoBehaviour {
     }
 
     //method for a shot
-    public void MakeAShot() 
+    public void MakeAShot(bool isFirst) 
     {
-        //if(isSMG)
-        StartCoroutine(ShotSMG());
+        //Debug.Log("firstWeaponType is " + firstWeaponType + "secondWeaponType is " + secondWeaponType);
+        
+        //if(isFirst)
+        //  switch case(type = 0)
+        //여기선 첫번째 무기인지 두번째 무기인지 판단하고 해당 무기 타입에 따라서 각자 다른 함수를 보내줄 것임
+        //즉, 어떤 무기로 쏠 건지 체크하는 곳임
+
+        StartCoroutine(ShotSMG(isFirst));
     }
 
-    public IEnumerator ShotSMG()
+    public IEnumerator ShotSMG(bool isFirst)
     {
         var wait = new WaitForSecondsRealtime(.03f);
         for(int i = 0; i < 3; i++)
         {
-            CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero);
+            CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero, isFirst);
             yield return wait;
         }
     }
@@ -161,9 +178,9 @@ public class PlayerShooting : MonoBehaviour {
     }
     */
 
-    void CreateShot(GameObject lazer, Vector3 pos, Vector3 rot) //translating 'pooled' lazer shot to the defined position in the defined rotation
+    void CreateShot(GameObject lazer, Vector3 pos, Vector3 rot, bool isFirst) //translating 'pooled' lazer shot to the defined position in the defined rotation
     {  
-        if(curFirstWeaponMagazineSize > 0)
+        if(isFirst && curFirstWeaponMagazineSize > 0)
         {
             var newBullet = Instantiate(lazer, pos,Quaternion.Euler(rot));
             GameObject combatScreen = GameObject.Find("CombatScreen");
@@ -174,10 +191,21 @@ public class PlayerShooting : MonoBehaviour {
             };
             curFirstWeaponMagazineSize -= 1;
         }
-        else
+        else if(!isFirst && curSecondWeaponMagazineSize > 0)
         {
-            Debug.Log("Magazine is empty");
+            var newBullet = Instantiate(lazer, pos,Quaternion.Euler(rot));
+            GameObject combatScreen = GameObject.Find("CombatScreen");
+            newBullet.transform.SetParent(combatScreen.transform);
+            newBullet.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+            {
+                t.Translate(Vector3.right * fireRate * Time.deltaTime);
+            };
+            curSecondWeaponMagazineSize -= 1;
         }
+
+        // 일단 구현에 집중하느라 여기서 탄환 수를 관리하고 있는데
+        // 사실 각 총기를 클래스화해서 관리되는 게 맞을 것 같다.
+        // 나중에 고쳐보자.
     }
 
 

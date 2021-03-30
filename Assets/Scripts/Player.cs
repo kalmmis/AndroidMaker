@@ -8,10 +8,10 @@ public class Player : MonoBehaviour
     public static Player instance;
     public PlayerShooting playerShooting;
 
-    public bool isInvincible = false;
-    public bool isFirstWeapon = true;
-    public bool isGuard = false;
-    public bool isHold = false;
+    public static bool isInvincible = true;
+    public static bool isFirstWeapon = true;
+    public static bool isGuard = false;
+    public static bool isHold = false;
 
     public Text hpText;
     public int maxHp;
@@ -105,20 +105,20 @@ public class Player : MonoBehaviour
     public void HoldDown()
     {
         inputTimer = Time.time;
-        instance.isHold = true;
+        isHold = true;
         //Debug.Log("isHold is " + isHold);
     }
 
     public void HoldUP()
     {
-        instance.isHold = false;
+        isHold = false;
         //inputTimer = 0f;
     }
 
     public void GuardUp()
     {
-        instance.isGuard = true;
-        instance.isInvincible = true;
+        isGuard = true;
+        isInvincible = true;
         //shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(65,0);
@@ -128,8 +128,8 @@ public class Player : MonoBehaviour
     }
     public void GuardDown()
     {
-        instance.isGuard = false;
-        instance.isInvincible = false;
+        isGuard = false;
+        isInvincible = false;
         //shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
         // 왜 그럴까? 공부해 보자.
         // + 메서드에서 find 로 찾아오고 있는데 이 구조를 어떻게 바꾸면 현명할 지 고민해 보자.
 
-        if(!instance.isGuard)
+        if(!isGuard)
         {            
             //Debug.Log("isGuard is " + instance.isGuard);
             playerShooting.RangeAttack(isFirstWeapon);
