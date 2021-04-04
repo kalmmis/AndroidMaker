@@ -26,11 +26,12 @@ public class Player : MonoBehaviour
     public GameObject reloadSlider;
     private float reloadPercentage;
 
-    
     public GameObject shield;
     public Image playerImage;
     public Sprite playerGuardImage;
     public Sprite playerBattleIdleImage;
+
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -40,7 +41,9 @@ public class Player : MonoBehaviour
     }
 
     private void Start()
-    {
+    {        
+        Enemy.isExistTarget = true;
+        AdventureController.isPlayerAlive = true;
         //shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
@@ -153,10 +156,18 @@ public class Player : MonoBehaviour
         
     void Destruction()
     {
-        Debug.Log("Destroy Player");
+        //Debug.Log("Destroy Player");
         Destroy(gameObject);
         //destrunctionCall = true;
         gameObject.SetActive(false);
+        AdventureController ac = GameObject.Find("AdventureController").GetComponent<AdventureController>();
+        ac.Lose();
+        // Find 하기 싫은데... 그냥 Tag 달고 FindTag 해야 하나
+        // 구조를 잘못 잡은 게 문제겠지만 숙제로 남겨둠
+        Enemy.isExistTarget = false;
+        // 얘는 왜 그냥 되냐... static 이라 그런가...
+        // 그럼 ac.Lose() 를 static 메소드로 만들면 될 거 같은데 그게 왜 안되냐.
+        AdventureController.isPlayerAlive = false;
     }
 
     public IEnumerator RemoveInvincible(float delay)

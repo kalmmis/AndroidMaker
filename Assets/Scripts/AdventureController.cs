@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AdventureController : MonoBehaviour
 {
     private GameObject combatUI;
+    //[HideInInspector]
+    public GameObject resultPopUp;
     public Player player;
+    public static bool isPlayerAlive = true;
 
     public float invincibleTime = 3f;
-    public string enemyType = "EnemyA";
+    //public string enemyType = "EnemyA";
     
+    public Text ResultText;
+
+
     public void StartPlayer()
     {
         StartCoroutine(InitPlayer(.1f));
@@ -50,6 +57,10 @@ public class AdventureController : MonoBehaviour
             rectTransform.anchoredPosition = new Vector2(2800,0);
             
             yield return new WaitForSeconds(delay);
+            if (!isPlayerAlive)
+            {
+                break;
+            }
         }
     }
 
@@ -83,6 +94,35 @@ public class AdventureController : MonoBehaviour
         combatUI = GameObject.FindGameObjectWithTag("CombatUI");
         RectTransform rectTransform = combatUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(0,0);
+        //Win();
+    }
+
+    public void Win()
+    {
+        LoadingResultPopUp();
+        ResultText.text = "Win";
+        Debug.Log("Win");
+    }
+
+    public void Lose()
+    {
+        LoadingResultPopUp();
+        Debug.Log("Lose");
+        ResultText.text = "Lose";
+    }
+
+    public void LoadingResultPopUp()
+    {
+        RectTransform rectTransform = resultPopUp.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(0,0);
+    }
+
+    public void CloseResultPopUP()
+    {
+        RectTransform rectTransform = resultPopUp.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(-3000,0);
+        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gm.ActiveHome();
     }
 
     // Update is called once per frame

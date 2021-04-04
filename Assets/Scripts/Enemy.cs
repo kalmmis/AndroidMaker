@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public string type;
     public int enemyATK;
     public int isBoss;
+    public static bool isExistTarget;
 
     public GameObject destructionVFX;
     public GameObject destructionSound;
@@ -30,7 +31,7 @@ public class Enemy : MonoBehaviour
         //StartCoroutine(GetPattern());
         enemyShooting = gameObject.GetComponent<EnemyShooting>();
         enemyMoving = true;
-        
+        isExistTarget = true;
         StartCoroutine(ActivateEnemy());
     }
 
@@ -58,20 +59,20 @@ public class Enemy : MonoBehaviour
     //coroutine making a shot
     IEnumerator ActivateEnemy()
     {
-        while (enemyMoving)
+        while (enemyMoving && isExistTarget)
         {
             {
                 enemyShooting.EnemyMove();
                 yield return new WaitForSeconds(.1f);
             }
         }
-        while (!enemyMoving)
+        while (!enemyMoving && isExistTarget)
         {
             {
                 enemyShooting.MakeAShot();
                 yield return new WaitForSeconds(2);
             }
-        }        
+        }
     }
     
     public void Attack()
@@ -123,6 +124,12 @@ public class Enemy : MonoBehaviour
             Destroy(obj);
         }
         Destroy(gameObject);
+
+        if (isBoss == 1)
+        {
+            AdventureController ac = GameObject.Find("AdventureController").GetComponent<AdventureController>();
+            ac.Win();
+        }
     }
 
 }

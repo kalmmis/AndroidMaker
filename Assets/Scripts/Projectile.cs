@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-    public int damage = 1; // 혹시 값 안 들어오면 1로 초기값
+    public int playerDamage = 1; // 혹시 값 안 들어오면 1로 초기값
+    public int enemyDamage = 1;
     public bool enemyBullet;
     public bool destroyedByCollision;
 
@@ -15,7 +16,7 @@ public class Projectile : MonoBehaviour {
         // 즉, GunInfo 의 gunATK 가 총알 하나하나의 damage가 된다. 
         int curWeaponID = DataController.Instance.gameData.androidEquipment[0];
         List<Dictionary<string,object>> gunData = CSVReader.Read ("WeaponInfo");
-        damage = (int)gunData[curWeaponID]["ATK"];
+        playerDamage = (int)gunData[curWeaponID]["ATK"];
     }
 
     private void OnTriggerEnter2D(Collider2D collision) //when a projectile collides with another object
@@ -23,14 +24,14 @@ public class Projectile : MonoBehaviour {
         if (enemyBullet && collision.tag == "Player") //if anoter object is 'player' or 'enemy sending the command of receiving the damage
         {
             //damage = 1;
-            Player.instance.GetDamage(damage); 
+            Player.instance.GetDamage(enemyDamage); 
             if (destroyedByCollision)
                 Destruction();
         }
         else if (!enemyBullet && collision.tag == "Enemy")
         {
             //damage = 1;
-            collision.GetComponent<Enemy>().GetDamage(damage);
+            collision.GetComponent<Enemy>().GetDamage(playerDamage);
             //Debug.Log("hit");
             if (destroyedByCollision)
                 Destruction();
