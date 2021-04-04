@@ -22,19 +22,26 @@ public class AdventureController : MonoBehaviour
     {
         
         List<Dictionary<string,object>> stageData = CSVReader.Read ("Stage01");
+        List<Dictionary<string,object>> enemyData = CSVReader.Read ("EnemyInfo");
         GameObject combatScreen;
 
         for (int i = 0; i < stageData.Count; i++)
         {
             //스테이지에서 적들이 순서대로 나오는데 그 딜레이와 타입
             int delay = (int)stageData[i]["delay"]; 
-            string enemyType = (string)stageData[i]["enemyType"]; 
+            int enemyID = (int)stageData[i]["enemyID"]; 
+            string enemyType = (string)enemyData[enemyID]["enemyType"]; 
 
-            Debug.Log(enemyType);
+            //Debug.Log(enemyType);
 
             // 프리팹 파일명을 기준으로 적을 찾아서 인스턴시에이트해줌
             var newEnemy = Instantiate(Resources.Load("Prefabs/" + enemyType), new Vector2(0, 0), Quaternion.identity) as GameObject;
-            //Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+            
+            
+            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+            enemyScript.hp = (int)enemyData[enemyID]["enemyHP"]; 
+            enemyScript.enemyATK = (int)enemyData[enemyID]["enemyATK"]; 
+            enemyScript.isBoss = (int)enemyData[enemyID]["isBoss"]; 
 
             // 인스턴시에이트해 준 적을 캔버스의 정상적 위치에 넣어줌
             combatScreen = GameObject.Find("CombatScreen");

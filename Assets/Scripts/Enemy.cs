@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     #region FIELDS
     public int hp;
     public string type;
+    public int enemyATK;
+    public int isBoss;
 
     public GameObject destructionVFX;
     public GameObject destructionSound;
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour
         //StartCoroutine(GetPattern());
         enemyShooting = gameObject.GetComponent<EnemyShooting>();
         enemyMoving = true;
+        
         StartCoroutine(ActivateEnemy());
     }
 

@@ -158,6 +158,7 @@ public class PlayerShooting : MonoBehaviour {
     {
         //Debug.Log("firstWeaponType is " + firstWeaponType + "secondWeaponType is " + secondWeaponType);
         
+        /*
         if(isFirst)
         {
             Debug.Log("firstWeaponType is " + weaponT);
@@ -166,6 +167,7 @@ public class PlayerShooting : MonoBehaviour {
         {
             Debug.Log("secondWeaponType is " + weaponT);
         }
+        */
 
         //  switch case(type = 0)
         //여기선 첫번째 무기인지 두번째 무기인지 판단하고 해당 무기 타입에 따라서 각자 다른 함수를 보내줄 것임
