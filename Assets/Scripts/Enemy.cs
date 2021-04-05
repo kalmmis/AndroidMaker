@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public int enemyATK;
     public int isBoss;
     public static bool isExistTarget;
+    public static int count = 0;
 
     public GameObject destructionVFX;
     public GameObject destructionSound;
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
         enemyMoving = true;
         isExistTarget = true;
         StartCoroutine(ActivateEnemy());
+        count++;
     }
 
     /*
@@ -124,11 +126,17 @@ public class Enemy : MonoBehaviour
             Destroy(obj);
         }
         Destroy(gameObject);
+        count--;
 
         if (isBoss == 1)
         {
             AdventureController ac = GameObject.Find("AdventureController").GetComponent<AdventureController>();
             ac.Win();
+        }
+        else if(count <= 0)
+        {
+            AdventureController ac = GameObject.Find("AdventureController").GetComponent<AdventureController>();
+            ac.DoStage();
         }
     }
 
