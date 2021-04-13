@@ -53,6 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Demo scene\DemoShooting.cs" />
+     <Compile Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Scripts\AutoDestroyPS.cs" />
+     <Compile Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Scripts\ProjectileMover.cs" />
      <Compile Include="Assets\Scripts\AdventureController.cs" />
      <Compile Include="Assets\Scripts\ClientData.cs" />
      <Compile Include="Assets\Scripts\CSVReader.cs" />
@@ -75,7 +78,17 @@
      <Compile Include="Assets\Scripts\ShelterController.cs" />
      <Compile Include="Assets\Scripts\StatusController.cs" />
      <Compile Include="Assets\Scripts\UpgradeController.cs" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\Blend_CenterGlow.shader" />
      <None Include="Assets\Resources\Sound\Sword Sound Effect Vol.1\1.Tracklist.txt" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\Add_CenterGlow.shader" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\Electricity.shader" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\Lit_CenterGlow.shader" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Demo scene\Readme.txt" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Prefabs\Readme.txt" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\Blend_TwoSides.shader" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\Add_Fresnel.shader" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\AddTrail.shader" />
+     <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Demo scene\HDRP and URP(LWRP).txt" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/GitHub/AndroidMaker/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
@@ -291,6 +304,15 @@
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
  <HintPath>C:/GitHub/AndroidMaker/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+ </Reference>
+ <Reference Include="DemiLib">
+ <HintPath>C:/GitHub/AndroidMaker/Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>C:/GitHub/AndroidMaker/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTweenPro">
+ <HintPath>C:/GitHub/AndroidMaker/Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/2018.4.19f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -637,6 +659,10 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>D:/2018.4.19f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{4B1A2008-0D6C-1A77-DC61-965BDBA55409}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
