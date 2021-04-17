@@ -20,6 +20,8 @@ public class ScheduleController : MonoBehaviour
 
     public static int[] weeklySchedule = new int[4]{0,0,0,0};
     public static bool isBattle = false;
+    List<Dictionary<string,object>> scheduleInfo;
+
 
     public void Start()
     {
@@ -27,6 +29,7 @@ public class ScheduleController : MonoBehaviour
         scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         EventUI = GameObject.FindGameObjectWithTag("EventUI");
+        scheduleInfo = CSVReader.Read ("ScheduleInfo");        
     }
 
     public void LoadingScheduleUI()
@@ -51,13 +54,13 @@ public class ScheduleController : MonoBehaviour
         int initTempID2 = weeklySchedule[1];
         int initTempID3 = weeklySchedule[2];
         int initTempID4 = weeklySchedule[3];
+        
+        //List<Dictionary<string,object>> scheduleInfo = CSVReader.Read ("ScheduleInfo");
 
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-
-        string initText1 = dc.clientData.scheduleTitle[initTempID1];
-        string initText2 = dc.clientData.scheduleTitle[initTempID2];
-        string initText3 = dc.clientData.scheduleTitle[initTempID3];
-        string initText4 = dc.clientData.scheduleTitle[initTempID4];
+        string initText1 = (string)scheduleInfo[initTempID1]["scheduleTitle"];
+        string initText2 = (string)scheduleInfo[initTempID2]["scheduleTitle"];
+        string initText3 = (string)scheduleInfo[initTempID3]["scheduleTitle"];
+        string initText4 = (string)scheduleInfo[initTempID4]["scheduleTitle"];        
 
         schedule1Text.text = initText1;
         schedule2Text.text = initText2;
@@ -72,12 +75,11 @@ public class ScheduleController : MonoBehaviour
         int initTempID3 = weeklySchedule[2];
         int initTempID4 = weeklySchedule[3];
 
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-
-        string initText1 = dc.clientData.scheduleTitle[initTempID1];
-        string initText2 = dc.clientData.scheduleTitle[initTempID2];
-        string initText3 = dc.clientData.scheduleTitle[initTempID3];
-        string initText4 = dc.clientData.scheduleTitle[initTempID4];
+        //List<Dictionary<string,object>> scheduleInfo = CSVReader.Read ("ScheduleInfo");
+        string initText1 = (string)scheduleInfo[initTempID1]["scheduleTitle"];
+        string initText2 = (string)scheduleInfo[initTempID2]["scheduleTitle"];
+        string initText3 = (string)scheduleInfo[initTempID3]["scheduleTitle"];
+        string initText4 = (string)scheduleInfo[initTempID4]["scheduleTitle"];
 
         schedule1Text.text = initText1;
         schedule2Text.text = initText2;
@@ -133,16 +135,14 @@ public class ScheduleController : MonoBehaviour
         {
             int[] scd = weeklySchedule;
             StartCoroutine (DoSchedule(scd));
-            //Debug.Log("confirm이 눌렸다");
-            //scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
         }
         else
         {
+            //GameManager를 static class 로 만들어야 하려나
             GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
             gm.ActiveAdventureTab();
         }
-        //GameManager를 static class 로 만들어서 Find 안 쓰게 해야 할 듯
-        
+
         RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(-3000,0);
     }

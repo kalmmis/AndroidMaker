@@ -32,18 +32,8 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        LoadMainUI();
-        LoadResources();
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        dc.LoadGameData(); 
-
-        //DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
-        //dia.DoStory(1);
-    }
-
-    public void LoadMainUI()
-    {
+    {        
+        InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
         ShelterUI = GameObject.FindGameObjectWithTag("ShelterUI");
         LearnUI = GameObject.FindGameObjectWithTag("LearnUI");
         equipmentUI = GameObject.FindGameObjectWithTag("EquipmentUI");
@@ -55,6 +45,22 @@ public class GameManager : MonoBehaviour
         laboScreen = GameObject.FindGameObjectWithTag("LaboScreen");
         combatScreen = GameObject.FindGameObjectWithTag("CombatScreen");
         statusUI = GameObject.FindGameObjectWithTag("StatusUI");
+        
+        ResourceText = InfoCanvasUI.transform.Find("ResourceText").GetComponent<Text>();
+        AndroidNameText = InfoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
+        TurnCountText = InfoCanvasUI.transform.Find("TurnCountText").GetComponent<Text>();
+
+        LoadMainUI();
+        LoadResources();
+
+        DataController.Instance.LoadGameData(); 
+
+        //DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
+        //dia.DoStory(1);
+    }
+
+    public void LoadMainUI()
+    {
 
         laboScreen.SetActive(true);
         ShelterUI.SetActive(false);
@@ -67,12 +73,6 @@ public class GameManager : MonoBehaviour
         androidUI.SetActive(false);
         combatScreen.SetActive(false);
         statusUI.SetActive(false);
-
-        InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
-        
-        ResourceText = InfoCanvasUI.transform.Find("ResourceText").GetComponent<Text>();
-        AndroidNameText = InfoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
-        TurnCountText = InfoCanvasUI.transform.Find("TurnCountText").GetComponent<Text>();
 
         AndroidNameText.text = DataController.Instance.gameData.characterName;
         TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
