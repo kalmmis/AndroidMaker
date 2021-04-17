@@ -183,8 +183,8 @@ public class AdventureController : MonoBehaviour
     {
         RectTransform rectTransform = resultPopUp.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(-3000,0);
-        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gm.ActiveHome();
+        GameManager.DoNextTurn();
+        GameManager.ActiveHome();
     }
 
     // Update is called once per frame

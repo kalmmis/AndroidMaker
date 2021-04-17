@@ -337,8 +337,8 @@ public class ShelterController : MonoBehaviour
             int reqCredit = dc.clientData.BuildingRequiredMoney[id,nextLv];
             DataController.Instance.gameData.buildingUpgradeTurn[id] = reqTurn;
             DataController.Instance.gameData.credit -= reqCredit;
-            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-            gm.LoadResources();
+            
+            GameManager.RefreshMainUI();
             // 업그레이드까지 필요한 큐가 잡힌다.
             // 결국 업그레이드 완료는 스케쥴 동작 후에 처리된다.
 

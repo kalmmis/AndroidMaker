@@ -138,9 +138,14 @@ public class ScheduleController : MonoBehaviour
         }
         else
         {
+            //GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            //gm.ActiveAdventureTab();
             //GameManager를 static class 로 만들어야 하려나
-            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-            gm.ActiveAdventureTab();
+
+            //[해결]
+            //class 가 static 일 필요 없이 메소드와 구성 변수만 모두 static 이면 된다.
+
+            GameManager.ActiveAdventureTab();
         }
 
         RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
@@ -243,12 +248,7 @@ public class ScheduleController : MonoBehaviour
         weeklySchedule[2] = 0;
         weeklySchedule[3] = 0;
 
-        //GameManager를 static class 로 만들어서 Find 안 쓰게 해야 할 듯
-        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gm.DoNextTurn();
-
-
-        
+        GameManager.DoNextTurn();        
     }
 
 

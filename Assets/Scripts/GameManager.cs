@@ -6,52 +6,56 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     //20210222 가로 화면으로 바꾸면서 자원 텍스트 하나로 통일
-    public Text ResourceText;
-    public Text AndroidNameText;
-    public Text TurnCountText;
+    public static Text ResourceText;
+    public static Text AndroidNameText;
+    public static Text TurnCountText;
 
-    private GameObject InfoCanvasUI;
+    private static GameObject infoCanvasUI;
 
-    private GameObject ShelterUI;
-    private GameObject LearnUI;
-    private GameObject equipmentUI;
+    private static GameObject shelterUI;
+    private static GameObject learnUI;
+    private static GameObject equipmentUI;
     //private GameObject ConfirmUI;
     //private GameObject EventUI;
     // Confirm 과 Event 는 false 세팅 해두면 버그 나서 일단 위치 값으로 조정 중.
-    private GameObject CombatUI;
-    private GameObject InventoryUI;
-    private GameObject androidUI;
+    private static GameObject combatUI;
+    private static GameObject inventoryUI;
+    private static GameObject androidUI;
 
-    private GameObject nameInputUI;
+    private static GameObject nameInputUI;
 
-    private GameObject laboScreen;
-    private GameObject combatScreen;
-    private GameObject statusUI;
+    private static GameObject laboScreen;
+    private static GameObject combatScreen;
+    private static GameObject statusUI;
 
+    static List<Dictionary<string,object>> buildingLevelInfo;
+
+    static int findBuildId;
     bool bPaused = false;
 
     // Start is called before the first frame update
     void Start()
     {        
-        InfoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
-        ShelterUI = GameObject.FindGameObjectWithTag("ShelterUI");
-        LearnUI = GameObject.FindGameObjectWithTag("LearnUI");
+        infoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
+        shelterUI = GameObject.FindGameObjectWithTag("ShelterUI");
+        learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         equipmentUI = GameObject.FindGameObjectWithTag("EquipmentUI");
         //ConfirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
         //EventUI = GameObject.FindGameObjectWithTag("EventUI");
-        CombatUI = GameObject.FindGameObjectWithTag("CombatUI");
-        InventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
+        combatUI = GameObject.FindGameObjectWithTag("CombatUI");
+        inventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
         androidUI = GameObject.FindGameObjectWithTag("AndroidUI");
         laboScreen = GameObject.FindGameObjectWithTag("LaboScreen");
         combatScreen = GameObject.FindGameObjectWithTag("CombatScreen");
         statusUI = GameObject.FindGameObjectWithTag("StatusUI");
         
-        ResourceText = InfoCanvasUI.transform.Find("ResourceText").GetComponent<Text>();
-        AndroidNameText = InfoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
-        TurnCountText = InfoCanvasUI.transform.Find("TurnCountText").GetComponent<Text>();
+        ResourceText = infoCanvasUI.transform.Find("ResourceText").GetComponent<Text>();
+        AndroidNameText = infoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
+        TurnCountText = infoCanvasUI.transform.Find("TurnCountText").GetComponent<Text>();
+        
+        buildingLevelInfo = CSVReader.Read ("BuildingLevelInfo");        
 
         LoadMainUI();
-        LoadResources();
 
         DataController.Instance.LoadGameData(); 
 
@@ -61,41 +65,80 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainUI()
     {
-
         laboScreen.SetActive(true);
-        ShelterUI.SetActive(false);
-        LearnUI.SetActive(false);
+        shelterUI.SetActive(false);
+        learnUI.SetActive(false);
         equipmentUI.SetActive(false);
         //ConfirmUI.SetActive(false);
         //EventUI.SetActive(false);
-        CombatUI.SetActive(false);
-        InventoryUI.SetActive(false);
+        combatUI.SetActive(false);
+        inventoryUI.SetActive(false);
         androidUI.SetActive(false);
         combatScreen.SetActive(false);
         statusUI.SetActive(false);
 
         AndroidNameText.text = DataController.Instance.gameData.characterName;
         TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
-    }
-    public void LoadResources()
-    {
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
 
-        long presentCredit = DataController.Instance.gameData.credit;
         // credit 관련 ui 갱신
+        long presentCredit = DataController.Instance.gameData.credit;
+        
+        // 다음 달에 생산될 credit
+        // 광산 레벨 가져옴
         int mineLv = DataController.Instance.gameData.buildingLevel[1];
-        int creditProduce = dc.clientData.building3RewardMoney[mineLv];
-
+        
+        // 광산 buildingID인 1을 for문으로 찾아 findBuildId에 저장
+        for (int i = 0; i < 100; i++)
+        {
+            if ((int)buildingLevelInfo[i]["buildingID"] == 1)
+            {
+                findBuildId = i;
+                break;
+            }
+        }
+        // 찾은 행이 레벨1 일테니 현재 레벨에 해당하는 행 찾음
+        findBuildId = findBuildId + mineLv - 1;
+        // 그 행에 해당하는 productArg 값 가져옴
+        int creditProduce = (int)buildingLevelInfo[findBuildId]["productArg"];
         
         ResourceText.text = "크레딧 " + presentCredit.ToString() + " (+" + creditProduce.ToString() + ")    코어 999999     번영도 999999     명성 999999";
+   
     }
-    public void ActiveHome()
+    public static void RefreshMainUI()
+    {        
+        TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
+        
+        // credit 관련 ui 갱신
+        long presentCredit = DataController.Instance.gameData.credit;
+
+        // 다음 달에 생산될 credit
+        // 광산 레벨 가져옴
+        int mineLv = DataController.Instance.gameData.buildingLevel[1];
+        
+        // 광산 buildingID인 1을 for문으로 찾아 findBuildId에 저장
+        for (int i = 0; i < 100; i++)
+        {
+            if ((int)buildingLevelInfo[i]["buildingID"] == 1)
+            {
+                findBuildId = i;
+                break;
+            }
+        }
+        // 찾은 행이 레벨1 일테니 현재 레벨에 해당하는 행 찾음
+        findBuildId = findBuildId + mineLv - 1;
+        // 그 행에 해당하는 productArg 값 가져옴
+        int creditProduce = (int)buildingLevelInfo[findBuildId]["productArg"];
+        
+
+        ResourceText.text = "크레딧 " + presentCredit.ToString() + " (+" + creditProduce.ToString() + ")    코어 999999     번영도 999999     명성 999999";
+    }
+    public static void ActiveHome()
     {
-        ShelterUI.SetActive(false);
-        LearnUI.SetActive(false);
+        shelterUI.SetActive(false);
+        learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        CombatUI.SetActive(false);
-        InventoryUI.SetActive(false);
+        combatUI.SetActive(false);
+        inventoryUI.SetActive(false);
         androidUI.SetActive(false);
 
         laboScreen.SetActive(true);
@@ -122,18 +165,18 @@ public class GameManager : MonoBehaviour
         name = nameInputUI.transform.Find("Panel").Find("InputField").Find("NameInputText").GetComponent<Text>();
         DataController.Instance.gameData.characterName = name.text.ToString();
         
-        AndroidNameText = InfoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
+        AndroidNameText = infoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
         AndroidNameText.text = DataController.Instance.gameData.characterName;
         CloseSetNameUI();
 
     }
     public void ActiveShelterTab()
     {
-        ShelterUI.SetActive(true);
-        LearnUI.SetActive(false);
+        shelterUI.SetActive(true);
+        learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        CombatUI.SetActive(false);
-        InventoryUI.SetActive(false);
+        combatUI.SetActive(false);
+        inventoryUI.SetActive(false);
         androidUI.SetActive(false);
 
         laboScreen.SetActive(false);
@@ -146,11 +189,11 @@ public class GameManager : MonoBehaviour
 
     public void ActiveScheduleTab()
     {
-        ShelterUI.SetActive(false);
-        LearnUI.SetActive(true);
+        shelterUI.SetActive(false);
+        learnUI.SetActive(true);
         equipmentUI.SetActive(false);
-        CombatUI.SetActive(false);
-        InventoryUI.SetActive(false);
+        combatUI.SetActive(false);
+        inventoryUI.SetActive(false);
         androidUI.SetActive(false);
 
         laboScreen.SetActive(true);
@@ -165,11 +208,11 @@ public class GameManager : MonoBehaviour
 
     public void ActiveEquipmentTab()
     {
-        ShelterUI.SetActive(false);
-        LearnUI.SetActive(false);
+        shelterUI.SetActive(false);
+        learnUI.SetActive(false);
         equipmentUI.SetActive(true);
-        CombatUI.SetActive(false);
-        InventoryUI.SetActive(false);
+        combatUI.SetActive(false);
+        inventoryUI.SetActive(false);
         androidUI.SetActive(false);
 
         laboScreen.SetActive(true);
@@ -182,11 +225,11 @@ public class GameManager : MonoBehaviour
 
     public void ActiveInventoryTab()
     {
-        ShelterUI.SetActive(false);
-        LearnUI.SetActive(false);
+        shelterUI.SetActive(false);
+        learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        CombatUI.SetActive(false);
-        InventoryUI.SetActive(true);
+        combatUI.SetActive(false);
+        inventoryUI.SetActive(true);
         androidUI.SetActive(false);
 
         laboScreen.SetActive(true);
@@ -198,13 +241,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void ActiveAdventureTab()
+    public static void ActiveAdventureTab()
     {
-        ShelterUI.SetActive(false);
-        LearnUI.SetActive(false);
+        shelterUI.SetActive(false);
+        learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        CombatUI.SetActive(true);
-        InventoryUI.SetActive(false);
+        combatUI.SetActive(true);
+        inventoryUI.SetActive(false);
         androidUI.SetActive(false);
         
         laboScreen.SetActive(false);
@@ -219,11 +262,11 @@ public class GameManager : MonoBehaviour
 
     public void ActiveAndroidTab()
     {
-        ShelterUI.SetActive(false);
-        LearnUI.SetActive(false);
+        shelterUI.SetActive(false);
+        learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        CombatUI.SetActive(false);
-        InventoryUI.SetActive(false);
+        combatUI.SetActive(false);
+        inventoryUI.SetActive(false);
         androidUI.SetActive(true);
 
         laboScreen.SetActive(true);
@@ -269,10 +312,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DoNextTurn()
+    public static void DoNextTurn()
     {
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-
         DataController.Instance.gameData.turn += 1;
         int[] tempArray = DataController.Instance.gameData.buildingUpgradeTurn;
 
@@ -288,28 +329,39 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        LoadResources();
+        RefreshMainUI();
         ProduceTurnCredit();
     }
     
-    public void ProduceTurnCredit()
+    public static void ProduceTurnCredit()
     {
-        
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+        // 다음 달에 생산될 credit
+        // 광산 레벨 가져옴
         int mineLv = DataController.Instance.gameData.buildingLevel[1];
-        int creditProduce = dc.clientData.building3RewardMoney[mineLv];
+        
+        // 광산 buildingID인 1을 for문으로 찾아 findBuildId에 저장
+        for (int i = 0; i < 100; i++)
+        {
+            if ((int)buildingLevelInfo[i]["buildingID"] == 1)
+            {
+                findBuildId = i;
+                break;
+            }
+        }
+        // 찾은 행이 레벨1 일테니 현재 레벨에 해당하는 행 찾음
+        findBuildId = findBuildId + mineLv - 1;
+        // 그 행에 해당하는 productArg 값 가져옴
+        int creditProduce = (int)buildingLevelInfo[findBuildId]["productArg"];
         
         DataController.Instance.gameData.credit += creditProduce;
-        //MoneyAmount.text = DataController.Instance.gameData.Money.ToString(); 수정필요!
+        RefreshMainUI();
     }
 
     // 테스트용 메서드
     public void ResetGameData()
     {
         ResetStart();
-    }
-
-    
+    }    
     
     public void ResetStart()
     {
