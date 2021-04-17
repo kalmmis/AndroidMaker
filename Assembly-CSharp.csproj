@@ -70,11 +70,11 @@
      <Compile Include="Assets\Scripts\GameData.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\InventoryController.cs" />
-     <Compile Include="Assets\Scripts\LearnController.cs" />
      <Compile Include="Assets\Scripts\MeleeWeapon.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerShooting.cs" />
      <Compile Include="Assets\Scripts\Projectile.cs" />
+     <Compile Include="Assets\Scripts\ScheduleController.cs" />
      <Compile Include="Assets\Scripts\ShelterController.cs" />
      <Compile Include="Assets\Scripts\StatusController.cs" />
      <Compile Include="Assets\Scripts\UpgradeController.cs" />
@@ -302,9 +302,6 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>D:/2018.4.19f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>C:/GitHub/AndroidMaker/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
- </Reference>
  <Reference Include="DemiLib">
  <HintPath>C:/GitHub/AndroidMaker/Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
  </Reference>
@@ -313,6 +310,9 @@
  </Reference>
  <Reference Include="DOTweenPro">
  <HintPath>C:/GitHub/AndroidMaker/Assets/Plugins/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Analytics.StandardEvents">
+ <HintPath>C:/GitHub/AndroidMaker/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/2018.4.19f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

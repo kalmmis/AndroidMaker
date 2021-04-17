@@ -9,7 +9,7 @@ using UnityEngine;
 public class ClientData
 {
     //스케쥴 데이터
-    public int[] scheduleIDs = new int[4]{0,0,0,0};
+    //public int[] scheduleIDs = new int[4]{0,0,0,0};
     public string[] scheduleTitle = new string[5]{"-","Schedule1", "Schedule2", "Schedule3", "Schedule4"};
     
     //업그레이드id

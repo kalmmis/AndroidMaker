@@ -3375,7 +3375,7 @@ RectTransform:
   - {fileID: 1475615613}
   - {fileID: 1020337788}
   m_Father: {fileID: 1234221411}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5036,7 +5036,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 280498480}
+      - m_Target: {fileID: 0}
         m_MethodName: ListUpSchedule
         m_Mode: 3
         m_Arguments:
@@ -6251,7 +6251,7 @@ GameObject:
   - component: {fileID: 280498479}
   - component: {fileID: 280498480}
   m_Layer: 0
-  m_Name: LearnController
+  m_Name: ScheduleController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6280,13 +6280,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 280498478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f4ddef9473dbf740bbc075b68394d80, type: 3}
+  m_Script: {fileID: 11500000, guid: 3402c30121bd7124c8dcd0400ef77123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  schedule1Text: {fileID: 0}
-  schedule2Text: {fileID: 0}
-  schedule3Text: {fileID: 0}
-  schedule4Text: {fileID: 0}
+  schedule1Text: {fileID: 386314270}
+  schedule2Text: {fileID: 1793768737}
+  schedule3Text: {fileID: 449335984}
+  schedule4Text: {fileID: 1378748413}
+  scheduleConfirmDescText: {fileID: 1680908417}
   EventText: {fileID: 0}
 --- !u!1 &281763424
 GameObject:
@@ -9623,7 +9624,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 280498480}
+      - m_Target: {fileID: 0}
         m_MethodName: ListUpSchedule
         m_Mode: 3
         m_Arguments:
@@ -10875,7 +10876,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 280498480}
+      - m_Target: {fileID: 0}
         m_MethodName: ListUpSchedule
         m_Mode: 3
         m_Arguments:
@@ -12197,12 +12198,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 280498480}
-        m_MethodName: ListUpSchedule
-        m_Mode: 3
+        m_MethodName: BattleScheduleListUp
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -22664,7 +22665,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 280498480}
+      - m_Target: {fileID: 0}
         m_MethodName: ListUpSchedule
         m_Mode: 3
         m_Arguments:
@@ -22899,7 +22900,7 @@ GameObject:
   - component: {fileID: 1153390683}
   - component: {fileID: 1153390682}
   m_Layer: 5
-  m_Name: Learning1Panel (4)
+  m_Name: BattlePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22923,7 +22924,7 @@ RectTransform:
   - {fileID: 2140507364}
   - {fileID: 535300886}
   m_Father: {fileID: 1234221411}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -22943,7 +22944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -23236,7 +23237,7 @@ RectTransform:
   - {fileID: 1424337745}
   - {fileID: 1793393061}
   m_Father: {fileID: 1234221411}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -23765,7 +23766,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Street Cleaning - LV 100
+  m_Text: Battle
 --- !u!222 &1178862886
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24480,11 +24481,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1153390681}
   - {fileID: 2046342976}
   - {fileID: 131009319}
   - {fileID: 1826259944}
   - {fileID: 1163697029}
-  - {fileID: 1153390681}
   - {fileID: 997387760}
   - {fileID: 1089172197}
   - {fileID: 1680348974}
@@ -24796,7 +24797,6 @@ MonoBehaviour:
     buildingUpgradeTurn: 000000000000000000000000000000000000000000000000
     reputation: 0
   _clientData:
-    scheduleIDs: 00000000000000000000000000000000
     scheduleTitle:
     - '-'
     - Schedule1
@@ -27188,7 +27188,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 280498480}
+      - m_Target: {fileID: 0}
         m_MethodName: ListUpSchedule
         m_Mode: 3
         m_Arguments:
@@ -33512,7 +33512,7 @@ GameObject:
   - component: {fileID: 1680908418}
   - component: {fileID: 1680908417}
   m_Layer: 5
-  m_Name: ScheduleTitle
+  m_Name: ScheduleConfirmDesc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37169,7 +37169,7 @@ RectTransform:
   - {fileID: 822089022}
   - {fileID: 1627428842}
   m_Father: {fileID: 1234221411}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -37323,7 +37323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000076293945}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1831238461
@@ -41202,7 +41202,7 @@ RectTransform:
   - {fileID: 1217392466}
   - {fileID: 385662265}
   m_Father: {fileID: 1234221411}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -44390,7 +44390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 50, y: -49.99994}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: -100, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8059949160779278663

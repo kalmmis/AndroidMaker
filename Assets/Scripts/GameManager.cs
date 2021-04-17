@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
 
         StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
         sc.LoadingStatusUI();
-        LearnController lc = GameObject.Find("LearnController").GetComponent<LearnController>();
+        ScheduleController lc = GameObject.Find("ScheduleController").GetComponent<ScheduleController>();
         lc.LoadingScheduleUI();
     }
 
