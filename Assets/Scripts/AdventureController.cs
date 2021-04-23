@@ -49,7 +49,7 @@ public class AdventureController : MonoBehaviour
     {
         //string wave = "Wave" + curWave.ToString();
         List<Dictionary<string,object>> waveData = CSVReader.Read (curWave);
-        List<Dictionary<string,object>> enemyData = CSVReader.Read ("EnemyInfo");
+        List<Dictionary<string,object>> enemyInfo = CSVReader.Read ("EnemyInfo");
         GameObject combatScreen;
 
         for (int i = 0; i < waveData.Count; i++)
@@ -57,7 +57,7 @@ public class AdventureController : MonoBehaviour
             //스테이지에서 적들이 순서대로 나오는데 그 딜레이와 타입
             int delay = (int)waveData[i]["delay"]; 
             int enemyID = (int)waveData[i]["enemyID"]; 
-            string enemyType = (string)enemyData[enemyID]["enemyType"]; 
+            string enemyType = (string)enemyInfo[enemyID]["enemyType"]; 
 
             //Debug.Log(enemyType);
 
@@ -66,9 +66,9 @@ public class AdventureController : MonoBehaviour
             
             
             Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-            enemyScript.hp = (int)enemyData[enemyID]["enemyHP"]; 
-            enemyScript.enemyATK = (int)enemyData[enemyID]["enemyATK"]; 
-            enemyScript.isBoss = (int)enemyData[enemyID]["isBoss"]; 
+            enemyScript.hp = (int)enemyInfo[enemyID]["enemyHP"]; 
+            enemyScript.enemyATK = (int)enemyInfo[enemyID]["enemyATK"]; 
+            enemyScript.isBoss = (int)enemyInfo[enemyID]["isBoss"]; 
 
             // 인스턴시에이트해 준 적을 캔버스의 정상적 위치에 넣어줌
             combatScreen = GameObject.Find("CombatScreen");
@@ -141,8 +141,10 @@ public class AdventureController : MonoBehaviour
             rectTransform.anchoredPosition = new Vector2(200,0);
             //p.isInvincible = true;
             int lv = DataController.Instance.gameData.androidLv;
-            DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-            int tHp = dc.clientData.playerHP[lv];
+            //DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
+            //int tHp = dc.clientData.playerHP[lv];
+            List<Dictionary<string,object>> androidLevelInfo = CSVReader.Read ("AndroidLevelInfo");
+            int tHp = (int)androidLevelInfo[lv]["HP"]; 
             p.hp = tHp;
             p.maxHp = tHp;
             StartCoroutine(p.RemoveInvincible(invincibleTime));
@@ -187,9 +189,4 @@ public class AdventureController : MonoBehaviour
         GameManager.ActiveHome();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

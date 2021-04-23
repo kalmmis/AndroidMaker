@@ -22,6 +22,9 @@ public class ScheduleController : MonoBehaviour
     public static bool isBattle = false;
     List<Dictionary<string,object>> scheduleInfo;
 
+    
+    public Text EventText;
+
 
     public void Start()
     {
@@ -29,7 +32,8 @@ public class ScheduleController : MonoBehaviour
         scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         EventUI = GameObject.FindGameObjectWithTag("EventUI");
-        scheduleInfo = CSVReader.Read ("ScheduleInfo");        
+        scheduleInfo = CSVReader.Read ("ScheduleInfo");   
+        EventText = EventUI.transform.Find("Text").GetComponent<Text>();     
     }
 
     public void LoadingScheduleUI()
@@ -202,7 +206,6 @@ public class ScheduleController : MonoBehaviour
     }
 
     
-    public Text EventText;
 
     IEnumerator DoSchedule(int[] scdID)
     {
@@ -216,27 +219,24 @@ public class ScheduleController : MonoBehaviour
         //learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         learnUI.SetActive(false);
         
-        EventText = EventUI.transform.Find("Text").GetComponent<Text>();
 
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-        int temp;
-
+        int tempScheduleID;
         var WaitForEvent = new WaitForSecondsRealtime (1f);
-
-        temp = scdID[0];
-        EventText.text = dc.clientData.scheduleTitle[temp];
+        
+        tempScheduleID = scdID[0];
+        EventText.text = (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         yield return WaitForEvent;
 
-        temp = scdID[1];
-        EventText.text = dc.clientData.scheduleTitle[temp];
+        tempScheduleID = scdID[1];
+        EventText.text = (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         yield return new WaitForSecondsRealtime (1f);
 
-        temp = scdID[2];
-        EventText.text = dc.clientData.scheduleTitle[temp];
+        tempScheduleID = scdID[2];
+        EventText.text = (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         yield return new WaitForSecondsRealtime (1f);
 
-        temp = scdID[3];
-        EventText.text = dc.clientData.scheduleTitle[temp];
+        tempScheduleID = scdID[3];
+        EventText.text = (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         yield return new WaitForSecondsRealtime (1f);
 
         scheduleUI.SetActive(true);

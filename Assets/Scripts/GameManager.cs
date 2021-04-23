@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         // 그 행에 해당하는 productArg 값 가져옴
         int creditProduce = (int)buildingLevelInfo[findBuildId]["productArg"];
         
-        ResourceText.text = "크레딧 " + presentCredit.ToString() + " (+" + creditProduce.ToString() + ")    코어 999999     번영도 999999     명성 999999";
+        ResourceText.text = "크레딧 " + presentCredit.ToString() + " (+" + creditProduce.ToString() + ")    코어 90000     번영도 0     명성 -100";
    
     }
     public static void RefreshMainUI()
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
         int creditProduce = (int)buildingLevelInfo[findBuildId]["productArg"];
         
 
-        ResourceText.text = "크레딧 " + presentCredit.ToString() + " (+" + creditProduce.ToString() + ")    코어 999999     번영도 999999     명성 999999";
+        ResourceText.text = "크레딧 " + presentCredit.ToString() + " (+" + creditProduce.ToString() + ")    코어 90000     번영도 0     명성 -100";
     }
     public static void ActiveHome()
     {
@@ -381,12 +381,22 @@ public class GameManager : MonoBehaviour
         DataController.Instance.gameData.buildingUpgradeTurn[4] = 0;
         DataController.Instance.gameData.buildingUpgradeTurn[5] = 0;
 
-
-        DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-    
         int mineLv = DataController.Instance.gameData.buildingLevel[1];
-        int creditProduce = dc.clientData.building3RewardMoney[mineLv];
         
+        // 광산 buildingID인 1을 for문으로 찾아 findBuildId에 저장
+        for (int i = 0; i < 100; i++)
+        {
+            if ((int)buildingLevelInfo[i]["buildingID"] == 1)
+            {
+                findBuildId = i;
+                break;
+            }
+        }
+        // 찾은 행이 레벨1 일테니 현재 레벨에 해당하는 행 찾음
+        findBuildId = findBuildId + mineLv - 1;
+
+        // 그 행에 해당하는 productArg 값 가져옴
+        int creditProduce = (int)buildingLevelInfo[findBuildId]["productArg"];
         DataController.Instance.gameData.credit += creditProduce;
 
     }

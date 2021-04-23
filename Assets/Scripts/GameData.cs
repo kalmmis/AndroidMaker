@@ -18,7 +18,8 @@ public class GameData
 
     public int androidLv = 1;
     public int[] androidLifeStatus = new int[9] {10, 10, 10, 10, 10, 10, 10, 10, 10};
-    public int[] androidCombatStatus = new int[9] {10, 10, 10, 10, 10, 10, 10, 10, 10};
+    //public int[] androidCombatStatus = new int[9] {10, 10, 10, 10, 10, 10, 10, 10, 10};
+    //전투 관련 스탯은 레벨에 종속된 CSV 테이블을 참조함 androidLevelInfo
     public int[] androidEquipment = new int[5] {1, 2, 0, 0, 0}; // 1st무기, 2nd무기, 머리, 상의, 하의
 
 /*  Life Status 일람
