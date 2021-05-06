@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     static List<Dictionary<string,object>> buildingLevelInfo;
 
     static int findBuildId;
+    static int leftTurn;
     bool bPaused = false;
 
     // Start is called before the first frame update
@@ -78,7 +79,12 @@ public class GameManager : MonoBehaviour
         statusUI.SetActive(false);
 
         AndroidNameText.text = DataController.Instance.gameData.characterName;
-        TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
+        
+        int eventTurn = DataController.Instance.gameData.turnForEvent;
+        int tempTurn = DataController.Instance.gameData.turn;
+        leftTurn = eventTurn - tempTurn;
+
+        TurnCountText.text = "메인테넌스까지 " + leftTurn.ToString() + "개월";
 
         // credit 관련 ui 갱신
         long presentCredit = DataController.Instance.gameData.credit;
@@ -106,8 +112,12 @@ public class GameManager : MonoBehaviour
     }
     public static void RefreshMainUI()
     {        
-        TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
-        
+        int eventTurn = DataController.Instance.gameData.turnForEvent;
+        int tempTurn = DataController.Instance.gameData.turn;
+        leftTurn = eventTurn - tempTurn;
+
+        TurnCountText.text = "메인테넌스까지 " + leftTurn.ToString() + "개월";
+
         // credit 관련 ui 갱신
         long presentCredit = DataController.Instance.gameData.credit;
 
@@ -287,7 +297,8 @@ public class GameManager : MonoBehaviour
         //CoreAmount.text = DataController.Instance.gameData.Core.ToString(); 
         //TurnCount.text = "Turn " + DataController.Instance.gameData.Turn.ToString();
         //PowerAmount.text = DataController.Instance.gameData.remainPower.ToString();
-        TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
+        //TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
+        TurnCountText.text = "메인테넌스까지 " + leftTurn.ToString() + "개월";
     }
     
     private void OnApplicationQuit()

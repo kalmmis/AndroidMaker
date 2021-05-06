@@ -14,6 +14,7 @@ public class GameData
     public int core;
 
     public int turn = 1;
+    public int turnForEvent = 10;
     public int overallTurn = 1;
 
     public int androidLv = 1;

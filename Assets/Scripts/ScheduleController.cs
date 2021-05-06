@@ -16,6 +16,12 @@ public class ScheduleController : MonoBehaviour
     public Text schedule3Text;
     public Text schedule4Text;
 
+    public Text learn0TitleText;
+    public Text learn1TitleText;
+    public Text learn2TitleText;
+    public Text learn3TitleText;
+    public Text learn4TitleText;
+
     public Text scheduleConfirmDescText;
 
     public static int[] weeklySchedule = new int[4]{0,0,0,0};
@@ -33,7 +39,13 @@ public class ScheduleController : MonoBehaviour
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         EventUI = GameObject.FindGameObjectWithTag("EventUI");
         scheduleInfo = CSVReader.Read ("ScheduleInfo");   
-        EventText = EventUI.transform.Find("Text").GetComponent<Text>();     
+        EventText = EventUI.transform.Find("Text").GetComponent<Text>();   
+
+        learn0TitleText.text = "원정";
+        learn1TitleText.text = (string)scheduleInfo[1]["scheduleTitle"];
+        learn2TitleText.text = (string)scheduleInfo[2]["scheduleTitle"];
+        learn3TitleText.text = (string)scheduleInfo[3]["scheduleTitle"];
+        learn4TitleText.text = (string)scheduleInfo[4]["scheduleTitle"];
     }
 
     public void LoadingScheduleUI()
@@ -49,9 +61,9 @@ public class ScheduleController : MonoBehaviour
         RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(0,0);
 
-        Vector3 tempschedulePosition = scheduleUI.transform.localPosition;
-        tempschedulePosition.x = 270;
-        scheduleUI.transform.localPosition = tempschedulePosition;
+        //Vector3 tempschedulePosition = scheduleUI.transform.localPosition;
+        //tempschedulePosition.x = 270;
+        //scheduleUI.transform.localPosition = tempschedulePosition;
         
 
         int initTempID1 = weeklySchedule[0];
@@ -65,7 +77,7 @@ public class ScheduleController : MonoBehaviour
         string initText2 = (string)scheduleInfo[initTempID2]["scheduleTitle"];
         string initText3 = (string)scheduleInfo[initTempID3]["scheduleTitle"];
         string initText4 = (string)scheduleInfo[initTempID4]["scheduleTitle"];        
-
+        
         schedule1Text.text = initText1;
         schedule2Text.text = initText2;
         schedule3Text.text = initText3;
