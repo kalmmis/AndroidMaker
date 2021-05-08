@@ -122,7 +122,7 @@ public class ScheduleController : MonoBehaviour
         else if(weeklySchedule[3] == 0)
         {
             weeklySchedule[3] = id;
-            scheduleConfirmDescText.text = "Do you want to excute\nmonthly schdule?";
+            scheduleConfirmDescText.text = "이번 달 스케쥴을\n진행하시겠습니까?";
             RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(0,0);
             isBattle = false;
@@ -136,11 +136,11 @@ public class ScheduleController : MonoBehaviour
     {
         RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(0,0);
-        scheduleConfirmDescText.text = "Battle?";
-        schedule1Text.text = "Battle";
-        schedule2Text.text = "Battle";
-        schedule3Text.text = "Battle";
-        schedule4Text.text = "Battle";
+        scheduleConfirmDescText.text = "원정 스케쥴을\n진행하시겠습니까?";
+        schedule1Text.text = "원정";
+        schedule2Text.text = "원정";
+        schedule3Text.text = "원정";
+        schedule4Text.text = "원정";
         isBattle = true;
     }
     
@@ -236,19 +236,19 @@ public class ScheduleController : MonoBehaviour
         var WaitForEvent = new WaitForSecondsRealtime (1f);
         
         tempScheduleID = scdID[0];
-        EventText.text = (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
+        EventText.text = "1주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         yield return WaitForEvent;
 
         tempScheduleID = scdID[1];
-        EventText.text = (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
+        EventText.text = "2주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         yield return new WaitForSecondsRealtime (1f);
 
         tempScheduleID = scdID[2];
-        EventText.text = (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
+        EventText.text = "3주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         yield return new WaitForSecondsRealtime (1f);
 
         tempScheduleID = scdID[3];
-        EventText.text = (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
+        EventText.text = "4주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         yield return new WaitForSecondsRealtime (1f);
 
         scheduleUI.SetActive(true);

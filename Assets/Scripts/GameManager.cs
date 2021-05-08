@@ -155,6 +155,21 @@ public class GameManager : MonoBehaviour
         combatScreen.SetActive(false);
         statusUI.SetActive(false);
     }
+
+    
+    public void ActiveRoom()
+    {
+        shelterUI.SetActive(false);
+        learnUI.SetActive(false);
+        equipmentUI.SetActive(false);
+        combatUI.SetActive(false);
+        inventoryUI.SetActive(false);
+        androidUI.SetActive(false);
+
+        laboScreen.SetActive(true);
+        combatScreen.SetActive(false);
+        statusUI.SetActive(false);
+    }
     
     public void ActiveSetNameUI()
     {
