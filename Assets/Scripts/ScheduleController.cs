@@ -28,7 +28,6 @@ public class ScheduleController : MonoBehaviour
     public static bool isBattle = false;
     List<Dictionary<string,object>> scheduleInfo;
 
-    
     public Text EventText;
 
 
@@ -237,18 +236,22 @@ public class ScheduleController : MonoBehaviour
         
         tempScheduleID = scdID[0];
         EventText.text = "1주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
+        ScheduleParameterEvent(tempScheduleID);
         yield return WaitForEvent;
 
         tempScheduleID = scdID[1];
         EventText.text = "2주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
+        ScheduleParameterEvent(tempScheduleID);
         yield return new WaitForSecondsRealtime (1f);
 
         tempScheduleID = scdID[2];
         EventText.text = "3주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
+        ScheduleParameterEvent(tempScheduleID);
         yield return new WaitForSecondsRealtime (1f);
 
         tempScheduleID = scdID[3];
         EventText.text = "4주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
+        ScheduleParameterEvent(tempScheduleID);
         yield return new WaitForSecondsRealtime (1f);
 
         scheduleUI.SetActive(true);
@@ -263,7 +266,10 @@ public class ScheduleController : MonoBehaviour
         GameManager.DoNextTurn();        
     }
 
-
+    public void ScheduleParameterEvent(int id)
+    {
+        Debug.Log((string)scheduleInfo[id]["scheduleTitle"]);
+    }
     
 /*
     public delegate void TestDelegate();
