@@ -1,8 +1,8 @@
 scheduleID,scheduleTitle,scheduleDesc,scheduleCategory,requireBuilingID,requireBuildingLv
-0,¿øÁ¤,-,Adventure,0, 1 
-1,¿¬±¸½Ç Ã»¼Ò,-,Study,1, 1 
-2,±¤»ê ÀÛ¾÷,-,Work,2, 1 
-3,Àåº® ¼øÂû,-,Combat,3, 1 
-4,ÈŞ½Ä,-,Rest,1, 1 
-5,È£¹® °üÂû,-,Study,4, 1 
-6,³ó»ç,-,Work,5, 1 
+0,-,0,Adventure,0,1
+1,ì—°êµ¬ì‹¤ ì²­ì†Œ,0,Study,1,1
+2,ê´‘ì‚° ì‘ì—…,0,Work,2,1
+3,ì¥ë²½ ìˆœì°°,0,Combat,3,1
+4,íœ´ì‹,0,Rest,1,1
+5,í˜¸ë¬¸ ê´€ì°°,0,Study,4,1
+6,ë†ì‚¬,0,Work,5,1

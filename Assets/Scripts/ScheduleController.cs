@@ -27,6 +27,7 @@ public class ScheduleController : MonoBehaviour
     public static int[] weeklySchedule = new int[4]{0,0,0,0};
     public static bool isBattle = false;
     List<Dictionary<string,object>> scheduleInfo;
+    List<Dictionary<string,object>> scheduleInfo2;
 
     public Text EventText;
 
@@ -37,8 +38,16 @@ public class ScheduleController : MonoBehaviour
         scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         EventUI = GameObject.FindGameObjectWithTag("EventUI");
-        scheduleInfo = CSVReader.Read ("ScheduleInfo");   
+        scheduleInfo = CSVReader.Read ("ScheduleInfo");
         EventText = EventUI.transform.Find("Text").GetComponent<Text>();   
+        
+        scheduleInfo2 = CSVReader.Read ("ScheduleInfo2");
+        Debug.Log ("REdad");
+        for(var i=0; i < scheduleInfo2.Count; i++) {
+            Debug.Log ("scheduleTitle " + scheduleInfo2[i]["scheduleTitle"] + " " +
+                        "scheduleCategory " + scheduleInfo2[i]["scheduleCategory"] + " ");
+        }
+        
 
         learn0TitleText.text = "원정";
         learn1TitleText.text = (string)scheduleInfo[1]["scheduleTitle"];
