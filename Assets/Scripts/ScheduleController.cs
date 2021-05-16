@@ -23,77 +23,94 @@ public class ScheduleController : MonoBehaviour
     public Text learn4TitleText;
 
     public Text scheduleConfirmDescText;
+    public Text EventText;
 
     public static int[] weeklySchedule = new int[4]{0,0,0,0};
     public static bool isBattle = false;
     List<Dictionary<string,object>> scheduleInfo;
-    List<Dictionary<string,object>> scheduleInfo2;
 
-    public Text EventText;
-
+    private GameObject missionCavas;
+    public static bool isBuildingRefreshTime = false;
 
     public void Start()
     {
+        //FindGameObjectWithTag 들도 차후에 인스펙터로 이관필요할 듯 20210516
         scheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
         scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
+        missionCavas = GameObject.FindGameObjectWithTag("MissionCanvas");
+
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
+        RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(0,0);
+
         EventUI = GameObject.FindGameObjectWithTag("EventUI");
+        EventText = EventUI.transform.Find("Text").GetComponent<Text>();
+
         scheduleInfo = CSVReader.Read ("ScheduleInfo");
-        EventText = EventUI.transform.Find("Text").GetComponent<Text>();   
-        
-        scheduleInfo2 = CSVReader.Read ("ScheduleInfo2");
-        Debug.Log ("REdad");
-        for(var i=0; i < scheduleInfo2.Count; i++) {
-            Debug.Log ("scheduleTitle " + scheduleInfo2[i]["scheduleTitle"] + " " +
-                        "scheduleCategory " + scheduleInfo2[i]["scheduleCategory"] + " ");
-        }
-        
+
+        RefreshMonthlyScheduleUI();
 
         learn0TitleText.text = "원정";
-        learn1TitleText.text = (string)scheduleInfo[1]["scheduleTitle"];
-        learn2TitleText.text = (string)scheduleInfo[2]["scheduleTitle"];
-        learn3TitleText.text = (string)scheduleInfo[3]["scheduleTitle"];
-        learn4TitleText.text = (string)scheduleInfo[4]["scheduleTitle"];
+
+        if (!isBuildingRefreshTime)
+        {
+            DeleteOldSchedulePanel();
+            InitSchedulePanel();
+        }
     }
 
-    public void LoadingScheduleUI()
+    public void DeleteOldSchedulePanel()
     {
-        //scheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
+        //빌딩 관련 구현할 때 개발합시다
+    }
+    public void InitSchedulePanel()
+    {
+        isBuildingRefreshTime = true;
+
+        for (int i = 1; i < scheduleInfo.Count; i++)
+        {
+            //빌딩 조건 체크
+            if (ScheduleReqireBuildingLv(i))
+            {
+                var newSchedulePanel = Instantiate(Resources.Load("Prefabs/SchedulePanel"), new Vector2(0, 0), Quaternion.identity) as GameObject;
+            
+                SchedulePanel scheduleScript = newSchedulePanel.GetComponent<SchedulePanel>();
+                newSchedulePanel.transform.SetParent(missionCavas.transform);
+                scheduleScript.scheduleID = i;
+                scheduleScript.StartInitialize(i);
+            }            
+        }
+    }
+    public bool ScheduleReqireBuildingLv(int id)
+    {
+        int reqBuiID = (int)scheduleInfo[id]["requireBuilingID"];
+        int reqBuiLV = (int)scheduleInfo[id]["requireBuildingLv"];
+        int curBuiLV = DataController.Instance.gameData.buildingLevel[id];
+        Debug.Log("Schedule require Lv is " + reqBuiLV + "and curBui Lv is " + curBuiLV);
+        if (curBuiLV >= reqBuiLV)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public void RefreshMonthlyScheduleUI()
+    {
+        /*인스펙터로 이관
         //schedule1Text = scheduleUI.transform.Find("Schedule1Panel").transform.Find("Schedule1Bar").transform.Find("Schedule1Text").GetComponent<Text>();
         //schedule2Text = scheduleUI.transform.Find("Schedule2Panel").transform.Find("Schedule2Bar").transform.Find("Schedule2Text").GetComponent<Text>();
         //schedule3Text = scheduleUI.transform.Find("Schedule3Panel").transform.Find("Schedule3Bar").transform.Find("Schedule3Text").GetComponent<Text>();
         //schedule4Text = scheduleUI.transform.Find("Schedule4Panel").transform.Find("Schedule4Bar").transform.Find("Schedule4Text").GetComponent<Text>();
+        */
 
-
-        //learnUI = GameObject.FindGameObjectWithTag("LearnUI");
-        RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,0);
-
+        /*모바일 해상도 관련 코드 차후에 필요할 듯
         //Vector3 tempschedulePosition = scheduleUI.transform.localPosition;
         //tempschedulePosition.x = 270;
         //scheduleUI.transform.localPosition = tempschedulePosition;
-        
+        */
 
-        int initTempID1 = weeklySchedule[0];
-        int initTempID2 = weeklySchedule[1];
-        int initTempID3 = weeklySchedule[2];
-        int initTempID4 = weeklySchedule[3];
-        
-        //List<Dictionary<string,object>> scheduleInfo = CSVReader.Read ("ScheduleInfo");
-
-        string initText1 = (string)scheduleInfo[initTempID1]["scheduleTitle"];
-        string initText2 = (string)scheduleInfo[initTempID2]["scheduleTitle"];
-        string initText3 = (string)scheduleInfo[initTempID3]["scheduleTitle"];
-        string initText4 = (string)scheduleInfo[initTempID4]["scheduleTitle"];        
-        
-        schedule1Text.text = initText1;
-        schedule2Text.text = initText2;
-        schedule3Text.text = initText3;
-        schedule4Text.text = initText4;
-    }
-
-    public void RefreshScheduleUI()
-    {
         int initTempID1 = weeklySchedule[0];
         int initTempID2 = weeklySchedule[1];
         int initTempID3 = weeklySchedule[2];
@@ -109,7 +126,6 @@ public class ScheduleController : MonoBehaviour
         schedule2Text.text = initText2;
         schedule3Text.text = initText3;
         schedule4Text.text = initText4;
-
     }
 
 
@@ -136,7 +152,7 @@ public class ScheduleController : MonoBehaviour
             isBattle = false;
         }
 
-        RefreshScheduleUI();
+        RefreshMonthlyScheduleUI();
         Debug.Log("schedule array is " + weeklySchedule[0] + weeklySchedule[1] + weeklySchedule[2] + weeklySchedule[3]);
     }
 
@@ -182,7 +198,7 @@ public class ScheduleController : MonoBehaviour
         {
             weeklySchedule[3] = 0;
         }
-        RefreshScheduleUI();
+        RefreshMonthlyScheduleUI();
 
         //scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
         RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
@@ -221,7 +237,7 @@ public class ScheduleController : MonoBehaviour
             weeklySchedule[3] = 0;
         }
 
-        RefreshScheduleUI();
+        RefreshMonthlyScheduleUI();
         Debug.Log("schedule array is " + weeklySchedule[0] + weeklySchedule[1] + weeklySchedule[2] + weeklySchedule[3]);
     }
 

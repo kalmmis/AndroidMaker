@@ -41,6 +41,7 @@ public class GameData
     public int[] buildingLevel = new int[7]{1,1,1,0,0,0,0}; // 초기 빌딩 레벨들
     public int[] buildingUpgradeTurn = new int[7]{0,0,0,0,0,0,0}; // 업그레이드 요구 턴
 
+    public int[] scheduleLevel = new int[7]{1,1,1,1,1,1,1}; // 업그레이드 요구 턴
     /* 건물 리스트
     public int LaboratoryLevel; // 연구소
     public int MineLevel; // 광산

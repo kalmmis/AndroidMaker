@@ -1,5 +1,5 @@
 enemyID,enemyType,enemyHP,enemyATK,isBoss
-0,enemyA,15, 1 ,0
-1,enemyB,25, 2 ,0
-2,enemyC,30, 3 ,1
-3,enemyC,40, 4 ,0
+0,enemyA,15,1,0
+1,enemyB,25,2,0
+2,enemyC,30,3,1
+3,enemyC,40,4,0
