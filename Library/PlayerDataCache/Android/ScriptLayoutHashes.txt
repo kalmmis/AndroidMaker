@@ -4,7 +4,7 @@ C:/GitHub/AndroidMaker/20210404 AndroidMaker.apk
 SceneListBegin?
 Assets/Scenes/MainScene.unity
 SceneListEnd?
-611a39660fede89bedd0158c6b66994c Assembly-CSharp.dll:.GameManager
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.GameManager
 3c08375166df118bd1801438fc36b92f Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 26049508665d94f5befae0f2c212c97a Assembly-CSharp.dll:.Player
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.Effect
@@ -21,6 +21,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
+a6726347ce5be4b97fb02792a1d0253d Assembly-CSharp.dll:.ScheduleController
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
 2f95346e5148380b992463cc26849b1a Assembly-CSharp.dll:.AdventureController
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -124,9 +125,13 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.InventoryController
+b5fc3843e35dd6d09a719cb0d10ff4a5 DemiLib.dll:DG.DemiLib.External.DeHierarchyComponent
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 b9727f2eb927a3448598f483565cca5c Assembly-CSharp.dll:.StatusController
+704dcd31abc789439bc3f3cd10b58c2b DOTween.dll:DG.Tweening.Core.DOTweenComponent
+179648033371456981a3c08cb9f47477 DOTween.dll:DG.Tweening.Core.DOTweenSettings
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.AutoDestroyPS
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -142,7 +147,6 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 8719342437e8c7869b54b966df844d34 Assembly-CSharp.dll:.Projectile
-0a619efa899069b55e1a9a659ac222cb Assembly-CSharp.dll:.LearnController
 35a9693c388776aaf487636491a20f11 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 e1300922cc039f41ab46a47f4cb05898 Unity.TextMeshPro.dll:TMPro.TMP_Settings
 22047ded9562efecae82b561ce400086 Assembly-CSharp.dll:.ShelterController
@@ -161,11 +165,17 @@ fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
-e66422cc35936c82d2edabce635a2095 Assembly-CSharp.dll:.DataController
+f92bed0118fad5c277e62fd4703487e3 Assembly-CSharp.dll:.DemoShooting
+48992a3c9d6e8bd743c802079eb1c0d3 Assembly-CSharp.dll:.DataController
 3b760e6526e13f7504f59e210145899a Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
+7d2f283ab75f4669e023370fdc320b19 DOTweenPro.dll:DG.Tweening.DOTweenPath
+d452b4ce4b4cca771c54091cc2623c68 DOTweenPro.dll:DG.Tweening.DOTweenVisualManager
 507174d46dacbc5fe45e28485db5dd1e Unity.Analytics.DataPrivacy.dll:UnityEngine.Analytics.DataPrivacyButton
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+820b12286cae52be5fb63439e5a14f6e Assembly-CSharp.dll:.ProjectileMover
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.EquipmentController
+3c5e1b1cabe04282409689211fd2e7fc Assembly-CSharp.dll:.SchedulePanel
+450cab4c9d2f461e4647e7d66d4d559c Assembly-CSharp-firstpass.dll:DG.Tweening.DOTweenAnimation
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 df434544c9f7b33d1cc7e635b180d279 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient

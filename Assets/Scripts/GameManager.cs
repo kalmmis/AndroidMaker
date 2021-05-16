@@ -227,8 +227,8 @@ public class GameManager : MonoBehaviour
 
         StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
         sc.LoadingStatusUI();
-        //ScheduleController lc = GameObject.Find("ScheduleController").GetComponent<ScheduleController>();
-        //lc.Start();
+        ScheduleController lc = GameObject.Find("ScheduleController").GetComponent<ScheduleController>();
+        lc.StartScheduleController();
     }
 
     public void ActiveEquipmentTab()

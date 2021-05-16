@@ -32,7 +32,7 @@ public class ScheduleController : MonoBehaviour
     private GameObject missionCavas;
     public static bool isBuildingRefreshTime = false;
 
-    public void Start()
+    public void StartScheduleController()
     {
         //FindGameObjectWithTag 들도 차후에 인스펙터로 이관필요할 듯 20210516
         scheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
@@ -52,6 +52,7 @@ public class ScheduleController : MonoBehaviour
 
         learn0TitleText.text = "원정";
 
+        // 이걸 밖에 빼야만 동작하네 왜지?
         if (!isBuildingRefreshTime)
         {
             DeleteOldSchedulePanel();
@@ -85,7 +86,7 @@ public class ScheduleController : MonoBehaviour
     {
         int reqBuiID = (int)scheduleInfo[id]["requireBuilingID"];
         int reqBuiLV = (int)scheduleInfo[id]["requireBuildingLv"];
-        int curBuiLV = DataController.Instance.gameData.buildingLevel[id];
+        int curBuiLV = DataController.Instance.gameData.buildingLevel[reqBuiID];
         Debug.Log("Schedule require Lv is " + reqBuiLV + "and curBui Lv is " + curBuiLV);
         if (curBuiLV >= reqBuiLV)
         {
