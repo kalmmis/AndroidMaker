@@ -28,6 +28,10 @@ public class ScheduleController : MonoBehaviour
     public static int[] weeklySchedule = new int[4]{0,0,0,0};
     public static bool isBattle = false;
     List<Dictionary<string,object>> scheduleInfo;
+    List<Dictionary<string,object>> scheduleLevelInfo;
+    List<Dictionary<string,object>> scheduleRewardInfo;
+
+    public static int b;
 
     private GameObject missionCavas;
     public static bool isBuildingRefreshTime = false;
@@ -47,6 +51,8 @@ public class ScheduleController : MonoBehaviour
         EventText = EventUI.transform.Find("Text").GetComponent<Text>();
 
         scheduleInfo = CSVReader.Read ("ScheduleInfo");
+        scheduleLevelInfo = CSVReader.Read ("ScheduleLevelInfo");
+        scheduleRewardInfo = CSVReader.Read ("ScheduleRewardInfo");
 
         RefreshMonthlyScheduleUI();
 
@@ -87,7 +93,7 @@ public class ScheduleController : MonoBehaviour
         int reqBuiID = (int)scheduleInfo[id]["requireBuilingID"];
         int reqBuiLV = (int)scheduleInfo[id]["requireBuildingLv"];
         int curBuiLV = DataController.Instance.gameData.buildingLevel[reqBuiID];
-        Debug.Log("Schedule require Lv is " + reqBuiLV + "and curBui Lv is " + curBuiLV);
+        //Debug.Log("Schedule require Lv is " + reqBuiLV + "and curBui Lv is " + curBuiLV);
         if (curBuiLV >= reqBuiLV)
         {
             return true;
@@ -185,7 +191,6 @@ public class ScheduleController : MonoBehaviour
 
             //[해결]
             //class 가 static 일 필요 없이 메소드와 구성 변수만 모두 static 이면 된다.
-
             GameManager.ActiveAdventureTab();
         }
 
@@ -250,18 +255,44 @@ public class ScheduleController : MonoBehaviour
         EventUI.SetActive(true);
         RectTransform EventUIrectTransform = EventUI.GetComponent<RectTransform>();
         EventUIrectTransform.anchoredPosition = new Vector2(0,0);
+
         //scheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
         scheduleUI.SetActive(false);
 
         //learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         learnUI.SetActive(false);
         
-
+//여기
         int tempScheduleID;
         var WaitForEvent = new WaitForSecondsRealtime (1f);
         
         tempScheduleID = scdID[0];
         EventText.text = "1주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
+
+        int a = (int)scheduleInfo[tempScheduleID]["scheduleRewardID1"];
+
+        // 스케쥴 레벨 체크 구현 중
+        int schLv = DataController.Instance.gameData.scheduleLevel[tempScheduleID];
+        Debug.Log("진행하고자 하는 스케쥴의 레벨 가져옴" + schLv);
+        
+        // ScheduleRewardInfo 데이터 안에서 스케쥴 id가 tempScheduleID이고 해당 레벨이 schLv인 Row를 for문으로 찾아 b에 저장
+        for (int i = 0; i <= scheduleInfo.Count; i++)
+        {
+            if ((int)scheduleRewardInfo[i]["scheduleID"] == tempScheduleID && (int)scheduleRewardInfo[i]["scheduleLevel"] ==schLv)
+            {
+                b = i;
+                Debug.Log("b is " + b);
+                break;
+            }
+        }
+        // 0번 부터 검색했으니 찾은 행이 해당 row 일 테니 b로 리워드들 다 가져옴
+        // 이걸 c d e 에 넣어줌.
+
+        int c = (int)scheduleRewardInfo[b]["reward1AverageCount"];
+        int d = (int)scheduleRewardInfo[b]["reward2AverageCount"];
+        int e = (int)scheduleRewardInfo[b]["reward3AverageCount"];
+
+        Debug.Log("c is " + c + " d is " + d + " e is " + e);
         ScheduleParameterEvent(tempScheduleID);
         yield return WaitForEvent;
 

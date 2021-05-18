@@ -1,4 +1,4 @@
-scheduleTitle,scheduleDesc,scheduleCategory,requireBuilingID,requireBuildingLv,requireWeek,scheduleReward1,scheduleReward2,scheduleReward3
+scheduleTitle,scheduleDesc,scheduleCategory,requireBuilingID,requireBuildingLv,requireWeek,scheduleRewardID1,scheduleRewardID2,scheduleRewardID3
 -,0,Adventure,0,1,4,1,2,3
 연구실 청소,연구실 청소 하라구.,Study,1,1,1,1,2,3
 광산 작업,광산 작업 하라구.,Work,2,1,2,1,2,3

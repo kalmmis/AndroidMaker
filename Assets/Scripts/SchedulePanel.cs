@@ -29,9 +29,9 @@ public class SchedulePanel : MonoBehaviour
         scheduleTitle.text = scheduleInfo[id]["scheduleTitle"] + " Lv. " + schLv.ToString();
         scheduleReqTime.text = "소모 기간 " + scheduleInfo[id]["requireWeek"].ToString() + " 주";
 
-        int reward1 = (int)scheduleInfo[id]["scheduleReward1"];
-        int reward2 = (int)scheduleInfo[id]["scheduleReward2"];
-        int reward3 = (int)scheduleInfo[id]["scheduleReward3"];
+        int reward1 = (int)scheduleInfo[id]["scheduleRewardID1"];
+        int reward2 = (int)scheduleInfo[id]["scheduleRewardID2"];
+        int reward3 = (int)scheduleInfo[id]["scheduleRewardID3"];
 
         scheduleRewardIcon1.sprite = Resources.Load<Sprite>("Image/ParameterIcon/parameter_up_" + reward1);
         scheduleRewardIcon2.sprite = Resources.Load<Sprite>("Image/ParameterIcon/parameter_up_" + reward2);
