@@ -31,7 +31,13 @@ public class ScheduleController : MonoBehaviour
     List<Dictionary<string,object>> scheduleLevelInfo;
     List<Dictionary<string,object>> scheduleRewardInfo;
 
-    public static int b;
+    public static int curSchRow;
+    public static int curReward1ID;
+    public static int curReward2ID;
+    public static int curReward3ID;
+    public static int curReward1;
+    public static int curReward2;
+    public static int curReward3;
 
     private GameObject missionCavas;
     public static bool isBuildingRefreshTime = false;
@@ -262,54 +268,53 @@ public class ScheduleController : MonoBehaviour
         //learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         learnUI.SetActive(false);
         
-//여기
         int tempScheduleID;
-        var WaitForEvent = new WaitForSecondsRealtime (1f);
+        var WaitForEvent = new WaitForSecondsRealtime (0.75f);
         
+        // 이벤트 시작
         tempScheduleID = scdID[0];
         EventText.text = "1주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
-
-        int a = (int)scheduleInfo[tempScheduleID]["scheduleRewardID1"];
-
-        // 스케쥴 레벨 체크 구현 중
-        int schLv = DataController.Instance.gameData.scheduleLevel[tempScheduleID];
-        Debug.Log("진행하고자 하는 스케쥴의 레벨 가져옴" + schLv);
-        
-        // ScheduleRewardInfo 데이터 안에서 스케쥴 id가 tempScheduleID이고 해당 레벨이 schLv인 Row를 for문으로 찾아 b에 저장
-        for (int i = 0; i <= scheduleInfo.Count; i++)
-        {
-            if ((int)scheduleRewardInfo[i]["scheduleID"] == tempScheduleID && (int)scheduleRewardInfo[i]["scheduleLevel"] ==schLv)
-            {
-                b = i;
-                Debug.Log("b is " + b);
-                break;
-            }
-        }
-        // 0번 부터 검색했으니 찾은 행이 해당 row 일 테니 b로 리워드들 다 가져옴
-        // 이걸 c d e 에 넣어줌.
-
-        int c = (int)scheduleRewardInfo[b]["reward1AverageCount"];
-        int d = (int)scheduleRewardInfo[b]["reward2AverageCount"];
-        int e = (int)scheduleRewardInfo[b]["reward3AverageCount"];
-
-        Debug.Log("c is " + c + " d is " + d + " e is " + e);
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
         ScheduleParameterEvent(tempScheduleID);
         yield return WaitForEvent;
 
         tempScheduleID = scdID[1];
         EventText.text = "2주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         ScheduleParameterEvent(tempScheduleID);
-        yield return new WaitForSecondsRealtime (1f);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
 
         tempScheduleID = scdID[2];
         EventText.text = "3주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         ScheduleParameterEvent(tempScheduleID);
-        yield return new WaitForSecondsRealtime (1f);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
 
         tempScheduleID = scdID[3];
         EventText.text = "4주차\n" + (string)scheduleInfo[tempScheduleID]["scheduleTitle"];
         ScheduleParameterEvent(tempScheduleID);
-        yield return new WaitForSecondsRealtime (1f);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
+        ScheduleParameterEvent(tempScheduleID);
+        yield return WaitForEvent;
 
         scheduleUI.SetActive(true);
 
@@ -323,9 +328,39 @@ public class ScheduleController : MonoBehaviour
         GameManager.DoNextTurn();        
     }
 
-    public void ScheduleParameterEvent(int id)
+    void ScheduleParameterEvent(int id)
     {
-        Debug.Log((string)scheduleInfo[id]["scheduleTitle"]);
+        int schLv = DataController.Instance.gameData.scheduleLevel[id];
+        //Debug.Log("진행하고자 하는 스케쥴의 레벨 가져옴" + schLv);
+        // ScheduleRewardInfo 데이터 안에서 스케쥴 id가 tempScheduleID이고 해당 레벨이 schLv인 Row를 for문으로 찾아 b에 저장
+        for (int i = 0; i <= scheduleRewardInfo.Count; i++)
+        {
+            if ((int)scheduleRewardInfo[i]["scheduleID"] == id && (int)scheduleRewardInfo[i]["scheduleLevel"] == schLv)
+            {
+                curSchRow = i;
+                Debug.Log("curSchRow is " + curSchRow);
+                break;
+            }
+        }
+        // 0번 부터 검색했으니 찾은 행이 해당 row 일 테니 curSchRow로 리워드들 다 가져옴
+        // 이걸 reward1 2 3 에 넣어줌.
+        curReward1ID = (int)scheduleInfo[id]["scheduleRewardID1"];
+        curReward2ID = (int)scheduleInfo[id]["scheduleRewardID2"];
+        curReward3ID = (int)scheduleInfo[id]["scheduleRewardID3"];
+
+        curReward1 = (int)scheduleRewardInfo[curSchRow]["reward1AverageCount"];
+        curReward2 = (int)scheduleRewardInfo[curSchRow]["reward2AverageCount"];
+        curReward3 = (int)scheduleRewardInfo[curSchRow]["reward3AverageCount"];
+
+        //Debug.Log("c is " + curReward1 + " d is " + curReward2 + " e is " + curReward3);
+
+        DataController.Instance.gameData.androidLifeStatus[curReward1ID] += curReward1;
+        DataController.Instance.gameData.androidLifeStatus[curReward2ID] += curReward2;
+        DataController.Instance.gameData.androidLifeStatus[curReward3ID] -= curReward3;
+
+        //Status1AmountText
+        //Status1Amount
+        StatusController.ReloadStatusUI();
     }
     
 /*

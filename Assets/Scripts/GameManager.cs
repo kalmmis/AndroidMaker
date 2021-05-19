@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
         LoadMainUI();
 
-        DataController.Instance.LoadGameData(); 
+        //DataController.Instance.LoadGameData(); 
 
         //DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
         //dia.DoStory(1);
@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviour
         statusUI.SetActive(true);
 
         StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
-        sc.LoadingStatusUI();
+        sc.InitStatusUI();
         ScheduleController lc = GameObject.Find("ScheduleController").GetComponent<ScheduleController>();
         lc.StartScheduleController();
     }
@@ -308,7 +308,7 @@ public class GameManager : MonoBehaviour
         statusUI.SetActive(true);
 
         StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
-        sc.LoadingStatusUI();
+        sc.InitStatusUI();
 
         UpgradeController uc = GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
         uc.LoadingAndroidUI();

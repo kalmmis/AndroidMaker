@@ -5,52 +5,50 @@ using UnityEngine.UI;
 
 public class StatusController : MonoBehaviour
 {
-    public Text Status1;
-    public Text Status2;
-    public Text Status3;
-    public Text Status4;
-    public Text Status5;
-    public Text Status6;
-    public Text Status7;
-    public Text Status8;
-    public Text Status9;
+    public static Text Status1;
+    public static Text Status2;
+    public static Text Status3;
+    public static Text Status4;
+    public static Text Status5;
+    public static Text Status6;
+    public static Text Status7;
+    public static Text Status8;
+    public static Text Status9;
     
-    public Text Status1Amount;
-    public Text Status2Amount;
-    public Text Status3Amount;
-    public Text Status4Amount;
-    public Text Status5Amount;
-    public Text Status6Amount;
-    public Text Status7Amount;
-    public Text Status8Amount;
-    public Text Status9Amount;
+    public static Text Status1Amount;
+    public static Text Status2Amount;
+    public static Text Status3Amount;
+    public static Text Status4Amount;
+    public static Text Status5Amount;
+    public static Text Status6Amount;
+    public static Text Status7Amount;
+    public static Text Status8Amount;
+    public static Text Status9Amount;
 
-    public Slider Status1Bar;
-    public Slider Status2Bar;
-    public Slider Status3Bar;
-    public Slider Status4Bar;
-    public Slider Status5Bar;
-    public Slider Status6Bar;
-    public Slider Status7Bar;
-    public Slider Status8Bar;
-    public Slider Status9Bar;
+    public static Slider Status1Bar;
+    public static Slider Status2Bar;
+    public static Slider Status3Bar;
+    public static Slider Status4Bar;
+    public static Slider Status5Bar;
+    public static Slider Status6Bar;
+    public static Slider Status7Bar;
+    public static Slider Status8Bar;
+    public static Slider Status9Bar;
 
-    public float Status1Gauge;
-    public float Status2Gauge;
-    public float Status3Gauge;
-    public float Status4Gauge;
-    public float Status5Gauge;
-    public float Status6Gauge;
-    public float Status7Gauge;
-    public float Status8Gauge;
-    public float Status9Gauge;
+    public static float Status1Gauge;
+    public static float Status2Gauge;
+    public static float Status3Gauge;
+    public static float Status4Gauge;
+    public static float Status5Gauge;
+    public static float Status6Gauge;
+    public static float Status7Gauge;
+    public static float Status8Gauge;
+    public static float Status9Gauge;
 
-    private GameObject StatusUI;
-    private GameObject StatusDetailUI;
-
-    public void LoadingStatusUI()
-    {
-        
+    private static GameObject StatusUI;
+    private static GameObject StatusDetailUI;
+    public void InitStatusUI()
+    {        
         StatusUI = GameObject.FindGameObjectWithTag("StatusUI");
         RectTransform rectTransform = StatusUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(0,0);
@@ -131,9 +129,42 @@ public class StatusController : MonoBehaviour
         Status9Bar.value = Status9Gauge;
 
     }
-    // Update is called once per frame
-    void Update()
+    public static void ReloadStatusUI()
     {
         
+        Status1Amount.text = DataController.Instance.gameData.androidLifeStatus[0].ToString();
+        Status2Amount.text = DataController.Instance.gameData.androidLifeStatus[1].ToString();
+        Status3Amount.text = DataController.Instance.gameData.androidLifeStatus[2].ToString();
+        Status4Amount.text = DataController.Instance.gameData.androidLifeStatus[3].ToString();
+        Status5Amount.text = DataController.Instance.gameData.androidLifeStatus[4].ToString();
+        Status6Amount.text = DataController.Instance.gameData.androidLifeStatus[5].ToString();
+        Status7Amount.text = DataController.Instance.gameData.androidLifeStatus[6].ToString();
+        Status8Amount.text = DataController.Instance.gameData.androidLifeStatus[7].ToString();
+        Status9Amount.text = DataController.Instance.gameData.androidLifeStatus[8].ToString();
+
+        Status1Gauge = DataController.Instance.gameData.androidLifeStatus[0] / 999.0f;
+        Status2Gauge = DataController.Instance.gameData.androidLifeStatus[1] / 999.0f;
+        Status3Gauge = DataController.Instance.gameData.androidLifeStatus[2] / 999.0f;
+        Status4Gauge = DataController.Instance.gameData.androidLifeStatus[3] / 999.0f;
+        Status5Gauge = DataController.Instance.gameData.androidLifeStatus[4] / 999.0f;
+        Status6Gauge = DataController.Instance.gameData.androidLifeStatus[5] / 999.0f;
+        Status7Gauge = DataController.Instance.gameData.androidLifeStatus[6] / 999.0f;
+        Status8Gauge = DataController.Instance.gameData.androidLifeStatus[7] / 999.0f;
+        Status9Gauge = DataController.Instance.gameData.androidLifeStatus[8] / 999.0f;
+
+        
+        Status1Bar.value = Status1Gauge;
+        Status2Bar.value = Status2Gauge;
+        Status3Bar.value = Status3Gauge;
+        Status4Bar.value = Status4Gauge;
+        Status5Bar.value = Status5Gauge;
+        Status6Bar.value = Status6Gauge;
+        Status7Bar.value = Status7Gauge;
+        Status8Bar.value = Status8Gauge;
+        Status9Bar.value = Status9Gauge;
+    }
+    // Update is called once per frame
+    void Update()
+    {        
     }
 }

@@ -103,7 +103,7 @@ public class CSVReader
             var id = values[0];
             var lv = values[1];
             var list = new Dictionary<string, object>();
-            Debug.Log("id is " + id + "lv is " + lv);
+            //Debug.Log("id is " + id + "lv is " + lv);
             
             for(var b = 2; b < values.Length; b++)
             {
@@ -118,13 +118,13 @@ public class CSVReader
                     finalvalue = f;
                 }
                 list[lv] = finalvalue;
-                Debug.Log("list key is" + lv);
+                //Debug.Log("list key is" + lv);
                 //Debug.Log("list[" + id + "][" + header[b] + "] is " +lists[id][header[b]]);
                 //lists[id][lv] = finalvalue;
                 //ㄴ얜 왜 안되지
             }
             lists[id] = list;
-            Debug.Log("lists key is" + id);
+            //Debug.Log("lists key is" + id);
             //Debug.Log("count");
         }
         return lists;
