@@ -131,7 +131,6 @@ public class StatusController : MonoBehaviour
     }
     public static void ReloadStatusUI()
     {
-        
         Status1Amount.text = DataController.Instance.gameData.androidLifeStatus[0].ToString();
         Status2Amount.text = DataController.Instance.gameData.androidLifeStatus[1].ToString();
         Status3Amount.text = DataController.Instance.gameData.androidLifeStatus[2].ToString();
@@ -151,8 +150,7 @@ public class StatusController : MonoBehaviour
         Status7Gauge = DataController.Instance.gameData.androidLifeStatus[6] / 999.0f;
         Status8Gauge = DataController.Instance.gameData.androidLifeStatus[7] / 999.0f;
         Status9Gauge = DataController.Instance.gameData.androidLifeStatus[8] / 999.0f;
-
-        
+     
         Status1Bar.value = Status1Gauge;
         Status2Bar.value = Status2Gauge;
         Status3Bar.value = Status3Gauge;

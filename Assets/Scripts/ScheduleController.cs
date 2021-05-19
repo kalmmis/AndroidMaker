@@ -64,7 +64,6 @@ public class ScheduleController : MonoBehaviour
 
         learn0TitleText.text = "원정";
 
-        // 이걸 밖에 빼야만 동작하네 왜지?
         if (!isBuildingRefreshTime)
         {
             DeleteOldSchedulePanel();
@@ -144,25 +143,70 @@ public class ScheduleController : MonoBehaviour
 
     public void ListUpSchedule(int id)
     {
-        if(weeklySchedule[0] == 0)
+        int schReqWeek = (int)scheduleInfo[id]["requireWeek"];
+        if (schReqWeek == 3)
         {
-            weeklySchedule[0] = id;
+            if(weeklySchedule[0] == 0)
+            {
+                weeklySchedule[0] = id;
+                weeklySchedule[1] = id;
+                weeklySchedule[2] = id;
+            }
+            else if(weeklySchedule[1] == 0)
+            {
+                weeklySchedule[1] = id;
+                weeklySchedule[2] = id;
+                weeklySchedule[3] = id;
+                scheduleConfirmDescText.text = "이번 달 스케쥴을\n진행하시겠습니까?";
+                RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
+                rectTransform.anchoredPosition = new Vector2(0,0);
+                isBattle = false;
+            }
+        }        
+        else if (schReqWeek == 2)
+        {
+            if(weeklySchedule[0] == 0)
+            {
+                weeklySchedule[0] = id;
+                weeklySchedule[1] = id;
+            }
+            else if(weeklySchedule[1] == 0)
+            {
+                weeklySchedule[1] = id;
+                weeklySchedule[2] = id;
+            }
+            else if(weeklySchedule[2] == 0)
+            {
+                weeklySchedule[2] = id;
+                weeklySchedule[3] = id;
+                scheduleConfirmDescText.text = "이번 달 스케쥴을\n진행하시겠습니까?";
+                RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
+                rectTransform.anchoredPosition = new Vector2(0,0);
+                isBattle = false;
+            }
         }
-        else if(weeklySchedule[1] == 0)
+        else
         {
-            weeklySchedule[1] = id;
-        }
-        else if(weeklySchedule[2] == 0)
-        {
-            weeklySchedule[2] = id;
-        }
-        else if(weeklySchedule[3] == 0)
-        {
-            weeklySchedule[3] = id;
-            scheduleConfirmDescText.text = "이번 달 스케쥴을\n진행하시겠습니까?";
-            RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(0,0);
-            isBattle = false;
+            if(weeklySchedule[0] == 0)
+            {
+                weeklySchedule[0] = id;
+            }
+            else if(weeklySchedule[1] == 0)
+            {
+                weeklySchedule[1] = id;
+            }
+            else if(weeklySchedule[2] == 0)
+            {
+                weeklySchedule[2] = id;
+            }
+            else if(weeklySchedule[3] == 0)
+            {
+                weeklySchedule[3] = id;
+                scheduleConfirmDescText.text = "이번 달 스케쥴을\n진행하시겠습니까?";
+                RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
+                rectTransform.anchoredPosition = new Vector2(0,0);
+                isBattle = false;
+            }
         }
 
         RefreshMonthlyScheduleUI();
@@ -206,9 +250,26 @@ public class ScheduleController : MonoBehaviour
 
     public void ListCancel()
     {
+        int tempID = weeklySchedule[3];
+        int lastSchReqWeek = (int)scheduleInfo[tempID]["requireWeek"];
+
         if(!isBattle)
         {
-            weeklySchedule[3] = 0;
+            if (lastSchReqWeek == 3)
+            {
+                weeklySchedule[3] = 0;
+                weeklySchedule[2] = 0;
+                weeklySchedule[1] = 0;
+            }
+            else if (lastSchReqWeek == 2)
+            {
+                weeklySchedule[3] = 0;
+                weeklySchedule[2] = 0;
+            }
+            else
+            {
+                weeklySchedule[3] = 0;
+            }
         }
         RefreshMonthlyScheduleUI();
 
@@ -219,36 +280,73 @@ public class ScheduleController : MonoBehaviour
 
     public void ListRemoveSchedule(int id)
     {
-
-        if(id == 3 && weeklySchedule[3] != 0)
+        int tempID = weeklySchedule[id];
+        int lastSchReqWeek = (int)scheduleInfo[tempID]["requireWeek"];
+        if(lastSchReqWeek == 3)
         {
-            weeklySchedule[3] = 0;
+            weeklySchedule[2] = 0;
+            weeklySchedule[1] = 0;
+            weeklySchedule[0] = 0;
         }
-        if(id == 2 && weeklySchedule[2] != 0)
+        else if(lastSchReqWeek == 2)
         {
-            int temp1 = weeklySchedule[3];
-            weeklySchedule[2] = temp1;
-            weeklySchedule[3] = 0;
+            int tempIDafter = weeklySchedule[id+1];
+            if(id == 0)
+            {
+                int temp1 = weeklySchedule[2];
+                weeklySchedule[0] = temp1;
+                weeklySchedule[1] = 0;
+                weeklySchedule[2] = 0;
+            }
+            else if(id == 2)
+            {
+                weeklySchedule[2] = 0;
+                weeklySchedule[1] = 0;
+            }
+            else if(tempIDafter == tempID)
+            {
+                weeklySchedule[2] = 0;
+                weeklySchedule[1] = 0;
+            }
+            else
+            {
+                int temp1 = weeklySchedule[2];
+                weeklySchedule[0] = temp1;
+                weeklySchedule[1] = 0;
+                weeklySchedule[2] = 0;
+            }
         }
-        if(id == 1 && weeklySchedule[1] != 0)
+        else
         {
-            int temp1 = weeklySchedule[3];
-            int temp2 = weeklySchedule[2];
-            weeklySchedule[1] = temp2;
-            weeklySchedule[2] = temp1;
-            weeklySchedule[3] = 0;
+            if(id == 3 && weeklySchedule[3] != 0)
+            {
+                weeklySchedule[3] = 0;
+            }
+            if(id == 2 && weeklySchedule[2] != 0)
+            {
+                int temp1 = weeklySchedule[3];
+                weeklySchedule[2] = temp1;
+                weeklySchedule[3] = 0;
+            }
+            if(id == 1 && weeklySchedule[1] != 0)
+            {
+                int temp1 = weeklySchedule[3];
+                int temp2 = weeklySchedule[2];
+                weeklySchedule[1] = temp2;
+                weeklySchedule[2] = temp1;
+                weeklySchedule[3] = 0;
+            }
+            if(id == 0 && weeklySchedule[0] != 0)
+            {
+                int temp1 = weeklySchedule[3];
+                int temp2 = weeklySchedule[2];
+                int temp3 = weeklySchedule[1];
+                weeklySchedule[0] = temp3;
+                weeklySchedule[1] = temp2;
+                weeklySchedule[2] = temp1;
+                weeklySchedule[3] = 0;
+            }
         }
-        if(id == 0 && weeklySchedule[0] != 0)
-        {
-            int temp1 = weeklySchedule[3];
-            int temp2 = weeklySchedule[2];
-            int temp3 = weeklySchedule[1];
-            weeklySchedule[0] = temp3;
-            weeklySchedule[1] = temp2;
-            weeklySchedule[2] = temp1;
-            weeklySchedule[3] = 0;
-        }
-
         RefreshMonthlyScheduleUI();
         Debug.Log("schedule array is " + weeklySchedule[0] + weeklySchedule[1] + weeklySchedule[2] + weeklySchedule[3]);
     }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SchedulePanel : MonoBehaviour
 {
     public int scheduleID;
+    //public int schReqWeek;
     public Text scheduleTitle;
     public Text scheduleReqTime;
     public Image scheduleRewardIcon1;
@@ -20,7 +21,8 @@ public class SchedulePanel : MonoBehaviour
         {
             scheduleInfo = CSVReader.Read ("ScheduleInfo");
         }
-        
+        //schReqWeek = (int)scheduleInfo[id]["requireWeek"];
+        // 아 여기선 필요 없나.
         ScheduleController lc = GameObject.Find("ScheduleController").GetComponent<ScheduleController>();
         b.onClick.AddListener(delegate() { lc.ListUpSchedule(scheduleID); });
         
