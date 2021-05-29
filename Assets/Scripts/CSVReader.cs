@@ -44,7 +44,7 @@ public class CSVReader
         }
         return list;
     }
-
+/*
     public static List<Dictionary<string, Dictionary<string, object>>> Read3rdArray(string file)
     {
         var lists = new List<Dictionary<string, Dictionary<string, object>>>();
@@ -129,4 +129,6 @@ public class CSVReader
         }
         return lists;
     }
+*/
+
 }

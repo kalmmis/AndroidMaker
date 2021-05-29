@@ -436,7 +436,7 @@ public class ScheduleController : MonoBehaviour
             if ((int)scheduleRewardInfo[i]["scheduleID"] == id && (int)scheduleRewardInfo[i]["scheduleLevel"] == schLv)
             {
                 curSchRow = i;
-                Debug.Log("curSchRow is " + curSchRow);
+                //Debug.Log("curSchRow is " + curSchRow);
                 break;
             }
         }

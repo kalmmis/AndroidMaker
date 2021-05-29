@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     private static GameObject statusUI;
 
     static List<Dictionary<string,object>> buildingLevelInfo;
-    static Dictionary<string, Dictionary<string, object>> testDic;
+    //static Dictionary<string, Dictionary<string, object>> testDic;
     static int findBuildId;
     static int leftTurn;
     bool bPaused = false;
@@ -64,8 +64,8 @@ public class GameManager : MonoBehaviour
         //dia.DoStory(1);
 
         //3차원 배열 연습 해봄... 
-        testDic = CSVReader.ReadArray ("ScheduleRewardInfo");
-        Debug.Log (testDic["2"]["5"]);
+        //testDic = CSVReader.ReadArray ("ScheduleRewardInfo");
+        //Debug.Log (testDic["2"]["5"]);
         //string a = (string)testDic["0"]["reward2AverageCount"];
         //Debug.Log ("testDic data is " + a);
         //Debug.Log(testDic["1"]["1"]);

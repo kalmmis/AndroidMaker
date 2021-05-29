@@ -1,0 +1,98 @@
+
+    public static List<Dictionary<string, Dictionary<string, object>>> Read3rdArray(string file)
+    {
+        var lists = new List<Dictionary<string, Dictionary<string, object>>>();
+
+        string path = "csvData/";
+        TextAsset data = Resources.Load (path + file) as TextAsset;
+        
+        var lines = Regex.Split (data.text, LINE_SPLIT_RE);
+
+        var header = Regex.Split(lines[0], SPLIT_RE);
+        //var id = header[0];
+        for(var a=0; a < lines.Length; a++)
+        {
+            var values = Regex.Split(lines[a+1], SPLIT_RE);
+            if(values.Length == 0 ||values[0] == "") continue;
+            
+            var id = values[0];
+            var lv = values[1];
+            var list = new Dictionary<string, object>();
+            
+            for(var b = 2; b < values.Length; b++)
+            {
+                string value = values[b];
+                value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
+                object finalvalue = value;
+                int n;
+                float f;
+                if(int.TryParse(value, out n)) {
+                    finalvalue = n;
+                } else if (float.TryParse(value, out f)) {
+                    finalvalue = f;
+                }
+                list[lv] = finalvalue;
+            }
+            lists[a][id] = list;
+        }
+        return lists;
+    }
+
+    public static Dictionary<string, Dictionary<string, object>> Read3rdArray(string file)
+  {
+        var lists = new Dictionary<string, Dictionary<string, object>>();
+        string path = "csvData/";
+        TextAsset data = Resources.Load (path + file) as TextAsset;
+        var lines = Regex.Split (data.text, LINE_SPLIT_RE);
+        var list = new Dictionary<string, object>();
+        list["1"] = "one";
+        list["2"] = "two";
+        list["3"] = "three";
+        lists["0"] = list;
+        lists["4"] = list;
+        return lists;
+}
+
+testDic = CSVReader.Read3rdArray ("BuildingLevelInfo");
+        string a = (string)testDic["0"]["1"];
+        Debug.Log ("testDic data is " + a);
+
+        string[] a = (string[])testDic["0"]["3"];
+
+        class Program
+{
+    Static void Main()
+    {
+        int[] arr = new int[3];
+        arr[0] = 2;
+        arr[1] = 3;
+        arr[2] = 5;
+ 
+        List<int> list = new List<int>(arr);
+ 
+        Console.WriteLine(list.Count);
+    }
+}
+
+using System;
+using System.Collections.Generic;
+ 
+class Program
+{
+    Static void Main()
+    {
+        Dictionary<int,bool> dict = new Dictionary<int, bool>();
+        dict.Add(3, true);
+        dict.Add(5, false);
+ 
+        List<int> keys = new List<int>(dict.Keys);
+ 
+        foreach (int key in keys)
+        {
+            Console.WriteLine(key);
+        }
+    }
+}
+
+
+출처: https://loadofprogrammer.tistory.com/145 [큰 꿈을 그리는 프로그래머의 공간.]
