@@ -42,6 +42,8 @@ public class ScheduleController : MonoBehaviour
     private GameObject missionCavas;
     public static bool isBuildingRefreshTime = false;
 
+    public GameObject eventCharacter;
+
     public void StartScheduleController()
     {
         //FindGameObjectWithTag 들도 차후에 인스펙터로 이관필요할 듯 20210516
@@ -456,11 +458,21 @@ public class ScheduleController : MonoBehaviour
         DataController.Instance.gameData.androidLifeStatus[curReward2ID] += curReward2;
         DataController.Instance.gameData.androidLifeStatus[curReward3ID] -= curReward3;
 
+        var newParameterEventPanel = Instantiate(Resources.Load("Prefabs/ParameterEventPanel")) as GameObject;
+        newParameterEventPanel.transform.SetParent(eventCharacter.transform);
+        newParameterEventPanel.transform.position = eventCharacter.transform.position + new Vector3(100, 230);
+        ParameterEventPanel parameterEventPanelScript = newParameterEventPanel.GetComponent<ParameterEventPanel>();
+        parameterEventPanelScript.parameterEventText1.text = "+ " + curReward1.ToString();
+        parameterEventPanelScript.parameterEventImage1.sprite = Resources.Load<Sprite>("Image/ParameterIcon/parameter_up_" + curReward1ID);
+        parameterEventPanelScript.parameterEventText2.text = "+ " + curReward2.ToString();
+        parameterEventPanelScript.parameterEventImage2.sprite = Resources.Load<Sprite>("Image/ParameterIcon/parameter_up_" + curReward2ID);
+        parameterEventPanelScript.parameterEventText3.text = "- " + curReward3.ToString();
+        parameterEventPanelScript.parameterEventImage3.sprite = Resources.Load<Sprite>("Image/ParameterIcon/parameter_down_" + curReward3ID);
+
         //Status1AmountText
         //Status1Amount
         StatusController.ReloadStatusUI();
     }
-    
 /*
     public delegate void TestDelegate();
     public TestDelegate m_methodToCall;
