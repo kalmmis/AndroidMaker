@@ -17,6 +17,12 @@ public class AdventureController : MonoBehaviour
     public Text ResultText;
     public static int curStageWave;
 
+    
+    public void Start()
+    {
+        StartPlayer();
+    }
+    
 
     public void StartPlayer()
     {
@@ -71,7 +77,7 @@ public class AdventureController : MonoBehaviour
             enemyScript.isBoss = (int)enemyInfo[enemyID]["isBoss"]; 
 
             // 인스턴시에이트해 준 적을 캔버스의 정상적 위치에 넣어줌
-            combatScreen = GameObject.Find("CombatScreen");
+            combatScreen = GameObject.Find("Main Camera");
             newEnemy.transform.SetParent(combatScreen.transform);
             RectTransform rectTransform = newEnemy.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector2(2800,0);
@@ -129,16 +135,16 @@ public class AdventureController : MonoBehaviour
 
     public IEnumerator InitPlayer(float delayTime)
     {
-        GameObject oldP = GameObject.Find("Player(Clone)");
+        GameObject oldP = GameObject.Find("PlayerCube(Clone)");
         GameObject combatScreen;
         yield return new WaitForSeconds(delayTime);
         if(oldP == null) { 
         //if(true) { 
             Player p = Instantiate(player, new Vector2(0, 0), Quaternion.identity);
-            combatScreen = GameObject.Find("CombatScreen");
-            p.transform.SetParent(combatScreen.transform);
+            //combatScreen = GameObject.Find("Main Camera");
+            //p.transform.SetParent(combatScreen.transform);
             RectTransform rectTransform = p.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(200,0);
+            rectTransform.anchoredPosition = new Vector2(-8,0);
             //p.isInvincible = true;
             int lv = DataController.Instance.gameData.androidLv;
             //DataController dc = GameObject.Find("DataController").GetComponent<DataController>();

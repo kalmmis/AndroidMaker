@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
     public void Attack()
     {
         
-        playerShooting = GameObject.Find("Player(Clone)").GetComponent<PlayerShooting>();
+        playerShooting = GameObject.Find("PlayerCube(Clone)").GetComponent<PlayerShooting>();
         //playerShooting = this.GetComponent<PlayerShooting>();
         // find 로 받지 않으려고 this 로 바꿔 봄.
         // 이것 때문에 playerShooting 에서 start가 안 불리는 걸까.

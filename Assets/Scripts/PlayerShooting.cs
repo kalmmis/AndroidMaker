@@ -61,9 +61,9 @@ public class PlayerShooting : MonoBehaviour {
     private void Start()
     {
         //receiving shooting visual effects components
-        guns.leftGunVFX = guns.leftGun.GetComponent<ParticleSystem>();
-        guns.rightGunVFX = guns.rightGun.GetComponent<ParticleSystem>();
-        guns.centralGunVFX = guns.centralGun.GetComponent<ParticleSystem>();
+        //guns.leftGunVFX = guns.leftGun.GetComponent<ParticleSystem>();
+        //guns.rightGunVFX = guns.rightGun.GetComponent<ParticleSystem>();
+        //guns.centralGunVFX = guns.centralGun.GetComponent<ParticleSystem>();
 
 
         playerScript = gameObject.GetComponent<Player>();
@@ -201,7 +201,7 @@ public class PlayerShooting : MonoBehaviour {
         var wait = new WaitForSecondsRealtime(.03f);
         for(int i = 0; i < 3; i++)
         {
-            CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.zero, isFirst);
+            CreateShot(projectileObject, guns.centralGun.transform.position, Vector3.forward, isFirst);
             yield return wait;
         }
     }
@@ -217,23 +217,23 @@ public class PlayerShooting : MonoBehaviour {
     {  
         if(isFirst && curFirstWeaponMagazineSize > 0)
         {
-            var newBullet = Instantiate(lazer, pos,Quaternion.Euler(rot));
-            GameObject combatScreen = GameObject.Find("CombatScreen");
-            newBullet.transform.SetParent(combatScreen.transform);
+            var newBullet = Instantiate(lazer, pos, Quaternion.Euler(rot));
+            //GameObject combatScreen = GameObject.Find("CombatScreen");
+            //newBullet.transform.SetParent(combatScreen.transform);
             newBullet.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
             {
-                t.Translate(Vector3.right * fireRate * Time.deltaTime);
+                t.Translate(Vector3.forward * fireRate * Time.deltaTime);
             };
             curFirstWeaponMagazineSize -= 1;
         }
         else if(!isFirst && curSecondWeaponMagazineSize > 0)
         {
-            var newBullet = Instantiate(lazer, pos,Quaternion.Euler(rot));
-            GameObject combatScreen = GameObject.Find("CombatScreen");
-            newBullet.transform.SetParent(combatScreen.transform);
+            var newBullet = Instantiate(lazer, pos, Quaternion.Euler(rot));
+            //GameObject combatScreen = GameObject.Find("CombatScreen");
+            //newBullet.transform.SetParent(combatScreen.transform);
             newBullet.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
             {
-                t.Translate(Vector3.right * fireRate * Time.deltaTime);
+                t.Translate(Vector3.forward * fireRate * Time.deltaTime);
             };
             curSecondWeaponMagazineSize -= 1;
         }

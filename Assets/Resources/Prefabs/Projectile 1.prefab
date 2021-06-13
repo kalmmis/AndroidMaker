@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2665251495448533196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4714,8 +4714,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   hitOffset: 0.1
-  UseFirePointRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 0}
+  UseFirePointRotation: 1
+  rotationOffset: {x: 0, y: 90, z: 0}
   hit: {fileID: 1012929371636226, guid: 7e59152fc3be99d4aa2760fb61212ce2, type: 3}
   flash: {fileID: 1179295499806372, guid: a18abcc036ab57445b15bc526991da46, type: 3}
   Detached: []
