@@ -19,7 +19,7 @@ public class ProjectileMover : MonoBehaviour
         if (flash != null)
         {
             var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
-            flashInstance.transform.forward = gameObject.transform.right;
+            flashInstance.transform.forward = gameObject.transform.right * -1;
             var flashPs = flashInstance.GetComponent<ParticleSystem>();
             if (flashPs != null)
             {
@@ -38,7 +38,7 @@ public class ProjectileMover : MonoBehaviour
     {
 		if (speed != 0)
         {
-            rb.velocity = transform.right * speed;
+            rb.velocity = transform.right * speed * -1;
             //transform.position += transform.forward * (speed * Time.deltaTime);         
         }
 	}
@@ -47,6 +47,7 @@ public class ProjectileMover : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //Lock all axes movement and rotation
+        rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
         speed = 0;
 

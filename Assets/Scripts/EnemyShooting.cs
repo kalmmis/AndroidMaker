@@ -57,24 +57,26 @@ public class EnemyShooting : MonoBehaviour {
     void CreateShot(GameObject lazer, Vector3 pos, Vector3 rot) //translating 'pooled' lazer shot to the defined position in the defined rotation
     {
         var newBullet = Instantiate(lazer, pos, Quaternion.Euler(rot));
-        GameObject combatScreen = GameObject.Find("CombatScreen");
-        newBullet.transform.SetParent(combatScreen.transform);
+        //GameObject combatScreen = GameObject.Find("CombatScreen");
+        //newBullet.transform.SetParent(combatScreen.transform);
+        /*
         newBullet.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
         {
             t.Translate(Vector3.left * fireRate * Time.deltaTime);
         };
+        */
     }
     public void EnemyMove()
     {
         enemyScript = gameObject.GetComponent<Enemy>();
         
         RectTransform rectTransform = enemyScript.GetComponent<RectTransform>();
-        enemyPosition = this.transform.localPosition.x;        
+        enemyPosition = this.transform.position.x;        
                 
         switch (enemyScript.type)
         {
             case "A" :
-                attackPosition = -800f;
+                attackPosition = 8f;
                 if(enemyPosition > attackPosition)
                 {
                     enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
@@ -94,7 +96,7 @@ public class EnemyShooting : MonoBehaviour {
                 break;
 
             case "B" :
-                attackPosition = 1150f;
+                attackPosition = 8f;
                 if(enemyPosition > attackPosition)
                 {
                     enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>

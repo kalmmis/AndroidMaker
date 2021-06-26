@@ -130,12 +130,12 @@ public class Enemy : MonoBehaviour
 
         if (isBoss == 1)
         {
-            AdventureController ac = GameObject.Find("AdventureController").GetComponent<AdventureController>();
+            AdventureController ac = GameObject.Find("BattleManager").GetComponent<AdventureController>();
             ac.Win();
         }
         else if(count <= 0)
         {
-            AdventureController ac = GameObject.Find("AdventureController").GetComponent<AdventureController>();
+            AdventureController ac = GameObject.Find("BattleManager").GetComponent<AdventureController>();
             ac.DoStage();
         }
     }

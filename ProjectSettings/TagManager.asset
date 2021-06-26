@@ -41,10 +41,10 @@ TagManager:
   - 
   - 
   - Dialogue
-  - 
-  - 
-  - 
-  - 
+  - EnemyBullet
+  - PlayerBullet
+  - Enemy
+  - Player
   - 
   - 
   - 

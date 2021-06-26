@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3520973650731389997}
   - component: {fileID: 2972903715000571}
   - component: {fileID: 5616150004788808835}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CentralGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3964883672791488476}
   - component: {fileID: 3964883672791488466}
   - component: {fileID: 3964883672791488477}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 3964883672885918163}
   - component: {fileID: 3964883672885918162}
   - component: {fileID: 3964883672885918161}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HP_Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 3964883672948550852}
   - component: {fileID: 3964883672948550855}
   - component: {fileID: 3964883672948550854}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 3964883673087853990}
   - component: {fileID: 3964883673087853988}
   - component: {fileID: 3964883673087853991}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3964883673169262351}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3964883673214392067}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 3964883673338388607}
   - component: {fileID: 3964883673338388592}
   - component: {fileID: 3964883673338388595}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlayerCube
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ BoxCollider:
   m_GameObject: {fileID: 3964883673338388606}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 100
-  projectileObject: {fileID: 2665251495448533196, guid: c007ae773ab0cf04a9329a5c0ecc0e83,
+  projectileObject: {fileID: 6178679669337356366, guid: 9605a18ea2f21e24083499401daacf32,
     type: 3}
   guns:
     rightGun: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 3964883673389407559}
   - component: {fileID: 3964883673389407557}
   - component: {fileID: 3964883673389407556}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3964883673419594106}
   - component: {fileID: 3964883673419594107}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ReloadSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 3964883673862106015}
   - component: {fileID: 3964883673862106013}
   - component: {fileID: 3964883673862106012}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 3964883673990793040}
   - component: {fileID: 3964883673990793046}
   - component: {fileID: 3964883673990793041}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +992,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3964883674148216876}
   - component: {fileID: 3964883674148216877}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HPSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,7 +1078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3964883674644362198}
   - component: {fileID: 3964883674644362199}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1093,7 +1093,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964883674644362193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.16383, y: 0.14051, z: 1}
   m_Children: []
   m_Father: {fileID: 3964883673338388594}
@@ -1158,7 +1158,7 @@ GameObject:
   - component: {fileID: 3964883674708485214}
   - component: {fileID: 3964883674708485212}
   - component: {fileID: 3964883674708485215}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1235,7 @@ GameObject:
   - component: {fileID: 3574313873564641984}
   - component: {fileID: 7968936542577349910}
   - component: {fileID: 1481937254334601836}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: PlayerImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4306721890860002295}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MeleeWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1340,7 +1340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6257879859796885410}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}

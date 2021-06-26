@@ -32,13 +32,26 @@ public class AdventureController : MonoBehaviour
         DoStage();
     }
 
-    /*
-    public void SpawnWave()
+    public IEnumerator InitPlayer(float delayTime)
     {
-        Debug.Log("Spawn Wave");
+        GameObject oldP = GameObject.Find("PlayerCube(Clone)");
+        GameObject combatScreen;
+        yield return new WaitForSeconds(delayTime);
+        if(oldP == null) { 
+            Player p = Instantiate(player, new Vector2(0, 0), Quaternion.identity);
+            RectTransform rectTransform = p.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(-8,0);
+            int lv = DataController.Instance.gameData.androidLv;
+            List<Dictionary<string,object>> androidLevelInfo = CSVReader.Read ("AndroidLevelInfo");
+            int tHp = (int)androidLevelInfo[lv]["HP"]; 
+            p.hp = tHp;
+            p.maxHp = tHp;
+            StartCoroutine(p.RemoveInvincible(invincibleTime));
+        }
+        //애니메이팅 구현은 player 클래스 가서 해야 할 듯
+        //animator.SetTrigger("TrigPlayerIdle");
+        //playerShootingScript.TimeReset();
     }
-    */
-
     
     public void DoStage()
     {
@@ -48,8 +61,6 @@ public class AdventureController : MonoBehaviour
         StartCoroutine(SpawnWave(curWave));
         curStageWave++;
     }
-    
-    //DoStage 를 SpawnWave 로 바꿈.
 
     public IEnumerator SpawnWave(string curWave)
     {
@@ -75,12 +86,8 @@ public class AdventureController : MonoBehaviour
             enemyScript.hp = (int)enemyInfo[enemyID]["enemyHP"]; 
             enemyScript.enemyATK = (int)enemyInfo[enemyID]["enemyATK"]; 
             enemyScript.isBoss = (int)enemyInfo[enemyID]["isBoss"]; 
-
-            // 인스턴시에이트해 준 적을 캔버스의 정상적 위치에 넣어줌
-            combatScreen = GameObject.Find("Main Camera");
-            newEnemy.transform.SetParent(combatScreen.transform);
             RectTransform rectTransform = newEnemy.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(2800,0);
+            rectTransform.anchoredPosition = new Vector2(10,0);
             
             yield return new WaitForSeconds(delay);
             if (!isPlayerAlive)
@@ -89,75 +96,7 @@ public class AdventureController : MonoBehaviour
             }
         }
     }
-    
-    /*
-    //public IEnumerator DoStage(float delayTime, string enemyType)
-    public IEnumerator DoStage()
-    {
-        
-        List<Dictionary<string,object>> stageData = CSVReader.Read ("Stage01");
-        List<Dictionary<string,object>> enemyData = CSVReader.Read ("EnemyInfo");
-        GameObject combatScreen;
 
-        for (int i = 0; i < stageData.Count; i++)
-        {
-            //스테이지에서 적들이 순서대로 나오는데 그 딜레이와 타입
-            int delay = (int)stageData[i]["delay"]; 
-            int enemyID = (int)stageData[i]["enemyID"]; 
-            string enemyType = (string)enemyData[enemyID]["enemyType"]; 
-
-            //Debug.Log(enemyType);
-
-            // 프리팹 파일명을 기준으로 적을 찾아서 인스턴시에이트해줌
-            var newEnemy = Instantiate(Resources.Load("Prefabs/" + enemyType), new Vector2(0, 0), Quaternion.identity) as GameObject;
-            
-            
-            Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-            enemyScript.hp = (int)enemyData[enemyID]["enemyHP"]; 
-            enemyScript.enemyATK = (int)enemyData[enemyID]["enemyATK"]; 
-            enemyScript.isBoss = (int)enemyData[enemyID]["isBoss"]; 
-
-            // 인스턴시에이트해 준 적을 캔버스의 정상적 위치에 넣어줌
-            combatScreen = GameObject.Find("CombatScreen");
-            newEnemy.transform.SetParent(combatScreen.transform);
-            RectTransform rectTransform = newEnemy.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(2800,0);
-            
-            yield return new WaitForSeconds(delay);
-            if (!isPlayerAlive)
-            {
-                break;
-            }
-        }
-    }
-    */
-
-
-    public IEnumerator InitPlayer(float delayTime)
-    {
-        GameObject oldP = GameObject.Find("PlayerCube(Clone)");
-        GameObject combatScreen;
-        yield return new WaitForSeconds(delayTime);
-        if(oldP == null) { 
-        //if(true) { 
-            Player p = Instantiate(player, new Vector2(0, 0), Quaternion.identity);
-            //combatScreen = GameObject.Find("Main Camera");
-            //p.transform.SetParent(combatScreen.transform);
-            RectTransform rectTransform = p.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(-8,0);
-            //p.isInvincible = true;
-            int lv = DataController.Instance.gameData.androidLv;
-            //DataController dc = GameObject.Find("DataController").GetComponent<DataController>();
-            //int tHp = dc.clientData.playerHP[lv];
-            List<Dictionary<string,object>> androidLevelInfo = CSVReader.Read ("AndroidLevelInfo");
-            int tHp = (int)androidLevelInfo[lv]["HP"]; 
-            p.hp = tHp;
-            p.maxHp = tHp;
-            StartCoroutine(p.RemoveInvincible(invincibleTime));
-        }
-        //animator.SetTrigger("TrigPlayerIdle");
-        //playerShootingScript.TimeReset();
-    }
 
     public void LoadingAdventureUI()
     {
