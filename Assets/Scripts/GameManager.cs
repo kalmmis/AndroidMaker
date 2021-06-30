@@ -435,4 +435,5 @@ public class GameManager : MonoBehaviour
         DataController.Instance.gameData.credit += creditProduce;
 
     }
+    
 }

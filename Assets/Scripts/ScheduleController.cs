@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScheduleController : MonoBehaviour
 {
@@ -243,7 +244,8 @@ public class ScheduleController : MonoBehaviour
 
             //[해결]
             //class 가 static 일 필요 없이 메소드와 구성 변수만 모두 static 이면 된다.
-            GameManager.ActiveAdventureTab();
+            //GameManager.ActiveAdventureTab();
+            SceneManager.LoadScene("BattleScene");
         }
 
         RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
