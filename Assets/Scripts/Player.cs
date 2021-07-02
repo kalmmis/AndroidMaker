@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
         //destrunctionCall = true;
         gameObject.SetActive(false);
-        AdventureController ac = GameObject.Find("AdventureController").GetComponent<AdventureController>();
+        AdventureController ac = GameObject.Find("BattleManager").GetComponent<AdventureController>();
         ac.Lose();
         // Find 하기 싫은데... 그냥 Tag 달고 FindTag 해야 하나
         // 구조를 잘못 잡은 게 문제겠지만 숙제로 남겨둠

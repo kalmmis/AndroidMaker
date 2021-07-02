@@ -75,6 +75,63 @@ public class EnemyShooting : MonoBehaviour {
                 
         switch (enemyScript.type)
         {
+            case "A1" :
+                attackPosition = 5f;
+                if(enemyPosition > attackPosition)
+                {
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.left * moveRate * Time.deltaTime);
+                    };
+                }
+                else
+                {
+                    enemyScript.enemyMoving = false;
+                    
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.zero * moveRate * Time.deltaTime);
+                    };
+                }
+                break;
+            case "A2" :
+                attackPosition = 6f;
+                if(enemyPosition > attackPosition)
+                {
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.left * moveRate * Time.deltaTime);
+                    };
+                }
+                else
+                {
+                    enemyScript.enemyMoving = false;
+                    
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.zero * moveRate * Time.deltaTime);
+                    };
+                }
+                break;
+            case "A3" :
+                attackPosition = 7f;
+                if(enemyPosition > attackPosition)
+                {
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.left * moveRate * Time.deltaTime);
+                    };
+                }
+                else
+                {
+                    enemyScript.enemyMoving = false;
+                    
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.zero * moveRate * Time.deltaTime);
+                    };
+                }
+                break;
             case "A" :
                 attackPosition = 8f;
                 if(enemyPosition > attackPosition)
