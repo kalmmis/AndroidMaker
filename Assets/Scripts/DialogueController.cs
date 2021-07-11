@@ -125,7 +125,8 @@ public class DialogueController : MonoBehaviour {
             string[] fd = levelRowsDual[j];
             if (fd[0].Equals("")) fd[0] = "1";
             float duration = float.Parse(fd[0]);
-            yield return new WaitForSeconds(duration + 2);
+            //yield return new WaitForSeconds(duration + 2);
+            yield return new WaitForSeconds(duration);
             for (int i = fd.Length - 1; i > 0; i -= 2) {
                 if (fd[i - 1].Equals("")) continue;
                 if (fd[1].Contains("load"))
