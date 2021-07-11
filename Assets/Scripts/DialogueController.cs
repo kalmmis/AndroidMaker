@@ -15,6 +15,8 @@ public class DialogueController : MonoBehaviour {
     private GameObject UI;
     private Boolean clicked = false;
 
+    public int storyButtonID;
+
 /*
     private void Awake()
     {
@@ -85,7 +87,6 @@ public class DialogueController : MonoBehaviour {
 
 //여기까지
 
-
     IEnumerator StringParser(int currentInt,string levelStr, string dialogs, System.Action<bool, int> callback) {
 
         char[] splitter = { '#' };
@@ -144,6 +145,8 @@ public class DialogueController : MonoBehaviour {
                             {
                                 //대화끝
                                 UI.SetActive(false);
+                                DataController.Instance.gameData.storyProgress[currentInt] = 1;
+                                GameManager.DoStorySet();
                                 break;
                             }
                             else if (row[2].Contains("show"))

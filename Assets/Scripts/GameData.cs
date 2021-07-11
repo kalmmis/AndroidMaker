@@ -23,6 +23,8 @@ public class GameData
     //전투 관련 스탯은 레벨에 종속된 CSV 테이블을 참조함 androidLevelInfo
     public int[] androidEquipment = new int[5] {1, 2, 0, 0, 0}; // 1st무기, 2nd무기, 머리, 상의, 하의
 
+    public int[] storyProgress = new int[7]{0,0,0,0,0,0,0};
+    public int[] scheduleProgress = new int[7]{0,0,0,0,0,0,0};
 /*  Life Status 일람
     public int Strength = 10; // 근력, 부품 교체 등의 아이템을 통해서만 증가 가능
     public int Mobility = 10;  // 기동성, 부품 교체 등의 아이템을 통해서만 증가 가능 
@@ -50,7 +52,6 @@ public class GameData
     public int WallLevel; // 방벽
     public int Building6Level; // 명성 수치용 건물들
     */
-    
     public int reputation;
 
 }

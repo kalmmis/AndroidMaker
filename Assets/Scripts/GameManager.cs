@@ -29,10 +29,13 @@ public class GameManager : MonoBehaviour
     private static GameObject statusUI;
 
     static List<Dictionary<string,object>> buildingLevelInfo;
+    static List<Dictionary<string,object>> storyInfo;
     //static Dictionary<string, Dictionary<string, object>> testDic;
     static int findBuildId;
     static int leftTurn;
     bool bPaused = false;
+
+    static int findStoryID;
 
     // Start is called before the first frame update
     void Start()
@@ -54,14 +57,13 @@ public class GameManager : MonoBehaviour
         AndroidNameText = infoCanvasUI.transform.Find("AndroidNameText").GetComponent<Text>();
         TurnCountText = infoCanvasUI.transform.Find("TurnCountText").GetComponent<Text>();
         
-        buildingLevelInfo = CSVReader.Read ("BuildingLevelInfo");        
+        buildingLevelInfo = CSVReader.Read ("BuildingLevelInfo");  
+        storyInfo = CSVReader.Read ("StoryInfo");
 
         LoadMainUI();
+        DoStorySet();
 
-        //DataController.Instance.LoadGameData(); 
-
-        //DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
-        //dia.DoStory(1);
+        //DataController.Instance.gameData.storyProgress[2] = 1;
 
         //3차원 배열 연습 해봄... 
         //testDic = CSVReader.ReadArray ("ScheduleRewardInfo");
@@ -71,6 +73,70 @@ public class GameManager : MonoBehaviour
         //Debug.Log(testDic["1"]["1"]);
         //string[] a = (string[])testDic[0]["1"]["reward1AverageCount"];
         //Debug.Log ("testDic data is " + a[2]);
+    }
+
+    public static void DoStorySet()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            findStoryID = i;
+            if (DataController.Instance.gameData.storyProgress[i] == 1) continue;
+            if (StoryChecker(i)) break;
+        }
+        if ((int)storyInfo[findStoryID]["AutoStory"] > 0)
+        {
+            DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
+            //Debug.Log (findStoryID);
+            dia.DoStory(findStoryID);
+        }
+        else
+        {
+            SetStoryButton(findStoryID);
+        }
+    }
+
+    public static void SetStoryButton(int id)
+    {
+        Debug.Log ("Set Story Id " + id);
+    }
+
+    public static bool StoryChecker(int id)
+    {
+        int[] reqStat = DataController.Instance.gameData.androidLifeStatus;
+        int[] nowStat = DataController.Instance.gameData.androidLifeStatus;
+        for (int i = 0; i < reqStat.Length; i++)
+        {
+            nowStat[i] = (int)storyInfo[id]["ReqStat" + i.ToString()];
+            if (reqStat[i] > nowStat[i])
+            {
+                Debug.Log ("Can't load Stat is low, Req is " + reqStat[i] + " Now is " + nowStat[i]);
+                return false;                
+            }
+        }
+
+        int[] reqSchedule = DataController.Instance.gameData.scheduleProgress;
+        int[] nowSchedule = DataController.Instance.gameData.scheduleProgress;
+        for (int i = 0; i < reqSchedule.Length; i++)
+        {
+            nowSchedule[i] = (int)storyInfo[id]["Schedule" + i.ToString()];
+            if (reqSchedule[i] > nowSchedule[i])
+            {
+                Debug.Log ("Can't load Schedule is low, Req is " + reqSchedule[i] + " Now is " + nowSchedule[i]);
+                return false;                
+            }
+        }
+
+        int reqLv = (int)storyInfo[id]["ReqLv"];
+        int nowLv = DataController.Instance.gameData.androidLv;
+        
+        if (reqLv <= nowLv)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void LoadMainUI()
@@ -117,8 +183,8 @@ public class GameManager : MonoBehaviour
         int creditProduce = (int)buildingLevelInfo[findBuildId]["productArg"];
         
         ResourceText.text = "크레딧 " + presentCredit.ToString() + " (+" + creditProduce.ToString() + ")    코어 90000     번영도 0     명성 -100";
-   
     }
+
     public static void RefreshMainUI()
     {        
         int eventTurn = DataController.Instance.gameData.turnForEvent;
@@ -314,6 +380,7 @@ public class GameManager : MonoBehaviour
         uc.LoadingAndroidUI();
     }
 
+/*
     // Update is called once per frame
     void Update()
     {
@@ -324,7 +391,8 @@ public class GameManager : MonoBehaviour
         //TurnCountText.text = DataController.Instance.gameData.turn.ToString() + "주차";
         TurnCountText.text = "메인테넌스까지 " + leftTurn.ToString() + "개월";
     }
-    
+*/
+
     private void OnApplicationQuit()
     {
         DataController.Instance.SaveGameData();
@@ -392,6 +460,7 @@ public class GameManager : MonoBehaviour
         RefreshMainUI();
     }
 
+    /*
     // 테스트용 메서드
     public void ResetGameData()
     {
@@ -433,7 +502,6 @@ public class GameManager : MonoBehaviour
         // 그 행에 해당하는 productArg 값 가져옴
         int creditProduce = (int)buildingLevelInfo[findBuildId]["productArg"];
         DataController.Instance.gameData.credit += creditProduce;
-
     }
-    
+    */
 }
