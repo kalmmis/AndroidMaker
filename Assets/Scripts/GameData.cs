@@ -53,6 +53,10 @@ public class GameData
     public int Building6Level; // 명성 수치용 건물들
     */
     public int reputation;
+    //public DateTime[] researchStartDateTime = new DateTime[3]{DateTime.Now,DateTime.Now,DateTime.Now};
+    public string[] researchStartTimerString = new string[3]{"Standby","Standby","Standby"};
+    public string[] researchStartDateString = new string[3]{"","",""};
+    public int[] researchStartTimeInt = new int[3]{0,0,0};
 
 }
 

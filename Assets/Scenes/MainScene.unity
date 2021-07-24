@@ -13545,7 +13545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &689566211
 Transform:
   m_ObjectHideFlags: 0
@@ -13581,16 +13581,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 689566210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7106c08b8ec17a44affb130ab1bd1a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c817abc63452ae4a8e187b5228e2606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeLabel: {fileID: 1001621351}
   timerButton: {fileID: 1933081010}
   _progress: {fileID: 1826282691}
-  hours: 0
+  hours: 30
   minutes: 0
   seconds: 10
-  RewardToEarn: 10
+  RewardToEarn: 0
 --- !u!1 &692372831
 GameObject:
   m_ObjectHideFlags: 0
@@ -18446,7 +18446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2560, y: -0.00048828125}
+  m_AnchoredPosition: {x: 2560, y: -0.0009765625}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &965713436
@@ -23100,6 +23100,15 @@ MonoBehaviour:
     buildingUpgradeTurn: 000000000000000000000000000000000000000000000000
     scheduleLevel: 01000000010000000100000001000000010000000100000001000000
     reputation: 0
+    researchStartTimerString:
+    - Standby
+    - Standby
+    - Standby
+    researchStartDateString:
+    - 
+    - 
+    - 
+    researchStartTimeInt: 000000000000000000000000
   _clientData:
     scheduleTitle:
     - '-'
@@ -32284,6 +32293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTest: 0
   skipDialog: 0
+  storyButtonID: 0
 --- !u!1 &1668174332
 GameObject:
   m_ObjectHideFlags: 0
@@ -35367,7 +35377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1826282690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36065,7 +36075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5120, y: -0.00048828125}
+  m_AnchoredPosition: {x: 5120, y: -0.0009765625}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1860370575
@@ -37781,7 +37791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1933081009
 RectTransform:
   m_ObjectHideFlags: 0

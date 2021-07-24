@@ -77,6 +77,7 @@
      <Compile Include="Assets\Scripts\PlayerHpPosition.cs" />
      <Compile Include="Assets\Scripts\PlayerShooting.cs" />
      <Compile Include="Assets\Scripts\Projectile.cs" />
+     <Compile Include="Assets\Scripts\ResearchTimeController.cs" />
      <Compile Include="Assets\Scripts\ScheduleController.cs" />
      <Compile Include="Assets\Scripts\SchedulePanel.cs" />
      <Compile Include="Assets\Scripts\ShelterController.cs" />
