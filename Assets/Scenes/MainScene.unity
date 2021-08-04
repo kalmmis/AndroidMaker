@@ -6327,7 +6327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.00048828125, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &291403833
@@ -12004,7 +12004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &595140265
@@ -13587,7 +13587,8 @@ MonoBehaviour:
   timeLabel: {fileID: 1001621351}
   timerButton: {fileID: 1933081010}
   _progress: {fileID: 1826282691}
-  hours: 30
+  days: 0
+  hours: 20
   minutes: 0
   seconds: 10
   RewardToEarn: 0
@@ -31152,8 +31153,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1401352538}
   m_HandleRect: {fileID: 1401352537}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.36158192
+  m_Value: 0.00000010802681
+  m_Size: 0.3615819
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -36216,7 +36217,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1268363938}
   m_HandleRect: {fileID: 1268363937}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999992
   m_Size: 0.54555553
   m_NumberOfSteps: 0
   m_OnValueChanged:

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     //private GameObject ConfirmUI;
     //private GameObject EventUI;
     // Confirm 과 Event 는 false 세팅 해두면 버그 나서 일단 위치 값으로 조정 중.
-    private static GameObject combatUI;
+    //private static GameObject combatUI;
     private static GameObject inventoryUI;
     private static GameObject androidUI;
 
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         equipmentUI = GameObject.FindGameObjectWithTag("EquipmentUI");
         //ConfirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
         //EventUI = GameObject.FindGameObjectWithTag("EventUI");
-        combatUI = GameObject.FindGameObjectWithTag("CombatUI");
+        //combatUI = GameObject.FindGameObjectWithTag("CombatUI");
         inventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
         androidUI = GameObject.FindGameObjectWithTag("AndroidUI");
         laboScreen = GameObject.FindGameObjectWithTag("LaboScreen");
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         equipmentUI.SetActive(false);
         //ConfirmUI.SetActive(false);
         //EventUI.SetActive(false);
-        combatUI.SetActive(false);
+        //combatUI.SetActive(false);
         inventoryUI.SetActive(false);
         androidUI.SetActive(false);
         combatScreen.SetActive(false);
@@ -222,7 +222,7 @@ public class GameManager : MonoBehaviour
         shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        combatUI.SetActive(false);
+        //combatUI.SetActive(false);
         inventoryUI.SetActive(false);
         androidUI.SetActive(false);
 
@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour
         shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        combatUI.SetActive(false);
+        //combatUI.SetActive(false);
         inventoryUI.SetActive(false);
         androidUI.SetActive(false);
 
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
         shelterUI.SetActive(true);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        combatUI.SetActive(false);
+        //combatUI.SetActive(false);
         inventoryUI.SetActive(false);
         androidUI.SetActive(false);
 
@@ -292,7 +292,7 @@ public class GameManager : MonoBehaviour
         shelterUI.SetActive(false);
         learnUI.SetActive(true);
         equipmentUI.SetActive(false);
-        combatUI.SetActive(false);
+        //combatUI.SetActive(false);
         inventoryUI.SetActive(false);
         androidUI.SetActive(false);
 
@@ -311,7 +311,7 @@ public class GameManager : MonoBehaviour
         shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(true);
-        combatUI.SetActive(false);
+        //combatUI.SetActive(false);
         inventoryUI.SetActive(false);
         androidUI.SetActive(false);
 
@@ -328,7 +328,7 @@ public class GameManager : MonoBehaviour
         shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        combatUI.SetActive(false);
+        //combatUI.SetActive(false);
         inventoryUI.SetActive(true);
         androidUI.SetActive(false);
 
@@ -346,7 +346,7 @@ public class GameManager : MonoBehaviour
         shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        combatUI.SetActive(true);
+        //combatUI.SetActive(true);
         inventoryUI.SetActive(false);
         androidUI.SetActive(false);
         
@@ -365,7 +365,7 @@ public class GameManager : MonoBehaviour
         shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
-        combatUI.SetActive(false);
+        //combatUI.SetActive(false);
         inventoryUI.SetActive(false);
         androidUI.SetActive(true);
 

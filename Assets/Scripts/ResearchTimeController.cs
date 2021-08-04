@@ -10,6 +10,7 @@ public class ResearchTimeController : MonoBehaviour
     public Button timerButton; //used to disable button when needed
     public Image _progress;
     //TIME ELEMENTS
+    public double days;
     public double hours; //to set the hours
     public double minutes; //to set the minutes
     public double seconds; //to set the seconds
@@ -76,6 +77,7 @@ public class ResearchTimeController : MonoBehaviour
             DateTime _old = new DateTime(int.Parse(_date[2]), int.Parse(_date[0]), int.Parse(_date[1]),int.Parse(_time[0]),int.Parse(_time[1]),int.Parse(_time[2]));
             
             _goal = _old;
+            _goal = _goal.AddDays(days);
             _goal = _goal.AddHours(hours);
             _goal = _goal.AddMinutes(minutes);
             _goal = _goal.AddSeconds(seconds);
@@ -112,7 +114,7 @@ private void _configTimerSettings()
     //_goal.Date
 
     _startTime = TimeSpan.Parse (DataController.Instance.gameData.researchStartTimerString[0]);
-    _endTime = TimeSpan.Parse (hours + ":" + minutes + ":" + seconds);
+    _endTime = TimeSpan.Parse (days + ":" + hours + ":" + minutes + ":" + seconds);
     Debug.Log ("_startTime is " + _startTime);
     Debug.Log ("_endTime is " + _endTime);
 

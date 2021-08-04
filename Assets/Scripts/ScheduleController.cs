@@ -90,7 +90,7 @@ public class ScheduleController : MonoBehaviour
                 var newSchedulePanel = Instantiate(Resources.Load("Prefabs/SchedulePanel"), new Vector2(0, 0), Quaternion.identity) as GameObject;
             
                 SchedulePanel scheduleScript = newSchedulePanel.GetComponent<SchedulePanel>();
-                newSchedulePanel.transform.SetParent(missionCavas.transform);
+                newSchedulePanel.transform.SetParent(missionCavas.transform,false);
                 scheduleScript.scheduleID = i;
                 scheduleScript.StartInitialize(i);
             }            
@@ -461,7 +461,7 @@ public class ScheduleController : MonoBehaviour
         DataController.Instance.gameData.androidLifeStatus[curReward3ID] -= curReward3;
 
         var newParameterEventPanel = Instantiate(Resources.Load("Prefabs/ParameterEventPanel")) as GameObject;
-        newParameterEventPanel.transform.SetParent(eventCharacter.transform);
+        newParameterEventPanel.transform.SetParent(eventCharacter.transform,false);
         newParameterEventPanel.transform.position = eventCharacter.transform.position + new Vector3(100, 230);
         ParameterEventPanel parameterEventPanelScript = newParameterEventPanel.GetComponent<ParameterEventPanel>();
         parameterEventPanelScript.parameterEventText1.text = "+ " + curReward1.ToString();
