@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\BattleScene\PlayerShooting.cs" />
      <Compile Include="Assets\Scripts\ParameterEventPanel.cs" />
      <Compile Include="Assets\Scripts\TimeManager.cs" />
+     <Compile Include="Assets\Scripts\SceneManager.cs" />
      <Compile Include="Assets\Scripts\SchedulePanel.cs" />
      <Compile Include="Assets\Scripts\BattleScene\AdventureController.cs" />
      <Compile Include="Assets\Scripts\BattleScene\PlayerHpPosition.cs" />
@@ -62,12 +63,14 @@
      <Compile Include="Assets\Scripts\CSVReader.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Demo scene\DemoShooting.cs" />
+     <Compile Include="Assets\Scripts\TitleScene\TitleSceneScript.cs" />
      <Compile Include="Assets\Scripts\MeleeWeapon.cs" />
      <Compile Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Scripts\AutoDestroyPS.cs" />
+     <Compile Include="Assets\Scripts\BattleScene\PlayerMoving.cs" />
      <Compile Include="Assets\Scripts\BattleScene\EnemyShooting.cs" />
      <Compile Include="Assets\Scripts\ExcelParser.cs" />
      <Compile Include="Assets\Scripts\ShelterController.cs" />
-     <Compile Include="Assets\Scripts\BattleScene\PlayerMoving.cs" />
+     <Compile Include="Assets\Scripts\StoryController.cs" />
      <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Prefabs\Readme.txt" />
      <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Demo scene\Readme.txt" />
      <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\Lit_CenterGlow.shader" />

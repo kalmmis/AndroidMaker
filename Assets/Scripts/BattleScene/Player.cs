@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
         //shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(65,0);
-        playerImage.sprite = playerGuardImage;
+        //playerImage.sprite = playerGuardImage;
         
         //Debug.Log("Guard");        
     }
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
         //shield = GameObject.FindGameObjectWithTag("Shield");
         RectTransform shieldTransform = shield.GetComponent<RectTransform>();
         shieldTransform.anchoredPosition = new Vector2(-500,0);
-        playerImage.sprite = playerBattleIdleImage;
+        //playerImage.sprite = playerBattleIdleImage;
     }
 
     public void GetDamage(int damage)   

@@ -52,7 +52,7 @@ public class StatusController : MonoBehaviour
         StatusUI = GameObject.FindGameObjectWithTag("StatusUI");
         RectTransform rectTransform = StatusUI.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(0,0);
-
+        
         StatusDetailUI = GameObject.FindGameObjectWithTag("StatusDetail");
 
         Status1 = StatusDetailUI.transform.Find("Status1Panel").transform.Find("Text").GetComponent<Text>();
@@ -75,26 +75,6 @@ public class StatusController : MonoBehaviour
         Status8Amount = StatusDetailUI.transform.Find("Status8Panel").transform.Find("Status8Bar").transform.Find("Status8AmountText").GetComponent<Text>();
         Status9Amount = StatusDetailUI.transform.Find("Status9Panel").transform.Find("Status9Bar").transform.Find("Status9AmountText").GetComponent<Text>();
 
-        Status1.text = "Strength";
-        Status2.text = "Mobility";
-        Status3.text = "Computing";
-        Status4.text = "Knowledge";
-        Status5.text = "Wisdom";
-        Status6.text = "Willing";
-        Status7.text = "Charisma";
-        Status8.text = "Morality";
-        Status9.text = "Humanity";
-
-        Status1Amount.text = DataController.Instance.gameData.androidLifeStatus[0].ToString();
-        Status2Amount.text = DataController.Instance.gameData.androidLifeStatus[1].ToString();
-        Status3Amount.text = DataController.Instance.gameData.androidLifeStatus[2].ToString();
-        Status4Amount.text = DataController.Instance.gameData.androidLifeStatus[3].ToString();
-        Status5Amount.text = DataController.Instance.gameData.androidLifeStatus[4].ToString();
-        Status6Amount.text = DataController.Instance.gameData.androidLifeStatus[5].ToString();
-        Status7Amount.text = DataController.Instance.gameData.androidLifeStatus[6].ToString();
-        Status8Amount.text = DataController.Instance.gameData.androidLifeStatus[7].ToString();
-        Status9Amount.text = DataController.Instance.gameData.androidLifeStatus[8].ToString();
-
         Status1Bar = StatusDetailUI.transform.Find("Status1Panel").transform.Find("Status1Bar").GetComponent<Slider>();
         Status2Bar = StatusDetailUI.transform.Find("Status2Panel").transform.Find("Status2Bar").GetComponent<Slider>();
         Status3Bar = StatusDetailUI.transform.Find("Status3Panel").transform.Find("Status3Bar").GetComponent<Slider>();
@@ -105,15 +85,36 @@ public class StatusController : MonoBehaviour
         Status8Bar = StatusDetailUI.transform.Find("Status8Panel").transform.Find("Status8Bar").GetComponent<Slider>();
         Status9Bar = StatusDetailUI.transform.Find("Status9Panel").transform.Find("Status9Bar").GetComponent<Slider>();
 
-        Status1Gauge = DataController.Instance.gameData.androidLifeStatus[0] / 999.0f;
-        Status2Gauge = DataController.Instance.gameData.androidLifeStatus[1] / 999.0f;
-        Status3Gauge = DataController.Instance.gameData.androidLifeStatus[2] / 999.0f;
-        Status4Gauge = DataController.Instance.gameData.androidLifeStatus[3] / 999.0f;
-        Status5Gauge = DataController.Instance.gameData.androidLifeStatus[4] / 999.0f;
-        Status6Gauge = DataController.Instance.gameData.androidLifeStatus[5] / 999.0f;
-        Status7Gauge = DataController.Instance.gameData.androidLifeStatus[6] / 999.0f;
-        Status8Gauge = DataController.Instance.gameData.androidLifeStatus[7] / 999.0f;
-        Status9Gauge = DataController.Instance.gameData.androidLifeStatus[8] / 999.0f;
+    
+        Status1.text = "Strength";
+        Status2.text = "Mobility";
+        Status3.text = "Computing";
+        Status4.text = "Knowledge";
+        Status5.text = "Wisdom";
+        Status6.text = "Willing";
+        Status7.text = "Charisma";
+        Status8.text = "Morality";
+        Status9.text = "Humanity";
+
+        Status1Amount.text = DataController.Instance.gameData.androidLifeStat[0].ToString();
+        Status2Amount.text = DataController.Instance.gameData.androidLifeStat[1].ToString();
+        Status3Amount.text = DataController.Instance.gameData.androidLifeStat[2].ToString();
+        Status4Amount.text = DataController.Instance.gameData.androidLifeStat[3].ToString();
+        Status5Amount.text = DataController.Instance.gameData.androidLifeStat[4].ToString();
+        Status6Amount.text = DataController.Instance.gameData.androidLifeStat[5].ToString();
+        Status7Amount.text = DataController.Instance.gameData.androidLifeStat[6].ToString();
+        Status8Amount.text = DataController.Instance.gameData.androidLifeStat[7].ToString();
+        Status9Amount.text = DataController.Instance.gameData.androidLifeStat[8].ToString();
+
+        Status1Gauge = DataController.Instance.gameData.androidLifeStat[0] / 999.0f;
+        Status2Gauge = DataController.Instance.gameData.androidLifeStat[1] / 999.0f;
+        Status3Gauge = DataController.Instance.gameData.androidLifeStat[2] / 999.0f;
+        Status4Gauge = DataController.Instance.gameData.androidLifeStat[3] / 999.0f;
+        Status5Gauge = DataController.Instance.gameData.androidLifeStat[4] / 999.0f;
+        Status6Gauge = DataController.Instance.gameData.androidLifeStat[5] / 999.0f;
+        Status7Gauge = DataController.Instance.gameData.androidLifeStat[6] / 999.0f;
+        Status8Gauge = DataController.Instance.gameData.androidLifeStat[7] / 999.0f;
+        Status9Gauge = DataController.Instance.gameData.androidLifeStat[8] / 999.0f;
 
         //Debug.Log("Strength:" + DataController.Instance.gameData.Strength);
         //Debug.Log("Status1Gauge:" + Status1Gauge);
@@ -127,29 +128,30 @@ public class StatusController : MonoBehaviour
         Status7Bar.value = Status7Gauge;
         Status8Bar.value = Status8Gauge;
         Status9Bar.value = Status9Gauge;
+    
 
     }
     public static void ReloadStatusUI()
     {
-        Status1Amount.text = DataController.Instance.gameData.androidLifeStatus[0].ToString();
-        Status2Amount.text = DataController.Instance.gameData.androidLifeStatus[1].ToString();
-        Status3Amount.text = DataController.Instance.gameData.androidLifeStatus[2].ToString();
-        Status4Amount.text = DataController.Instance.gameData.androidLifeStatus[3].ToString();
-        Status5Amount.text = DataController.Instance.gameData.androidLifeStatus[4].ToString();
-        Status6Amount.text = DataController.Instance.gameData.androidLifeStatus[5].ToString();
-        Status7Amount.text = DataController.Instance.gameData.androidLifeStatus[6].ToString();
-        Status8Amount.text = DataController.Instance.gameData.androidLifeStatus[7].ToString();
-        Status9Amount.text = DataController.Instance.gameData.androidLifeStatus[8].ToString();
+        Status1Amount.text = DataController.Instance.gameData.androidLifeStat[0].ToString();
+        Status2Amount.text = DataController.Instance.gameData.androidLifeStat[1].ToString();
+        Status3Amount.text = DataController.Instance.gameData.androidLifeStat[2].ToString();
+        Status4Amount.text = DataController.Instance.gameData.androidLifeStat[3].ToString();
+        Status5Amount.text = DataController.Instance.gameData.androidLifeStat[4].ToString();
+        Status6Amount.text = DataController.Instance.gameData.androidLifeStat[5].ToString();
+        Status7Amount.text = DataController.Instance.gameData.androidLifeStat[6].ToString();
+        Status8Amount.text = DataController.Instance.gameData.androidLifeStat[7].ToString();
+        Status9Amount.text = DataController.Instance.gameData.androidLifeStat[8].ToString();
 
-        Status1Gauge = DataController.Instance.gameData.androidLifeStatus[0] / 999.0f;
-        Status2Gauge = DataController.Instance.gameData.androidLifeStatus[1] / 999.0f;
-        Status3Gauge = DataController.Instance.gameData.androidLifeStatus[2] / 999.0f;
-        Status4Gauge = DataController.Instance.gameData.androidLifeStatus[3] / 999.0f;
-        Status5Gauge = DataController.Instance.gameData.androidLifeStatus[4] / 999.0f;
-        Status6Gauge = DataController.Instance.gameData.androidLifeStatus[5] / 999.0f;
-        Status7Gauge = DataController.Instance.gameData.androidLifeStatus[6] / 999.0f;
-        Status8Gauge = DataController.Instance.gameData.androidLifeStatus[7] / 999.0f;
-        Status9Gauge = DataController.Instance.gameData.androidLifeStatus[8] / 999.0f;
+        Status1Gauge = DataController.Instance.gameData.androidLifeStat[0] / 999.0f;
+        Status2Gauge = DataController.Instance.gameData.androidLifeStat[1] / 999.0f;
+        Status3Gauge = DataController.Instance.gameData.androidLifeStat[2] / 999.0f;
+        Status4Gauge = DataController.Instance.gameData.androidLifeStat[3] / 999.0f;
+        Status5Gauge = DataController.Instance.gameData.androidLifeStat[4] / 999.0f;
+        Status6Gauge = DataController.Instance.gameData.androidLifeStat[5] / 999.0f;
+        Status7Gauge = DataController.Instance.gameData.androidLifeStat[6] / 999.0f;
+        Status8Gauge = DataController.Instance.gameData.androidLifeStat[7] / 999.0f;
+        Status9Gauge = DataController.Instance.gameData.androidLifeStat[8] / 999.0f;
      
         Status1Bar.value = Status1Gauge;
         Status2Bar.value = Status2Gauge;

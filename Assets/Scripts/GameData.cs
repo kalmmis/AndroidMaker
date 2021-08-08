@@ -18,7 +18,7 @@ public class GameData
     public int overallTurn = 1;
 
     public int androidLv = 1;
-    public int[] androidLifeStatus = new int[9] {10, 10, 10, 10, 10, 10, 10, 10, 10};
+    //public int[] androidLifeStat;
     //public int[] androidCombatStatus = new int[9] {10, 10, 10, 10, 10, 10, 10, 10, 10};
     //전투 관련 스탯은 레벨에 종속된 CSV 테이블을 참조함 androidLevelInfo
     public int[] androidEquipment = new int[5] {1, 2, 0, 0, 0}; // 1st무기, 2nd무기, 머리, 상의, 하의
@@ -52,6 +52,7 @@ public class GameData
     public int WallLevel; // 방벽
     public int Building6Level; // 명성 수치용 건물들
     */
+    public int[] androidLifeStat = new int[9]{100, 100, 100, 100, 100, 100, 100, 100, 100};
     public int reputation;
     //public DateTime[] researchStartDateTime = new DateTime[3]{DateTime.Now,DateTime.Now,DateTime.Now};
     public string[] researchStartTimerString = new string[3]{"Standby","Standby","Standby"};

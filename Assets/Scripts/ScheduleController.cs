@@ -41,7 +41,7 @@ public class ScheduleController : MonoBehaviour
     public static int curReward3;
 
     private GameObject missionCavas;
-    public static bool isBuildingRefreshTime = false;
+    public static bool isBuildingRefreshTime = true;
 
     public GameObject eventCharacter;
 
@@ -67,7 +67,7 @@ public class ScheduleController : MonoBehaviour
 
         learn0TitleText.text = "원정";
 
-        if (!isBuildingRefreshTime)
+        if (isBuildingRefreshTime)
         {
             DeleteOldSchedulePanel();
             InitSchedulePanel();
@@ -80,14 +80,13 @@ public class ScheduleController : MonoBehaviour
     }
     public void InitSchedulePanel()
     {
-        isBuildingRefreshTime = true;
 
         for (int i = 1; i < scheduleInfo.Count; i++)
         {
             //빌딩 조건 체크
             if (ScheduleReqireBuildingLv(i))
             {
-                var newSchedulePanel = Instantiate(Resources.Load("Prefabs/SchedulePanel"), new Vector2(0, 0), Quaternion.identity) as GameObject;
+                var newSchedulePanel = Instantiate(Resources.Load("Prefabs/UI/SchedulePanel"), new Vector2(0, 0), Quaternion.identity) as GameObject;
             
                 SchedulePanel scheduleScript = newSchedulePanel.GetComponent<SchedulePanel>();
                 newSchedulePanel.transform.SetParent(missionCavas.transform,false);
@@ -95,6 +94,7 @@ public class ScheduleController : MonoBehaviour
                 scheduleScript.StartInitialize(i);
             }            
         }
+        isBuildingRefreshTime = false;
     }
     public bool ScheduleReqireBuildingLv(int id)
     {
@@ -245,7 +245,7 @@ public class ScheduleController : MonoBehaviour
             //[해결]
             //class 가 static 일 필요 없이 메소드와 구성 변수만 모두 static 이면 된다.
             //GameManager.ActiveAdventureTab();
-            SceneManager.LoadScene("BattleScene");
+            SceneManager.LoadScene(SceneManager.Scene.BattleScene);
         }
 
         RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
@@ -426,7 +426,8 @@ public class ScheduleController : MonoBehaviour
         weeklySchedule[1] = 0;
         weeklySchedule[2] = 0;
         weeklySchedule[3] = 0;
-
+        
+        DataController.Instance.SaveGameData();
         GameManager.DoNextTurn();        
     }
 
@@ -456,11 +457,11 @@ public class ScheduleController : MonoBehaviour
 
         //Debug.Log("c is " + curReward1 + " d is " + curReward2 + " e is " + curReward3);
 
-        DataController.Instance.gameData.androidLifeStatus[curReward1ID] += curReward1;
-        DataController.Instance.gameData.androidLifeStatus[curReward2ID] += curReward2;
-        DataController.Instance.gameData.androidLifeStatus[curReward3ID] -= curReward3;
+        DataController.Instance.gameData.androidLifeStat[curReward1ID] += curReward1;
+        DataController.Instance.gameData.androidLifeStat[curReward2ID] += curReward2;
+        DataController.Instance.gameData.androidLifeStat[curReward3ID] -= curReward3;
 
-        var newParameterEventPanel = Instantiate(Resources.Load("Prefabs/ParameterEventPanel")) as GameObject;
+        var newParameterEventPanel = Instantiate(Resources.Load("Prefabs/UI/ParameterEventPanel")) as GameObject;
         newParameterEventPanel.transform.SetParent(eventCharacter.transform,false);
         newParameterEventPanel.transform.position = eventCharacter.transform.position + new Vector3(100, 230);
         ParameterEventPanel parameterEventPanelScript = newParameterEventPanel.GetComponent<ParameterEventPanel>();

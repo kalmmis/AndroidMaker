@@ -18,10 +18,6 @@ public class DialogueController : MonoBehaviour {
     public int storyButtonID;
 
 /*
-    private void Awake()
-    {
-        Debug.Log("Awaked!");
-    }
     private void Start()
     {
         UI = GameObject.FindGameObjectWithTag("DialogueUI");
@@ -147,7 +143,7 @@ public class DialogueController : MonoBehaviour {
                                 //대화끝
                                 UI.SetActive(false);
                                 DataController.Instance.gameData.storyProgress[currentInt] = 1;
-                                GameManager.DoStorySet();
+                                StoryController.DoStorySet();
                                 break;
                             }
                             else if (row[2].Contains("show"))

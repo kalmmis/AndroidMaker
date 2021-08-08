@@ -29,13 +29,11 @@ public class GameManager : MonoBehaviour
     private static GameObject statusUI;
 
     static List<Dictionary<string,object>> buildingLevelInfo;
-    static List<Dictionary<string,object>> storyInfo;
     //static Dictionary<string, Dictionary<string, object>> testDic;
     static int findBuildId;
     static int leftTurn;
     bool bPaused = false;
 
-    static int findStoryID;
 
     // Start is called before the first frame update
     void Start()
@@ -58,10 +56,12 @@ public class GameManager : MonoBehaviour
         TurnCountText = infoCanvasUI.transform.Find("TurnCountText").GetComponent<Text>();
         
         buildingLevelInfo = CSVReader.Read ("BuildingLevelInfo");  
-        storyInfo = CSVReader.Read ("StoryInfo");
+        
 
+        //DataController.Instance.LoadGameData();
         LoadMainUI();
-        DoStorySet();
+
+        StoryController.DoStorySet();
 
         //DataController.Instance.gameData.storyProgress[2] = 1;
 
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         //string[] a = (string[])testDic[0]["1"]["reward1AverageCount"];
         //Debug.Log ("testDic data is " + a[2]);
     }
-
+/*
     public static void DoStorySet()
     {
         for (int i = 0; i < 100; i++)
@@ -102,8 +102,8 @@ public class GameManager : MonoBehaviour
 
     public static bool StoryChecker(int id)
     {
-        int[] reqStat = DataController.Instance.gameData.androidLifeStatus;
-        int[] nowStat = DataController.Instance.gameData.androidLifeStatus;
+        int[] reqStat = DataController.Instance.gameData.androidLifeStat;
+        int[] nowStat = DataController.Instance.gameData.androidLifeStat;
         for (int i = 0; i < reqStat.Length; i++)
         {
             nowStat[i] = (int)storyInfo[id]["ReqStat" + i.ToString()];
@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
+    */
 
     public void LoadMainUI()
     {

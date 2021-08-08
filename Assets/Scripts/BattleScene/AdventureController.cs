@@ -133,5 +133,11 @@ public class AdventureController : MonoBehaviour
         GameManager.DoNextTurn();
         GameManager.ActiveHome();
     }
+    
+    public void BattleToMain()
+    {
+        SceneManager.LoadScene(SceneManager.Scene.MainScene);
+        ScheduleController.isBuildingRefreshTime = true;
+    }
 
 }

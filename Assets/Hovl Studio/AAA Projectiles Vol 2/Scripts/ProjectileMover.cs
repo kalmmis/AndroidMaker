@@ -19,7 +19,7 @@ public class ProjectileMover : MonoBehaviour
         if (flash != null)
         {
             var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
-            flashInstance.transform.forward = gameObject.transform.right * -1;
+            flashInstance.transform.forward = gameObject.transform.forward;
             var flashPs = flashInstance.GetComponent<ParticleSystem>();
             if (flashPs != null)
             {
@@ -38,7 +38,7 @@ public class ProjectileMover : MonoBehaviour
     {
 		if (speed != 0)
         {
-            rb.velocity = transform.right * speed * -1;
+            rb.velocity = transform.forward * speed;
             //transform.position += transform.forward * (speed * Time.deltaTime);         
         }
 	}
