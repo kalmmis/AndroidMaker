@@ -51,7 +51,7 @@ public class DataController : MonoBehaviour
     {
         Debug.Log("DataController Awaked!");
     }
-    
+     
     public void LoadGameData()
     {
         if (Application.platform == RuntimePlatform.Android)

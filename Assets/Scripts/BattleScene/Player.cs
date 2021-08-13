@@ -95,7 +95,20 @@ public class Player : MonoBehaviour
         // 체력 바 슬라이드 보여주는 곳. damage 함수에서만 갱신해줘도 될 수도 있는데
         // 일단 현재는 update 에 넣어놨음
         // 요 세 줄만 함수 하나로 빼서 damage 관련에서 계속 부르는 것도 가능은 할 듯
-
+        if (Input.GetKeyDown("left ctrl"))
+        {
+            Attack();
+        }
+        if (Input.GetKeyDown("left alt"))
+        {
+            inputTimer = Time.time;
+            isHold = true;
+        }
+        if (Input.GetKeyUp("left alt"))
+        {
+            isHold = false;
+        }
+        
         //Debug.Log("isHold is " + isHold);
         if (isHold)
         {

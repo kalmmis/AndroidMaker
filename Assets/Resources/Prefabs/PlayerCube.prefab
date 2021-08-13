@@ -694,7 +694,7 @@ MonoBehaviour:
   hp: 0
   hpSlider: {fileID: 3964883674148216879}
   inputTimer: 0
-  guardDelay: 0.3
+  guardDelay: 0.5
   reloadDelay: 2
   reloadSlider: {fileID: 3964883673419594053}
   shield: {fileID: 4923294646839708743}
