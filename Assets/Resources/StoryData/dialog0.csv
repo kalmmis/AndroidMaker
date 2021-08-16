@@ -1,1 +1,1 @@
-Story01Start,event,show portrait_player,left,endline#,l,안드로시아,다이얼로그0,endline#,event,end,,end,,,,
+StoryStart,event,show portrait_player,left,endline#,l,안드로시아,다이얼로그0,endline#,event,end,,end,,,,

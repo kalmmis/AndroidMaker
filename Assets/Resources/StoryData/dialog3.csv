@@ -1,1 +1,1 @@
-Story01Start,event,show portrait_player,left,endline#,l,미나,3,endline#,event,end,,end,,,,
+StoryStart,event,show portrait_player,left,endline#,l,미나,3,endline#,event,end,,end,,,,
