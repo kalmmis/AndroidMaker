@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private static GameObject infoCanvasUI;
 
-    private static GameObject shelterUI;
+    //private static GameObject shelterUI;
     private static GameObject learnUI;
     private static GameObject equipmentUI;
     //private GameObject ConfirmUI;
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {        
         infoCanvasUI = GameObject.FindGameObjectWithTag("InfoCanvas");
-        shelterUI = GameObject.FindGameObjectWithTag("ShelterUI");
+        //shelterUI = GameObject.FindGameObjectWithTag("ShelterUI");
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
         equipmentUI = GameObject.FindGameObjectWithTag("EquipmentUI");
         //ConfirmUI = GameObject.FindGameObjectWithTag("ConfirmUI");
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
     public void LoadMainUI()
     {
         laboScreen.SetActive(true);
-        shelterUI.SetActive(false);
+        //shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
         //ConfirmUI.SetActive(false);
@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
     }
     public static void ActiveHome()
     {
-        shelterUI.SetActive(false);
+        //shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
         //combatUI.SetActive(false);
@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviour
     
     public void ActiveRoom()
     {
-        shelterUI.SetActive(false);
+        //shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
         //combatUI.SetActive(false);
@@ -273,7 +273,7 @@ public class GameManager : MonoBehaviour
     }
     public void ActiveShelterTab()
     {
-        shelterUI.SetActive(true);
+        //shelterUI.SetActive(true);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
         //combatUI.SetActive(false);
@@ -290,7 +290,7 @@ public class GameManager : MonoBehaviour
 
     public void ActiveScheduleTab()
     {
-        shelterUI.SetActive(false);
+        //shelterUI.SetActive(false);
         learnUI.SetActive(true);
         equipmentUI.SetActive(false);
         //combatUI.SetActive(false);
@@ -309,7 +309,7 @@ public class GameManager : MonoBehaviour
 
     public void ActiveEquipmentTab()
     {
-        shelterUI.SetActive(false);
+        //shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(true);
         //combatUI.SetActive(false);
@@ -326,7 +326,7 @@ public class GameManager : MonoBehaviour
 
     public void ActiveInventoryTab()
     {
-        shelterUI.SetActive(false);
+        //shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
         //combatUI.SetActive(false);
@@ -344,7 +344,7 @@ public class GameManager : MonoBehaviour
 
     public static void ActiveAdventureTab()
     {
-        shelterUI.SetActive(false);
+        //shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
         //combatUI.SetActive(true);
@@ -363,7 +363,7 @@ public class GameManager : MonoBehaviour
 
     public void ActiveAndroidTab()
     {
-        shelterUI.SetActive(false);
+        //shelterUI.SetActive(false);
         learnUI.SetActive(false);
         equipmentUI.SetActive(false);
         //combatUI.SetActive(false);
