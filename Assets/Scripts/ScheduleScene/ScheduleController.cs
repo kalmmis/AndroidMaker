@@ -45,7 +45,7 @@ public class ScheduleController : MonoBehaviour
 
     public GameObject eventCharacter;
 
-    public void StartScheduleController()
+    public void Start()
     {
         //FindGameObjectWithTag 들도 차후에 인스펙터로 이관필요할 듯 20210516
         scheduleUI = GameObject.FindGameObjectWithTag("ScheduleUI");
@@ -427,8 +427,9 @@ public class ScheduleController : MonoBehaviour
         weeklySchedule[2] = 0;
         weeklySchedule[3] = 0;
         
-        DataController.Instance.SaveGameData();
-        GameManager.DoNextTurn();        
+        isBuildingRefreshTime = true;
+        GameManager.DoNextTurn();
+        ScheduleToMain();    
     }
 
     void ScheduleParameterEvent(int id)
@@ -474,7 +475,13 @@ public class ScheduleController : MonoBehaviour
 
         //Status1AmountText
         //Status1Amount
+
         StatusController.ReloadStatusUI();
+    }
+
+    public void ScheduleToMain()
+    {
+        SceneManager.LoadScene(SceneManager.Scene.MainScene);
     }
 /*
     public delegate void TestDelegate();

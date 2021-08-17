@@ -47,12 +47,10 @@ public class StatusController : MonoBehaviour
 
     private static GameObject StatusUI;
     private static GameObject StatusDetailUI;
-    public void InitStatusUI()
-    {        
-        StatusUI = GameObject.FindGameObjectWithTag("StatusUI");
-        RectTransform rectTransform = StatusUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,0);
-        
+
+
+    public void Start()
+    {                
         StatusDetailUI = GameObject.FindGameObjectWithTag("StatusDetail");
 
         Status1 = StatusDetailUI.transform.Find("Status1Panel").transform.Find("Text").GetComponent<Text>();
@@ -128,9 +126,15 @@ public class StatusController : MonoBehaviour
         Status7Bar.value = Status7Gauge;
         Status8Bar.value = Status8Gauge;
         Status9Bar.value = Status9Gauge;
-    
-
     }
+
+    public void SetStatus()
+    {
+        StatusUI = GameObject.FindGameObjectWithTag("StatusUI");
+        RectTransform rectTransform = StatusUI.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(0,0);
+    }
+
     public static void ReloadStatusUI()
     {
         Status1Amount.text = DataController.Instance.gameData.androidLifeStat[0].ToString();

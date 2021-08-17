@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637639401217812875
-    m_Hash: 2058635987
+      ticks: 637647855756722414
+    m_Hash: 3714770391
   m_LockFileStatus:
     m_FilePath: C:/GitHub/AndroidMaker/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637639401473057575
-    m_Hash: 1254166533
+      ticks: 637647855756732413
+    m_Hash: 3397676964
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:

@@ -131,13 +131,13 @@ public class AdventureController : MonoBehaviour
         RectTransform rectTransform = resultPopUp.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(-3000,0);
         GameManager.DoNextTurn();
-        GameManager.ActiveHome();
     }
     
     public void BattleToMain()
     {
         SceneManager.LoadScene(SceneManager.Scene.MainScene);
         ScheduleController.isBuildingRefreshTime = true;
+        GameManager.DoNextTurn();
     }
 
 }

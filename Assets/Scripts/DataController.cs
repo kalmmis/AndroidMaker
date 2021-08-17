@@ -85,10 +85,12 @@ public class DataController : MonoBehaviour
                 string FromJsonData = File.ReadAllText(filePath);
                 _gameData = JsonUtility.FromJson<GameData>(FromJsonData);
                 
+                /*
                 for (int i = 0; i < _gameData.androidLifeStat.Length; i++)
                 {
                     Debug.Log("Status[" + i + "] is " + _gameData.androidLifeStat[i]);
                 }
+                */
                 
                 Debug.Log("불러오기 성공");
             }

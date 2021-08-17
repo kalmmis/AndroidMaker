@@ -27,7 +27,9 @@ public class SceneManager : MonoBehaviour
     {
         TitleScene,
         MainScene,
-        BattleScene
+        BattleScene,
+        ShelterScene,
+        ScheduleScene
     }
 
     //�̵��Ҿ�,���̵��ð�
