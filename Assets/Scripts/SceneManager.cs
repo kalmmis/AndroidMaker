@@ -29,10 +29,10 @@ public class SceneManager : MonoBehaviour
         MainScene,
         BattleScene,
         ShelterScene,
-        ScheduleScene
+        ScheduleScene,
+        CraftScene
     }
 
-    //�̵��Ҿ�,���̵��ð�
     public static void LoadScene(Scene scene, float delay = 0.65f)
     {
         if (instance == null)

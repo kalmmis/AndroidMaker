@@ -67,12 +67,12 @@
      <Compile Include="Assets\Scripts\BattleScene\MeleeWeapon.cs" />
      <Compile Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Scripts\AutoDestroyPS.cs" />
      <Compile Include="Assets\Scripts\BattleScene\PlayerMoving.cs" />
+     <Compile Include="Assets\Scripts\TurnController.cs" />
      <Compile Include="Assets\Scripts\BattleScene\EnemyShooting.cs" />
      <Compile Include="Assets\Scripts\StoryController.cs" />
      <Compile Include="Assets\Scripts\ExcelParser.cs" />
      <Compile Include="Assets\Scripts\ShelterScene\ShelterController.cs" />
      <Compile Include="Assets\Scripts\InfoCanvasController.cs" />
-     <Compile Include="Assets\Scripts\TurnController.cs" />
      <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Prefabs\Readme.txt" />
      <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Demo scene\Readme.txt" />
      <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\Lit_CenterGlow.shader" />

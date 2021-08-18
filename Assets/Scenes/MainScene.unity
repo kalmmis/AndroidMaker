@@ -451,8 +451,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 588208614}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 327975215}
+        m_TargetAssemblyTypeName: InfoCanvasController, Assembly-CSharp
         m_MethodName: SetName
         m_Mode: 1
         m_Arguments:
@@ -2136,7 +2136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &177342176
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2305,7 +2305,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 0d1743d360488124597c0b9737a9d1e3, type: 3}
     m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
@@ -3408,7 +3408,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC544\uC774\uD15C"
+  m_Text: "\uC81C\uC870"
 --- !u!222 &326586530
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3429,6 +3429,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3614667216741360876}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &327975215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1971935108198269008, guid: dbc189445e6cf7748ab0703206552748,
+    type: 3}
+  m_PrefabInstance: {fileID: 3614667216741360876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327975213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90456ad89d060154691b6a400ef34527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &327975218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3444,6 +3456,7 @@ MonoBehaviour:
   ResourceText: {fileID: 0}
   AndroidNameText: {fileID: 0}
   TurnCountText: {fileID: 0}
+  nameInputUI: {fileID: 0}
 --- !u!1 &344320082
 GameObject:
   m_ObjectHideFlags: 0
@@ -10383,8 +10396,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 588208614}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ActiveInventoryTab
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: MainToCraft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14980,8 +14993,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 588208614}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 327975215}
+        m_TargetAssemblyTypeName: InfoCanvasController, Assembly-CSharp
         m_MethodName: CloseSetNameUI
         m_Mode: 1
         m_Arguments:
@@ -16440,7 +16453,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 0d1743d360488124597c0b9737a9d1e3, type: 3}
     m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
@@ -17032,7 +17045,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC5F0\uAD6C\uC2E4"
+  m_Text: "\uC5F0\uAD6C\uC18C"
 --- !u!222 &2042061637
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18635,6 +18648,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1949293304}
     m_Modifications:
+    - target: {fileID: 1971935108198269008, guid: dbc189445e6cf7748ab0703206552748,
+        type: 3}
+      propertyPath: nameInputUI
+      value: 
+      objectReference: {fileID: 413489190}
     - target: {fileID: 3614667216966941234, guid: dbc189445e6cf7748ab0703206552748,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -18754,7 +18772,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 588208614}
+      objectReference: {fileID: 327975215}
+    - target: {fileID: 3614667217940072659, guid: dbc189445e6cf7748ab0703206552748,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActiveSetNameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614667217940072659, guid: dbc189445e6cf7748ab0703206552748,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InfoCanvasController, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc189445e6cf7748ab0703206552748, type: 3}
 --- !u!114 &3699057026257798008

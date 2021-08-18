@@ -428,7 +428,7 @@ public class ScheduleController : MonoBehaviour
         weeklySchedule[3] = 0;
         
         isBuildingRefreshTime = true;
-        GameManager.DoNextTurn();
+        InfoCanvasController.DoNextTurn();
         ScheduleToMain();    
     }
 

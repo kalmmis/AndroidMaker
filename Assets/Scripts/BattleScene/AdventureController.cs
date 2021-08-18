@@ -67,7 +67,7 @@ public class AdventureController : MonoBehaviour
         //string wave = "Wave" + curWave.ToString();
         List<Dictionary<string,object>> waveData = CSVReader.Read (curWave);
         List<Dictionary<string,object>> enemyInfo = CSVReader.Read ("EnemyInfo");
-        GameObject combatScreen;
+        //GameObject combatScreen;
 
         for (int i = 0; i < waveData.Count; i++)
         {
@@ -130,14 +130,14 @@ public class AdventureController : MonoBehaviour
     {
         RectTransform rectTransform = resultPopUp.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = new Vector2(-3000,0);
-        GameManager.DoNextTurn();
+        InfoCanvasController.DoNextTurn();
     }
     
     public void BattleToMain()
     {
         SceneManager.LoadScene(SceneManager.Scene.MainScene);
         ScheduleController.isBuildingRefreshTime = true;
-        GameManager.DoNextTurn();
+        InfoCanvasController.DoNextTurn();
     }
 
 }
