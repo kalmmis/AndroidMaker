@@ -60,7 +60,7 @@ public class AdventureController : MonoBehaviour
             //Debug.Log(enemyType);
 
             // 프리팹 파일명을 기준으로 적을 찾아서 인스턴시에이트해줌
-            var newEnemy = Instantiate(Resources.Load("Prefabs/Enemy/ " + enemyType), new Vector2(0, 0), Quaternion.identity) as GameObject;
+            var newEnemy = Instantiate(Resources.Load("Prefabs/Enemy/" + enemyType), new Vector2(0, 0), Quaternion.identity) as GameObject;
             
             
             Enemy enemyScript = newEnemy.GetComponent<Enemy>();
