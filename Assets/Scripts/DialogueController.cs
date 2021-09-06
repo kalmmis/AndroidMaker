@@ -13,6 +13,7 @@ public class DialogueController : MonoBehaviour {
     public bool skipDialog;
 
     private GameObject UI;
+    private GameObject backgroundImage;
     private Boolean clicked = false;
 
     public int storyButtonID;
@@ -48,11 +49,15 @@ public class DialogueController : MonoBehaviour {
 */
 
 //여기부터 (id 로드해서 스토리 부를 수 있도록 개조함)
-
-    private void Start()
+    private void Awake()
     {
+        backgroundImage = GameObject.FindGameObjectWithTag("StoryBg");
+        backgroundImage.SetActive(false);
         UI = GameObject.FindGameObjectWithTag("DialogueUI");
         UI.SetActive(false);
+    }
+    private void Start()
+    {
     }
     public void DoStory(int storyID)
     {
@@ -81,6 +86,40 @@ public class DialogueController : MonoBehaviour {
     }
 
 
+    WaitForSeconds _delayBetweenCharactersYieldInstruction;
+
+    public void StartTypeWriterOnText(Text textComponent, string stringToDisplay, float delayBetweenCharacters = 0.02f)
+    {
+        StartCoroutine(TypeWriterCoroutine(textComponent, stringToDisplay, delayBetweenCharacters));
+    }
+    
+    IEnumerator TypeWriterCoroutine(Text textComponent, string stringToDisplay, float delayBetweenCharacters)
+    {
+        // Cache the yield instruction for GC optimization
+        _delayBetweenCharactersYieldInstruction = new WaitForSeconds(delayBetweenCharacters);
+
+        
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        AudioClip clip = (AudioClip) Resources.Load("Sound/Menu_Navigate_02");
+        //AudioClip clip = (AudioClip) Resources.Load("Sound/Talk");
+        //AudioClip clip = (AudioClip) Resources.Load("Sound/SE/FX1");
+
+        // Iterating(looping) through the string's characters
+        for(int i = 0; i < stringToDisplay.Length + 1; i++)
+        {
+            // Retrieves part of the text from string[0] to string[i]
+            textComponent.text = stringToDisplay.Substring(0, i);
+            // We wait x seconds between characters before displaying them
+            if (i > 0 && i % 3 == 0)
+            {
+                if( clip != null)
+                {
+                    audio.PlayOneShot(clip);
+                }
+            }
+            yield return _delayBetweenCharactersYieldInstruction;
+        }
+    }
 //여기까지
 
     IEnumerator StringParser(int currentInt,string levelStr, string dialogs, System.Action<bool, int> callback) {
@@ -157,8 +196,8 @@ public class DialogueController : MonoBehaviour {
                                 // Debug.Log("Position : " + position);
                                 //Resources.Load<Sprite>("Assets/Resources/" + fileName);
                                 //setFileToPositoin
-                                Transform leftTf = UI.transform.Find("Left");
-                                Transform rightTf = UI.transform.Find("Right");
+                                Transform leftTf = UI.transform.Find("Portrait").Find("Left");
+                                Transform rightTf = UI.transform.Find("Portrait").Find("Right");
                                 Image left = leftTf.GetComponent<Image>();
                                 Image right = rightTf.GetComponent<Image>();
                                 if ("left".Equals(position))
@@ -200,10 +239,23 @@ public class DialogueController : MonoBehaviour {
                             {
                                 //다음행으로 갈것
                                 //암것도 안해도 됨
-                            }else if (row[2].Contains("nextStage"))
+                            }
+                            else if (row[2].Contains("nextStage"))
                             {
                                 string nextStageStr = row[3];
                                 nextStage = int.Parse(nextStageStr);
+                            }
+                            else if (row[2].Contains("set_bg"))
+                            {
+                                if(backgroundImage.activeInHierarchy == false)
+                                {
+                                    backgroundImage.SetActive(true);
+                                }                        
+        
+                                string fileName = row[3];
+                                Transform bg = UI.transform.Find("BackgroundImage");
+                                Image bg_image = bg.GetComponent<Image>();
+                                bg_image.sprite = Resources.Load<Sprite>("Image/" + fileName) as Sprite;
                             }
                         }
                         else if ("l".Equals(row[1]))
@@ -211,7 +263,15 @@ public class DialogueController : MonoBehaviour {
                             //대사표시
                             UI.SetActive(true);
                             UI.transform.Find("Name").Find("Text").GetComponent<Text>().text = row[2];
-                            UI.transform.Find("MainDialogue").Find("Text").GetComponent<Text>().text = row[3].Replace('$', ',').Replace(';', '\n');
+                            
+
+                            //UI.transform.Find("MainDialogue").Find("Text").GetComponent<Text>().text = row[3].Replace('$', ',').Replace(';', '\n');
+                            //텍스트를 그냥 넣어주던 것을 StartTypeWriterOnText 함수로 넣어주도록 수정
+
+                            Text temp = UI.transform.Find("MainDialogue").Find("Text").GetComponent<Text>();
+                            string tempText = row[3].Replace('$', ',').Replace(';', '\n');
+
+                            StartTypeWriterOnText(temp, tempText);
 
                             yield return new WaitForSeconds(1);
                             yield return new WaitUntil(() => Input.touchCount > 0 || Input.GetMouseButtonUp(0) && EventSystem.current.IsPointerOverGameObject());

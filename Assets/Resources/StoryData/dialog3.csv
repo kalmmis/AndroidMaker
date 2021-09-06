@@ -1,1 +1,4 @@
-StoryStart,event,show portrait_player,left,endline#,l,미나,3,endline#,event,end,,end,,,,
+StoryStart,event,show portrait_player_gray,left,endline#,event,set_bg,black,endline#,l,테스트,길이에 맞춰 소리가 난다. 신난다.,endline#,event,play_se,Beep_in,endline#,event,set_bg,black,endline#,l,테스트,야호 야호 소리가 난다. 띄어쓰기에도 소리가 난다.,endline#,l,테스트,              난다.,endline#,l,테스트,123456789,endline#,l,테스트,가나다라마바사아자차카타파하,endline#,event,set_bg,white,endline#,l,테스트,가갸고교고교구규그기가갸고교고교구규그기
+가갸고교고교구규그기가갸고교고교구규그기
+가갸고교고교구규그기가갸고교고교구규그기
+가갸고교고교구규그기,endline#,l,테스트,나냐너녀노뇨누뉴느니,endline#,l,테스트,다댜더뎌도됴두듀드디,endline#,event,show empty,left,endline#,l,테스트,라랴러려로료루류르리,endline#,event,end,,end,,,,

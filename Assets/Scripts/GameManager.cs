@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
         androidUI.SetActive(false);
 
         StoryController.DoStorySet();
+
+
+        // 테스트를 위해서 3번 스토리 계속 호출중
+        DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
+        dia.DoStory(3);
     }
 
     private void OnApplicationQuit()

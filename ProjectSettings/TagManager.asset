@@ -7,7 +7,7 @@ TagManager:
   - UI
   - CharacterScreen
   - InfoCanvas
-  - BuildingCanvas
+  - StoryBg
   - DialogueUI
   - ShelterUI
   - LearnUI
