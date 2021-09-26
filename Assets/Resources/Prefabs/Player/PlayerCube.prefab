@@ -669,9 +669,6 @@ MonoBehaviour:
     rightGun: {fileID: 0}
     leftGun: {fileID: 0}
     centralGun: {fileID: 592488212089445587}
-    leftGunVFX: {fileID: 0}
-    rightGunVFX: {fileID: 0}
-    centralGunVFX: {fileID: 0}
   meleeWeapon: {fileID: 4544110352781014938}
   firstWeaponTimeInterval: 1
   secondWeaponTimeInterval: 1
@@ -689,7 +686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerShooting: {fileID: 0}
   playerMoving: {fileID: 0}
-  hpText: {fileID: 3964883674708485215}
+  hpTextDebug: {fileID: 3964883674708485215}
   maxHp: 0
   hp: 0
   hpSlider: {fileID: 3964883674148216879}
@@ -1226,7 +1223,7 @@ GameObject:
   - component: {fileID: 3964883674708485212}
   - component: {fileID: 3964883674708485215}
   m_Layer: 12
-  m_Name: Text
+  m_Name: HpTextDebug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

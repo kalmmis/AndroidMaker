@@ -32,23 +32,28 @@ public class EnemyShooting : MonoBehaviour {
     float enemyPosition;
     float attackPosition;
 
-
-
-    //private void Awake()
-    //{
-    //    if (instance == null)
-    //        instance = this;
-    //}
-    //private void Start()
-    //{
-    //    guns.enemyGunVFX = guns.enemyGun.GetComponent<ParticleSystem>();
-    //    enemyScript = gameObject.GetComponent<Enemy>();
-    //}
    private void Update()
     {
     }
     //method for a shot
-    public void MakeAShot() 
+    
+    //public GameObject shieldAnimation;
+    public Animator animator;
+
+    public void EnemyGuardOff()
+    {
+        //GameObject shieldAnimation = this.Find("ShieldAnimation");
+        //animator = shieldAnimation.GetComponent<Animator>();
+        animator.Play("ShieldOffState");
+        Debug.Log("EnemyGuardOff");
+    }
+    public void EnemyGuardOn()
+    {
+        animator.Play("ShieldOnState");
+        Debug.Log("EnemyGuardOn");
+    }
+
+    public void EnemyAttack() 
     {
         CreateShot(projectileObject, guns.enemyGun.transform.position, Vector3.zero);
         //guns.centralGunVFX.Play();
@@ -174,8 +179,6 @@ public class EnemyShooting : MonoBehaviour {
 
         }
         //Debug.Log("EnemyPosition is " + enemyPosition);
-        //attackPosition = 1150f; // 나중에 적 패턴 별로 뺄 거당 // 해상도랑 상관 없겠지?
-
-        
+        //attackPosition = 1150f; // 나중에 적 패턴 별로 뺄 거당 // 해상도랑 상관 없겠지? 
     }
 }

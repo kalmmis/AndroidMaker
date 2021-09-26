@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
         }*/
         hpText.text = hp.ToString();
     }
-    //coroutine making a shot
+
     IEnumerator ActivateEnemy()
     {
         while (enemyMoving && isExistTarget)
@@ -71,20 +71,21 @@ public class Enemy : MonoBehaviour
         while (!enemyMoving && isExistTarget)
         {
             {
-                enemyShooting.MakeAShot();
+                enemyShooting.EnemyGuardOff();
+                yield return new WaitForSeconds(3);
+                enemyShooting.EnemyAttack();
+                enemyShooting.EnemyGuardOn();
                 yield return new WaitForSeconds(2);
             }
         }
     }
     
-    public void Attack()
-    {
-        Debug.Log("Enemy Shooting");
-    }
+
     //method of getting damage for the 'Enemy'
     public void GetDamage(int damage)
     {
-        hp -= damage;           //reducing health for damage value, if health is less than 0, starting destruction procedure
+        hp -= damage;           
+        
         if (hp <= 0)
         {
             Destruction();
@@ -93,10 +94,8 @@ public class Enemy : MonoBehaviour
         {
             //    Instantiate(hitEffect, transform.position, Quaternion.identity, transform);
         }
-        
     }
 
-    //if 'Enemy' collides 'Player', 'Player' gets the damage equal to projectile's damage value
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -116,7 +115,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //method of destroying the 'Enemy'
     void Destruction()
     {
         //Instantiate(destructionVFX, transform.position, Quaternion.identity);

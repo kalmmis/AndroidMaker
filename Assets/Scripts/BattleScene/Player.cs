@@ -6,34 +6,34 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public static Player instance;
-    public PlayerShooting playerShooting;
-    public PlayerMoving playerMoving;
+    [HideInInspector] public PlayerShooting playerShooting;
+    [HideInInspector] public PlayerMoving playerMoving;
 
     public static bool isInvincible = true;
     public static bool isFirstWeapon = true;
     public static bool isGuard = false;
     public static bool isHold = false;
 
-    public Text hpText;
-    public int maxHp;
-    public int hp;
-    public GameObject hpSlider;
+    [HideInInspector] public int maxHp;
+    [HideInInspector] public int hp;
+    [HideInInspector] public GameObject hpSlider;
     private float hpPercentage;
 
     public float inputTimer;
     public float guardDelay = .3f;
     public float reloadDelay = 2f;
 
-    public GameObject reloadSlider;
+    [HideInInspector] public GameObject reloadSlider;
     private float reloadPercentage;
 
     public GameObject shield;
-    public Image playerImage;
-    public Sprite playerGuardImage;
-    public Sprite playerBattleIdleImage;
+    //public Image playerImage;
+    //public Sprite playerGuardImage;
+    //public Sprite playerBattleIdleImage;
 
+    public Text hpTextDebug;
 
-    public bool playerMovingToPosition = true;
+    [HideInInspector] public bool playerMovingToPosition = true;
 
     // Start is called before the first frame update
 
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        hpText.text = hp.ToString();
+        hpTextDebug.text = hp.ToString();
         hpPercentage = (float)instance.hp / (float)maxHp;
         //Debug.Log("hp is " + instance.hp + " max is " + maxHp);
         //Debug.Log(hpPercentage);

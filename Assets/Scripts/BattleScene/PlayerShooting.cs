@@ -8,7 +8,7 @@ using UnityEngine;
 public class Guns
 {
     public GameObject rightGun, leftGun, centralGun;
-    public ParticleSystem leftGunVFX, rightGunVFX, centralGunVFX; 
+    //public ParticleSystem leftGunVFX, rightGunVFX, centralGunVFX; 
 }
 
 public class PlayerShooting : MonoBehaviour {
