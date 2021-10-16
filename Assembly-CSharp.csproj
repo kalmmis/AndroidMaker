@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\ExcelParser.cs" />
      <Compile Include="Assets\Scripts\ShelterScene\ShelterController.cs" />
      <Compile Include="Assets\Scripts\InfoCanvasController.cs" />
+     <Compile Include="Assets\Scripts\CraftScene\CraftController.cs" />
      <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Prefabs\Readme.txt" />
      <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Demo scene\Readme.txt" />
      <None Include="Assets\Hovl Studio\AAA Projectiles Vol 2\Shaders\Lit_CenterGlow.shader" />

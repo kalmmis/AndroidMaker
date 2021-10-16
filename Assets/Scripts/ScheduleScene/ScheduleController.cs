@@ -426,8 +426,7 @@ public class ScheduleController : MonoBehaviour
         weeklySchedule[1] = 0;
         weeklySchedule[2] = 0;
         weeklySchedule[3] = 0;
-        
-        isBuildingRefreshTime = true;
+
         InfoCanvasController.DoNextTurn();
         ScheduleToMain();    
     }
@@ -481,6 +480,7 @@ public class ScheduleController : MonoBehaviour
 
     public void ScheduleToMain()
     {
+        isBuildingRefreshTime = true;
         SceneManager.LoadScene(SceneManager.Scene.MainScene);
     }
 /*

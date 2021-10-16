@@ -364,4 +364,9 @@ public class ShelterController : MonoBehaviour
 
     }
 
+    public void ShelterToMain()
+    {
+        SceneManager.LoadScene(SceneManager.Scene.MainScene);
+    }
+
 }
