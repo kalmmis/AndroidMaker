@@ -42,15 +42,22 @@ public class EnemyShooting : MonoBehaviour {
 
     public void EnemyGuardOff()
     {
-        //GameObject shieldAnimation = this.Find("ShieldAnimation");
-        //animator = shieldAnimation.GetComponent<Animator>();
-        animator.Play("ShieldOffState");
-        Debug.Log("EnemyGuardOff");
+        if (enemyScript.type == "A")
+        {
+            //GameObject shieldAnimation = this.Find("ShieldAnimation");
+            //animator = shieldAnimation.GetComponent<Animator>();
+            animator.Play("ShieldOffState");
+            Debug.Log("EnemyGuardOff");
+        }
+        
     }
     public void EnemyGuardOn()
     {
-        animator.Play("ShieldOnState");
-        Debug.Log("EnemyGuardOn");
+        if (enemyScript.type == "A")
+        {
+            animator.Play("ShieldOnState");
+            Debug.Log("EnemyGuardOn");
+        }
     }
 
     public void EnemyAttack() 
@@ -138,7 +145,7 @@ public class EnemyShooting : MonoBehaviour {
                 }
                 break;
             case "A" :
-                attackPosition = 8f;
+                attackPosition = 5f;
                 if(enemyPosition > attackPosition)
                 {
                     enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
@@ -159,6 +166,26 @@ public class EnemyShooting : MonoBehaviour {
 
             case "B" :
                 attackPosition = 8f;
+                if(enemyPosition > attackPosition)
+                {
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    { 
+                        t.Translate(Vector3.left * moveRate * Time.deltaTime);
+                    };
+                }
+                else
+                {
+                    enemyScript.enemyMoving = false;
+                    
+                    enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>
+                    {
+                        t.Translate(Vector3.zero * moveRate * Time.deltaTime);
+                    };
+                }
+                break;
+
+                default :
+                attackPosition = 5f;
                 if(enemyPosition > attackPosition)
                 {
                     enemyScript.GetComponent<DirectMoving>().moveFunc = (Transform t) =>

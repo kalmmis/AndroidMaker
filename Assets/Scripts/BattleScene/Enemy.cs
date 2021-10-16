@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
         hpText.text = hp.ToString();
     }
 
+    //ㅠㅠ 구조 너무 구리다 상속을 좀 더 잘 공부해보자
     IEnumerator ActivateEnemy()
     {
         while (enemyMoving && isExistTarget)
