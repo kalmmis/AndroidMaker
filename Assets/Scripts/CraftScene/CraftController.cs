@@ -17,7 +17,7 @@ public class CraftController : MonoBehaviour
     }
 
     public void CraftToMain()
-    {
+    { 
         SceneManager.LoadScene(SceneManager.Scene.MainScene);
     }
 }
