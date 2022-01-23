@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     private static GameObject androidUI;
     private static GameObject laboScreen;
     private static GameObject statusUI;
+    private static GameObject learnUI;
 
     //앱 내려둘 때 인자
     bool bPaused = false;
@@ -20,10 +22,15 @@ public class GameManager : MonoBehaviour
         inventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
         androidUI = GameObject.FindGameObjectWithTag("AndroidUI");
         statusUI = GameObject.FindGameObjectWithTag("StatusUI");
+        learnUI = GameObject.FindGameObjectWithTag("LearnUI");
 
         equipmentUI.SetActive(false);
         inventoryUI.SetActive(false);
         androidUI.SetActive(false);
+        learnUI.SetActive(false);
+
+
+        DOTween.Init(false, false, LogBehaviour.Default);
 
         StoryController.DoStorySet();
 
@@ -56,72 +63,23 @@ public class GameManager : MonoBehaviour
     }
 
 
-//메인 화면에서 씬 이동 구현
-    public static void MainToSchedule()
-    {
-        SceneManager.LoadScene(SceneManager.Scene.ScheduleScene);
-    }
+public void InitScheduleCanvas()
+{
+    //DOTween.TweensById("TweeningScheduleCanvas01", false);
+    learnUI.SetActive(true);
+        // 20220123 RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
+        // 20220123 rectTransform.anchoredPosition = new Vector2(0,0);
+    //learnUI.transform.DOMoveX(3000, 1);
+    RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
+    rectTransform.DOAnchorPosX(-560, 1);
+    Debug.Log("Tweening Test");
+}
 
-    public static void MainToShelter()
-    {
-        SceneManager.LoadScene(SceneManager.Scene.ShelterScene);
-    }
-
-    public static void MainToBattle()
-    {
-        SceneManager.LoadScene(SceneManager.Scene.BattleScene);
-    }
-
-    public static void MainToCraft()
-    {
-        SceneManager.LoadScene(SceneManager.Scene.CraftScene);
-    }
-
-//메인 화면 내에서 ui 변경
-    public static void ActiveHome()
-    {
-        equipmentUI.SetActive(false);
-        inventoryUI.SetActive(false);
-        androidUI.SetActive(false);
-        statusUI.SetActive(false);
-    }
-
-    public void ActiveEquipmentTab()
-    {
-        equipmentUI.SetActive(true);
-        inventoryUI.SetActive(false);
-        androidUI.SetActive(false);
-        statusUI.SetActive(false);
-
-        EquipmentController ec = GameObject.Find("EquipmentController").GetComponent<EquipmentController>();
-        ec.LoadingEquipmentUI();
-    }
-
-    public void ActiveInventoryTab()
-    {
-        equipmentUI.SetActive(false);
-        inventoryUI.SetActive(true);
-        androidUI.SetActive(false);
-        statusUI.SetActive(false);
-
-        InventoryController ic = GameObject.Find("InventoryController").GetComponent<InventoryController>();
-        ic.LoadingInventoryUI();
-
-    }
-
-    public void ActiveAndroidTab()
-    {
-        equipmentUI.SetActive(false);
-        inventoryUI.SetActive(false);
-        androidUI.SetActive(true);
-        statusUI.SetActive(true);
-
-        StatusController sc = GameObject.Find("StatusController").GetComponent<StatusController>();
-        sc.SetStatus();
-
-        UpgradeController uc = GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
-        uc.LoadingAndroidUI();
-    }
+public void CloseScheduleCanvas()
+{
+    //DOTween.TweensById("TweeningScheduleCanvas01", false);
+    learnUI.transform.DOMoveX(3000, 1);
+}
 
 /*
     // Update is called once per frame

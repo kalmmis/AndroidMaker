@@ -49,7 +49,7 @@ public class ResearchTimeController : MonoBehaviour
     private IEnumerator CheckTime()
     {
         disableButton ();
-        timeLabel.text = "Checking the time";
+        //timeLabel.text = "Checking the time";
         //Debug.Log ("==> Checking for new time");
         yield return StartCoroutine (
             TimeManager.sharedInstance.getTime()
@@ -143,15 +143,15 @@ private void _configTimerSettings()
     //enable button function
     private void enableButton()
     {
-        timerButton.interactable = true;
-        timeLabel.text = "CLAIM REWARD";
+        //timerButton.interactable = true;
+        //timeLabel.text = "CLAIM REWARD";
     }
  
     //disable button function
     private void disableButton()
     {
-        timerButton.interactable = false;
-        timeLabel.text = "NOT READY";
+        //timerButton.interactable = false;
+        //timeLabel.text = "NOT READY";
     }
  
     //trggered on button click

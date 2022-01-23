@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class ScheduleController : MonoBehaviour
 {
@@ -53,17 +54,15 @@ public class ScheduleController : MonoBehaviour
         missionCavas = GameObject.FindGameObjectWithTag("MissionCanvas");
 
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
-        RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,0);
+        // 20220123 RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
+        // 20220123 rectTransform.anchoredPosition = new Vector2(0,0);
 
-        EventUI = GameObject.FindGameObjectWithTag("EventUI");
-        EventText = EventUI.transform.Find("Text").GetComponent<Text>();
+        // 20220123 EventUI = GameObject.FindGameObjectWithTag("EventUI");
+        // 20220123 EventText = EventUI.transform.Find("Text").GetComponent<Text>();
 
         scheduleInfo = CSVReader.Read ("ScheduleInfo");
         scheduleLevelInfo = CSVReader.Read ("ScheduleLevelInfo");
         scheduleRewardInfo = CSVReader.Read ("ScheduleRewardInfo");
-
-        RefreshMonthlyScheduleUI();
 
         learn0TitleText.text = "원정";
 
@@ -78,6 +77,13 @@ public class ScheduleController : MonoBehaviour
     {
         //빌딩 관련 구현할 때 개발합시다
     }
+
+    public void CloseScheduleCanvas()
+{
+    RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
+    rectTransform.DOAnchorPosX(800, 1);
+}
+
     public void InitSchedulePanel()
     {
 
@@ -110,37 +116,6 @@ public class ScheduleController : MonoBehaviour
         {
             return false;
         }
-    }
-    public void RefreshMonthlyScheduleUI()
-    {
-        /*인스펙터로 이관
-        //schedule1Text = scheduleUI.transform.Find("Schedule1Panel").transform.Find("Schedule1Bar").transform.Find("Schedule1Text").GetComponent<Text>();
-        //schedule2Text = scheduleUI.transform.Find("Schedule2Panel").transform.Find("Schedule2Bar").transform.Find("Schedule2Text").GetComponent<Text>();
-        //schedule3Text = scheduleUI.transform.Find("Schedule3Panel").transform.Find("Schedule3Bar").transform.Find("Schedule3Text").GetComponent<Text>();
-        //schedule4Text = scheduleUI.transform.Find("Schedule4Panel").transform.Find("Schedule4Bar").transform.Find("Schedule4Text").GetComponent<Text>();
-        */
-
-        /*모바일 해상도 관련 코드 차후에 필요할 듯
-        //Vector3 tempschedulePosition = scheduleUI.transform.localPosition;
-        //tempschedulePosition.x = 270;
-        //scheduleUI.transform.localPosition = tempschedulePosition;
-        */
-
-        int initTempID1 = weeklySchedule[0];
-        int initTempID2 = weeklySchedule[1];
-        int initTempID3 = weeklySchedule[2];
-        int initTempID4 = weeklySchedule[3];
-
-        //List<Dictionary<string,object>> scheduleInfo = CSVReader.Read ("ScheduleInfo");
-        string initText1 = (string)scheduleInfo[initTempID1]["scheduleTitle"];
-        string initText2 = (string)scheduleInfo[initTempID2]["scheduleTitle"];
-        string initText3 = (string)scheduleInfo[initTempID3]["scheduleTitle"];
-        string initText4 = (string)scheduleInfo[initTempID4]["scheduleTitle"];
-
-        schedule1Text.text = initText1;
-        schedule2Text.text = initText2;
-        schedule3Text.text = initText3;
-        schedule4Text.text = initText4;
     }
 
 
@@ -211,8 +186,6 @@ public class ScheduleController : MonoBehaviour
                 isBattle = false;
             }
         }
-
-        RefreshMonthlyScheduleUI();
         Debug.Log("schedule array is " + weeklySchedule[0] + weeklySchedule[1] + weeklySchedule[2] + weeklySchedule[3]);
     }
 
@@ -275,7 +248,6 @@ public class ScheduleController : MonoBehaviour
                 weeklySchedule[3] = 0;
             }
         }
-        RefreshMonthlyScheduleUI();
 
         //scheduleConfirmUI = GameObject.FindGameObjectWithTag("ScheduleConfirmUI");
         RectTransform rectTransform = scheduleConfirmUI.GetComponent<RectTransform>();
@@ -351,7 +323,6 @@ public class ScheduleController : MonoBehaviour
                 weeklySchedule[3] = 0;
             }
         }
-        RefreshMonthlyScheduleUI();
         Debug.Log("schedule array is " + weeklySchedule[0] + weeklySchedule[1] + weeklySchedule[2] + weeklySchedule[3]);
     }
 

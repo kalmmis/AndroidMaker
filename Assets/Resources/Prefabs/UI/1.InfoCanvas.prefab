@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 3614667216967099843}
   - component: {fileID: 1971935108198269008}
   m_Layer: 5
-  m_Name: 1.InfoCanvas
+  m_Name: 1
   m_TagString: InfoCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

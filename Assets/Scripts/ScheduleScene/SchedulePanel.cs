@@ -23,7 +23,7 @@ public class SchedulePanel : MonoBehaviour
         }
         //schReqWeek = (int)scheduleInfo[id]["requireWeek"];
         // 아 여기선 필요 없나.
-        ScheduleController lc = GameObject.Find("ScheduleController").GetComponent<ScheduleController>();
+        ScheduleController lc = GameObject.Find("5.ScheduleCanvas").GetComponent<ScheduleController>();
         b.onClick.AddListener(delegate() { lc.ListUpSchedule(scheduleID); });
         
         int schLv = DataController.Instance.gameData.scheduleLevel[id];
