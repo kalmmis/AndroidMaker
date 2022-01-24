@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class StatusController : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class StatusController : MonoBehaviour
     private static GameObject StatusUI;
     private static GameObject StatusDetailUI;
 
+    private bool statusCanvasOpen = false;
 
     public void Start()
     {                
@@ -126,13 +128,35 @@ public class StatusController : MonoBehaviour
         Status7Bar.value = Status7Gauge;
         Status8Bar.value = Status8Gauge;
         Status9Bar.value = Status9Gauge;
+
+        SetStatusCanvas();
     }
 
-    public void SetStatus()
+    public void SetStatusCanvas()
     {
         StatusUI = GameObject.FindGameObjectWithTag("StatusUI");
         RectTransform rectTransform = StatusUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,0);
+        rectTransform.DOAnchorPosX(0, 0.5f);
+        statusCanvasOpen = true;
+        Debug.Log(statusCanvasOpen);
+    }
+
+    public void ToggleStatusCanvas()
+    {
+        StatusUI = GameObject.FindGameObjectWithTag("StatusUI");
+        RectTransform rectTransform = StatusUI.GetComponent<RectTransform>();
+        if(statusCanvasOpen)
+        {
+            rectTransform.DOAnchorPosX(-950, 0.5f);
+            statusCanvasOpen = false;
+            Debug.Log(statusCanvasOpen);
+        }
+        else
+        {
+            rectTransform.DOAnchorPosX(0, 0.5f);
+            statusCanvasOpen = true;
+            Debug.Log(statusCanvasOpen);
+        }        
     }
 
     public static void ReloadStatusUI()

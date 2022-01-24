@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
         statusUI = GameObject.FindGameObjectWithTag("StatusUI");
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
 
-        equipmentUI.SetActive(false);
-        inventoryUI.SetActive(false);
+        //equipmentUI.SetActive(false);
+        //inventoryUI.SetActive(false);
         androidUI.SetActive(false);
         learnUI.SetActive(false);
 
@@ -62,6 +62,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+public void InitInventoryCanvas()
+{
+    //inventoryUI.SetActive(true);
+    RectTransform rectTransform = inventoryUI.GetComponent<RectTransform>();
+    inventoryUI.transform.DOScale(1, 0.5f);
+    Debug.Log("InitInventoryCanvas");
+}
+
+
+public void CloseInventoryCanvas()
+{
+    RectTransform rectTransform = inventoryUI.GetComponent<RectTransform>();
+    inventoryUI.transform.DOScale(0, 0.5f);
+    Debug.Log("CloseInventoryCanvas");
+}
 
 public void InitScheduleCanvas()
 {
@@ -71,8 +86,8 @@ public void InitScheduleCanvas()
         // 20220123 rectTransform.anchoredPosition = new Vector2(0,0);
     //learnUI.transform.DOMoveX(3000, 1);
     RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
-    rectTransform.DOAnchorPosX(-560, 1);
-    Debug.Log("Tweening Test");
+    rectTransform.DOAnchorPosX(-560, 0.5f);
+    Debug.Log("InitScheduleCanvas");
 }
 
 public void CloseScheduleCanvas()

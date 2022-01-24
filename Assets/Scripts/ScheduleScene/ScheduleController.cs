@@ -81,7 +81,7 @@ public class ScheduleController : MonoBehaviour
     public void CloseScheduleCanvas()
 {
     RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
-    rectTransform.DOAnchorPosX(800, 1);
+    rectTransform.DOAnchorPosX(800, 0.5f);
 }
 
     public void InitSchedulePanel()
