@@ -78,11 +78,18 @@ public class ScheduleController : MonoBehaviour
         //빌딩 관련 구현할 때 개발합시다
     }
 
+    public void InitScheduleCanvas()
+    {
+        RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
+        rectTransform.DOAnchorPosX(-560, 0.5f);
+        Debug.Log("InitScheduleCanvas");
+    }
+
     public void CloseScheduleCanvas()
-{
-    RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
-    rectTransform.DOAnchorPosX(800, 0.5f);
-}
+    {
+        RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
+        rectTransform.DOAnchorPosX(800, 0.5f);
+    }
 
     public void InitSchedulePanel()
     {

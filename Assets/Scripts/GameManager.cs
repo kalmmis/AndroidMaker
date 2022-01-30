@@ -24,16 +24,9 @@ public class GameManager : MonoBehaviour
         statusUI = GameObject.FindGameObjectWithTag("StatusUI");
         learnUI = GameObject.FindGameObjectWithTag("LearnUI");
 
-        //equipmentUI.SetActive(false);
-        //inventoryUI.SetActive(false);
-        androidUI.SetActive(false);
-        learnUI.SetActive(false);
-
-
         DOTween.Init(false, false, LogBehaviour.Default);
 
         StoryController.DoStorySet();
-
 
         // 테스트를 위해서 3번 스토리 계속 호출중
         //DialogueController dia = GameObject.Find("DialogueController").GetComponent<DialogueController>();
@@ -70,30 +63,11 @@ public void InitInventoryCanvas()
     Debug.Log("InitInventoryCanvas");
 }
 
-
 public void CloseInventoryCanvas()
 {
     RectTransform rectTransform = inventoryUI.GetComponent<RectTransform>();
     inventoryUI.transform.DOScale(0, 0.5f);
     Debug.Log("CloseInventoryCanvas");
-}
-
-public void InitScheduleCanvas()
-{
-    //DOTween.TweensById("TweeningScheduleCanvas01", false);
-    learnUI.SetActive(true);
-        // 20220123 RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
-        // 20220123 rectTransform.anchoredPosition = new Vector2(0,0);
-    //learnUI.transform.DOMoveX(3000, 1);
-    RectTransform rectTransform = learnUI.GetComponent<RectTransform>();
-    rectTransform.DOAnchorPosX(-560, 0.5f);
-    Debug.Log("InitScheduleCanvas");
-}
-
-public void CloseScheduleCanvas()
-{
-    //DOTween.TweensById("TweeningScheduleCanvas01", false);
-    learnUI.transform.DOMoveX(3000, 1);
 }
 
 /*
