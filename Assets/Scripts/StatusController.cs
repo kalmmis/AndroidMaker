@@ -136,7 +136,7 @@ public class StatusController : MonoBehaviour
     {
         StatusUI = GameObject.FindGameObjectWithTag("StatusUI");
         RectTransform rectTransform = StatusUI.GetComponent<RectTransform>();
-        rectTransform.DOAnchorPosX(0, 0.5f);
+        rectTransform.DOAnchorPosX(950, 0.5f);
         statusCanvasOpen = true;
         Debug.Log(statusCanvasOpen);
     }
@@ -147,13 +147,13 @@ public class StatusController : MonoBehaviour
         RectTransform rectTransform = StatusUI.GetComponent<RectTransform>();
         if(statusCanvasOpen)
         {
-            rectTransform.DOAnchorPosX(-950, 0.5f);
+            rectTransform.DOAnchorPosX(0, 0.5f);
             statusCanvasOpen = false;
             Debug.Log(statusCanvasOpen);
         }
         else
         {
-            rectTransform.DOAnchorPosX(0, 0.5f);
+            rectTransform.DOAnchorPosX(950, 0.5f);
             statusCanvasOpen = true;
             Debug.Log(statusCanvasOpen);
         }        
