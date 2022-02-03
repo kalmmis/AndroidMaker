@@ -153,7 +153,7 @@ public class StatusController : MonoBehaviour
         }
         else
         {
-            rectTransform.DOAnchorPosX(100, 0.5f);
+            rectTransform.DOAnchorPosX(50, 0.5f);
             statusCanvasOpen = true;
             Debug.Log(statusCanvasOpen);
         }        
