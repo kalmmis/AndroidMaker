@@ -108,7 +108,8 @@ public class DataController : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.Android)
         {
-            string ToJsonData = JsonUtility.ToJson(gameData);
+            //gameData.itemInventory = gameData.itemInventory.ToArray();
+            string ToJsonData = JsonUtility.ToJson(gameData,true);
 
             string path = Application.persistentDataPath;
             path = path.Substring(0, path.LastIndexOf('/'));
@@ -119,26 +120,12 @@ public class DataController : MonoBehaviour
         }
         else
         {
-            string ToJsonData = JsonUtility.ToJson(gameData);
+            string ToJsonData = JsonUtility.ToJson(gameData,true);
             string filePath = Application.dataPath + GameDataFileName;
             //string filePath = Application.persistentDataPath + GameDataFileName;
             File.WriteAllText(filePath, ToJsonData);
             Debug.Log("저장 완료");
         }
     }
-
-
-    public ClientData _clientData;
-    public ClientData clientData
-    {
-        get
-        {
-            // 클라 데이터 한번씩 날릴 때 사용하는 주석...
-            //_clientData = new ClientData();
-            return _clientData;
-        }
-    }
-
-
 
 }

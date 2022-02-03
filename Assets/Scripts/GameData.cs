@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-[Serializable]
-
 // 게임 진행 정보를 저장할 데이터. DB 값이라고도 할 수 있다.
 // 나중에 서버에 저장할 데이터이다. 가능한 미니멈하게 만들어야 할 듯...
+[Serializable]
 public class GameData
 {
     public string characterName = "안드로씨아";
-
     // 자원 데이터
     public long credit;
     public int core;
-
     //진행도 관련 데이터
     public int turn = 1;
     public int turnForEvent = 31;
@@ -23,7 +20,7 @@ public class GameData
 
     public int[] storyProgress = new int[7]{0,0,0,0,0,0,0};
     public int[] scheduleProgress = new int[7]{0,0,0,0,0,0,0};
-
+    //능력치 관련
     public int stress; // 스트레스, 멘탈, 스케쥴 실패로 인한 패널티를 받게 되는 변수.
     public int durability; // 내구성, 안드로이드가 육체적으로 부서져 배드 엔딩이 나게 되는 변수.
     public int battery; // 배터리 한 주기의 최대치를 나타냄. (현재 미사용)
@@ -51,11 +48,6 @@ public class GameData
     public int Humanity = 10; // 인간성
 */
 
-    // 연구 시설 관련 타이머 데이터
-    public string[] researchStartTimerString = new string[3]{"Standby","Standby","Standby"};
-    public string[] researchStartDateString = new string[3]{"","",""};
-    public int[] researchStartTimeInt = new int[3]{0,0,0};
-
     // 연구 시설 레벨 및 업그레이드 데이터
     public int[] buildingLevel = new int[7]{1,1,1,0,0,0,0}; // 초기 빌딩 레벨들
     public int[] buildingUpgradeTurn = new int[7]{0,0,0,0,0,0,0}; // 업그레이드 요구 턴
@@ -68,5 +60,16 @@ public class GameData
     public int Building6Level; // 명성 수치용 건물들
     */
     //public DateTime[] researchStartDateTime = new DateTime[3]{DateTime.Now,DateTime.Now,DateTime.Now};
+    
+    //public int[,] itemInventory = new int[2,2]{{1,1},{1,1}};
+ 
+    //public Dictionary<int, ItemInventory> dicItems = new Dictionary<int, ItemInventory>();
+    public List<ItemInventory> itemInventory = new List<ItemInventory>();
+    
+    public class ItemInventory
+    {
+        public int itemId = 0;
+        public int itemAmount = 20;
+    }
 }
 
