@@ -2880,6 +2880,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7144938161973078506, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938161973078506, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938161973078506, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1102154760}
+    - target: {fileID: 7144938161973078506, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7144938161973935800, guid: 6ed09253d56ae664898d10643c2cc9bf,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3350,6 +3370,41 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7144938162994821542, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938162994821542, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938162994821542, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1102154762}
+    - target: {fileID: 7144938162994821542, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938162994821542, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TestingAddInventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938162994821542, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InventoryController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938162994821542, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7144938163001549558, guid: 6ed09253d56ae664898d10643c2cc9bf,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3369,6 +3424,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938163046695313, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1102154762}
+    - target: {fileID: 7144938163046695313, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TestingInventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938163046695313, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InventoryController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144938163046695313, guid: 6ed09253d56ae664898d10643c2cc9bf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7144938163207169524, guid: 6ed09253d56ae664898d10643c2cc9bf,
         type: 3}

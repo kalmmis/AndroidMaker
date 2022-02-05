@@ -5,12 +5,56 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     private GameObject inventoryUI;
+    private List<MyInventory> items;
 
-    public void LoadingInventoryUI()
+    void Start()
     {
         inventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
-        RectTransform rectTransform = inventoryUI.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0,0);
+        items = DataController.Instance.gameData.myInventoryList;
+    }
+
+    public void AddItemToInventory(int findId, int amount)
+    {
+        if(items.Exists(x => x.id == findId))
+        {
+            addSubObject(findId,amount);    
+        }
+        else
+        {
+            items.Add(createSubObject(findId,amount));
+        }
+    }
+
+    public void TestingAddInventory()
+    {
+        AddItemToInventory(0,1);
+    }
+
+    public void TestingInventory()
+    {
+        //DataController.Instance.gameData.myInventoryList.Add (createSubObject (1,100));
+        
+        Debug.Log("objectList val is " + items);
+        foreach (MyInventory item in items)
+        {
+            int i = item.id;
+            Debug.Log(i);
+        }
+    }
+
+    public MyInventory addSubObject(int findId, int amount)
+    {
+        MyInventory myInnerObject = items.Find(x => x.id == findId);
+        myInnerObject.amount += amount;
+        return myInnerObject;
+    }
+
+    public MyInventory createSubObject(int id, int amount)
+    {
+        MyInventory myInnerObject = new MyInventory();
+        myInnerObject.id = id;
+        myInnerObject.amount = amount;
+        return myInnerObject;
     }
 
     // Update is called once per frame

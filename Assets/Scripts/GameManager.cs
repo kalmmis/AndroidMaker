@@ -61,23 +61,7 @@ public void InitInventoryCanvas()
     RectTransform rectTransform = inventoryUI.GetComponent<RectTransform>();
     inventoryUI.transform.DOScale(1, 0.5f);
 
-    DataController.Instance.gameData.myInventoryList.Add (createSubObject (1,100));
-
     Debug.Log("InitInventoryCanvas");
-    Debug.Log("objectList val is " + DataController.Instance.gameData.myInventoryList);
-        foreach (MyInventory aPart in DataController.Instance.gameData.myInventoryList)
-        {
-            int i = aPart.id;
-            Debug.Log(i);
-        }
-}
-
-public MyInventory createSubObject(int id, int amount)
-{
-    MyInventory myInnerObject = new MyInventory();
-    myInnerObject.id = id;
-    myInnerObject.amount = amount;
-    return myInnerObject;
 }
 
 public void CloseInventoryCanvas()
