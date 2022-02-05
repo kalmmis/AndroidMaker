@@ -75,33 +75,10 @@
         0,
         0
     ],
-    "mainObject": {
-        "highscore": []
-    },
-    "innerObject": {
-        "id": 0,
-        "amount": 0
-    },
-    "objectList": [
-        {
-            "id": 1,
-            "amount": 100
-        },
-        {
-            "id": 1,
-            "amount": 100
-        },
+    "myInventoryList": [
         {
             "id": 1,
             "amount": 100
         }
-    ],
-    "inventoryData": {
-        "inventory": []
-    },
-    "myInventory": {
-        "id": 0,
-        "amount": 0
-    },
-    "myInventoryList": []
+    ]
 }

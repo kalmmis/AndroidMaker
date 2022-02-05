@@ -61,52 +61,7 @@ public class GameData
     */
     //public DateTime[] researchStartDateTime = new DateTime[3]{DateTime.Now,DateTime.Now,DateTime.Now};
     
-    public MainObjectData mainObject;
-    public InnerObjectData innerObject;
-
-    public List <InnerObjectData> objectList = new List<InnerObjectData> ();
-
-    public InnerObjectData createSubObject(int id, int amount)
-    {
-        InnerObjectData myInnerObject = new InnerObjectData();
-        myInnerObject.id = id;
-        myInnerObject.amount = amount;
-        return myInnerObject;
-    }
-
-    public InventoryData inventoryData;
-    public MyInventory myInventory;
-
     public List <MyInventory> myInventoryList = new List<MyInventory> ();
-
-/*
-    public MyInventory createSubObject(int id, int amount)
-    {
-        MyInventory myInnerObject = new MyInventory();
-        myInnerObject.id = id;
-        myInnerObject.amount = amount;
-        return myInnerObject;
-    }
-*/
-}
-
-[Serializable]
-public class MainObjectData
-{
-    public InnerObjectData [] highscore;
-}
-
-[Serializable]
-public class InnerObjectData
-{
-    public int id;
-    public int amount;
-}
-
-[Serializable]
-public class InventoryData
-{
-    public MyInventory [] inventory;
 }
 
 [Serializable]
@@ -115,3 +70,14 @@ public class MyInventory
     public int id;
     public int amount;
 }
+
+/*
+    // InventoryController 쪽에서 구현하고 호출할 메서드 예시
+    public MyInventory createSubObject(int id, int amount)
+    {
+        MyInventory myInnerObject = new MyInventory();
+        myInnerObject.id = id;
+        myInnerObject.amount = amount;
+        return myInnerObject;
+    }
+*/
