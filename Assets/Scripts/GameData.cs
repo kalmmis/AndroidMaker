@@ -61,15 +61,57 @@ public class GameData
     */
     //public DateTime[] researchStartDateTime = new DateTime[3]{DateTime.Now,DateTime.Now,DateTime.Now};
     
-    //public int[,] itemInventory = new int[2,2]{{1,1},{1,1}};
- 
-    //public Dictionary<int, ItemInventory> dicItems = new Dictionary<int, ItemInventory>();
-    public List<ItemInventory> itemInventory = new List<ItemInventory>();
-    
-    public class ItemInventory
+    public MainObjectData mainObject;
+    public InnerObjectData innerObject;
+
+    public List <InnerObjectData> objectList = new List<InnerObjectData> ();
+
+    public InnerObjectData createSubObject(int id, int amount)
     {
-        public int itemId = 0;
-        public int itemAmount = 20;
+        InnerObjectData myInnerObject = new InnerObjectData();
+        myInnerObject.id = id;
+        myInnerObject.amount = amount;
+        return myInnerObject;
     }
+
+    public InventoryData inventoryData;
+    public MyInventory myInventory;
+
+    public List <MyInventory> myInventoryList = new List<MyInventory> ();
+
+/*
+    public MyInventory createSubObject(int id, int amount)
+    {
+        MyInventory myInnerObject = new MyInventory();
+        myInnerObject.id = id;
+        myInnerObject.amount = amount;
+        return myInnerObject;
+    }
+*/
 }
 
+[Serializable]
+public class MainObjectData
+{
+    public InnerObjectData [] highscore;
+}
+
+[Serializable]
+public class InnerObjectData
+{
+    public int id;
+    public int amount;
+}
+
+[Serializable]
+public class InventoryData
+{
+    public MyInventory [] inventory;
+}
+
+[Serializable]
+public class MyInventory
+{
+    public int id;
+    public int amount;
+}

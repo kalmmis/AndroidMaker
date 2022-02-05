@@ -108,7 +108,7 @@ public class DataController : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.Android)
         {
-            //gameData.itemInventory = gameData.itemInventory.ToArray();
+            //gameData.mainObject.highscore = gameData.objectList.ToArray();
             string ToJsonData = JsonUtility.ToJson(gameData,true);
 
             string path = Application.persistentDataPath;
@@ -120,6 +120,7 @@ public class DataController : MonoBehaviour
         }
         else
         {
+            //gameData.mainObject.highscore = gameData.objectList.ToArray();
             string ToJsonData = JsonUtility.ToJson(gameData,true);
             string filePath = Application.dataPath + GameDataFileName;
             //string filePath = Application.persistentDataPath + GameDataFileName;

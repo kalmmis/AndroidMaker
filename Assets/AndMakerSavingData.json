@@ -7,10 +7,10 @@
     "overallTurn": 0,
     "stageDifficulty": 0,
     "storyProgress": [
-        1,
-        1,
-        1,
-        1,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0
@@ -74,5 +74,34 @@
         0,
         0,
         0
-    ]
+    ],
+    "mainObject": {
+        "highscore": []
+    },
+    "innerObject": {
+        "id": 0,
+        "amount": 0
+    },
+    "objectList": [
+        {
+            "id": 1,
+            "amount": 100
+        },
+        {
+            "id": 1,
+            "amount": 100
+        },
+        {
+            "id": 1,
+            "amount": 100
+        }
+    ],
+    "inventoryData": {
+        "inventory": []
+    },
+    "myInventory": {
+        "id": 0,
+        "amount": 0
+    },
+    "myInventoryList": []
 }
