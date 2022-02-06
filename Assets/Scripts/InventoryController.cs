@@ -13,6 +13,13 @@ public class InventoryController : MonoBehaviour
         items = DataController.Instance.gameData.myInventoryList;
     }
 
+    public void RefreshInventoryUI()
+    {
+        foreach (MyInventory item in items)
+        {
+            
+        }
+    }
 
     public void TestingAddInventory()
     {
