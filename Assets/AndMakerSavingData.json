@@ -75,10 +75,5 @@
         0,
         0
     ],
-    "myInventoryList": [
-        {
-            "id": 0,
-            "amount": 3
-        }
-    ]
+    "myInventoryList": []
 }
