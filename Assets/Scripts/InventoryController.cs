@@ -8,17 +8,41 @@ public class InventoryController : MonoBehaviour
     private GameObject inventoryUI;
     private List<MyInventory> items;
     private List<Dictionary<string,object>> itemInfo;
-    private int pageNumber = 2;
+    private int pageNumber;
+    
+    private GameObject itemSlot;
+    private Button itemSlotButton;
+    private Image itemSlotImage;
     private Text itemSlotText;
 
     void Start()
     {
         inventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
+        itemSlot = GameObject.FindWithTag("ItemSlotContent");
+
         items = DataController.Instance.gameData.myInventoryList;
         itemInfo = CSVReader.Read ("ItemInfo");
+        pageNumber = 1;
         RefreshInventoryUI();
     }
+    public void SetEmptyInventoryUI()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < 4; j++)
+            {
+                itemSlotButton = itemSlot.transform.GetChild(i).transform.GetChild(j).GetComponent<Button>();
+                itemSlotImage = itemSlot.transform.GetChild(i).transform.GetChild(j).GetComponent<Image>();
+                itemSlotText = itemSlot.transform.GetChild(i).transform.GetChild(j).transform.Find("Text").GetComponent<Text>();
 
+                
+                itemSlotButton.interactable = false;
+                itemSlotImage.sprite = null;
+                itemSlotText.text = "";
+            }
+        }
+                                
+    }
     public void RefreshInventoryUI()
     {
         Debug.Log ("How many kind items you have : " + items.Count);
@@ -36,17 +60,21 @@ public class InventoryController : MonoBehaviour
             int pageIndex = (pageNumber - 1) * 12;
             if(pageIndex <= counter && counter < pageIndex + 12)
             {
-                itemName = (string)itemInfo[id]["itemName"];
-                
-                itemSlotText = inventoryUI.transform.Find("Panel").transform.Find("ItemScrollView").transform.Find("Viewport").transform.Find("Content").transform.Find("ItemPanelRow" + rowIndex.ToString()).transform.Find("ItemSlot" + slotIndex.ToString()).transform.Find("Text").GetComponent<Text>();
-                //미친 짓... 단순화할 방법을 찾아보자
-
+                itemSlotButton = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Button>();
+                itemSlotImage = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Image>();
+                itemSlotText = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).transform.Find("Text").GetComponent<Text>();
+                        
+                itemSlotButton.interactable = true;
+                itemSlotImage.sprite = Resources.Load<Sprite>("Image/ItemIcon/ItemIcon_" + id);
                 itemSlotText.text = amount.ToString();
+                
+                itemName = (string)itemInfo[id]["itemName"];
                 Debug.Log("you are having " + itemName);
                 Debug.Log("id is " + id + "/ amount is " + amount);
                 Debug.Log("slotIndex is " + slotIndex);
                 slotIndex++;
             }
+
             if (slotIndex == 4)
             {
                 slotIndex = 0;
@@ -54,6 +82,30 @@ public class InventoryController : MonoBehaviour
             }
             counter++;
         }
+    }
+
+    public void InventoryPageUp()
+    {
+        float count = items.Count / 12f;
+        Debug.Log(count);
+        if(pageNumber < count)
+        {
+            pageNumber++;
+            SetEmptyInventoryUI();
+            RefreshInventoryUI();
+        }
+        Debug.Log("pageNumber is " + pageNumber);
+    }
+
+    public void InventoryPageDown()
+    {
+        if(pageNumber >= 2)
+        {
+            pageNumber--;
+            SetEmptyInventoryUI();
+            RefreshInventoryUI();
+        
+        Debug.Log("pageNumber is " + pageNumber);}
     }
 
     public void TestingAddInventory()

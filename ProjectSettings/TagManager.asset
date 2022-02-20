@@ -11,7 +11,7 @@ TagManager:
   - DialogueUI
   - ShelterUI
   - LearnUI
-  - ItemUI
+  - ItemSlotContent
   - StatusUI
   - ScheduleUI
   - ScheduleConfirmUI

@@ -78,11 +78,11 @@
     "myInventoryList": [
         {
             "id": 0,
-            "amount": 2
+            "amount": 1
         },
         {
             "id": 1,
-            "amount": 4
+            "amount": 5
         },
         {
             "id": 1,
