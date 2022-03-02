@@ -15,6 +15,13 @@ public class InventoryController : MonoBehaviour
     private Image itemSlotImage;
     private Text itemSlotText;
 
+    public Text itemDescPanelNameText;
+    public Text itemDescPanelDescText;
+    public Text itemDescPanelCreditText;
+    public Text itemDescPanelCoreText;
+    public Image itemDescPanelImage;
+    public Text itemDescPanelButtonText;
+
     void Start()
     {
         inventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
@@ -25,24 +32,7 @@ public class InventoryController : MonoBehaviour
         pageNumber = 1;
         RefreshInventoryUI();
     }
-    public void SetEmptyInventoryUI()
-    {
-        for(int i = 0; i < 3; i++)
-        {
-            for(int j = 0; j < 4; j++)
-            {
-                itemSlotButton = itemSlot.transform.GetChild(i).transform.GetChild(j).GetComponent<Button>();
-                itemSlotImage = itemSlot.transform.GetChild(i).transform.GetChild(j).GetComponent<Image>();
-                itemSlotText = itemSlot.transform.GetChild(i).transform.GetChild(j).transform.Find("Text").GetComponent<Text>();
 
-                
-                itemSlotButton.interactable = false;
-                itemSlotImage.sprite = null;
-                itemSlotText.text = "";
-            }
-        }
-                                
-    }
     public void RefreshInventoryUI()
     {
         Debug.Log ("How many kind items you have : " + items.Count);
@@ -57,6 +47,11 @@ public class InventoryController : MonoBehaviour
             int amount = item.amount;
             string itemName;
 
+            if(slotIndex == 0 && rowIndex == 0)
+            {
+                SelectItem(id);
+            }
+
             int pageIndex = (pageNumber - 1) * 12;
             if(pageIndex <= counter && counter < pageIndex + 12)
             {
@@ -68,6 +63,8 @@ public class InventoryController : MonoBehaviour
                 itemSlotImage.sprite = Resources.Load<Sprite>("Image/ItemIcon/ItemIcon_" + id);
                 itemSlotText.text = amount.ToString();
                 
+                itemSlotButton.onClick.AddListener(delegate() { SelectItem(id); });
+
                 itemName = (string)itemInfo[id]["itemName"];
                 Debug.Log("you are having " + itemName);
                 Debug.Log("id is " + id + "/ amount is " + amount);
@@ -82,6 +79,17 @@ public class InventoryController : MonoBehaviour
             }
             counter++;
         }
+    }
+    public void SelectItem(int item)
+    {
+        Debug.Log("item id is " + item);
+        
+        itemDescPanelNameText.text = (string)itemInfo[item]["itemName"];
+        itemDescPanelDescText.text = (string)itemInfo[item]["itemDesc"];
+        itemDescPanelImage.sprite = Resources.Load<Sprite>("Image/ItemIcon/ItemIcon_" + item);
+        itemDescPanelCreditText.text = "";
+        itemDescPanelCoreText.text = "";
+        itemDescPanelButtonText.text = "Use";
     }
 
     public void InventoryPageUp()
@@ -106,6 +114,23 @@ public class InventoryController : MonoBehaviour
             RefreshInventoryUI();
         
         Debug.Log("pageNumber is " + pageNumber);}
+    }
+    
+    public void SetEmptyInventoryUI()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < 4; j++)
+            {
+                itemSlotButton = itemSlot.transform.GetChild(i).transform.GetChild(j).GetComponent<Button>();
+                itemSlotImage = itemSlot.transform.GetChild(i).transform.GetChild(j).GetComponent<Image>();
+                itemSlotText = itemSlot.transform.GetChild(i).transform.GetChild(j).transform.Find("Text").GetComponent<Text>();
+                
+                itemSlotButton.interactable = false;
+                itemSlotImage.sprite = null;
+                itemSlotText.text = "";
+            }
+        }                           
     }
 
     public void TestingAddInventory()
