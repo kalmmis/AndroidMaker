@@ -1,5 +1,5 @@
 craftID,resultItemId,resultItemCount,reqCredit,reqItem1Id,reqItem1Count,reqItem2Id,reqItem2Count,condHasItem,condStoryId,condSchedule1Id,condSchedule1Lv
-0,0,2,100,1,1,2,2,0,0,0,2
+0,3,2,100,1,1,2,2,0,0,0,2
 1,1,2,100,1,1,2,2,0,0,0,2
 2,2,2,100,1,1,2,2,0,0,0,2
 3,2,2,100,1,1,2,2,0,0,0,2

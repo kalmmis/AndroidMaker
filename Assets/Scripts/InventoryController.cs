@@ -5,17 +5,22 @@ using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
 {
-    private GameObject inventoryUI;
+    public GameObject inventoryUI;
+
     private List<MyInventory> items;
     private List<Dictionary<string,object>> itemInfo;
     private List<Dictionary<string,object>> craftInfo;
-    private int pageNumberInventory;
-    private int pageNumberCraft;
+    private static int pageNumberInventory;
+    private static int pageNumberCraft;
     
-    private GameObject itemSlot;
+    public GameObject itemSlot;
+
     private Button itemSlotButton;
     private Image itemSlotImage;
     private Text itemSlotText;
+
+    public Button toggleInventoryBtn;
+    public Button toggleCraftBtn;
 
     public Text itemDescPanelNameText;
     public Text itemDescPanelDescText;
@@ -24,22 +29,42 @@ public class InventoryController : MonoBehaviour
     public Image itemDescPanelImage;
     public Text itemDescPanelButtonText;
 
+    public Text pageDescText;
+
+    public Button useBtn;
+
     private static bool isCraft;
 
     void Start()
     {
-        inventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
-        itemSlot = GameObject.FindWithTag("ItemSlotContent");
-
         items = DataController.Instance.gameData.myInventoryList;
         itemInfo = CSVReader.Read ("ItemInfo");
-        pageNumberInventory = 1;
-        RefreshInventoryUI();
-
-        isCraft = false;
         craftInfo = CSVReader.Read ("CraftInfo");
+        pageNumberInventory = 1;
         pageNumberCraft = 1;
-        //RefreshCraftUI();
+        isCraft = false;
+        
+        RefreshInventoryUI();
+    }
+
+    public void SetPageNumber()
+    {
+        int maxPageNumberInventory = items.Count / 12;
+        if(items.Count % 12 > 0) maxPageNumberInventory++;
+
+        int maxPageNumberCraft = craftInfo.Count / 12;
+        if(craftInfo.Count % 12 > 0) maxPageNumberCraft++;
+
+        if(isCraft)
+        {
+            pageDescText.text = pageNumberCraft.ToString() + " / " + maxPageNumberInventory.ToString();
+            Debug.Log("set page number : pageNumberCraft is" + pageNumberCraft);
+        }
+        else
+        {
+            pageDescText.text = pageNumberInventory.ToString() + " / " + maxPageNumberCraft.ToString();
+            Debug.Log("set page number : pageNumberInventory is" + pageNumberInventory);
+        } 
     }
 
     public void ToggleInventoryUI()
@@ -48,6 +73,9 @@ public class InventoryController : MonoBehaviour
         pageNumberInventory = 1;
         SetEmptyInventoryUI();
         RefreshInventoryUI();
+        
+        toggleInventoryBtn.interactable = false;
+        toggleCraftBtn.interactable = true;
     }
 
     public void ToggleCraftUI()
@@ -56,6 +84,9 @@ public class InventoryController : MonoBehaviour
         pageNumberCraft = 1;
         SetEmptyInventoryUI();
         RefreshCraftUI();
+        
+        toggleInventoryBtn.interactable = true;
+        toggleCraftBtn.interactable = false;
     }
 
 
@@ -63,15 +94,18 @@ public class InventoryController : MonoBehaviour
     {
         int counter = (pageNumberCraft - 1) * 12;
         int craftInfoCount = craftInfo.Count;
+        SetPageNumber();
         
         for(int rowIndex = 0; rowIndex < 3; rowIndex++)
         {
             for(int slotIndex = 0; slotIndex < 4; slotIndex++)
-            {                
+            {
                 int id = (int)craftInfo[counter]["resultItemId"];
                 int amount = (int)craftInfo[counter]["resultItemCount"];
                 string itemName = (string)itemInfo[id]["itemName"];
                 string itemDesc = (string)itemInfo[id]["itemDesc"];
+
+                if(rowIndex == 0 && slotIndex == 0) SelectCraftRecipe(id);
 
                 itemSlotButton = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Button>();
                 itemSlotImage = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Image>();
@@ -81,7 +115,7 @@ public class InventoryController : MonoBehaviour
                 itemSlotImage.sprite = Resources.Load<Sprite>("Image/ItemIcon/ItemIcon_" + id);
                 itemSlotText.text = amount.ToString();
                 
-                itemSlotButton.onClick.AddListener(delegate() { SelectItem(id); });
+                itemSlotButton.onClick.AddListener(delegate() { SelectCraftRecipe(id); });
 
                 counter++;
                 //Debug.Log("counter is " + counter);
@@ -100,6 +134,7 @@ public class InventoryController : MonoBehaviour
         int counter = 0;
         int rowIndex = 0;
         int slotIndex = 0;
+        SetPageNumber();
 
         foreach (MyInventory item in items)
         {
@@ -152,6 +187,27 @@ public class InventoryController : MonoBehaviour
         itemDescPanelCreditText.text = "";
         itemDescPanelCoreText.text = "";
         itemDescPanelButtonText.text = "Use";
+    }
+
+    public void SelectCraftRecipe(int item)
+    {
+        Debug.Log("Recipe item id is " + item);
+        
+        //if(Cond)
+
+        itemDescPanelNameText.text = (string)itemInfo[item]["itemName"];
+        itemDescPanelDescText.text = (string)itemInfo[item]["itemDesc"];
+        itemDescPanelImage.sprite = Resources.Load<Sprite>("Image/ItemIcon/ItemIcon_" + item);
+        
+        int reqCredit = (int)craftInfo[item]["reqCredit"];
+        int reqItem = (int)craftInfo[item]["reqItem1Count"];
+        
+        itemDescPanelCreditText.text = reqCredit.ToString();
+        itemDescPanelCoreText.text = reqItem.ToString();
+        itemDescPanelButtonText.text = "Craft";
+
+
+        useBtn.interactable = false;
     }
 
     public void InventoryPageUp()
@@ -222,6 +278,8 @@ public class InventoryController : MonoBehaviour
             }
         }                           
     }
+
+    // 아이템 획득 및 제거 코드
 
     public void TestingAddInventory()
     {
@@ -299,10 +357,5 @@ public class InventoryController : MonoBehaviour
     {
         MyInventory myInnerObject = items.Find(x => x.id == id);
         return myInnerObject;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

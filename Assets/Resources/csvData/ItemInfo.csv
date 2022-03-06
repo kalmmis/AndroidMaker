@@ -2,7 +2,7 @@ itemID,itemType,itemName,itemDesc,itemIcon,arg1
 0,UseType,배터리,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,15
 1,BookScheduleType,소설,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
 2,MovieScheduleType,영화,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
-3,UseType,40,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
-4,UseType,15,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
-5,UseType,15,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
-6,UseType,15,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
+3,UseType,문자,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
+4,UseType,오직,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
+5,UseType,문자만,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
+6,UseType,써야함,사용 시 안드로이드의 배터리를 충전할 수 있다.,item_icon_01,0
