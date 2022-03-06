@@ -116,3 +116,19 @@ gold 소모
 - 전투 커스텀
 
 - 그 외 모로모로
+
+
+craftID
+resultItemId
+resultItemCount
+
+reqCredit
+reqItem1Id
+reqItem1Count
+reqItem2Id
+reqItem2Count
+
+condHasItem
+condStoryId
+condSchedule1Id
+condSchedule1lv

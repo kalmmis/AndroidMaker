@@ -8,7 +8,9 @@ public class InventoryController : MonoBehaviour
     private GameObject inventoryUI;
     private List<MyInventory> items;
     private List<Dictionary<string,object>> itemInfo;
-    private int pageNumber;
+    private List<Dictionary<string,object>> craftInfo;
+    private int pageNumberInventory;
+    private int pageNumberCraft;
     
     private GameObject itemSlot;
     private Button itemSlotButton;
@@ -22,6 +24,8 @@ public class InventoryController : MonoBehaviour
     public Image itemDescPanelImage;
     public Text itemDescPanelButtonText;
 
+    private static bool isCraft;
+
     void Start()
     {
         inventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
@@ -29,8 +33,64 @@ public class InventoryController : MonoBehaviour
 
         items = DataController.Instance.gameData.myInventoryList;
         itemInfo = CSVReader.Read ("ItemInfo");
-        pageNumber = 1;
+        pageNumberInventory = 1;
         RefreshInventoryUI();
+
+        isCraft = false;
+        craftInfo = CSVReader.Read ("CraftInfo");
+        pageNumberCraft = 1;
+        //RefreshCraftUI();
+    }
+
+    public void ToggleInventoryUI()
+    {
+        isCraft = false;
+        pageNumberInventory = 1;
+        SetEmptyInventoryUI();
+        RefreshInventoryUI();
+    }
+
+    public void ToggleCraftUI()
+    {
+        isCraft = true;
+        pageNumberCraft = 1;
+        SetEmptyInventoryUI();
+        RefreshCraftUI();
+    }
+
+
+    public void RefreshCraftUI()
+    {
+        int counter = (pageNumberCraft - 1) * 12;
+        int craftInfoCount = craftInfo.Count;
+        
+        for(int rowIndex = 0; rowIndex < 3; rowIndex++)
+        {
+            for(int slotIndex = 0; slotIndex < 4; slotIndex++)
+            {                
+                int id = (int)craftInfo[counter]["resultItemId"];
+                int amount = (int)craftInfo[counter]["resultItemCount"];
+                string itemName = (string)itemInfo[id]["itemName"];
+                string itemDesc = (string)itemInfo[id]["itemDesc"];
+
+                itemSlotButton = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Button>();
+                itemSlotImage = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Image>();
+                itemSlotText = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).transform.Find("Text").GetComponent<Text>();
+                        
+                itemSlotButton.interactable = true;
+                itemSlotImage.sprite = Resources.Load<Sprite>("Image/ItemIcon/ItemIcon_" + id);
+                itemSlotText.text = amount.ToString();
+                
+                itemSlotButton.onClick.AddListener(delegate() { SelectItem(id); });
+
+                counter++;
+                //Debug.Log("counter is " + counter);
+                //Debug.Log("craftInfo.Count is " + craftInfo.Count);
+
+                if(counter == craftInfoCount) break;
+            }
+            if(counter == craftInfoCount) break;
+        }
     }
 
     public void RefreshInventoryUI()
@@ -47,12 +107,15 @@ public class InventoryController : MonoBehaviour
             int amount = item.amount;
             string itemName;
 
+            // 인벤토리 첫번째 아이템을 선택해 좌측 정보를 갱신한다.
             if(slotIndex == 0 && rowIndex == 0)
             {
                 SelectItem(id);
             }
 
-            int pageIndex = (pageNumber - 1) * 12;
+            // 인벤토리 한 페이지에 아이템을 12개까지만 보여주므로 페이지 수에 따라서 표시
+            // 1페이지면 0~11까지 2페이지면 12~23까지
+            int pageIndex = (pageNumberInventory - 1) * 12;
             if(pageIndex <= counter && counter < pageIndex + 12)
             {
                 itemSlotButton = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Button>();
@@ -71,7 +134,6 @@ public class InventoryController : MonoBehaviour
                 Debug.Log("slotIndex is " + slotIndex);
                 slotIndex++;
             }
-
             if (slotIndex == 4)
             {
                 slotIndex = 0;
@@ -94,26 +156,54 @@ public class InventoryController : MonoBehaviour
 
     public void InventoryPageUp()
     {
-        float count = items.Count / 12f;
-        Debug.Log(count);
-        if(pageNumber < count)
+        if(isCraft)
         {
-            pageNumber++;
-            SetEmptyInventoryUI();
-            RefreshInventoryUI();
+            float count = craftInfo.Count / 12f;
+            Debug.Log(count);
+            if(pageNumberCraft < count)
+            {
+                pageNumberCraft++;
+                SetEmptyInventoryUI();
+                RefreshCraftUI();
+            }
+            Debug.Log("pageNumberCraft is " + pageNumberCraft);
         }
-        Debug.Log("pageNumber is " + pageNumber);
+        else
+        {
+            float count = items.Count / 12f;
+            Debug.Log(count);
+            if(pageNumberInventory < count)
+            {
+                pageNumberInventory++;
+                SetEmptyInventoryUI();
+                RefreshInventoryUI();
+            }
+            Debug.Log("pageNumberInventory is " + pageNumberInventory);
+        }
     }
 
     public void InventoryPageDown()
     {
-        if(pageNumber >= 2)
+        if(isCraft)
         {
-            pageNumber--;
-            SetEmptyInventoryUI();
-            RefreshInventoryUI();
-        
-        Debug.Log("pageNumber is " + pageNumber);}
+            if(pageNumberCraft >= 2)
+            {
+                pageNumberCraft--;
+                SetEmptyInventoryUI();
+                RefreshCraftUI();
+            
+            Debug.Log("pageNumberCraft is " + pageNumberCraft);}
+        }
+        else
+        {
+            if(pageNumberInventory >= 2)
+            {
+                pageNumberInventory--;
+                SetEmptyInventoryUI();
+                RefreshInventoryUI();
+            
+            Debug.Log("pageNumberInventory is " + pageNumberInventory);}
+        }
     }
     
     public void SetEmptyInventoryUI()
