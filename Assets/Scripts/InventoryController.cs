@@ -96,6 +96,39 @@ public class InventoryController : MonoBehaviour
         int craftInfoCount = craftInfo.Count;
         SetPageNumber();
         
+        foreach (var item in craftInfo)
+        {
+            Debug.Log ("foreach for craftInfo ");
+            Debug.Log (item["condHasItem"]);
+            Debug.Log (item["condStoryId"]);
+            Debug.Log (item["condSchedule1Id"]);
+            Debug.Log (item["condSchedule1Lv"]);
+            
+            /*
+            //if(cond)
+            {
+                itemSlotButton = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Button>();
+                itemSlotImage = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Image>();
+                itemSlotText = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).transform.Find("Text").GetComponent<Text>();
+                      
+                itemSlotButton.interactable = true;
+                itemSlotImage.sprite = Resources.Load<Sprite>("Image/ItemIcon/ItemIcon_" + id);
+                itemSlotText.text = amount.ToString();
+                
+                itemSlotButton.onClick.AddListener(delegate() { SelectCraftRecipe(id); });
+
+                slotIndex++;
+            }
+            if (slotIndex == 4)
+            {
+                slotIndex = 0;
+                rowIndex++;
+            }
+            */
+
+            //SetPageNumber 도 활성화되는 아이템 개수에 따라서 재구현해야 함
+        }
+
         for(int rowIndex = 0; rowIndex < 3; rowIndex++)
         {
             for(int slotIndex = 0; slotIndex < 4; slotIndex++)
@@ -187,14 +220,14 @@ public class InventoryController : MonoBehaviour
         itemDescPanelCreditText.text = "";
         itemDescPanelCoreText.text = "";
         itemDescPanelButtonText.text = "Use";
+        
+        useBtn.interactable = true;
     }
 
     public void SelectCraftRecipe(int item)
     {
         Debug.Log("Recipe item id is " + item);
         
-        //if(Cond)
-
         itemDescPanelNameText.text = (string)itemInfo[item]["itemName"];
         itemDescPanelDescText.text = (string)itemInfo[item]["itemDesc"];
         itemDescPanelImage.sprite = Resources.Load<Sprite>("Image/ItemIcon/ItemIcon_" + item);
@@ -206,8 +239,10 @@ public class InventoryController : MonoBehaviour
         itemDescPanelCoreText.text = reqItem.ToString();
         itemDescPanelButtonText.text = "Craft";
 
-
-        useBtn.interactable = false;
+        //if(Cond)
+        //{
+            useBtn.interactable = false;
+        //}
     }
 
     public void InventoryPageUp()
