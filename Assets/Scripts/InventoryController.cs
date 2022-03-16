@@ -32,7 +32,12 @@ public class InventoryController : MonoBehaviour
     public Text pageDescText;
 
     public Button useBtn;
+    
+    public List<int> listCraftId;
+    public List<int> listCraftResultItemId;
+    public List<int> listCraftResultItemCount;
 
+    private static int initializedCraftIdCount;
     private static bool isCraft;
 
     void Start()
@@ -47,22 +52,22 @@ public class InventoryController : MonoBehaviour
         RefreshInventoryUI();
     }
 
-    public void SetPageNumber()
+    public void SetPageNumber(int craftCount)
     {
+        int maxPageNumberCraft = craftCount / 12;
+        if(craftCount % 12 > 0) maxPageNumberCraft++;
+
         int maxPageNumberInventory = items.Count / 12;
         if(items.Count % 12 > 0) maxPageNumberInventory++;
 
-        int maxPageNumberCraft = craftInfo.Count / 12;
-        if(craftInfo.Count % 12 > 0) maxPageNumberCraft++;
-
         if(isCraft)
         {
-            pageDescText.text = pageNumberCraft.ToString() + " / " + maxPageNumberInventory.ToString();
+            pageDescText.text = pageNumberCraft.ToString() + " / " + maxPageNumberCraft.ToString();
             Debug.Log("set page number : pageNumberCraft is" + pageNumberCraft);
         }
         else
         {
-            pageDescText.text = pageNumberInventory.ToString() + " / " + maxPageNumberCraft.ToString();
+            pageDescText.text = pageNumberInventory.ToString() + " / " + maxPageNumberInventory.ToString();
             Debug.Log("set page number : pageNumberInventory is" + pageNumberInventory);
         } 
     }
@@ -93,48 +98,48 @@ public class InventoryController : MonoBehaviour
     public void RefreshCraftUI()
     {
         int counter = (pageNumberCraft - 1) * 12;
-        int craftInfoCount = craftInfo.Count;
-        SetPageNumber();
         
+        // cond 구현 시 tempConditon 삭제 필요
+        int tempCondition = 0;        
         foreach (var item in craftInfo)
         {
-            Debug.Log ("foreach for craftInfo ");
-            Debug.Log (item["condHasItem"]);
-            Debug.Log (item["condStoryId"]);
-            Debug.Log (item["condSchedule1Id"]);
-            Debug.Log (item["condSchedule1Lv"]);
-            
-            /*
-            //if(cond)
+            // cond 를 체크해서 true 인 정보만 List에 추가한다.
+            if(tempCondition % 2 == 1)
             {
-                itemSlotButton = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Button>();
-                itemSlotImage = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).GetComponent<Image>();
-                itemSlotText = itemSlot.transform.GetChild(rowIndex).transform.GetChild(slotIndex).transform.Find("Text").GetComponent<Text>();
-                      
-                itemSlotButton.interactable = true;
-                itemSlotImage.sprite = Resources.Load<Sprite>("Image/ItemIcon/ItemIcon_" + id);
-                itemSlotText.text = amount.ToString();
+                Debug.Log ("foreach for craftInfo ");
+                Debug.Log (item["condHasItem"]);
+                Debug.Log (item["condStoryId"]);
+                Debug.Log (item["condSchedule1Id"]);
+                Debug.Log (item["condSchedule1Lv"]);
                 
-                itemSlotButton.onClick.AddListener(delegate() { SelectCraftRecipe(id); });
-
-                slotIndex++;
+                listCraftId.Add((int)item["craftID"]);
+                listCraftResultItemId.Add((int)item["resultItemId"]);
+                listCraftResultItemCount.Add((int)item["resultItemCount"]);
+                //i++;
             }
-            if (slotIndex == 4)
-            {
-                slotIndex = 0;
-                rowIndex++;
-            }
-            */
-
-            //SetPageNumber 도 활성화되는 아이템 개수에 따라서 재구현해야 함
+            tempCondition++;
         }
+
+        //추가한 List 를 Array 로 변환한다
+        int[] arrayCraftId = listCraftId.ToArray();
+        int[] arrayCraftResultItemId = listCraftResultItemId.ToArray();
+        int[] arrayCraftResultItemCount = listCraftResultItemCount.ToArray();
+
+        //Array 의 크기가 곧 활성화된 레시피의 개수이다. static 으로 클래스 내에서 모두가 알게한다.
+        //InventoryPageUp 함수에서 레시피 개수를 바탕으로 페이지 최대 수를 계산한다. 
+        initializedCraftIdCount = arrayCraftResultItemId.Length;
+        SetPageNumber(initializedCraftIdCount);
 
         for(int rowIndex = 0; rowIndex < 3; rowIndex++)
         {
             for(int slotIndex = 0; slotIndex < 4; slotIndex++)
             {
-                int id = (int)craftInfo[counter]["resultItemId"];
-                int amount = (int)craftInfo[counter]["resultItemCount"];
+                //int id = (int)craftInfo[counter]["resultItemId"];
+                //int amount = (int)craftInfo[counter]["resultItemCount"];
+
+                int id = arrayCraftResultItemId[counter];
+                int amount = arrayCraftResultItemCount[counter];
+
                 string itemName = (string)itemInfo[id]["itemName"];
                 string itemDesc = (string)itemInfo[id]["itemDesc"];
 
@@ -151,12 +156,10 @@ public class InventoryController : MonoBehaviour
                 itemSlotButton.onClick.AddListener(delegate() { SelectCraftRecipe(id); });
 
                 counter++;
-                //Debug.Log("counter is " + counter);
-                //Debug.Log("craftInfo.Count is " + craftInfo.Count);
 
-                if(counter == craftInfoCount) break;
+                if(counter == initializedCraftIdCount) break;
             }
-            if(counter == craftInfoCount) break;
+            if(counter == initializedCraftIdCount) break;
         }
     }
 
@@ -167,7 +170,7 @@ public class InventoryController : MonoBehaviour
         int counter = 0;
         int rowIndex = 0;
         int slotIndex = 0;
-        SetPageNumber();
+        SetPageNumber(0);
 
         foreach (MyInventory item in items)
         {
@@ -249,7 +252,7 @@ public class InventoryController : MonoBehaviour
     {
         if(isCraft)
         {
-            float count = craftInfo.Count / 12f;
+            float count = initializedCraftIdCount / 12f;
             Debug.Log(count);
             if(pageNumberCraft < count)
             {
